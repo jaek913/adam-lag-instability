@@ -1,0 +1,40 @@
+{
+  "a1_verdict": "UNDETERMINED -- no runs listed (WandbApiFailedError: the provided API key cannot access this resource, check credentials)",
+  "base_url": "https://api.wandb.ai",
+  "checked_at_utc": "2026-10-30T21:28:01.368602+00:00",
+  "targets": [
+    {
+      "error": "WandbApiFailedError: the provided API key cannot access this resource, check credentials",
+      "filters": {
+        "group": "OLMo-1.7-7B"
+      },
+      "label": "A1 OLMo-0424 7B pretraining",
+      "path": "ai2-llm/OLMo-7B",
+      "runs": []
+    },
+    {
+      "error": "WandbApiFailedError: the provided API key cannot access this resource, check credentials",
+      "filters": {
+        "group": "OLMo-1.7-7B-anneal"
+      },
+      "label": "A1b OLMo-0424 7B anneal",
+      "path": "ai2-llm/OLMo-7B",
+      "runs": []
+    },
+    {
+      "error": "WandbApiFailedError: the provided API key cannot access this resource, check credentials",
+      "filters": {},
+      "label": "A2 OLMo 2 7B",
+      "path": "ai2-llm/OLMo-2-1124-7B",
+      "runs": []
+    },
+    {
+      "error": "WandbApiFailedError: the provided API key cannot access this resource, check credentials",
+      "filters": {},
+      "label": "A3 OLMo 2 13B",
+      "path": "ai2-llm/OLMo-2-1124-13B",
+      "runs": []
+    }
+  ],
+  "wandb_version": "0.31.0"
+}
