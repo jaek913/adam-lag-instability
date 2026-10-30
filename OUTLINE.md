@@ -8,7 +8,7 @@ Copied from the Research-to-Publication Standard's OUTLINE.md Template page (doc
 *   **Archetype:** empirical-with-verified-theory (THESIS Amendment A2(f): no original theorem; The Measurement Trap Appendix A.4 used as a descriptive index)
 *   **Source pin (rebuild only):** N/A — new work
 *   **Standard:** v1.10.2
-*   **Outline version:** v0.1 — 2026-10-30
+*   **Outline version:** v0.2 — 2026-10-30
 *   **Status:** draft
 *   **Format:** ML-format paper, 8–12 pages main text (page budget per section in §1); appendices outside the page count.
 *   **Outcome branches (pre-registered, DESIGN §K):** this outline is the full paper (E2 SUPPORT or INCONCLUSIVE → Leg B runs). If §K returns STOP (E2 REFUTE) or CLOSE (INSUFFICIENT EVENTS), the deliverable is a short null note built from the Leg A nodes only (ARG-01–ARG-10, ARG-14; FIG-1–FIG-5; TBL-1–TBL-5; S1–S5, S7–S8; L1, L3–L7); Leg B nodes become DROPPED ("not necessary — §K did not proceed") by a dated outline version.
@@ -16,6 +16,7 @@ Copied from the Research-to-Publication Standard's OUTLINE.md Template page (doc
 ## Changelog
 
 *   v0.1 2026-10-30 — initial roadmap from THESIS.md (A1, A2) and DESIGN.md at 7949f19; citations from PRIOR_ART.md §2–§5, §9, §10.
+*   v0.2 2026-10-30 — The unauthored key for arXiv:2603.09581 resolved to its authors from the arXiv record (Bai, Zhao, Zhou, Xu & Zhang) and re-keyed Bai-2026b; the ICML paper by the same group re-keyed Bai-2026a with its full author list (arXiv record of 2506.04805). Lettered in this paper's citation order. JAE approved the v0.1 drafting choices (null-note subset; own-work key lettering; FIG-2 event rule; Phase 5b checks).
 
 ## 1. IMRaD structural map (the skeleton)
 
@@ -43,7 +44,7 @@ Required section run present: Abstract, Introduction, Methods, Results, Discussi
 |---|---|---|---|---|---|
 | ARG-01 | Loss spikes cost compute through rewinds and skips, and gradient-norm spikes tend to precede them | 1 | — | Chowdhery-2023, Walsh-2025, Takase-2025 | NEW |
 | ARG-02 | Adam steers off trailing averages whose estimates feed back into the gradients they measure — a measurement-feedback loop | 3.1 | — | Kingma-2015, Kim-2026d (Measurement Trap) | NEW |
-| ARG-03 | That the second-moment estimate lags the squared gradients and destabilizes training is established; this paper does not claim it | 2.2 | ARG-02 | Shazeer-2018, Wortsman-2023, Bai-2026, Tang-2026, Molybog-2023 | NEW |
+| ARG-03 | That the second-moment estimate lags the squared gradients and destabilizes training is established; this paper does not claim it | 2.2 | ARG-02 | Shazeer-2018, Wortsman-2023, Bai-2026a, Tang-2026, Molybog-2023 | NEW |
 | ARG-04 | Deployed alarms (ZClip, SPAM, trainscope) are fast–slow divergences with a one-step fast window | 2.1 | ARG-01 | Kumar-2025, Huang-2025a, trainscope-2026 | NEW |
 | ARG-05 | The smoothed divergence D = SMA_32(y) − SMA_128(y) on y = ln g, ratio 4 inside the Theorem 14 band, trades single-step response for noise rejection | 3.2 | ARG-04 | Kim-2026c (Thm 14), EQ-1, EQ-2 | NEW |
 | ARG-06 | The divergence's lead over a ramp is bounded by (w_s − w_f)/2 at the ramp midpoint | 3.3 | ARG-05 | Kim-2026a, EQ-5 | NEW |
@@ -54,7 +55,7 @@ Required section run present: Abstract, Introduction, Methods, Results, Discussi
 | ARG-11 | The A.4 exponential-kernel boundary does not map onto Adam's loop in observable-only terms, so Claim B is a characterization, not a verdict | 6.3, App. B | ARG-02, ARG-03 | Kim-2026d (App. A.4, EQ-5/EQ-6), EQ-8, EQ-9 | NEW |
 | ARG-12 | Across the β₂ × LR grid, spike rate is characterized and its ordering by the A.4 robustness index is reported within each LR | 5.7 | ARG-11, ARG-08 | EQ-10, TBL-6, FIG-6, FIG-7, LB-E6-spearman, LB-E7-tau, LB-B-noisecell | NEW |
 | ARG-13 | The early-warning comparison is repeated on the Leg B runs | 5.8 | ARG-08 | TBL-7, LB-E8-verdict | NEW |
-| ARG-14 | The lag view and the curvature boundary are complementary: the boundary says where instability is; the divergence watches the logged scalar that precedes the crossing | 6.2 | ARG-03, ARG-08 | Cohen-2021, Cohen-2022, Bai-2026 | NEW |
+| ARG-14 | The lag view and the curvature boundary are complementary: the boundary says where instability is; the divergence watches the logged scalar that precedes the crossing | 6.2 | ARG-03, ARG-08 | Cohen-2021, Cohen-2022, Bai-2026a | NEW |
 | ARG-15 | A detector computed from one logged scalar can ship as a lightweight monitor; its value is bounded to avoided rewinds, not a share of hyperscale compute | 6.5 | ARG-08 | PKG-01, Chowdhery-2023 | NEW |
 
 ## 3. Citations
@@ -83,9 +84,9 @@ Own-work keys are lettered in this paper's own reference order (the paper stands
 | Wortsman-2024 | Wortsman et al., Small-scale proxies for large-scale Transformer training instabilities, ICLR 2024, arXiv:2309.14322 | method-precedent (small-model proxy for Leg B) | 4.6 | NEW |
 | Molybog-2023 | Molybog et al., A Theory on Adam Instability…, arXiv:2304.09871 | prior-art (time-domain gradient correlation) | ARG-03; 2.2 | NEW |
 | Ma-2022 | Ma, Wu & E, MSML 2022, PMLR 145:671–692 | prior-art (qualitative (β₁, β₂) regimes) | 2.2 | NEW |
-| Bai-2026 | Bai et al., Adaptive Preconditioners Trigger Loss Spikes in Adam, ICML 2026, arXiv:2506.04805 | prior-art (closest precedent; curvature boundary) | ARG-03, ARG-14; 2.2, 2.3, 6.2 | NEW |
+| Bai-2026a | Bai, Zhou, Zhao, Li, Li, Xiong, Yang, Zhang & Xu, Adaptive Preconditioners Trigger Loss Spikes in Adam, ICML 2026, arXiv:2506.04805 | prior-art (closest precedent; curvature boundary) | ARG-03, ARG-14; 2.2, 2.3, 6.2 | NEW |
 | Tang-2026 | Tang, Chen & Liu, Beyond Quadratic Loss: The Stability Phase Diagram of Adam, arXiv:2609.18314 | prior-art (fitted (β₁, β₂) boundary) | ARG-03; 2.2 | NEW |
-| Anon-2026 | Towards Understanding Adam Convergence on Highly Degenerate Polynomials, arXiv:2603.09581 | prior-art (derived phase diagram on toy objectives) | 2.2 | NEW |
+| Bai-2026b | Bai, Zhao, Zhou, Xu & Zhang, Towards Understanding Adam Convergence on Highly Degenerate Polynomials, arXiv:2603.09581 (2026) | prior-art (derived phase diagram on toy objectives) | 2.2 | NEW |
 | Kourkoutas-2025 | Kourkoutas-beta, arXiv:2508.12996 | contrast (online β₂ adaptation as remedy) | 6.3 | NEW |
 | Cohen-2021 | Cohen et al., Gradient Descent … Edge of Stability, ICLR 2021 | contrast (curvature boundary, non-adaptive) | ARG-14; 2.3 | NEW |
 | Cohen-2022 | Cohen et al., Adaptive Gradient Methods at the Edge of Stability, arXiv:2207.14484 | contrast (preconditioned sharpness; preconditioner held fixed) | ARG-14; 2.3, 6.2 | NEW |
@@ -95,7 +96,7 @@ Own-work keys are lettered in this paper's own reference order (the paper stands
 
 Not cited (recorded so the omission is deliberate): trainpulse — no detector parameter confirmable from its public docs (PRIOR_ART §2); DROPPED ("not necessary — no parameter attributed to it").
 
-Accuracy note for Phase 5b: Chowdhery-2023 and Cohen-2021 are seed entries "not re-read" in PRIOR_ART; Lozhkov-2024, Radford-2019 and BigScience-2022 bibliographic details, and the authors behind Anon-2026, are to be confirmed. All are checked at Phase 5b before the manuscript cites them.
+Accuracy note for Phase 5b: Chowdhery-2023 and Cohen-2021 are seed entries "not re-read" in PRIOR_ART; Lozhkov-2024, Radford-2019 and BigScience-2022 bibliographic details are to be confirmed. All are checked at Phase 5b before the manuscript cites them.
 
 ## 4. Load-bearing findings
 
