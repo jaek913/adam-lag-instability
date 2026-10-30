@@ -170,3 +170,106 @@ Reviewer reply pasted below verbatim (upload MD5 68ebe4fae6bc99e46dae2421fc7f4b4
 | F17 | 3 | MAJOR | D.3 E2, D.4 E6/E8 | Identical token order makes Leg B events dependent across cells; resampling unit unspecified |
 | F18 | 3 | MINOR | D.2 dedup, FA | Dedup chaining ambiguous; ineligible windows in FA denominator unstated |
 | F19 | 3 | MINOR | D.1 A2/A3/A6, D.4 seeds | A6 inclusion unbounded; seeds and RNG unstated |
+
+## Author fix-round message 1
+
+verification/design_review_fixround.md (MD5 859f060b72adb30e9f62df957183c574), sent once to the same session.
+
+## Reviewer reply 2 (verbatim; upload MD5 63e09e69c95b1644519a862586482c1c; CRLF normalized to LF, no other change)
+
+# Fix-round reply — disposition of F1–F19 and defects introduced by the amendments
+
+**F1 — CLOSED.** Mean lead with misses at 0, censored at 128, detection rate and the ≤ 50 % statement reported, suite null at 30–50 % detection. The tie-at-zero kill is gone. (The statistic is now exposed to the chance-hit asymmetry in N1 below, which is a property of the FA redefinition, not of the mean-lead rule.)
+
+**F2 — CLOSED as to censoring; the FA redefinition it was bundled with introduces N1.** Lead 128 flagged, with the two sensitivities, removes the "active alarm = miss" artefact and the external-convention dependency. The rebuttal of "alarm runs touching a window are not false alarms" stands on its own terms: under duty cycle the in-window steps are already out of both numerator and denominator, and the author is right that pure onset counting lets a monotone-drifting score (B2 on rising y) sit in alarm for most of the run at a trivial onset count. But the replacement — duty cycle alone — fails in the opposite direction; see N1.
+
+**F3 — CLOSED mechanically, with a residual that is part of N1/N3.** At 1 % of ~4,000 out-of-window steps, 40 alarm steps are realisable. Two residuals: (i) N_out is not ~4,000 in spiky cells, because every event's 129-step window is removed from the denominator; a cell with 20 events has N_out ≈ 1,400 and n* = 14 — still realisable but the realised N_out per run must be reported; (ii) the chance-hit asymmetry of N1 is at its most severe on 5,000-step runs.
+
+**F4 — CLOSED for B1, B2, B3 and D_div; OPEN for B4.** Alarm-step count is monotone in θ for a score series that does not depend on θ. B4's series does: "accumulator reset to 0 after each alarm", with alarm now defined as S⁺ ≥ θ, means the score path is recomputed for each candidate θ, so monotonicity is not guaranteed and the candidate set is itself θ-dependent. It also makes every B4 alarm run exactly one step long (S⁺ resets to 0 on the alarm step, so the next step cannot be in alarm unless z − k ≥ θ), which bears on N1. Fix: "For B4, the alarm-step count is computed by rerunning the accumulator at each candidate θ; θ is the smallest candidate at which that count ≤ n*; monotonicity is checked and any non-monotone region reported. B4's alarm state is held for H steps after each alarm (see N1 fix)."
+
+**F5 — CLOSED, one wording gap.** Rewind events retained on the earlier segment's own series, entering the k-ladder count, with the excluded-sensitivity. Unstated: whether a rewind event and a kept-trajectory event at nearby step indices (the restart re-encountering the same batch) are two events or one. They are on different series, so by the text they are two; say so in one line in P-SEG: "Dedup applies within a series; a rewind event and an assembled-series event are never merged."
+
+**F6 — CLOSED.** Circular shift of the alarm-state series with a 95th-percentile flag and a suite cell that must trip/not trip. The flag can now fire in the regime that matters.
+
+**F7 — CLOSED; the adaptation is sound.** Replicating the direction C_min > 0 rather than "E2's sign" removes the undefined-sign case, NOT RUN covers < 3 qualifying runs, and running E3 on a REFUTE so the null note carries its replication is better than my proposal.
+
+**F8 — CLOSED.** P-DIV with a running-minimum + 2.0 nat / 50-step rule and NaN, analysis stopping at divergence, undefined cells, Spearman both ways, finite-only spike baselines.
+
+**F9 — CLOSED.** Detrended φ̂ with raw-level sensitivity, τ against β₂ beside τ against the index, the per-column "identical to β₂ ordering" statement, stated direction, planted reorder. With detrended φ̂ most columns will likely report "identical to ordering by β₂"; that is now an honest characterization rather than a hidden one.
+
+**F10 — AMENDMENT INTRODUCES A DEFECT (N2); the rebuttal of max(0, L − 48) stands.** The author's reading that Thm 3.1 bounds the fast average's lead over the slow average, not a detector's lead over a spike, is correct and A3(b) states it properly. But the oracle as written is not computable: see N2.
+
+**F11 — CLOSED.** Unrun-after-re-set → CLOSE; REFUTE on the point estimate; THESIS A3(a) now matches §K.
+
+**F12 — CLOSED.** Relabelled, and both D.3.1 and THESIS A3(c) say E1 is never counted as support for Claim A.
+
+**F13 — CLOSED.** E8 is a characterization with no label and no combination rule needed.
+
+**F14 — CLOSED.** Parenthetical removed; D.4.2 extension bounded to ×2 steps, at most twice, each a dated amendment.
+
+**F15 — CLOSED, one stale sentence.** The gap-reset list and carry-forward rule are complete. D.2's D_div line still reads "among all D(s), s ≤ t, in the assembled series", which the new "Gaps and state" bullet overrides (percentile history resets at a gap). Edit the D_div line to "since the last gap" so the two sentences agree.
+
+**F16 — CLOSED except where it depends on N2.** φ_y grid, replicate count, ±8-step tolerance, ≥ 95 % sign agreement, 1e-6 relative, extension rule are all bounded. The author's point that baselines cannot be planted independently is right; the oracle replaces them — so F16's pass criterion inherits N2.
+
+**F17 — CLOSED.** Cluster bootstrap over runs for E8; co-occurrence fraction for E6/E7.
+
+**F18 — CLOSED.** Chained dedup; all event windows out of the FA count and denominator.
+
+**F19 — CLOSED; residual accepted correctly.** Mechanical inclusion of every stage-1 run makes viewing the report incapable of steering selection.
+
+---
+
+## Defects introduced by the amendments
+
+**N1 — Duty-cycle matching lets chance alarms decide E2**
+- **Severity:** BLOCKER
+- **Location:** DESIGN §D.2 "Alarm state", "False-alarm rate (duty cycle)", §D.3 E2, §K; THESIS A3(a)
+- **Evidence:** "FA = (number of out-of-window scored steps in alarm) / N_out"; "FA grid {0.5 %, 1 %, 2 %, 5 %}; headline FA = 1 %"; "A detector's lead = t_e − (first step in the window at which it is in alarm)".
+- **Why it matters:** Duty cycle fixes the fraction of steps in alarm, not the number of alarm episodes. Detectors differ enormously in alarm-run length: B1, B2 and B3 read y or g with 1–50-step memory and produce short runs; B4 as written produces 1-step runs (F4); D_div is a difference of 32- and 128-step SMAs and produces runs of tens of steps. At 1 % duty cycle a detector with ~1-step runs has an onset on ~1 % of steps, so the chance that it is in alarm somewhere in a 129-step scan window is ≈ 1 − 0.99^129 ≈ 73 %, with the first chance alarm uniformly placed in the window — a chance mean lead of roughly 0.73 × 64 ≈ 47 steps on every event, precursor or not. A detector with ~40-step runs at the same duty cycle has an onset on ~0.025 % of steps and a chance hit rate of ~3 %. D_div therefore has to carry a true precursor lead averaging > ~45 steps across all eligible events to produce C_min > 0 against baselines that need no precursor at all. E5's shift null measures this chance lead for D_div only; nothing measures or removes it for the baselines. The verdict is steered by the autocorrelation of each score, not by early warning. This is the same class of artefact as the original onset-only rule, with the sign reversed, and it applies with full force on Leg B (E8) and in the suite — the suite's planted null will show it as a false-REFUTE rate, which the suite does not currently grade.
+- **Proposed fix (choose one; both are bounded):**
+  (a) *Hold-time alarm.* "An alarm onset is the first step at which score ≥ θ after a step with score < θ. Each onset puts the detector in alarm for exactly H = 32 steps, during which further onsets are not counted; the detector leaves alarm at onset + H unless a new onset occurs there. FA = onsets per 10,000 out-of-window steps, matched by exact onset count n* = round(FA × N_out / 10,000), grid {0.5, 1, 2, 5}, headline 1; realised duty cycle = n*·H/N_out is then identical for every detector and is reported. Lead and censoring are computed on this alarm state (lead 128 if in alarm at t_e − 128). B4's reset occurs at each onset." This matches onset count and duty cycle simultaneously, defeats the drifting-B2 pathology the author identified (B2 cannot stay in alarm past H steps per onset), and preserves P-CENS.
+  (b) *Null-corrected contrast.* Keep duty cycle but apply the E5 circular-shift null to every detector and define each detector's lead statistic as mean lead minus the mean of its own shifted distribution; C_b is the difference of these excess leads. More complex and makes E2's verdict depend on 1,000 shifts; (a) is preferable.
+  Add to D.5: a planted-null cell with baselines of 1-step and 40-step alarm-run length at the same matched FA, which must return false-REFUTE and false-SUPPORT rates ≤ 0.05.
+
+**N2 — The suite's oracle cannot be computed as written**
+- **Severity:** MAJOR
+- **Location:** DESIGN §D.5 "Grid and pass criteria (F16)", "Oracle (F10)"
+- **Evidence:** "the expected lead of every detector is the lead the pipeline's own operators give on the same planted series with the noise removed; the oracle C_min is computed the same way."
+- **Why it matters:** The pipeline includes threshold matching. On a noiseless series the out-of-window scores are constant (or a smooth drift), so the candidate set is a handful of tied values, round(FA × N_out) is unreachable, and P-FA returns a θ that gives either zero alarm steps or essentially all of them. The oracle lead is then 0 or 128 for every detector, and "|recovered − oracle| ≤ 8" is unpassable or trivially passable depending on the tie. The 95 % sign-agreement criterion inherits the same degeneracy.
+- **Proposed fix:** "Oracle: for each replicate, θ for every detector is matched on the noisy planted series by P-FA; that θ is then applied to the noiseless series (same ramps, same events, noise set to zero) to obtain the oracle leads and oracle C_min. The ±8-step and 95 %-sign criteria compare the noisy-series result to this oracle."
+
+**N3 — N_out and n* on Leg B depend on the spike rate**
+- **Severity:** MINOR
+- **Location:** DESIGN §D.4 E8; §D.2 FA denominator
+- **Evidence:** "at ~4,000 scorable steps per run, 1 % is ~40 alarm steps, so every grid point is realisable"; "the scan windows of ALL events, eligible or not, are excluded from both count and denominator".
+- **Why it matters:** The ~4,000 figure ignores the exclusion of every event's 129-step window. In spiky cells (the ones E8 cares about) N_out can fall to a few hundred steps and n* to single digits; at 0.5 % it can round to 1 or 0. Realisability is cell-dependent and the statement in E8 overclaims it.
+- **Proposed fix:** "E8 reports N_out and n* per run and per FA target; a run with n* < 5 at headline FA is reported as 'FA not matchable' and excluded from the pooled E8 statistics, with the count of such runs stated." (Under N1 fix (a), n* is an onset count and the same rule applies.)
+
+---
+
+## Summary table
+
+| id | disposition | note |
+|---|---|---|
+| F1 | closed | mean lead; exposed to N1 via FA definition |
+| F2 | closed (censoring); FA redefinition → N1 | rebuttal of "touching runs not FA" stands |
+| F3 | closed mechanically; residual in N1/N3 | N_out shrinks with events |
+| F4 | closed except B4 | B4 series is θ-dependent; 1-step runs |
+| F5 | closed | add cross-series dedup sentence |
+| F6 | closed | — |
+| F7 | closed | adaptation sound |
+| F8 | closed | — |
+| F9 | closed | — |
+| F10 | rebuttal stands; amendment → N2 | oracle not computable |
+| F11 | closed | — |
+| F12 | closed | — |
+| F13 | closed | — |
+| F14 | closed | — |
+| F15 | closed | reconcile D_div line with gap reset |
+| F16 | closed except via N2 | — |
+| F17 | closed | — |
+| F18 | closed | — |
+| F19 | closed | residual correctly accepted |
+| N1 | NEW — BLOCKER | duty cycle makes chance-hit rate detector-dependent; verdict steered by score autocorrelation |
+| N2 | NEW — MAJOR | noiseless oracle has no matchable threshold |
+| N3 | NEW — MINOR | Leg B N_out/n* cell-dependent; E8 realisability overclaimed |

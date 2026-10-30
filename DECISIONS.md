@@ -69,3 +69,19 @@ Entry 2 (committed at 3c5ff93) is left unchanged; this addendum supersedes its R
 3. **Last resort:** request a full export from AI2 (olmo@allenai.org).
 
 Every route is a data pull and therefore runs only AFTER the public `prereg-v1` commit (entry 1). Each downloaded file is recorded in SOURCES.md with its source URL, artifact name and version, download timestamp, and SHA-256. The column-name confirmation for `optim/total_grad_norm` is made on the first staged file, before any analysis.
+
+---
+
+## Entry 3 (2026-10-30, JAE) — Design-stage review: a second, scoped fix round
+
+1. **What happened.** The design-stage adversarial review (prompt and package committed at 7194a21) returned F1–F19. All 19 were adjudicated and the amendments, with fix-round message 1, were committed at a685b37. The reviewer's reply to that round (verification/design_review_transcript.md, reply 2) closed F1–F19. It also found three defects introduced by the amendments themselves: N1 (BLOCKER), N2 (MAJOR) and N3 (MINOR), plus one-line residuals on F4, F5 and F15.
+2. **Why a second round.** The Standard caps the design-stage review at three passes and ONE fix-or-rebut round. N1 is a BLOCKER that the fix round itself introduced: the duty-cycle false-alarm rate made each detector's chance hit rate depend on its alarm-run length, so the E2 verdict and §K could be decided by score autocorrelation rather than early warning. A defect of that class in the kill rule is load-bearing. Freezing without a check of its fix would put an unreviewed rule on the public record. This is the load-bearing-defect exception, used once.
+3. **Scope.** The second message (verification/design_review_fixround2.md) covers only N1, N2 and N3 and the F4, F5 and F15 residuals. F1–F19 are closed and are not reopened. The reviewer is asked only whether each amendment closes its item and whether any amendment introduces a defect.
+4. **Decisions (JAE).**
+   - N1: fix (a), a hold-time alarm with H = 32. FA is alarm onsets per 10,000 out-of-window steps, matched at an exact onset count n*; the realised duty cycle n*·H/N_out is reported; P-CENS is kept; B4 resets at each onset. D.5 adds a planted null with 1-step and 40-step alarm-run baselines, which must give false-REFUTE and false-SUPPORT rates ≤ 0.05.
+   - N2: accepted as proposed.
+   - N3: accepted as proposed.
+   - F4, F5 and F15 residuals: accepted.
+   
+   DESIGN.md §D.9's last entry and THESIS Amendment A3(a) carry the amendments.
+5. **Cap.** Whatever reply 3 says, there is no third round. A finding still open after reply 3 is either amended without further review, with the reason recorded in verification/design_review.md, or the freeze waits for a JAE decision.

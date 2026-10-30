@@ -26,6 +26,25 @@ Review prompt and package committed at 7194a21 (prompt MD5 29bed842d88c6322bbcbb
 
 Fix round: the message in verification/design_review_fixround.md (this adjudication + amended THESIS.md and DESIGN.md in full) is sent once to the same reviewer session; its reply is appended to the transcript and each finding's final state (closed / rebuttal stands / open) is recorded below.
 
-## Fix-round outcome
+## Fix-round outcome (reviewer reply 2, 2026-10-30)
 
-[appended after the reviewer's reply]
+Fix-round message 1: verification/design_review_fixround.md (MD5 859f060b72adb30e9f62df957183c574, committed at a685b37). Reviewer reply 2 is in the transcript.
+
+**F1–F19 — CLOSED and not reopened.** Closed outright: F1, F2 (censoring; the rebuttal of "touching runs are not false alarms" stands), F3 (mechanically), F6, F7 (adaptation judged sound), F8, F9, F11, F12, F13, F14, F16 (except via N2), F17, F18, F19 (the residual was correctly accepted). F10: the rebuttal of max(0, L − 48) stands. Three closed findings had a one-line residual each, amended in the second round as below: F4 (B4), F5 (cross-series dedup) and F15 (the D_div line).
+
+**Defects introduced by the round-1 amendments, adjudicated by JAE 2026-10-30:**
+
+| id | sev | disposition | where amended | note |
+|---|---|---|---|---|
+| N1 | BLOCKER | AMENDED — fix (a) | D.2 alarm onset and hold, FA, P-FA; D.3 E2; §K; D.5 new planted null; D.7 P-FA, P-HOLD, frozen line; THESIS A3(a) | Duty cycle made each detector's chance hit rate depend on its alarm-run length. Fix: hold-time alarm H = 32; FA = onsets per 10,000 out-of-window steps (grid {0.5, 1, 2, 5}, headline 1); exact onset-count matching; realised duty cycle n*·H/N_out reported (identical across detectors); P-CENS kept; B4 resets at each onset. D.5 planted null with 1-step and 40-step baselines must give false-REFUTE and false-SUPPORT ≤ 0.05. |
+| N2 | MAJOR | AMENDED | D.5 oracle | θ matched on the noisy series by P-FA, then applied to the noiseless series. |
+| N3 | MINOR | AMENDED | D.4 E8 | N_out and n* reported per run and FA target; n* < 5 at headline → "FA not matchable", excluded and counted. |
+| F4 residual | — | AMENDED | D.2 P-FA, B4; D.7 P-FA | Score path and alarm state recomputed per candidate θ; θ = smallest candidate with onset count ≤ n*; shortfalls and non-monotone regions reported. |
+| F5 residual | — | AMENDED | D.1 P-SEG | Dedup applies within a series; a rewind event and an assembled-series event are never merged. |
+| F15 residual | — | AMENDED | D.2 D_div | Percentile history "since the last gap". |
+
+**Second fix round (scoped; DECISIONS entry 3).** N1 is a BLOCKER introduced by the fix round itself, so it falls under the Standard's load-bearing-defect exception to the one-round cap. A second message, verification/design_review_fixround2.md, is sent once to the same session and is scoped strictly to N1, N2, N3 and the F4, F5 and F15 residuals. F1–F19 are not reopened.
+
+## Second fix-round outcome
+
+[appended after the reviewer's reply 3]
