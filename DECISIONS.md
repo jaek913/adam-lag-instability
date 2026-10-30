@@ -57,3 +57,15 @@ Append-only. Never edit or delete a committed entry; correct by a new dated entr
 4. **Gradient-norm metric:** name `optim/total_grad_norm`, PRE-CLIP, expected every step — established from AI2's trainer code (see code reading above), NOT yet observed in the copied logs. Presence in the copied A1 history is confirmed at the first post-prereg staging step; if absent, Leg A as designed cannot run and that is recorded before any analysis.
 5. **Phase 1 carry-forwards from this entry:** A1 segmented-structure amendment; staging-route resolution check and fallback; A4 = Comet not W&B; realised β₂ = 0.95 in all Leg A runs (W = 20 steps) — THESIS claim text and DESIGN validity review; verify the April-2024 training commit at PRV.
 6. No metric value was read, printed, or saved at any point in this entry. scripts/outputs/check_olmo_columns.json is the attempt-2 output (errors only, zero runs listed).
+
+---
+
+## Entry 2 — Addendum A (2026-10-30, JAE) — A1 staging-route priority
+
+Entry 2 (committed at 3c5ff93) is left unchanged; this addendum supersedes its Result item 3 on route priority only.
+
+1. **Primary route:** in-browser download of each segment run's wandb-history artifact files (run page → Artifacts → `run-<id>-history:vN` → Files tab → the parquet file). This is the full logged per-step history table, not a chart rendering, so it avoids chart point-sampling.
+2. **Fallback:** per-run chart CSV export (Workspace → chart ⋯ → Export CSV), only if the artifact files cannot be downloaded, and then subject to the per-segment completeness check (row count vs step range).
+3. **Last resort:** request a full export from AI2 (olmo@allenai.org).
+
+Every route is a data pull and therefore runs only AFTER the public `prereg-v1` commit (entry 1). Each downloaded file is recorded in SOURCES.md with its source URL, artifact name and version, download timestamp, and SHA-256. The column-name confirmation for `optim/total_grad_norm` is made on the first staged file, before any analysis.
