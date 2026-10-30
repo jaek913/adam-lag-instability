@@ -1,0 +1,26 @@
+# THESIS — Measurement-Lag Instability in Adaptive Optimizers
+
+Dated 2026-10-30. Extracted from planning doc v0.5 Part 2 (planning/adam-lag-instability_planning.md, MD5 b055fc5963206e5334d8bf35c1cbca07); Date section per JAE direction 2026-10-30.
+
+**Title.** Measurement-Lag Instability in Adaptive Optimizers.
+
+**The claim.** Adam-family optimizers steer training off exponential trailing averages of gradient statistics (β₁ ≈ 0.9 → ~10-step memory; β₂ ≈ 0.999 → ~1,000-step memory) and feed those averages back into the parameters that generate the next gradients. This is a measurement-feedback loop of the class analyzed in *The Measurement Trap*: a lagged estimate of a persistent variable driving a controller that changes the variable. Two consequences follow and are tested here.
+
+- **A (early warning).** The divergence D(t) = M_f(t) − M_s(t) between a fast and a slow trailing average of the per-step gradient norm turns positive before loss spikes, with a lead that exceeds that of the rolling-statistics alarms in current use at matched false-alarm rate. Mechanism: *Adaptation Rate Theorem* (lead ≈ (w_s − w_f)/2 at midpoint) plus *Persistence-Sign Theorem* (gradient-norm autocorrelation is positive and decaying → D predicts the forward level with positive sign).
+- **B (stability boundary).** The stability of the second-moment loop is governed by the persistence φ of the squared gradient norm, the effective window W = 1/(1−β₂), and the feedback strength b_g set by the learning rate, through the exponential-kernel criterion of *The Measurement Trap* §3.5. Runs the criterion classifies as unstable exhibit more spikes/divergence than runs it classifies as stable, at matched everything else.
+
+**Why it matters.** Loss spikes force checkpoint rewinds and batch skips (PaLM: >20 rewinds; a documented 65B run: +30 days, +129 MWh). A signal that fires ahead of them, and a pre-flight check that says which (β₂, LR) pairs are inside the stable region, converts wasted compute into avoided compute. Sized in the session of 2026-09-14 at low single-digit percent of frontier training compute — material to a tool, not to a hyperscaler's budget; stated as such.
+
+**The gap.** Prior work (a) documents that gradient-norm spikes precede loss spikes (OLMo 2; ZClip; SPAM), (b) attributes spikes to Adam's assumption of time-domain gradient independence (Molybog et al. 2023), and (c) characterizes instability via curvature at the "edge of stability" (Cohen et al. 2021, 2022) and small-scale proxies (Wortsman et al. 2023). None states the fast–slow divergence as the alarm with a lead-time bound, and none gives a closed-form window/persistence/gain criterion for the second-moment loop. The prior-art scan (planning/adam-lag-instability_planning.md Part 4; scan recorded at Phase 0) must confirm this gap survives before any data work.
+
+**The single result that would falsify it.**
+- Claim A is falsified if, on the OLMo-0424 run (the designated primary), the divergence detector's median lead over recorded loss spikes does not exceed the rolling-z-score baseline's median lead at matched false-alarm rate (DESIGN §K). This is also the KILL RULE for the project.
+- Claim B is falsified if, across the pre-registered (β₂, LR) grid, the criterion-classified unstable group's spike rate is not greater than the stable group's (one-sided Mann-Whitney, α = 0.05), or if the criterion's continuous diagnostic b_g·S fails to rank-order spike rate (Spearman ≤ 0).
+
+**Archetype.** Empirical-with-verified-theory (JAE, 2026-10-30). The linearized mapping from Adam's update to the criterion's (φ, W, b_g) is a cited application of The Measurement Trap §3.5; the Phase-5a pass is the empirical-archetype pass.
+
+**Lifecycle.** Terminal — the confirmatory result (Leg A on public logs, Leg B on committed runs) exists before publication; the forward prediction is a standing claim, not a scored cadence.
+
+**Date (grading day).** The §K kill-rule verdict (Leg A, experiment E2 on OLMo-0424) is graded on the `prereg-v1` commit date + 21 days; the concrete calendar date is written into this file and DESIGN §K at the `prereg-v1` commit. The Leg B verdict (E6/E7) grading date is set at Phase 2 open if Leg A passes. On each grading day the verdict is recorded in DECISIONS.md and RECORD.md whether or not the experiment has run; an unrun experiment on its grading day is itself recorded and the day is re-set once, by dated amendment.
+
+**Registration.** git commit of THESIS+DESIGN+OUTLINE, tagged `prereg-v1`, in a repo made public at that commit and before the first analysis commit; Zenodo snapshot DOI on the prereg-v1 tag: YES (JAE, 2026-10-30), recorded here at Phase 1 close: [DOI]. No OSF.
