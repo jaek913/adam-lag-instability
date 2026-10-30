@@ -85,3 +85,16 @@ Every route is a data pull and therefore runs only AFTER the public `prereg-v1` 
    
    DESIGN.md §D.9's last entry and THESIS Amendment A3(a) carry the amendments.
 5. **Cap.** Whatever reply 3 says, there is no third round. A finding still open after reply 3 is either amended without further review, with the reason recorded in verification/design_review.md, or the freeze waits for a JAE decision.
+
+---
+
+## Entry 3 — Addendum A (2026-10-30, JAE) — N4 amended without further review
+
+Entry 3 is left unchanged. Reviewer reply 3 (verification/design_review_transcript.md) closed N1, N2, N3 and the F4, F5 and F15 residuals. It raised one new finding, N4 (MINOR), introduced by the N2 amendment. On a zero-noise oracle series, B1's rolling SD, B3's EMA variance and B4's MAD are exactly 0, so their scores become 0/0 or x/0, and the oracle they are graded against would be set by floating-point handling rather than by the text.
+
+Per entry 3 item 5 there is no third round. N4 is amended without further review, for three reasons:
+1. The reviewer supplied a specific fix and judged either of two forms sufficient.
+2. The fix touches only the synthetic suite's reference series, not any verdict rule, threshold, window, spike definition or FA grid.
+3. The chosen form adds a check that fails loudly if it is wrong.
+
+The amendment: the oracle series is the planted series with the noise amplitude scaled by 10⁻³ (not zero), and D.5 asserts that every detector's score is finite at every scored step of every oracle series. The reviewer's two N1 notes — (i) residual onset clustering and (ii) the meaning of P-CENS under P-HOLD — are added to DESIGN §D.2 as Methods statements, with no rule change. The design-stage review is closed.

@@ -273,3 +273,46 @@ verification/design_review_fixround.md (MD5 859f060b72adb30e9f62df957183c574), s
 | N1 | NEW — BLOCKER | duty cycle makes chance-hit rate detector-dependent; verdict steered by score autocorrelation |
 | N2 | NEW — MAJOR | noiseless oracle has no matchable threshold |
 | N3 | NEW — MINOR | Leg B N_out/n* cell-dependent; E8 realisability overclaimed |
+
+## Author fix-round message 2 (scoped; DECISIONS entry 3)
+
+verification/design_review_fixround2.md (MD5 b97e3c92e9c444007a251f44060f71ab, committed at 1492a04), sent once to the same session.
+
+## Reviewer reply 3 (verbatim, as pasted by JAE into the working session 2026-10-30 18:44 CT)
+
+# Fix-round 2 reply — N1, N2, N3 and the three residuals
+
+**N1 — CLOSED.** P-HOLD makes every onset carry exactly H = 32 alarm steps, so exact onset-count matching fixes both the onset rate and the duty cycle (n*·H/N_out) at the same value for every detector; a detector's own alarm-run length no longer sets its chance of being in alarm somewhere in a 129-step window. The crossing-from-below requirement defeats the standing-alarm pathology the author identified for a drifting B2, and the new D.5 planted null (1-step vs 40-step raw runs, false-REFUTE and false-SUPPORT ≤ 0.05) is the right probe: under hold the 40-step baseline must behave identically to the 1-step one, and the suite will show it if it does not. Two notes, neither reopening the finding: (i) residual differences in onset *clustering* between detectors still move the chance-hit probability at second order (equal expected alarm steps per window, unequal P(≥ 1)); the planted null with unequal memory measures this, so it is bounded rather than open. (ii) P-CENS now means "an onset in [t_e − 160, t_e − 129]" rather than "a standing alarm", which awards lead 128 for an onset 129–160 steps ahead; the rate of this is equalised across detectors by the matched onset count and the "censored lead 0" sensitivity covers it, so no change is needed, but the Methods should state the new meaning.
+
+**N2 — CLOSED as to threshold matching; the amendment introduces N4 (below).** Matching θ on the noisy replicate and applying it to the noiseless series is the correct construction and removes the tied-candidate degeneracy.
+
+**N3 — CLOSED.** N_out and n* reported per run and FA target; n* < 5 at headline → "FA not matchable", excluded from the pooled statistics and counted. E8's realisability claim is now conditional and reported, not asserted.
+
+**F4 residual — CLOSED.** B4's path and alarm state are recomputed per candidate θ; the reset is tied to onsets; non-monotone regions of c(v) and shortfalls are reported. The rule "smallest candidate v with c(v) ≤ n*" is deterministic even where c(v) is non-monotone, which is what matters.
+
+**F5 residual — CLOSED.** "Dedup applies within a series; a rewind event and an assembled-series event are never merged."
+
+**F15 residual — CLOSED.** D_div's percentile history now reads "since the last gap", consistent with the gap-reset bullet.
+
+---
+
+## Defect introduced by an amendment
+
+**N4 — The noiseless oracle series makes the z-type baselines undefined**
+- **Introduced by:** the N2 amendment, DESIGN §D.5 "Oracle".
+- **Severity:** MINOR
+- **Evidence:** "that θ is then applied to the noiseless series (same ramps, same events, noise set to zero) to obtain the oracle leads and the oracle C_min."
+- **Why it matters:** With noise set to zero, y is flat outside the ramps. B1's sd_50(y), B3's v_t and B4's MAD_200(y) are then exactly 0, so s_1, s_3 and the robust z are 0/0 off-ramp and x/0 on-ramp. Whether the oracle lead for B1/B3/B4 is "first step of the ramp" (treating x/0 as +∞ and 0/0 as 0) or "undefined" depends on floating-point and NaN handling, so the oracle these detectors are graded against is set by implementation, not by the text. D_div and B2 are unaffected.
+- **Proposed fix:** "The oracle series is the planted series with the noise amplitude scaled by 10⁻³ (not zero), so every score is finite; equivalently, 0/0 is taken as 0 and x/0 with x > 0 as +∞ — the suite states which convention it implements and verify.py checks that both give the same oracle lead to within 1 step." Either sentence suffices; the scaled-noise form is simpler.
+
+---
+
+| id | disposition | note |
+|---|---|---|
+| N1 | closed | hold-time alarm equalises onset rate and duty cycle; probe added; two Methods notes |
+| N2 | closed (matching); → N4 | oracle θ construction correct |
+| N3 | closed | — |
+| F4 residual | closed | — |
+| F5 residual | closed | — |
+| F15 residual | closed | — |
+| N4 | NEW — MINOR | zero-noise oracle gives 0/0 and x/0 for B1, B3, B4 |

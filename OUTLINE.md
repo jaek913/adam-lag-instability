@@ -8,15 +8,16 @@ Copied from the Research-to-Publication Standard's OUTLINE.md Template page (doc
 *   **Archetype:** empirical-with-verified-theory (THESIS Amendment A2(f): no original theorem; The Measurement Trap Appendix A.4 used as a descriptive index)
 *   **Source pin (rebuild only):** N/A — new work
 *   **Standard:** v1.10.2
-*   **Outline version:** v0.2 — 2026-10-30
+*   **Outline version:** v0.3 — 2026-10-30
 *   **Status:** draft
 *   **Format:** ML-format paper, 8–12 pages main text (page budget per section in §1); appendices outside the page count.
-*   **Outcome branches (pre-registered, DESIGN §K):** this outline is the full paper (E2 SUPPORT or INCONCLUSIVE → Leg B runs). If §K returns STOP (E2 REFUTE) or CLOSE (INSUFFICIENT EVENTS), the deliverable is a short null note built from the Leg A nodes only (ARG-01–ARG-10, ARG-14; FIG-1–FIG-5; TBL-1–TBL-5; S1–S5, S7–S8; L1, L3–L7); Leg B nodes become DROPPED ("not necessary — §K did not proceed") by a dated outline version.
+*   **Outcome branches (pre-registered, DESIGN §K):** this outline is the full paper (E2 SUPPORT or INCONCLUSIVE → Leg B runs). If §K returns STOP (E2 REFUTE) or CLOSE (INSUFFICIENT EVENTS), the deliverable is a short null note built from the Leg A nodes only (ARG-01–ARG-10, ARG-14; FIG-1–FIG-5; TBL-1–TBL-5; S1–S5, S7–S8, S10; L-01, L-03–L-07); Leg B nodes become DROPPED ("not necessary — §K did not proceed") by a dated outline version.
 
 ## Changelog
 
 *   v0.1 2026-10-30 — initial roadmap from THESIS.md (A1, A2) and DESIGN.md at 7949f19; citations from PRIOR_ART.md §2–§5, §9, §10.
 *   v0.2 2026-10-30 — The unauthored key for arXiv:2603.09581 resolved to its authors from the arXiv record (Bai, Zhao, Zhou, Xu & Zhang) and re-keyed Bai-2026b; the ICML paper by the same group re-keyed Bai-2026a with its full author list (arXiv record of 2506.04805). Lettered in this paper's citation order. JAE approved the v0.1 drafting choices (null-note subset; own-work key lettering; FIG-2 event rule; Phase 5b checks).
+*   v0.3 2026-10-30 — Reconciled with DESIGN/THESIS after the design-stage adversarial review (verification/design_review.md; THESIS A3). The contrast is now on mean lead; FA counts alarm onsets per 10,000 out-of-window steps with a 32-step hold; left-censored events get lead 128 (P-CENS); rewind events are retained; E1 is relabelled a consistency check (CONSISTENT/INCONSISTENT/INDETERMINATE, not support for Claim A); E5 is an alignment control (circular-shift null); E8 is a characterization. ARG-06 and EQ-5 are restated because the Adaptation Rate Theorem bounds the fast average's lead over the slow average, not the detector's lead over a spike (THESIS A3(b)). LB-ids, displays, scope and limits are updated to match.
 
 ## 1. IMRaD structural map (the skeleton)
 
@@ -28,8 +29,8 @@ Required section run present: Abstract, Introduction, Methods, Results, Discussi
 | 1 | Introduction | Cost of loss spikes; gradient norm as precursor; deployed alarms are one-step fast–slow tests; the question: does a smoothed fast window warn earlier at matched FA; contributions; what the paper does not claim | 1 |
 | 2 | Related Work | 2.1 Spike precursors and deployed alarms; 2.2 Second-moment lag mechanism; 2.3 Edge of stability and the curvature boundary (complementary) | 1 |
 | 3 | Framework | 3.1 Adam as a measurement-feedback loop; 3.2 The fast–slow divergence on the log gradient norm; 3.3 Lead bound; 3.4 Persistence-sign prediction | 1.25 |
-| 4 | Methods | 4.1 Data (Leg A manifest, staging, completeness, pre-clip); 4.2 Spike definition and k ladder; 4.3 Detectors D_div and B1–B4; 4.4 Threshold matching, onsets, leads, misses; 4.5 Experiments E1–E5 and the stop rule; 4.6 Leg B design (grid, data, batch, measured inputs); 4.7 Synthetic validation suite; 4.8 Pre-registration and amendments | 2.5 |
-| 5 | Results | 5.1 Event counts and rung; 5.2 E1 sign check; 5.3 E2 primary comparison; 5.4 E3 replication; 5.5 E4 sensitivity; 5.6 E5 shuffle control; 5.7 Leg B characterization (E6, E7); 5.8 E8 early warning on own runs | 2.75 |
+| 4 | Methods | 4.1 Data (Leg A manifest, staging, completeness, pre-clip); 4.2 Spike definition and k ladder; 4.3 Detectors D_div and B1–B4; 4.4 Alarm onset and hold, onset-count threshold matching, leads, misses, censoring; 4.5 Experiments E1–E5 and the stop rule; 4.6 Leg B design (grid, data, batch, measured inputs); 4.7 Synthetic validation suite; 4.8 Pre-registration and amendments | 2.5 |
+| 5 | Results | 5.1 Event counts and rung; 5.2 E1 sign check; 5.3 E2 primary comparison; 5.4 E3 replication; 5.5 E4 sensitivity; 5.6 E5 alignment control; 5.7 Leg B characterization (E6, E7); 5.8 E8 early warning on own runs | 2.75 |
 | 6 | Discussion | 6.1 What smoothing buys and costs; 6.2 Relation to the curvature boundary; 6.3 Why the A.4 index is descriptive only; 6.4 Threats to validity; 6.5 Practical use | 1 |
 | 7 | Conclusion | Verdicts and characterizations as resolved; limits-of-claim restated; data/code availability | 0.25 |
 | — | References | §3 below | — |
@@ -47,14 +48,14 @@ Required section run present: Abstract, Introduction, Methods, Results, Discussi
 | ARG-03 | That the second-moment estimate lags the squared gradients and destabilizes training is established; this paper does not claim it | 2.2 | ARG-02 | Shazeer-2018, Wortsman-2023, Bai-2026a, Tang-2026, Molybog-2023 | NEW |
 | ARG-04 | Deployed alarms (ZClip, SPAM, trainscope) are fast–slow divergences with a one-step fast window | 2.1 | ARG-01 | Kumar-2025, Huang-2025a, trainscope-2026 | NEW |
 | ARG-05 | The smoothed divergence D = SMA_32(y) − SMA_128(y) on y = ln g, ratio 4 inside the Theorem 14 band, trades single-step response for noise rejection | 3.2 | ARG-04 | Kim-2026c (Thm 14), EQ-1, EQ-2 | NEW |
-| ARG-06 | The divergence's lead over a ramp is bounded by (w_s − w_f)/2 at the ramp midpoint | 3.3 | ARG-05 | Kim-2026a, EQ-5 | NEW |
-| ARG-07 | The sign of D's forward correlation with y is fixed in advance by the ACF (Theorem 8b); on A1 it is checked as a consistency condition | 3.4, 5.2 | ARG-05 | Kim-2026c (Thm 8b, Def 13), EQ-6, LB-E1-verdict, LB-E1-rho, LB-E1-p | NEW |
-| ARG-08 | At matched false-alarm rate, D_div's median lead on the primary run is compared with the best of four baselines on the per-resample minimum contrast; the result is the pre-registered verdict and stop rule | 4.4–4.5, 5.3 | ARG-04, ARG-05, ARG-06 | EQ-7, TBL-3, FIG-3, FIG-4, LB-E2-verdict, LB-E2-Cmin, LB-E2-Cmin-p05, LB-K-verdict | NEW |
+| ARG-06 | After a level change the fast average crosses a threshold ahead of the slow average (by (w_s − w_f)/2 at the midpoint); this motivates watching their difference but does not bound the detector's lead over a spike, which E2 measures | 3.3 | ARG-05 | Kim-2026a (Thm 3.1), EQ-5 | NEW |
+| ARG-07 | The sign of D's forward correlation with y is fixed in advance by the ACF (Theorem 8b); on A1 it is checked as a consistency condition | 3.4, 5.2 | ARG-05 | Kim-2026c (Thm 8b, Def 13), EQ-6, LB-E1-label, LB-E1-rho, LB-E1-p | NEW |
+| ARG-08 | At matched false-alarm rate (alarm onsets per 10,000 out-of-window steps, each held 32 steps), D_div's mean lead on the primary run (misses 0, left-censored 128) is compared with the best of four baselines on the minimum contrast; the point estimate decides REFUTE and the per-resample distribution separates SUPPORT from INCONCLUSIVE; the result is the pre-registered verdict and stop rule | 4.4–4.5, 5.3 | ARG-04, ARG-05, ARG-06 | EQ-7, EQ-11, TBL-3, FIG-3, FIG-4, LB-E2-verdict, LB-E2-Cmin, LB-E2-Cmin-p05, LB-K-verdict | NEW |
 | ARG-09 | The direction of the E2 contrast replicates (or not) across the other public runs | 5.4 | ARG-08 | TBL-4, LB-E3-verdict, LB-E3-nruns | NEW |
-| ARG-10 | How much of the lead is window arithmetic is measured by a block-shuffle control, and the contrast's dependence on windows and pins is reported without verdict | 5.5–5.6 | ARG-08 | FIG-5, TBL-5, LB-E5-lead-real, LB-E5-lead-shuffled, LB-E5-flag, LB-E4-variants | NEW |
+| ARG-10 | Whether D_div's alarms align with the events beyond what a circularly shifted copy of the same alarm series achieves is measured by the E5 alignment control, and the contrast's dependence on windows, pins and censoring is reported without verdict | 5.5–5.6 | ARG-08 | FIG-5, TBL-5, LB-E5-aor-real, LB-E5-aor-shifted, LB-E5-flag, LB-E4-variants | NEW |
 | ARG-11 | The A.4 exponential-kernel boundary does not map onto Adam's loop in observable-only terms, so Claim B is a characterization, not a verdict | 6.3, App. B | ARG-02, ARG-03 | Kim-2026d (App. A.4, EQ-5/EQ-6), EQ-8, EQ-9 | NEW |
 | ARG-12 | Across the β₂ × LR grid, spike rate is characterized and its ordering by the A.4 robustness index is reported within each LR | 5.7 | ARG-11, ARG-08 | EQ-10, TBL-6, FIG-6, FIG-7, LB-E6-spearman, LB-E7-tau, LB-B-noisecell | NEW |
-| ARG-13 | The early-warning comparison is repeated on the Leg B runs | 5.8 | ARG-08 | TBL-7, LB-E8-verdict | NEW |
+| ARG-13 | E2's statistics are characterized on the Leg B runs (no label; does not combine with E2) | 5.8 | ARG-08 | TBL-7, LB-E8-Cmin, LB-E8-Nout | NEW |
 | ARG-14 | The lag view and the curvature boundary are complementary: the boundary says where instability is; the divergence watches the logged scalar that precedes the crossing | 6.2 | ARG-03, ARG-08 | Cohen-2021, Cohen-2022, Bai-2026a | NEW |
 | ARG-15 | A detector computed from one logged scalar can ship as a lightweight monitor; its value is bounded to avoided rewinds, not a share of hyperscale compute | 6.5 | ARG-08 | PKG-01, Chowdhery-2023 | NEW |
 
@@ -64,7 +65,7 @@ Own-work keys are lettered in this paper's own reference order (the paper stands
 
 | Key (Surname-YEAR) | Reference (or "→ References") | Role | Supports (ARG / §) | Status |
 |---|---|---|---|---|
-| Kim-2026a | Kim, J. (2026). The Adaptation Rate Theorem: Predictable Lead Times in Multi-Scale Trailing Measures. DOI 10.5281/zenodo.20650165 | foundation (cited, not re-proved): lead bound; censoring and shuffle-control conventions | ARG-06, ARG-10; 3.3, 4.4, 4.5 | NEW |
+| Kim-2026a | Kim, J. (2026). The Adaptation Rate Theorem: Predictable Lead Times in Multi-Scale Trailing Measures. DOI 10.5281/zenodo.20650165 | foundation (cited, not re-proved): Thm 3.1 fast-over-slow crossing lead, used as motivation only (THESIS A3(b)) | ARG-06, ARG-10; 3.3, 4.4, 4.5 | NEW |
 | Kim-2026b | Kim, J. (2026). Cross-Domain Validation of a Moving-Average Divergence Framework in Atmospheric Science, Hydrology, Solar Physics, and Epidemiology. DOI 10.5281/zenodo.21081981 | method-precedent: a fast–slow divergence onset detector compared against a level rule (§5.1.2, fixed threshold on D); the expanding-percentile score used here is new to this paper | ARG-05; 4.3 | NEW |
 | Kim-2026c | Kim, J. (2026). The Divergence Theorem for Regime Transition Detection. DOI 10.5281/zenodo.20820524 | foundation: Theorem 8b (eq. 63), Definition 13 (eq. 61), Theorem 14 window-ratio band | ARG-05, ARG-07; 3.2, 3.4 | NEW |
 | Kim-2026d | Kim, J. (2026). The Measurement Trap: How Backward-Looking Measurements Destabilize the Systems They Were Designed to Protect. DOI 10.5281/zenodo.21206946 | foundation: measurement-feedback class; Appendix A.4 EQ-5/EQ-6 as descriptive index | ARG-02, ARG-11, ARG-12; 3.1, 6.3, App. B | NEW |
@@ -108,32 +109,36 @@ Names only; values live in claims.lock (Phase 3).
 | LB-A1-nevents-k3 | Eligible event count on A1 at k = 3 (if the ladder steps down) | ARG-08 | NEW |
 | LB-A1-rung | k-ladder rung that resolved | ARG-08 | NEW |
 | LB-A1-ineligible | Ineligible events counted, with reasons | ARG-08 | NEW |
-| LB-E1-verdict | E1 label (SUPPORT / REFUTE / INCONCLUSIVE) | ARG-07 | NEW |
+| LB-A1-rewind | Rewind events retained on their own segment (count) | ARG-08 | NEW |
+| LB-E1-label | E1 label (CONSISTENT / INCONSISTENT / INDETERMINATE; not support for Claim A) | ARG-07 | NEW |
 | LB-E1-predsign | A-priori predicted sign from the ACF criterion | ARG-07 | NEW |
 | LB-E1-rho | Realised forward correlation | ARG-07 | NEW |
 | LB-E1-p | One-sided block-permutation p | ARG-07 | NEW |
 | LB-E2-verdict | E2 four-way label | ARG-08 | NEW |
-| LB-E2-Cmin | Per-resample minimum contrast (point) | ARG-08 | NEW |
+| LB-E2-Cmin | Minimum contrast of mean leads (point estimate; decides REFUTE) | ARG-08 | NEW |
 | LB-E2-Cmin-p05 | 5th percentile of resampled C_min | ARG-08 | NEW |
 | LB-E2-Cb | Contrast against each baseline B1–B4 | ARG-08 | NEW |
-| LB-E2-lead-det | Median lead per detector at headline FA | ARG-08 | NEW |
-| LB-E2-miss-det | Miss count and miss rate per detector | ARG-08 | NEW |
+| LB-E2-lead-det | Mean and median lead per detector at headline FA | ARG-08 | NEW |
+| LB-E2-miss-det | Detection rate, miss count and censored count per detector | ARG-08 | NEW |
+| LB-E2-nstar | Matched onset count n*, realised count, shortfall, non-monotone regions and realised duty cycle per detector | ARG-08 | NEW |
 | LB-E2-argmax | Per-resample argmax probability over detectors | ARG-08 | NEW |
 | LB-E2-power | Measured detection probability at the observed effect (INCONCLUSIVE branch) | ARG-08 | NEW |
 | LB-K-verdict | §K outcome (STOP / CLOSE / PROCEED) and grading-day record | ARG-08 | NEW |
 | LB-E3-verdict | E3 replication label | ARG-09 | NEW |
 | LB-E3-nruns | Runs with ≥ 3 eligible events; runs reported descriptively | ARG-09 | NEW |
 | LB-E4-variants | Contrast under each window pair, pin sweep and resampling variant | ARG-10 | NEW |
-| LB-E5-lead-real | D_div median lead and advance-ordering rate on real data | ARG-10 | NEW |
-| LB-E5-lead-shuffled | Same, median and 90 % range over shuffles | ARG-10 | NEW |
-| LB-E5-flag | Shuffle-control flag state | ARG-10 | NEW |
+| LB-E5-aor-real | D_div advance-ordering rate and mean lead on the real alarm series | ARG-10 | NEW |
+| LB-E5-aor-shifted | Same under circular shift (median and 90 % range); block-shuffle result beside it | ARG-10 | NEW |
+| LB-E5-flag | Alignment-control flag state | ARG-10 | NEW |
 | LB-suite-cell | Regime cell the realised A1 data lands in (event count × persistence) | ARG-08 | NEW |
+| LB-suite-null | Suite false-REFUTE and false-SUPPORT rates for the planted nulls, incl. unequal alarm memory | ARG-08 | NEW |
 | LB-E6-table | 24-cell spike-rate / divergence / φ̂ / b_g*(exp) table | ARG-12 | NEW |
 | LB-E6-spearman | Spearman of spike rate vs b_g*(exp) with permutation interval | ARG-12 | NEW |
 | LB-E7-tau | Kendall τ within each LR with permutation interval | ARG-12 | NEW |
 | LB-B-noisecell | Gradient-noise cell the realised Leg B data lands in | ARG-12 | NEW |
 | LB-B-replicates | Replicate-seed spike rates at the four P-REP cells | ARG-12 | NEW |
-| LB-E8-verdict | E8 label on pooled Leg B events | ARG-13 | NEW |
+| LB-E8-Cmin | E8 pooled minimum contrast with cluster-bootstrap interval over runs (no label) | ARG-13 | NEW |
+| LB-E8-Nout | N_out and n* per run; runs "FA not matchable" counted | ARG-13 | NEW |
 | LB-A-included | Which of A2–A6 were included or excluded at staging, with reasons | ARG-09 | NEW |
 
 ## 5. Figures, tables & equations
@@ -142,29 +147,30 @@ Names only; values live in claims.lock (Phase 3).
 |---|---|---|---|---|
 | FIG-1 | Adam as a measurement-feedback loop, and the fast–slow divergence read off the gradient norm | 3.1 | ARG-02, ARG-05; 1, 3 | NEW |
 | FIG-2 | One A1 event: g, D, loss, and each detector's first alarm onset in the scan window (event chosen by a rule fixed before data: the median-lead event) | 5.3 | ARG-08; 5.3 | NEW |
-| FIG-3 | False-alarm-rate frontier per detector on A1 (median lead vs FA over the grid) | 5.3 | ARG-08; 5.3, 6.1 | NEW |
+| FIG-3 | False-alarm-rate frontier per detector on A1 (mean lead vs FA over the grid) | 5.3 | ARG-08; 5.3, 6.1 | NEW |
 | FIG-4 | Lead distributions per detector at headline FA, miss count beside each | 5.3 | ARG-08; 5.3 | NEW |
-| FIG-5 | E5: D_div median lead, real vs block-shuffled | 5.6 | ARG-10; 5.6 | NEW |
+| FIG-5 | E5: D_div advance-ordering rate, real vs circularly shifted alarm series | 5.6 | ARG-10; 5.6 | NEW |
 | FIG-6 | Leg B spike rate across β₂ × LR (heatmap, diverged cells marked) | 5.7 | ARG-12; 5.7 | NEW |
 | FIG-7 | Spike rate vs b_g*(exp) within each LR | 5.7 | ARG-12; 5.7, 6.3 | NEW |
 | TBL-1 | Detector definitions: D_div and B1–B4, parameters, source or pin | 4.3 | ARG-04, ARG-05; 4.3 | NEW |
 | TBL-2 | Leg A data: A1–A6, identifier, role, inclusion outcome | 4.1 | ARG-09; 4.1, App. D | NEW |
-| TBL-3 | E2: median lead and misses per detector, C_b, C_min with interval, verdict | 5.3 | ARG-08; 5.3, 7 | NEW |
+| TBL-3 | E2: mean and median lead, detection rate, misses and censored counts per detector, C_b, C_min with interval, verdict | 5.3 | ARG-08; 5.3, 7 | NEW |
 | TBL-4 | E3: per-run event count and sign of C_min | 5.4 | ARG-09; 5.4 | NEW |
 | TBL-5 | E4: contrast under each sensitivity variant | 5.5 | ARG-10; 5.5, App. C | NEW |
 | TBL-6 | E6: 24-cell Leg B table (spike rate, divergence flag, φ̂, b_g*(exp)) | 5.7 | ARG-12; 5.7 | NEW |
-| TBL-7 | E8: pooled Leg B early-warning comparison | 5.8 | ARG-13; 5.8 | NEW |
+| TBL-7 | E8: pooled Leg B characterization (no label) | 5.8 | ARG-13; 5.8 | NEW |
 | TBL-8 | Construction-pin register with sweeps | App. C | ARG-10; 4.8, App. C | NEW |
 | EQ-1 | y(t) = ln g(t), g = pre-clip global gradient norm | 3.2 | ARG-05; 3.2, 4.3 | NEW |
 | EQ-2 | D(t) = SMA_32(y)(t) − SMA_128(y)(t) | 3.2 | ARG-05; 3.2, 4.3 | NEW |
 | EQ-3 | Detector score: expanding empirical percentile of D, minimum history 1,000 steps | 4.3 | ARG-05; 4.3 | NEW |
 | EQ-4 | Spike rule L(t) > SMA_128(L)(t−1) + k·σ_128(L)(t−1), dedup 200 | 4.2 | ARG-08; 4.2 | NEW |
-| EQ-5 | Lead bound (w_s − w_f)/2 at ramp midpoint (cited) | 3.3 | ARG-06; 3.3, 6.1 | NEW |
+| EQ-5 | Fast-over-slow crossing lead α(w_s − w_f), (w_s − w_f)/2 at the midpoint (cited; motivation, not a bound on spike lead) | 3.3 | ARG-06; 3.3, 6.1 | NEW |
 | EQ-6 | Persistence-sign criterion sign[R̄(h, h+w_f) − R̄(h+w_f, h+w_s)] with R̄ as mean ACF (cited) | 3.4 | ARG-07; 3.4, 5.2 | NEW |
-| EQ-7 | C_b = median lead(D_div) − median lead(B_b); C_min = min_b C_b within each resample | 4.5 | ARG-08; 4.5, 5.3 | NEW |
+| EQ-7 | C_b = mean lead(D_div) − mean lead(B_b) over eligible events (misses 0, censored 128); C_min = min_b C_b | 4.5 | ARG-08; 4.5, 5.3 | NEW |
 | EQ-8 | Adam second-moment update v_t = β₂ v_{t−1} + (1−β₂) g_t² and step η/√v_t | 3.1 | ARG-02, ARG-11; 3.1, App. B | NEW |
 | EQ-9 | The Measurement Trap App. A.4 characteristic polynomial (its EQ-5), cited | App. B | ARG-11; 6.3, App. B | NEW |
 | EQ-10 | Robustness index b_g*(exp) = (1−φ)/α + φ (its EQ-6), with α = 1−β₂ | 4.6 | ARG-12; 4.6, 5.7 | NEW |
+| EQ-11 | Alarm onset with hold H = 32; FA = out-of-window onsets per 10,000 out-of-window steps; n* = round(FA × N_out / 10,000) | 4.4 | ARG-08; 4.4 | NEW |
 
 ## 6. Assumptions & scope conditions
 
@@ -177,8 +183,9 @@ Names only; values live in claims.lock (Phase 3).
 | S5 | Leg A data are the public logs as staged after `prereg-v1`, hash-pinned; segments assembled by P-SEG; no window crosses a gap | 4.1 `S5` | NEW |
 | S6 | Leg B: 124M GPT-2-class model, 5,000 steps, 98,304 tokens/step (smaller than the reference batch; more gradient noise), clipping disabled, identical token order across cells | 4.6 `S6` | NEW |
 | S7 | Events at least 200 steps apart are treated as independent for resampling (block-of-3 sensitivity) | 4.5 `S7` | NEW |
-| S8 | Lead is measured inside a 128-step scan window at a headline FA of 1 per 10,000 steps; a missed event has lead 0 | 4.4 `S8` | NEW |
+| S8 | Lead is measured inside a 128-step scan window; FA is out-of-window alarm onsets per 10,000 out-of-window steps (headline 1), each onset held 32 steps; a missed event has lead 0; an alarm already on at the window start gives lead 128, flagged | 4.4 `S8` | NEW |
 | S9 | The A.4 index is a descriptive ordering only; no feedback gain is estimated | 4.6 `S9` | NEW |
+| S10 | Spikes that a checkpoint restart superseded are retained as rewind events on their own segment; dedup applies within a series | 4.1 `S10` | NEW |
 
 ## 7. Conclusions & limits-of-claim
 
@@ -187,12 +194,12 @@ Names only; values live in claims.lock (Phase 3).
 | C-01 | Claim A verdict on the primary run as E2 resolved, stated with C_min, its interval, and each detector's miss count | 7 `C-01` | NEW |
 | C-02 | Replication outcome across the included public runs, with runs too sparse to score named | 7 `C-02` | NEW |
 | C-03 | Leg B characterization: how spike rate varies with β₂ and LR, and how well the A.4 index orders it, with resolution stated | 7 `C-03` | NEW |
-| C-04 | Share of the lead that survives the shuffle control | 7 `C-04` | NEW |
+| C-04 | How far D_div's alarms align with the events beyond the circular-shift null | 7 `C-04` | NEW |
 | L-01 | Does NOT propose a new instability mechanism; the second-moment lag is prior art | 1, 6 `L-01` | NEW |
 | L-02 | Does NOT claim a stability criterion for Adam; Claim B carries no pass/fail | 6.3 `L-02` | NEW |
 | L-03 | Does NOT claim the Leg A result for β₂ other than 0.95, or for architectures and scales outside the included runs | 6.4 `L-03` | NEW |
 | L-04 | Does NOT claim savings beyond avoided rewinds and skips; low single-digit share of training compute at most | 6.5 `L-04` | NEW |
-| L-05 | Does NOT claim the lead is free of window arithmetic beyond what E5 measures | 6.1 `L-05` | NEW |
+| L-05 | Does NOT claim an analytical bound on the lead over a spike; the Adaptation Rate Theorem is used as motivation only | 3.3, 6.1 `L-05` | NEW |
 | L-06 | Does NOT replace curvature-based analysis; no Hessian quantity is measured | 6.2 `L-06` | NEW |
 | L-07 | Does NOT evaluate mitigation (clipping, rewinds); the detector only warns | 6.5 `L-07` | NEW |
 
@@ -204,7 +211,7 @@ Names only; values live in claims.lock (Phase 3).
 | 2.1 | 4.3, TBL-1 | deployed alarms become B3/B4 | NEW |
 | 2.3 | 6.2 | complementarity with the curvature boundary | NEW |
 | 3.2 | EQ-1, EQ-2, FIG-1 | operator definition | NEW |
-| 3.3 | EQ-5, 5.6, FIG-5 | lead bound vs shuffle control | NEW |
+| 3.3 | EQ-5, L-05 | crossing-lead motivation and its limit | NEW |
 | 3.4 | EQ-6, 5.2 | sign prediction and its check | NEW |
 | 4.1 | TBL-2, App. D | data provenance | NEW |
 | 4.2 | EQ-4, 5.1 | spike rule and event counts | NEW |

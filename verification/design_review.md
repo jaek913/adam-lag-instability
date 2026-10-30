@@ -45,6 +45,18 @@ Fix-round message 1: verification/design_review_fixround.md (MD5 859f060b72adb30
 
 **Second fix round (scoped; DECISIONS entry 3).** N1 is a BLOCKER introduced by the fix round itself, so it falls under the Standard's load-bearing-defect exception to the one-round cap. A second message, verification/design_review_fixround2.md, is sent once to the same session and is scoped strictly to N1, N2, N3 and the F4, F5 and F15 residuals. F1–F19 are not reopened.
 
-## Second fix-round outcome
+## Second fix-round outcome (reviewer reply 3, 2026-10-30) — REVIEW CLOSED
 
-[appended after the reviewer's reply 3]
+Fix-round message 2: verification/design_review_fixround2.md (MD5 b97e3c92e9c444007a251f44060f71ab, committed at 1492a04). Reviewer reply 3 is in the transcript.
+
+| id | reviewer | final disposition |
+|---|---|---|
+| N1 | CLOSED, with two notes | CLOSED. Note (i), residual onset clustering, and note (ii), the meaning of P-CENS under P-HOLD, are stated in DESIGN §D.2 as Methods statements; no rule change (JAE). |
+| N2 | CLOSED (matching), introduced N4 | CLOSED. |
+| N3 | CLOSED | CLOSED. |
+| F4 residual | CLOSED | CLOSED. |
+| F5 residual | CLOSED | CLOSED. |
+| F15 residual | CLOSED | CLOSED. |
+| N4 | NEW — MINOR | AMENDED without further review (DECISIONS entry 3 item 5 and Addendum A). The oracle series is the planted series with noise amplitude × 10⁻³; D.5 asserts every score on it is finite. |
+
+**Final state:** every finding (F1–F19, N1–N4 and the three residuals) is closed or amended. No rebuttal is outstanding, and no finding is open. The design-stage adversarial review is CLOSED on 2026-10-30, before the `prereg-v1` public commit.
