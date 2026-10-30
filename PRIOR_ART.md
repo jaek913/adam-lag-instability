@@ -92,3 +92,8 @@ Spike handling today is reactive: deployed tools clip or flag on the step the gr
 - Kingma, Ba. Adam. ICLR 2015; Reddi, Kale, Kumar. On the Convergence of Adam and Beyond (AMSGrad). ICLR 2018. [seed, not re-read]
 - Software: trainscope (PyPI); trainpulse (PyPI / github.com/stef41/trainpulse); zclip (PyPI).
 - Own program: The Measurement Trap; The Adaptation Rate Theorem; The Divergence Theorem; Cross-Domain Validation.
+
+## 10. Correction note (2026-10-30, Phase 1 — after reading the source)
+
+- **Citation.** Every reference above to "The Measurement Trap §3.5 (exponential kernel)" should read **The Measurement Trap, Appendix A.4 (PRF-A4), EQ-5/EQ-6**. §3.5 of that paper is the cross-disciplinary correspondence with Campbell & Jessop (2009); the exponential-kernel closed form is in Appendix A.4. The error came from the planning doc and is corrected in DESIGN.md D.4.1 and, by amendment, in THESIS.md.
+- **Claim B gap (§3).** DESIGN.md D.4.1 finds that the A.4 exponential-kernel boundary does not map cleanly onto Adam's second-moment loop in observable-only terms (feedback is multiplicative and curvature-dependent; Adam's v_t includes the current gradient; S and π²/2 are uniform-kernel quantities). The "Hessian-free, closed-form, observable-only predictor" stated in §3's gap verdict is therefore not delivered as a verdict-bearing claim; Claim B is carried as a characterization of spike rate across the β₂ × LR grid, ordered by the A.4 robustness index. The §6 verdict for Claim A is unchanged.
