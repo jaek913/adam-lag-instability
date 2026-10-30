@@ -13,7 +13,7 @@ Companion files: THESIS.md (claims, falsifiers, Date station), PRIOR_ART.md (nov
 
 ## D.0a Specification budget (anti-fishing disclosure, half 1)
 
-- **Leg A:** 1 primary detector specification (D_div); 4 baselines (B1 rolling z-score, B2 fixed threshold, B3 ZClip EMA z-score, B4 CUSUM); 1 window pair (32, 128); 1 spike definition; 1 scan window; 1 headline false-alarm rate (1 per 10,000 steps) on a 4-point FA grid. Sensitivity (reported, no verdict): 2 alternate window pairs; baseline construction-pin sweeps listed in D.7; 1 alternate segment de-duplication rule.
+- **Leg A:** 1 primary detector specification (D_div); 4 baselines (B1 rolling z-score, B2 fixed threshold, B3 ZClip EMA z-score, B4 CUSUM); 1 window pair (32, 128); 1 spike definition (with the pre-registered two-rung k ladder P-KLAD); 1 scan window; 1 headline false-alarm rate (1 per 10,000 steps) on a 4-point FA grid. Sensitivity (reported, no verdict): 2 alternate window pairs; baseline construction-pin sweeps listed in D.7; 1 alternate segment de-duplication rule.
 - **Leg B:** 1 model configuration; 1 (β₂ × LR) grid of 6 × 4 = 24 runs; 1 seed per cell + 1 replicate seed on 4 boundary-adjacent cells (28 runs). Sensitivity: b_g ±50 %; φ-prior sweep (D.4.0).
 - No other specifications are planned. Any addition is a dated amendment. The number actually tried is disclosed at Phase 4 (half 2).
 
@@ -48,7 +48,8 @@ All operators are causal (use data at or before step t only). Steps are optimize
 - **Divergence:** D(t) = SMA_32(y)(t) − SMA_128(y)(t).
 - **Detector score D_div:** P_D(t) = empirical percentile of D(t) among all D(s), s ≤ t, in the assembled series; minimum history 1,000 steps (no score before). Alarm when P_D(t) ≥ θ_div.
 - **Persistence-sign prediction (E1, fixed before any correlation is computed):** predicted sign of Corr(D_t, y_{t+16}) from the Divergence Theorem's Theorem 8b criterion R̄(h, h+w_f) − R̄(h+w_f, h+w_s) at h = 16, using the ACF of y measured on A1. Expected: positive.
-- **Spike definition (mechanical, frozen 2026-10-30):** a loss spike at step t if L(t) > SMA_128(L)(t−1) + k·σ_128(L)(t−1), k = 4. Spikes within 200 steps of a prior spike are merged into one event; the event time is the first step of the event. NaN/inf loss at a step counts as exceeding the threshold.
+- **Spike definition (mechanical):** a loss spike at step t if L(t) > SMA_128(L)(t−1) + k·σ_128(L)(t−1). Spikes within 200 steps of a prior spike are merged into one event (dedup 200, frozen 2026-10-30); the event time is the first step of the event. NaN/inf loss at a step counts as exceeding the threshold.
+- **k ladder (construction pin P-KLAD, JAE 2026-10-30):** k = 4 is the primary rung (frozen 2026-10-30). The number of eligible events on A1 is computed from the loss series and the eligibility rule alone, BEFORE any detector score is computed. If A1 has fewer than 5 eligible events at k = 4, the secondary rung k = 3 applies, once. If A1 still has fewer than 5 eligible events at k = 3, the outcome is INSUFFICIENT EVENTS (D.3 E2, §K). The rung that resolves on A1 is used for every Leg A run and for E8, and the paper reports which rung resolved. No other k is ever used.
 - **Baselines** (each produces a scalar score s_b(t); alarm when s_b(t) ≥ θ_b):
   - **B1 rolling z-score:** s_1(t) = (y(t) − mean_50(y)) / sd_50(y), trailing 50-step window. Window 50 is a **construction pin P-B1** (not attributed to any tool); sweep {25, 50, 100}, reported, no verdict.
   - **B2 fixed threshold:** s_2(t) = y(t).
@@ -57,9 +58,23 @@ All operators are causal (use data at or before step t only). Steps are optimize
 - **Alarm onset:** the first step of each run of consecutive steps with score ≥ θ. Only onsets count (for every detector).
 - **False-alarm rate:** alarm onsets per 10,000 steps falling outside every scan window. **FA grid:** {0.5, 1, 2, 5} per 10,000 steps; **headline FA = 1 per 10,000** (frozen 2026-10-30).
 - **Threshold matching (construction pin P-FA):** for each detector, θ is swept over the empirical quantiles of its score; the operating θ for a target FA is the one whose realised FA is closest to the target from below (≤ target); ties go to the larger θ.
-- **Scan window and lead:** for an event at t_e, the scan window is [t_e − 128, t_e]. Lead = t_e − (first alarm onset in the scan window). An event with no alarm onset in its window has lead 0 (no warning) — **construction pin P-MISS**; the miss rate is reported per detector. Left-censoring (an alarm already active at t_e − 128) is reported per Adaptation Rate Theorem §5.2 conventions.
+- **Scan window and lead:** for an event at t_e, the scan window is [t_e − 128, t_e]. Lead = t_e − (first alarm onset in the scan window). An event with no alarm onset in its window has lead 0 (no warning) — **construction pin P-MISS**; the miss count and miss rate are reported per detector, beside its median lead. Left-censoring (an alarm already active at t_e − 128) is reported per Adaptation Rate Theorem §5.2 conventions.
 - **Event eligibility:** an event is eligible if every detector has a defined score over its whole scan window (i.e., at least 1,000 steps of history and no gap inside the window). Ineligible events are counted and reported.
 - **Control:** block-shuffle null on y (block 128 steps, 1,000 draws): D_div's lead ordering under permutation, per the Adaptation Rate Theorem shuffle-control convention.
+
+## D.3.0 Experiment index
+
+| id | Leg | One-line purpose |
+|---|---|---|
+| E1 | A | Check that the sign of D's forward correlation with the gradient norm matches the Divergence Theorem's a-priori sign on A1. |
+| E2 | A | Test whether D_div warns of loss spikes earlier than the best of four deployed-style baselines at matched false-alarm rate on A1 (primary; carries §K). |
+| E3 | A | Replicate E2's direction on the other public runs (A2–A6). |
+| E4 | A | Show how E2's contrast moves with window pair and construction pins (no verdict). |
+| E5 | A | Measure how much of D_div's lead survives a block shuffle, i.e. how much is window arithmetic. |
+| §K | A | Pre-registered stop rule on E2 with its grading day: KILL, close on INSUFFICIENT EVENTS, or proceed to Leg B. |
+| E6 | B | Test whether cells the criterion calls unstable spike more than cells it calls stable (runs only if §K does not stop the project). |
+| E7 | B | Characterize how well the criterion's continuous diagnostic orders spike rate across the grid. |
+| E8 | B | Replicate E2 on the Leg B runs. |
 
 ## D.3 Experiments (Leg A) — classification, severity, report form
 
@@ -68,8 +83,8 @@ All operators are causal (use data at or before step t only). Steps are optimize
   - **SUPPORT:** C_min > 0 and the 5th percentile of the resampled C_min > 0 (90 % two-sided interval excludes zero).
   - **INCONCLUSIVE:** C_min > 0 but the 5th percentile ≤ 0; reported with the measured detection probability at the observed effect (Standard v1.9.11). Leg B proceeds.
   - **REFUTE (= §K KILL):** C_min ≤ 0.
-  - **INSUFFICIENT EVENTS:** fewer than 5 eligible events on A1 → no verdict; reported as such with the suite's power at that count; §K records the condition on its grading day.
-  Also reported: lead distributions, miss rates, censoring rates, the full FA-grid frontier per detector (figure), and the per-resample argmax probability over {D_div, B1, B2, B3, B4}. Severity: quantified by the synthetic suite (D.5) at the realised event count.
+  - **INSUFFICIENT EVENTS:** fewer than 5 eligible events on A1 at both rungs of the k ladder (P-KLAD) → no verdict on Claim A (neither SUPPORT nor REFUTE); reported with the event count at each rung and the suite's power at that count; §K closes the project.
+  Also reported: per detector, the median lead with the miss count (and miss rate) beside it; the k-ladder rung that resolved; lead distributions, censoring rates, the full FA-grid frontier per detector (figure), and the per-resample argmax probability over {D_div, B1, B2, B3, B4}. Severity: quantified by the synthetic suite (D.5) at the realised event count.
 - **E3 — Replication on A2–A6.** Type: replication (verdict). Rule: on runs with ≥ 3 eligible events, SUPPORT if the sign of C_min matches E2's on a majority; otherwise REFUTE; runs with < 3 events are reported descriptively. A2/A3 are stabilized runs and may have few events; that is reported, not repaired.
 - **E4 — Sensitivity.** Type: robustness (no verdict; qualifies E2). Window pairs (16, 64), (64, 256); construction-pin sweeps P-B1, P-B3, P-B4, P-SEG.
 - **E5 — Shuffle control.** Type: boundary/characterization (report form). Reporting commitment: pooled advance-ordering rate on shuffled vs real y; a flag trips if the shuffled lead exceeds the real lead (the "lead" would be window arithmetic with no data content).
@@ -78,11 +93,11 @@ All operators are causal (use data at or before step t only). Steps are optimize
 
 **Grading day:** `prereg-v1` commit date + 21 days. The concrete calendar date is written here and in THESIS.md's Date station in the `prereg-v1` commit itself: **[written at the prereg-v1 commit]**. On that day the verdict is recorded in DECISIONS.md and RECORD.md whether or not E2 has run; an unrun E2 (including A1 unavailable under D.1) is itself recorded and the day is re-set once, by dated amendment.
 
-**Rule:** after E2's single real run on A1: if E2 is **REFUTE (C_min ≤ 0)** — D_div's median lead at FA = 1 per 10,000 steps does not exceed that of the best of B1–B4 — the project STOPS. The negative is written up as a short null note (Standard: the null is the paper), filed in the repo and on Zenodo, with RECORD.md as the closing artifact; Leg B does not run. INCONCLUSIVE or SUPPORT → Leg B proceeds. No re-tuning of windows, spike definition, baselines, construction pins, or FA grid after A1 is touched; E4's sensitivity results are reported as they fall and do not rescue the verdict.
+**Rule:** after E2's single real run on A1: if E2 is **REFUTE (C_min ≤ 0)** — D_div's median lead at FA = 1 per 10,000 steps does not exceed that of the best of B1–B4 — the project STOPS. The negative is written up as a short null note (Standard: the null is the paper), filed in the repo and on Zenodo, with RECORD.md as the closing artifact; Leg B does not run. If E2 is **INSUFFICIENT EVENTS** (fewer than 5 eligible events on A1 at k = 4 and at k = 3), the project also closes: a short null note on event count is filed (neither a pass nor a kill of Claim A), with RECORD.md, and Leg B does not run. INCONCLUSIVE or SUPPORT → Leg B proceeds. No re-tuning of windows, spike definition, baselines, construction pins, or FA grid after A1 is touched; E4's sensitivity results are reported as they fall and do not rescue the verdict.
 
 ## D.4 Leg B (pinned now; executes only if §K does not kill)
 
-- **D.4.0 Pre-run classification (completed BEFORE `prereg-v1`).** A committed script computes the criterion's stable/unstable classification of all 24 grid cells from prior φ values (no data), across a φ-prior sweep **P-PHI = {0.5, 0.8, 0.9, 0.95, 0.99}** with b_g at its pin (below) and ±50 %. The trigger is evaluated at the sweep's median (φ = 0.9): **if fewer than 6 cells classify as unstable, the D.4 fallback applies** (E6 re-characterized as a characterization of spike rate vs (φ, W, LR) with the criterion's ordering as the reporting commitment; the E6 verdict is withdrawn), recorded here before `prereg-v1`. The script, its output, and the boundary-adjacent cells it identifies (for the 4 replicate seeds) are committed with the pre-registration. Result: **[filled by the committed pre-classification run before prereg-v1]**. Context: in The Measurement Trap the exponential kernel was one of the stability-restoring reforms, so the criterion may classify most cells stable.
+- **D.4.0 Pre-run classification (completed BEFORE `prereg-v1`).** A committed script computes the criterion's stable/unstable classification of all 24 grid cells from prior φ values (no data), across a φ-prior sweep **P-PHI = {0.5, 0.8, 0.9, 0.95, 0.99}** with b_g at its pin (below) and ±50 %. The trigger is evaluated at the sweep's median (φ = 0.9). **Source of φ = 0.9:** a construction choice (Claude, 2026-10-30) — the median of the sweep; the Phase 0 scan found no published value of the lag-1 autocorrelation of the squared global gradient norm, so no literature source is claimed. **At Phase 2, φ measured on A1** (lag-1 autocorrelation of g(t)², levels, over A1's assembled series) **replaces 0.9 by dated amendment if it differs from 0.9 by more than 0.05**, and the D.4.0 classification and trigger are re-run with it before any Leg B run (JAE 2026-10-30). **if fewer than 6 cells classify as unstable, the D.4 fallback applies** (E6 re-characterized as a characterization of spike rate vs (φ, W, LR) with the criterion's ordering as the reporting commitment; the E6 verdict is withdrawn), recorded here before `prereg-v1`. The script, its output, and the boundary-adjacent cells it identifies (for the 4 replicate seeds) are committed with the pre-registration. Result: **[filled by the committed pre-classification run before prereg-v1]**. Context: in The Measurement Trap the exponential kernel was one of the stability-restoring reforms, so the criterion may classify most cells stable.
 - **Model and data:** GPT-2-small class, 124M parameters, nanoGPT-style code committed; data FineWeb-Edu 10B subset — **exact shard list + hashes: to resolve before prereg-v1**; sequence 1,024; **batch size: to resolve before prereg-v1**; 5,000 steps per run; bf16; AdamW, β₁ = 0.9, weight decay 0.1, warm-up 200, cosine to 10 %; gradient clipping DISABLED (clipping is itself a controller and would confound the loop).
 - **Grid:** β₂ in {0.95, 0.98, 0.99, 0.995, 0.999, 0.9999} × peak LR in {3e-4, 6e-4, 1.2e-3, 2.4e-3}; seeds fixed and listed; 24 primary runs + 4 replicate seeds at the boundary-adjacent cells from D.4.0 (identified from the pre-run computation, not from results). β₂ = 0.95 matches the realised β₂ of every Leg A run.
 - **Measured per run:** per-step loss, global gradient norm, per-step squared gradient norm g²(t); spike count (D.2 definition); divergence flag (loss > 2 × initial or NaN).
@@ -97,6 +112,7 @@ All operators are causal (use data at or before step t only). Steps are optimize
 - Planted null: spikes with NO precursor ramp; D_div must not beat the best baseline (false-support rate ≤ 0.05 at the realised event count).
 - Planted decision flip: ramps shorter than the raw-reading baselines' response; the rule must return REFUTE.
 - Dynamic range: lead distributions separate at planted L differences of 25 steps; a planted-ties probe for C_min.
+- k ladder: the suite exercises both rungs (k = 4 and k = 3) and the INSUFFICIENT EVENTS branch, and confirms the event count is computed before any detector score.
 - Regime span (Standard v1.9.11): event counts {5, 10, 20, 40} and AR(1) persistence spanning the plausible range; the run reports which cell the realised A1 data lands in; outside the span → resolution re-measured before any INCONCLUSIVE is interpreted.
 - Assembly probes: overlapping segments, gaps, duplicate steps, a missing `optim/total_grad_norm` column, and a point-sampled (incomplete) segment — each must be caught by D.1's checks.
 - Leg B: synthetic AR(1) g² with known φ under a simulated exponential-kernel loop at known gain; the criterion must classify planted-stable/unstable correctly across the boundary; planted-ties probe for E7.
@@ -115,17 +131,18 @@ Standard v1.9.12 six-pass audit per experiment, F-numbered in DECISIONS.md, sign
 | P-B3 | ZClip statistics updated with raw g (monitor mode) | update with ZClip's adjusted value |
 | P-B4 | CUSUM upward side only, on y | two-sided; on g |
 | P-FA | operating θ = realised FA closest to target from below; ties → larger θ | — (reported FA grid) |
-| P-MISS | missed event has lead 0 | miss rate reported |
-| P-PHI | φ-prior sweep {0.5, 0.8, 0.9, 0.95, 0.99}; trigger at 0.9 | full sweep reported |
+| P-MISS | missed event has lead 0 | miss count and rate reported beside each median lead |
+| P-KLAD | spike k ladder: k = 4 primary; k = 3 once if < 5 eligible A1 events (counted before any detector score); < 5 at k = 3 → INSUFFICIENT EVENTS | rung that resolved reported |
+| P-PHI | φ-prior sweep {0.5, 0.8, 0.9, 0.95, 0.99}; trigger at 0.9 (construction choice; replaced by A1-measured φ if |Δ| > 0.05, dated amendment) | full sweep reported |
 | P-BG | b_g ∝ LR / sqrt(v̄) at step 500 | ±50 % |
 
-Frozen (not pins): k = 4; spike dedup 200 steps; headline FA = 1 per 10,000 steps; windows (32, 128); scan window 128; minimum history 1,000 steps.
+Frozen (not pins): k = 4 as the primary rung of P-KLAD; spike dedup 200 steps; headline FA = 1 per 10,000 steps; windows (32, 128); scan window 128; minimum history 1,000 steps.
 
 ## D.8 Open before `prereg-v1` (not yet resolved; each closes by an edit to this file before the freeze)
 
 1. D.4.0 pre-classification run and result.
 2. Leg B FineWeb-Edu shard list + hashes; batch size.
-3. THESIS.md amendments in the same change set: (a) Claim A falsifier sentence → "best of the four baselines" (matches §K); (b) β₂ framing (CF 10).
+3. THESIS.md amendments in the same change set: (a) Claim A falsifier sentence → "best of the four baselines" (matches §K); (b) β₂ framing (CF 10); (c) the INSUFFICIENT EVENTS closure under the k ladder (P-KLAD) stated beside the Claim A falsifier, as an outcome that neither passes nor kills Claim A.
 4. §K and THESIS Date station concrete grading date — written in the `prereg-v1` commit itself.
 
 ## D.9 Pre-freeze change log (2026-10-30) — differences from planning doc v0.5 Part 3
@@ -141,4 +158,5 @@ Each entry: carry-forward (CF) number; what motivated it; the v0.5 text it repla
 - **CF 8 — Realised β₂ = 0.95.** Motivated by DECISIONS.md entry 2 (OLMo configs). New D.0 consequences (i)–(iii); D.6 item 6; D.4 note that the grid includes 0.95. No v0.5 text replaced in DESIGN; THESIS amendment pending (D.8 item 3b).
 - **CF 9 — Metric name and pre-clip status from trainer code; training commit at PRV.** Motivated by DECISIONS.md entry 2 (allenai/OLMo @ 090253d). Replaces v0.5 D.2 "[PIN: pre-clip norm; if only post-clip is logged for a run, the run is flagged and reported separately.]" Now D.1 pre-clip assertion and D.6 item 3.
 - **CF 10 — THESIS β₂ amendment.** Motivated by DECISIONS.md entry 2 (JAE, 2026-10-30). Recorded as D.8 item 3b (a THESIS change, landing with this DESIGN before the freeze).
-- **Completions required by the Phase 1 checklist (not carry-forwards; JAE to confirm at review of this draft):** alarm-onset definition; threshold-matching rule P-FA; missed-event rule P-MISS; event eligibility; E2 INSUFFICIENT EVENTS branch (< 5 eligible events); E3 REFUTE branch made explicit; ZClip warm-up 25 and B3 score definition; CUSUM parameters from trainscope source; anneal group excluded from A1; φ-prior sweep P-PHI; suite regime-span and assembly probes; D.6 items 1–7. v0.5 left these unstated.
+- **Completions required by the Phase 1 checklist (not carry-forwards; confirmed by JAE 2026-10-30, with the notes in the next entry):** alarm-onset definition; threshold-matching rule P-FA; missed-event rule P-MISS; event eligibility; E2 INSUFFICIENT EVENTS branch (< 5 eligible events); E3 REFUTE branch made explicit; ZClip warm-up 25 and B3 score definition; CUSUM parameters from trainscope source; anneal group excluded from A1; φ-prior sweep P-PHI; suite regime-span and assembly probes; D.6 items 1–7. v0.5 left these unstated.
+- **JAE review of the completions (2026-10-30, after commit e06e338).** Accepted: P-MISS, P-FA, B3/B4 monitor-mode pins, P-PHI — with two notes applied: the miss count is reported beside each detector's median lead (D.2, D.3 E2, D.7); the source of φ = 0.9 is named (construction choice, no literature value found) and A1-measured φ replaces it by dated amendment if |Δ| > 0.05 (D.4.0, D.7). **Changed:** the < 5-event branch — replaced the single-k INSUFFICIENT EVENTS rule by the pre-registered k ladder P-KLAD (k = 4 primary, k = 3 once, then INSUFFICIENT EVENTS → project closes with a null note on event count, neither pass nor kill of Claim A), which closes the gap where §K could not fire (D.2, D.3 E2, §K, D.5, D.7). Replaces the e06e338 text "fewer than 5 eligible events on A1 → no verdict; … §K records the condition on its grading day." Also added: D.3.0 experiment index.
