@@ -581,3 +581,21 @@ Refines Addendum C item 1 (the per-segment gate); Addendum C items 2–5 stand. 
    - The FA exclusion covers the scan windows of all 61 k = 4 events, eligible or not (A1.11(b)).
    - N_out and the realised n* follow from those windows and are computed at the detector stage. The upper bound remains 5 at the headline FA (entry 11). The n* = 0 guard cannot fire.
 7. **Next.** Detector stage for E2 on A1, which needs the committed D.5 synthetic validation suite to pass first (DESIGN D.5: "committed and ALL PASS before any hashed-data run"). That includes the Amendment 1 A1.7 ten-step grid cell, the Amendment 3 suite cases, and Phase 2 box 1's theorem checks. No detector is run on A1 until the suite passes.
+
+## Entry 14 (2026-10-31) — Process defect: Phase 2 checklist not re-read at session resume; audit
+
+1. **Defect.** The Phase 2 task (ClickUp 86bcvnnva) requires its checklist to be re-read in full at every session resume.
+   - The working session resumed from a context break on 2026-10-30 at about 20:00 CT. Work continued (Amendment 1 adjudication through entry 13) without that re-read. The checklist was next read in full on 2026-10-31 at 10:24 CT.
+   - This is logged as required, and the work done meanwhile is audited below.
+2. **Audit against the boxes that work touched.**
+   - **Data pulled and hashed:** met in substance for A1.
+     - Every file was re-hashed on disk against its manifest (entries 7–9).
+     - "Read the data, not just its hash": coverage and step cadence were checked by D.1 and the structural report. The spot-value check against the published W&B dashboard is exceeded by the route-1b cross-check, which compared all 1,029,564 cells with W&B's server (entry 9).
+     - **Deviation recorded:** there is no single `data/pull.py`. The A1 pull is a browser route, documented by `scripts/a1_process_segment.py`, `scripts/manifests/*.json` and the GraphQL query recorded in SOURCES.md.
+     - A2–A6 are not yet staged, so the box stays open.
+   - **SOURCES.md complete:** gap found. The project-specific fields (metric names as logged, step cadence, pre-/post-clip flag) were not stated per series. They are added with this entry. The box stays open until A2–A6 are recorded.
+   - **Discrepancy Register:** consistent. D-01 adjudicated (entry 6); D-02 updated (Addendum B item 8, Addendum C). Both remain OPEN, and the box stays open until phase close.
+   - **DECISIONS current:** consistent. Every design change went in as a dated DESIGN amendment (1–3) with its rationale here.
+   - **Pushed off-machine:** every commit is pushed. **The data store has no off-machine backup yet.**
+   - **Box 1 (theorem checks):** not done. It must precede each experiment's first run, so it is placed before the D.5 suite.
+3. **Order from here:** box 1 theorem checks, as a DECISIONS entry, then the D.5 suite, then PRV for E2, then E2.

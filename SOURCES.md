@@ -9,6 +9,14 @@ Per-file record required by DESIGN §D.1 ("Per-file record (SOURCES.md)"). Opene
 
 ## Leg A — A1 (OLMo-0424 7B; W&B `ai2-llm/OLMo-7B`, group `OLMo-1.7-7B`)
 
+**Series fields (Phase 2 SOURCES box; DECISIONS entry 14):**
+- **Metric names as logged:** `train/CrossEntropyLoss` (loss) and `optim/total_grad_norm` (gradient norm). Also staged: `optim/learning_rate_group0` and `optim/clipping_rate`. Columns are resolved by name.
+- **Step cadence:** loss every step. Gradient norm only on steps with step mod 10 = 0 (run config `optimizer.metrics_log_interval: 10`; training commit `43a155f`; DECISIONS entry 5, Discrepancy Register D-01). It is present on every such step in all seven used segments (entry 9).
+- **Pre-/post-clip:** pre-clip per allenai/OLMo `olmo/optim.py` at main 090253d (DECISIONS entry 2). The check against the run's own training commit `43a155faf0c41c849fc2e14fe375a6bc57ed89fb` is a PRV item (DESIGN D.6 item 3) and is still open.
+- **Export timestamps:** the downloaded (UTC) column below.
+- **Replicator tolerance:** exact (static copies).
+- **Assembly:** DESIGN Amendment 2 (P-SEG); `verification/A1_structural_report.md`.
+
 | store path | route | source | run (name / id) | artifact : file | bytes | downloaded (UTC) | MD5 (= manifest?) | SHA-256 | status |
 |---|---|---|---|---|---|---|---|---|---|
 | `A1\run-025_u3obk6mj_history-v2_0000.parquet` | 1 | https://wandb.ai/ai2-llm/OLMo-7B/runs/u3obk6mj | OLMo-1.7-7B-run-025 / u3obk6mj | run-u3obk6mj-history:v2 : 0000.parquet | 1,527,446 | 2026-10-31T00:32:36Z | 0848b70fa58cad98edf64b7744871394 (yes) | bd1a2f425bd018d56114524195468fe6c1fb7e7a90f76f384997f93a563559ee | **Fails D.1.** 383 rows against 22,361 server lines; the server itself holds only 383 rows (D-02; DECISIONS Addendum B item 8). Not used. |
