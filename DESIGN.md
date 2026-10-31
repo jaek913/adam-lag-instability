@@ -509,3 +509,28 @@ Result: 16 findings (G1–G16), all adopted, five with a stated adaptation, plus
 - (v) **A dropped reading inside the first 1,000 observations** (JAE). It must count toward j, carry y forward, and leave the first defined score at j = 1,000.
 
 **Unchanged.** Windows (32, 128), ratio, H, the FA rule and grid, P-FA matching, leads, censoring, the spike rule and every outcome partition.
+
+## Amendment 6 (2026-10-31) — P-FA threshold matching: scan from the top (defect fix)
+
+**Status.** Appended below Amendment 5 under the append-only rule. Rationale: DECISIONS.md entry 17 (JAE decision 2026-10-31). Made and pushed before the D.5 suite is built and before any gradient-norm value is read for scoring. No detector threshold has been computed for any run.
+
+**Defect.** D.2 "Threshold matching (P-FA)" sets θ = the smallest candidate v with out-of-window onset count c(v) ≤ n*. Under P-HOLD, an onset needs a fresh crossing from below, and "the first scored step of the series and of each post-gap restart counts as preceded by s < θ".
+- At v = the minimum candidate the score never falls below v. Each scored block therefore has exactly one onset, and c(v_min) = the number of scored blocks (3 on A1), which is at or below n* (upper bound 5 at the headline FA; entry 11).
+- The frozen rule therefore selects θ = v_min for every detector. Each detector would then be in alarm only for the first H observations of each block, every lead would be 0, C_min = 0, and E2 would return REFUTE (§K STOP) **whatever the data**.
+- The frozen text's note on "non-monotone regions of c(v)" does not cover this: the low end of c(v) is always degenerate under P-HOLD.
+
+**6.1 Replacement rule (replaces "θ = the smallest candidate v with c(v) ≤ n*" in D.2 and the D.7 P-FA row).**
+- **Rule.** θ = the smallest candidate v such that **every** candidate u ≥ v has c(u) ≤ n*. Equivalently: scan the candidates from the highest down, and stop at the first candidate whose count exceeds n*. θ is the candidate immediately above it, or the lowest candidate if none exceeds n*.
+- **No admissible candidate.** If the highest candidate already has c > n*, θ is set above the detector's maximum score. The detector never alarms; this is reported as "not matchable at this FA" for that detector, and its leads are 0.
+- **Unchanged.** The candidate set (distinct score values on out-of-window scored observations), recomputing the score path and alarm state per candidate (B4), the realised count, any shortfall and any non-monotone region (all reported). Also unchanged: the FA grid, the headline, n* (round-half-up, A1.11) and the n* = 0 guard (A1.2).
+- **Scope.** Every run (A1–A6, Leg B/E8), every FA grid point, every E4 sensitivity variant, and the D.5 suite, **including the oracle** (θ matched on the noisy series by this rule).
+
+**6.2 Alarm-coverage check (new; every real run, per detector, per FA point).**
+- **What is reported:** the fraction of out-of-window scored observations whose score is ≥ θ under the matched θ.
+- **Stop rule:** at the headline FA, a fraction **above 10 %** for any detector is a **stop-and-report**. No lead is computed until JAE has seen the report.
+- **Why:** this is the check that would have shown the defect above. A matched threshold that most of the series exceeds signals degenerate matching.
+
+**6.3 D.5 suite additions.**
+- (i) A series on which the minimum candidate satisfies c ≤ n*. Matching must not select it: θ must come from the top scan, and the coverage fraction must be small.
+- (ii) A series whose top candidates are tied with c > n*. The detector must be reported as not matchable and never alarm.
+- (iii) A non-monotone c(v) with a dip below n* at a mid-range value under a higher value with c > n*. The top scan must stop above the excursion.

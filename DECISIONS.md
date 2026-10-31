@@ -646,3 +646,21 @@ Sources: the project files `thedivergencetheorem.pdf`, `theadaptationratetheorem
    - **Consistency-forced:** D_div's SMAs include the current reading (Amendment 4.1). B3 and B4 follow their code.
    - **Probe added (JAE):** a hand-computed probe with a dropped reading inside the first 1,000 observations.
 4. **Scope.** Every run and the D.5 suite. Recorded as DESIGN Amendment 5. Pushed before the suite is built and before any gradient-norm value is read for scoring.
+
+## Entry 17 (2026-10-31, JAE) — P-FA defect found before any threshold was computed; fixed by scanning from the top (DESIGN Amendment 6)
+
+1. **Finding (author, while writing the matching code; before any code ran and before any gradient-norm value was read).** Under P-HOLD's fresh-crossing rule, the frozen P-FA choice "smallest candidate with c(v) ≤ n*" always selects the minimum score.
+   - At v_min, the onset count equals the number of scored blocks (3 on A1), which is ≤ n*.
+   - Every detector would alarm only in each block's first 32 observations, every lead would be 0, and E2 would return REFUTE → §K STOP regardless of the data.
+   - **Severity: BLOCKER.** It decides the primary verdict independently of the data.
+   - The design review (F2–F4, N1) adopted onset-with-hold matching without catching the low-end degeneracy. The D.5 planted-effect cell would have failed under it, so the suite would have caught it, but only after the suite was built.
+2. **Decision (JAE, 2026-10-31).** Scan from the top: θ = the smallest candidate v such that every candidate u ≥ v has c(u) ≤ n*. Applies to every run, E8 and the suite oracle (DESIGN Amendment 6.1).
+   - **JAE's additions:**
+     - (1) a suite probe where the minimum candidate satisfies c ≤ n*, which matching must not select (Amendment 6.3(i));
+     - (2) a per-detector alarm-coverage check on every real run: the fraction of out-of-window readings with score ≥ θ is reported, and above 10 % at the headline FA is a stop-and-report before any lead is computed (Amendment 6.2).
+   - **Author's additions** for completeness: a probe for tied top candidates with c > n* (not matchable, never alarms) and one for a non-monotone c(v) excursion (Amendment 6.3(ii)–(iii)).
+3. **Review (JAE).** Amendments 2–6 together get one scoped single-round independent check before the E2 run.
+   - **Package:** each amendment beside the frozen text it modifies.
+   - **Venue:** a fresh claude.ai incognito chat, web search off.
+   - **Adjudication:** under the entry-3 rule, with no third round.
+   - The package is built after this entry is pushed.
