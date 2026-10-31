@@ -124,3 +124,77 @@ The amendment: the oracle series is the planted series with the noise amplitude 
    
    Each box is judged against the frozen DESIGN.md. Where the two differ, DESIGN governs.
 7. **No data has been pulled.** Per Phase 2 override (3), the first data contact is a column-name-only existence check on A1, recorded in the next entry.
+
+---
+
+## Entry 5 (2026-10-30) — First data contact on A1 (Phase 2 override 3): the column is present, but logged every 10 steps; route 1 is incomplete
+
+1. **File staged.**
+   - Source: W&B (CoreWeave Forge) artifact `ai2-llm/OLMo-7B/run-u3obk6mj-history:v2`, run `OLMo-1.7-7B-run-025`, created 2024-04-18. Its only file is `0000.parquet`, 1,527,446 bytes.
+   - Manifest MD5 read from the artifact's file metadata in the logged-in page: `CEi3D6WMrZjt9kt3RIcTlA==` (base64), which is 0848b70fa58cad98edf64b7744871394 in hex.
+   - Downloaded 2026-10-30 19:32 CT through the file's signed storage URL. The first click on W&B's download button saved nothing. Chrome saved the file under its storage object name, `0848b70fa58cad98edf64b7744871394`, with no extension.
+   - Local hashes: MD5 0848b70fa58cad98edf64b7744871394 (matches the manifest); SHA-256 bd1a2f425bd018d56114524195468fe6c1fb7e7a90f76f384997f93a563559ee.
+   - Recorded in scripts/outputs/a1_run025_schema.json.
+2. **What was read.**
+   - The parquet schema (column names), the row count, the `_step` index, and the per-row null mask of `optim/total_grad_norm` and `train/CrossEntropyLoss`.
+   - From the run's W&B metadata: `historyLineCount`, the training commit, and `optimizer.metrics_log_interval`.
+   - **No metric value was printed, saved or inspected.** To count non-null rows, one read loaded the two metric columns into memory, but no value was displayed.
+   - The check ran on a copy JAE attached to the working session. The project-local store copy is still pending; see item 6.
+3. **Columns.**
+   - `optim/total_grad_norm` and `train/CrossEntropyLoss` are present by name.
+   - Also present: `optim/learning_rate_group0`, `optim/clipping_rate`, `_step`, throughput columns, 45 `eval/` columns and 2,080 per-parameter `optim/` columns (2,137 columns in total).
+4. **Finding A — route 1 is not the full history.**
+   - The artifact parquet has 383 rows: step 0; steps 522,000–542,000 every 1,000 (21 rows); and steps 543,000–543,360 every step (361 rows).
+   - The run's own `historyLineCount` on the server is 22,361.
+   - The D.1 completeness check fails: 383 ≠ 543,360 − 0 + 1, and the steps are not contiguous.
+   - Under D.1, this segment cannot be used by route 1. Discrepancy Register D-02.
+5. **Finding B — A1 logs `optim/total_grad_norm` every 10 steps, not every step.**
+   - In the contiguous block, the gradient norm is non-null on 37 of 361 rows, spaced exactly 10 steps apart. The loss is non-null on every row.
+   - The run's config has `optimizer.metrics_log_interval: 10`, which matches allenai/OLMo `configs/official-0724/OLMo-7B-0424.yaml`.
+   - The training commit recorded on the run is `43a155faf0c41c849fc2e14fe375a6bc57ed89fb` (2024-04-18). In that commit's `olmo/optim.py`, `clip_grads_and_collect_metrics` returns `{}` when `collect_param_metrics` is False. So `total_grad_norm` is logged only on optimizer-metric steps, every 10 steps.
+   - Entry 2's "expected every step" was read from main at 090253d, where a later change (`# total_grad_norm is computed at all steps…`) logs it every step.
+   - This is a version-reconciliation result: the code at the training commit and the data agree.
+   - Consequence: DESIGN D.2's per-step operators (SMA_32/SMA_128 on y, the minimum history, leads in steps) cannot be applied to A1 as written.
+   - Discrepancy Register D-01, graded *ground truth*: code at the recorded commit, config and data all agree.
+   - The OLMo 2 stage-1 configs (A2/A3) set `metrics_log_interval: 1`. This is unconfirmed until their own training commits are read at staging.
+6. **Status and what follows.**
+   - Phase 2 override (3) applies: "if A1 lacks it, that is a dated amendment before anything else runs." The column is present but not at per-step cadence. Any change to D.1, D.2 or §K for this is a dated public amendment and is decided by JAE before any further A1 file is staged or read.
+   - No §K threshold, window, spike definition or FA grid has been applied to A1 data.
+   - The file was moved into the project-local store at 2026-10-30 19:38 CT and re-hashed there: `C:\Users\jaek9\Documents\LaggingTruth\data-stores\adam-lag-instability\A1\run-025_u3obk6mj_history-v2_0000.parquet`, 1,527,446 bytes, MD5 0848b70fa58cad98edf64b7744871394, SHA-256 bd1a2f425bd018d56114524195468fe6c1fb7e7a90f76f384997f93a563559ee (the store copy's hashes equal the attached copy's). Its SOURCES.md entry waits for the route decision (D-02).
+7. **Cadence confirmation and A2 comparison (2026-10-30 19:45 CT, JAE's instruction; step index and null mask only).**
+   - `scripts/cadence_check.py` was run on the stored A1 file and on one A2 file. Outputs: scripts/outputs/cadence_A1_run025.json and cadence_A2_run08.json.
+   - **A1 run-025:**
+     - The whole file is not contiguous (383 rows over steps 0–543,360, in 23 blocks).
+     - Its largest block, steps 543,000–543,360, is contiguous (361 rows).
+     - The loss is present on every row of that block.
+     - The gradient norm is present on 37 of those rows, spaced exactly 10 steps apart, and only where step mod 10 = 0.
+     - The config files agree: `OLMo-7B-0424.yaml` sets `metrics_log_interval: 10`; `OLMo2-7B-stage1.yaml` and `OLMo2-13B-stage1.yaml` set 1.
+     - D-01 is therefore native cadence.
+   - **A2 run-08:**
+     - Source: OLMo 2 7B stage-1, run `9p3ai3he`, artifact `run-9p3ai3he-history:v0`, file `0000.parquet`, 21,921,161 bytes.
+     - Manifest MD5 34aa317bb993dc3b49ca5363ac75900e matches the local MD5. SHA-256 19445a50594a154b74ed8bf65a1c124e6198e796845f6ae554a99ec08aaa2545.
+     - Stored at `A2\run-08_9p3ai3he_history-v0_0000.parquet`.
+     - The run's W&B config has `metrics_log_interval: 1`.
+     - 736 rows: step 0, then steps 2,151–2,885, which are contiguous (735 rows). Loss and gradient norm are present on every row of that block. So A2 logs the gradient norm every step.
+     - The file's 736 rows equal the run's server history count of 736. So route 1 is complete for this A2 run.
+   - **The A2 run list** (stage-1 runs 01–11) was read from W&B run metadata, not by opening the report. It is recorded here for completeness: syfuxa45, h42rnl7m, acmz6z47, poh1jr99, 4cgzd4cu, zxl4esoc, x5hb6a3f, 9p3ai3he, y4x2f1ci, awwjyi5w, uwjy7cji. Inclusion is still closed at staging per D.1.
+   - **D-02 is not explained by the native cadence.** A1's route-1 file holds 383 of the run's 22,361 history lines; only every 1,000th step survives over steps 522,000–542,999. A2's route-1 file holds all of its run's lines. The gap is specific to A1's copied segments (AI2's `copy_wandb_runs.py`). D-02 stays OPEN pending JAE's route decision.
+
+---
+
+## Entry 2 — Addendum B (2026-10-30, JAE) — A1 staging route after D-02
+
+Entry 2 and Addendum A are unchanged. This addendum governs A1 only; for A2–A6, route 1 stands where it passes the D.1 completeness check.
+
+1. **Route 1 fails for A1.** The wandb-history artifact parquet is incomplete for A1's copied segments: run-025 holds 383 of 22,361 history lines (Discrepancy Register D-02).
+2. **New A1 route (route 1b).** Each A1 segment's complete run history is pulled through W&B's own data interface (the GraphQL history/parquet-history service) in JAE's logged-in browser session.
+   - The pulled files are saved to the project-local store.
+   - Each file is recorded in SOURCES.md with the query, the run id, the download time (UTC), its size and its SHA-256.
+3. **Gate before route 1b is used for any analysis**, checked on run-025 first. Both conditions must hold:
+   - **(a)** The pulled history reproduces the 383 rows of route 1's `run-u3obk6mj-history:v2/0000.parquet` (MD5 0848b70fa58cad98edf64b7744871394) exactly. Same `_step` values, same columns, identical cells on those rows, compared by script; no value is displayed.
+   - **(b)** Its row count equals the run's server `historyLineCount` of 22,361.
+
+   If either condition fails, route 1b is not used and A1 waits for route 3.
+4. **Timing.** The gate compares metric cells, so it runs only after DESIGN Amendment 1 is pushed publicly. No A1 metric value is read before then.
+5. **Route 2 (chart CSV export) is removed for A1.** It is sampled and cannot pass D.1.
+6. **Route 3, a full export requested from AI2, is pursued in parallel.** JAE sends the request on 2026-10-30, citing the pre-registration DOI 10.5281/zenodo.23825294. If both route 1b and route 3 deliver, the two copies are compared on overlapping steps and any difference opens a Discrepancy Register dossier.

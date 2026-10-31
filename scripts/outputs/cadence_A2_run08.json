@@ -1,0 +1,30 @@
+{
+  "label": "A2-run-08",
+  "file": "C:\\Users\\jaek9\\Documents\\LaggingTruth\\data-stores\\adam-lag-instability\\A2\\run-08_9p3ai3he_history-v0_0000.parquet",
+  "checked_utc": "2026-10-31T00:45:26+00:00",
+  "bytes_md5": "34aa317bb993dc3b49ca5363ac75900e",
+  "sha256": "19445a50594a154b74ed8bf65a1c124e6198e796845f6ae554a99ec08aaa2545",
+  "required_present": {
+    "optim/total_grad_norm": true,
+    "train/CrossEntropyLoss": true
+  },
+  "rows": 736,
+  "first_step": 0,
+  "last_step": 2885,
+  "unique_steps": 736,
+  "contiguous_whole_file": false,
+  "n_contiguous_blocks": 2,
+  "largest_block": {
+    "first": 2151,
+    "last": 2885,
+    "rows": 735
+  },
+  "loss_every_row_in_largest_block": true,
+  "grad_norm_rows_in_largest_block": 735,
+  "grad_norm_spacing_counts": {
+    "1": 734
+  },
+  "grad_norm_every_row_in_largest_block": true,
+  "grad_norm_only_on_step_mod_10_eq_0": false,
+  "note": "step index and null mask only; no metric value printed or saved"
+}

@@ -1,0 +1,45 @@
+{
+  "segment": "A1 run-025 (u3obk6mj)",
+  "artifact": "ai2-llm/OLMo-7B/run-u3obk6mj-history:v2",
+  "file": "0000.parquet",
+  "bytes": 1527446,
+  "md5": "0848b70fa58cad98edf64b7744871394",
+  "sha256": "bd1a2f425bd018d56114524195468fe6c1fb7e7a90f76f384997f93a563559ee",
+  "manifest_md5": "0848b70fa58cad98edf64b7744871394",
+  "n_columns": 2137,
+  "required_present": {
+    "optim/total_grad_norm": true,
+    "train/CrossEntropyLoss": true
+  },
+  "non_param_columns": [
+    "System/Peak GPU Memory (MB)",
+    "_runtime",
+    "_step",
+    "_timestamp",
+    "optim/clipping_rate",
+    "optim/learning_rate_group0",
+    "optim/total_grad_norm",
+    "throughput/device/batches_per_second",
+    "throughput/device/tokens_per_second",
+    "throughput/total_tokens",
+    "train/CrossEntropyLoss",
+    "train/Perplexity"
+  ],
+  "n_eval_columns": 45,
+  "n_per_param_optim_columns": 2080,
+  "rows": 383,
+  "first_step": 0,
+  "last_step": 543360,
+  "unique_steps": 383,
+  "contiguous": false,
+  "run_historyLineCount_server": 22361,
+  "step_structure": "step 0; steps 522000..542000 every 1000 (21 rows); steps 543000..543360 every step (361 rows)",
+  "grad_norm_rows": 58,
+  "grad_norm_step_spacing_in_contiguous_block": [
+    10
+  ],
+  "loss_rows": 382,
+  "training_commit_from_run": "43a155faf0c41c849fc2e14fe375a6bc57ed89fb",
+  "run_config_optimizer_metrics_log_interval": 10,
+  "note": "metadata, step index and per-row non-null mask only; no metric value printed or saved"
+}
