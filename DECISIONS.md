@@ -198,3 +198,43 @@ Entry 2 and Addendum A are unchanged. This addendum governs A1 only; for A2–A6
 4. **Timing.** The gate compares metric cells, so it runs only after DESIGN Amendment 1 is pushed publicly. No A1 metric value is read before then.
 5. **Route 2 (chart CSV export) is removed for A1.** It is sampled and cannot pass D.1.
 6. **Route 3, a full export requested from AI2, is pursued in parallel.** JAE sends the request on 2026-10-30, citing the pre-registration DOI 10.5281/zenodo.23825294. If both route 1b and route 3 deliver, the two copies are compared on overlapping steps and any difference opens a Discrepancy Register dossier.
+7. **Route 3 request sent (2026-10-30, by 19:55 CT, JAE).**
+   - From jae@laggingtruth.com to the AI2 OLMo team, olmo@allenai.org.
+   - Subject: "Request: full per-step W&B history for OLMo-1.7-7B (OLMo-0424) pretraining runs".
+   - It cites the pre-registration DOI 10.5281/zenodo.23825294 and the repository.
+   - It describes D-02 (run-025: 383 artifact rows against 22,361 history lines).
+   - It asks for the complete history of runs 001–025 with `_step`, `train/CrossEntropyLoss`, `optim/total_grad_norm`, `optim/learning_rate_group0` and `optim/clipping_rate`.
+   - Any reply, and any files received, are recorded here and in SOURCES.md.
+
+## Entry 6 (2026-10-30, JAE) — DESIGN Amendment 1 adopted after a scoped independent check; THESIS Amendment A4
+
+1. **Decision (JAE, 2026-10-30, option (c), with four changes).** A1 stays the primary run, with its detectors on the native 10-step gradient-norm grid (D-01, entry 5). JAE's four changes to draft v1:
+   - (1) A1 dedup 2,000 steps;
+   - (2) wording;
+   - (3) E4 pair (4, 16);
+   - (4) rewind events made ineligible are reported.
+
+   These produced draft v2 (drafts/DESIGN_Amendment_1_DRAFT.md, MD5 ffd2b3008f80e40d5cf5302ee3860dd8, committed at ced1674).
+2. **Scoped independent check, single round.**
+   - Prompt: verification/amendment1_review_prompt.md (MD5 832fbc0407af8a4ed4e2476ebdd54920).
+   - Package: verification/amendment1_review_package.md (MD5 e152bb703c253fb9dd0f4cf5cbd91506).
+   - Run in a fresh claude.ai incognito chat with web search off, 2026-10-30.
+   - Reply saved verbatim as verification/amendment1_review_transcript.md (MD5 619a6766b38e2bd9cbfb795f13026d89).
+3. **Adjudication** (verification/amendment1_review.md, MD5 9e2eaa6b1e6710504963f543781251cb).
+   - Findings: 16 (1 BLOCKER: G3; 7 MAJOR; 8 MINOR). All adopted.
+   - G1, G2, G4, G6 and G15 are adopted with a stated adaptation:
+     - blanks needing full-A1 metadata go to a pre-metric structural report;
+     - the loss side keeps the frozen gap rule;
+     - the missing-step probe is made consistent with D.1.
+   - Author-found S1: D.1's "full per-step resolution" is restated for A1.
+   - No rebuttals. No second round (fixed in Addendum B). REVIEW CLOSED.
+4. **Appended:**
+   - DESIGN.md Amendment 1 (A1.1–A1.12) below §D.9. The pre-amendment content is byte-identical to `prereg-v1` (MD5 a9d051ac65fde38d5001a433b5d11506), and the file is now d5be7ef59fee2a641a12e6f2870ccf80.
+   - THESIS.md Amendment A4 (a)–(d). The prefix is unchanged (83d93409591bac0032c41f05f69eef32), and the file is now 54c55e7ad6080cb4d739d2d463981a72.
+5. **Two clarifications apply to every run (A1.11):**
+   - P-FA's round(·) is round-half-up;
+   - "all events" in the FA exclusion means the events at the rung that resolved on A1.
+
+   No frozen number changes.
+6. **Metric-value embargo.** No A1 metric value has been read. The embargo lifts when this entry, Amendment 1 and A4 are pushed to the public repository. The route 1b gate on run-025 (Addendum B item 3) is then the first step that touches A1 metric cells, compared by script with no value displayed. After it comes the A1.12 structural report, before any loss event or detector score.
+7. **Discrepancy Register:** D-01's design consequence is adjudicated by this amendment. The dossier stays open for its second focused review (Register header). D-02 is unchanged: OPEN, awaiting route 1b or route 3.

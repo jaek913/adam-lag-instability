@@ -214,3 +214,161 @@ Each entry: carry-forward (CF) number; what motivated it; the v0.5 text it repla
 - **Design-review fix round (2026-10-30; reviewer reply 2 in verification/design_review_transcript.md; JAE decisions).** F1–F19 closed except where noted. Defects introduced by the round-1 amendments, amended before the freeze: **N1 (BLOCKER)** duty-cycle FA let each detector's alarm-run length set its chance hit rate → fix (a): alarm onset with hold H = 32 (P-HOLD), FA = onsets per 10,000 out-of-window steps (grid {0.5, 1, 2, 5}, headline 1), exact onset-count matching, realised duty cycle n*·H/N_out reported, P-CENS kept, B4 resets at each onset; D.5 adds a planted null with 1-step and 40-step baselines (false-REFUTE and false-SUPPORT ≤ 0.05). Replaces the round-1 "Alarm state", duty-cycle "False-alarm rate", alarm-step P-FA and the frozen duty-cycle headline. **N2** oracle θ matched on the noisy series and applied to the noiseless one. **N3** E8 reports N_out and n* per run; n* < 5 at headline → "FA not matchable", excluded and counted. **F4 residual** B4 path recomputed per candidate θ; non-monotone regions reported. **F5 residual** dedup within a series; rewind and assembled events never merged. **F15 residual** D_div percentile history "since the last gap". Scoped second fix-round message: verification/design_review_fixround2.md (DECISIONS entry 3).
 - **Design-review fix round 2 closed (2026-10-30; reviewer reply 3 in verification/design_review_transcript.md; JAE decisions; no third round per DECISIONS entry 3 item 5).** N1, N2, N3 and the F4, F5 and F15 residuals closed. **N4 (MINOR, introduced by the N2 amendment)** amended without further review: the oracle series is the planted series with the noise amplitude scaled by 10⁻³ (not zero), and D.5 asserts every score on it is finite; replaces "noise set to zero". N1 notes (i) residual onset clustering and (ii) the meaning of P-CENS under P-HOLD are stated in D.2 as Methods statements; no rule changed. Reason recorded in DECISIONS entry 3 Addendum A.
 - **Stale lines corrected before the freeze (2026-10-30, JAE; no rule change).** DESIGN §D.0 Claim A scope: "plus the Adaptation Rate Theorem lead bound" → "motivated by the Adaptation Rate Theorem (no lead bound is claimed; THESIS A3(b))"; DESIGN header: "DECISIONS.md (entries 1–2 + Addendum A)" → "entries 1–3 with addenda"; THESIS "Why it matters" pre-flight-check sentence and THESIS "Lifecycle" confirmatory-result sentence given superseded markers pointing to A2(d) and A3(c).
+
+## Amendment 1 (2026-10-30) — A1 on its native 10-step gradient-norm grid
+
+**Status.** Appended below §D.9 under the append-only rule. Rationale: DECISIONS.md entries 5 and 6. Draft v2 (drafts/DESIGN_Amendment_1_DRAFT.md, MD5 ffd2b3008f80e40d5cf5302ee3860dd8, committed at ced1674) went to a scoped single-round independent check:
+- prompt and package: verification/amendment1_review_prompt.md and verification/amendment1_review_package.md;
+- reply, verbatim: verification/amendment1_review_transcript.md;
+- adjudication: verification/amendment1_review.md.
+
+Result: 16 findings (G1–G16), all adopted, five with a stated adaptation, plus one author-found item (S1). This text is the adjudicated version. Where it differs from draft v2, this text governs.
+
+**Trigger.** First data contact on A1 (DECISIONS entry 5; Discrepancy Register D-01). A1 logs `optim/total_grad_norm` only on steps with step mod 10 = 0. The evidence:
+- run config `optimizer.metrics_log_interval: 10`;
+- `configs/official-0724/OLMo-7B-0424.yaml`;
+- training commit `43a155f`, whose `clip_grads_and_collect_metrics` returns no optimizer metrics on other steps.
+
+`train/CrossEntropyLoss` is logged every step. Before this amendment, only the following were read from A1: schema (column names), row count, step range, and the per-row null mask of those two columns. No metric value was read. This amendment is made and pushed publicly before any A1 metric value is read (Phase 2 override (3)).
+
+**What it changes.**
+- **Detector side (A1 only).** The time unit of every detector-side quantity for A1 changes from steps to grid observations. The numbers, ratios, grid points and rule partitions are unchanged.
+- **One exception (A1 only):** A1's chained spike dedup rises from 200 to 2,000 steps (A1.3).
+- **Unspecified frozen points.** It fills points the frozen text left unspecified for A1: gaps on the grid series, the event's grid anchor, and the n* = 0 guard.
+- **Clarifications for every run.** Two clarifications apply to every run (A1.11); no frozen number changes.
+- **Verbatim replacements.** It replaces, for A1, the step constants in D.0a, D.2, D.3 E2, §K and D.7 (A1.10).
+
+**Choice (JAE, 2026-10-30, option (c)).**
+- A1 remains the primary run (E2, §K), with its detectors run on its native 10-step grid.
+- A2 and A3 (OLMo 2 stage 1) remain per-step replication runs under D.2 as frozen.
+- A2 is confirmed every-step on run-08 (DECISIONS entry 5 item 7). A3 is to be confirmed at staging.
+
+**A1.1 Grid, completeness, gaps and dropped observations.**
+- **Grid.** A1's detector series is indexed by grid observation j at step t_j = 10·j; y_j = ln g(t_j).
+- **Completeness (S1).** For A1, the D.1 completeness check applies to the step index unchanged: rows contiguous from a segment's first to last step, no duplicate steps, loss every step. `optim/total_grad_norm` must be present by name and is required on grid steps only.
+  - For A1, D.1's "full per-step resolution" means every step for the loss and every grid step for the gradient norm.
+  - A missing step inside a segment still fails D.1 for that segment. So on A1 a missing step can only lie in a gap between segments.
+- **Gaps (G4).** A gap is a run of steps present in no segment (D.1).
+  - **Detector series.** A gap resets detector state only if it contains at least one grid step. The reset follows D.2 "Gaps and state": every window, the B3 EMA, the B4 accumulator and its median/MAD history, the D_div percentile history, and the minimum history.
+  - **Short non-grid gap.** A gap with no grid step (1–9 consecutive non-grid steps) leaves detector state and the minimum history unchanged.
+  - **Loss series.** It follows D.2 as frozen: its windows restart at every gap, grid or not.
+- **Dropped observations (G6).** A grid step present in the log with null, non-positive or non-finite g is a dropped observation. It is counted (D.6 item 5), y is carried forward from the previous scored grid observation, and it is not a gap.
+  - If the first grid observation after a detector-series gap (or of the series) is dropped, the series and the minimum-history count begin at the first non-dropped grid observation.
+
+**A1.2 Detector operators in grid observations.** Every window, hold and count in the detector space is expressed in grid observations, with the frozen numbers unchanged:
+- **D_div:** SMA over w_f = 32 and w_s = 128 grid observations (320 and 1,280 steps); ratio 4, inside the Theorem 14 band. Percentile history since the last detector-series gap; minimum history 1,000 grid observations (A1.4).
+- **B1:** rolling window 50 grid observations; P-B1 sweep {25, 50, 100}, also in grid observations.
+- **B2:** unchanged.
+- **B3 (G13):** α = 0.97 per grid observation, warm-up 25 grid observations. On A1 this is a construction choice under P-B3, not ZClip's documented per-step behaviour (EMA memory ≈ 330 steps rather than ≈ 33), and it is labelled so in the Methods.
+- **B4:** median and MAD over 200 grid observations, minimum 30; k = 1.0; resets at each onset and at each detector-series gap.
+- **Alarm onset and hold (P-HOLD):** H = 32 grid observations (320 steps).
+- **FA:** alarm onsets per 10,000 out-of-window grid observations. Grid {0.5, 1, 2, 5}; headline 1.
+  - n* = round(FA × N_out / 10,000), with N_out counted in grid observations and round(·) = round-half-up (A1.11). P-FA is otherwise unchanged.
+  - **Guard (G1).** If n* = 0 at headline FA on A1, E2 is not run. §K records E2 as unrun for data availability under its re-set rule, never as REFUTE.
+  - **Not matchable (G1).** A non-headline FA grid point with n* < 2 is reported with its n* as "not matchable" and enters no contrast.
+  - **Upper bound (metadata only).** A1's last logged step is 543,360, so N ≤ 54,337 grid observations. Before any exclusion, n* ≤ 3, 5, 11 and 27 at FA 0.5, 1, 2 and 5. Headline matching on A1 is therefore coarse (n* of about 5), and this is stated in the Methods.
+- **E1:** horizon h = 16 grid observations; R̄ windows [h, h + 32] and [h + 32, h + 128] in grid observations; ACF lags 0–256 grid observations, each lag using all pairs that do not cross a detector-series gap; permutation blocks of 128 grid observations.
+- **E5:** circular-shift offsets in [1,000, N − 1,000] grid observations; block shuffle in blocks of 128 grid observations.
+- **E4:** window pairs (16, 64) and (64, 256) in grid observations, as frozen. **Added:** a physical-scale pair (4, 16) grid observations (40 and 160 steps), which approximates the frozen per-step pair's step span. It is reported with no verdict. The scan window does not change with the pair (A1.4, G9).
+
+**A1.3 Loss side.**
+- **Spike definition.** The spike definition (L(t) > SMA_128(L)(t−1) + k·σ_128(L)(t−1), over finite values) stays on the per-step loss: k ladder P-KLAD, NaN rule, event time t_e in steps.
+- **A1 dedup (changed): chained, 2,000 steps (200 grid observations).** A spike is merged into the current event if it lies within 2,000 steps of the most recently merged spike.
+  - *Reason:* with the scan window at 1,280 steps (A1.4), the frozen 200-step dedup would let scan windows of consecutive events overlap. A 2,000-step dedup restores dedup > scan window, as in the frozen per-step design (200 > 128; the same ratio, 1.5625).
+  - *Cost, stated:* clusters of spikes within 2,000 steps collapse into one event. A1's eligible-event count is therefore lower than under 200 steps, and the risk that both k-ladder rungs fall below 5 events — **INSUFFICIENT EVENTS → §K CLOSE** — is higher.
+- **Event count.** The eligible-event count for the k ladder is computed with the 2,000-step dedup from the per-step loss, before any detector score.
+- **Rung transport (G12), declared.** The rung is resolved on A1 under the 2,000-step dedup and transported to the per-step runs under the 200-step dedup. A2–A6 also report their eligible-event count at the other rung.
+- **Per-step runs.** The per-step runs (A2–A6, Leg B) keep 200 steps.
+
+**A1.4 Scan window, lead, minimum history and eligibility.**
+- **Event anchor and scan window (G3, G9).**
+  - Anchor: t_e^g = 10·⌊t_e/10⌋, the last grid step at or before the event.
+  - Window: the 129 grid observations with t_j ∈ [t_e^g − 1,280, t_e^g]. This is the analogue of the frozen 129-step interval [t_e − 128, t_e].
+  - The window is the same for every detector and every E4 window pair and does not vary with w_s.
+  - *Reason:* the frozen scan window is a fixed 129-step closed interval. Keeping its length in observations keeps the window, the maximum lead, the left-censoring point and the hold in the frozen ratios.
+  - t_e itself, in steps, remains the event time for dedup, the k ladder and reporting.
+- **Lead.** Lead = t_e^g − t_j*, where t_j* is the first grid observation in the window at which the detector is in alarm. Leads are reported in steps at 10-step resolution.
+  - A detector first in alarm at t_e^g has lead 0.
+  - A missed event has lead 0 (P-MISS).
+  - If the detector is in alarm at t_e^g − 1,280 and at t_e^g − 1,290, the event is left-censored: lead = 1,280 steps, flagged (P-CENS). Under P-HOLD that means an onset in [t_e^g − 1,600, t_e^g − 1,290].
+  - C_b and C_min are computed on mean leads in steps.
+- **FA exclusion (G16).** The scan windows of all events at the rung that resolved on A1 (P-KLAD), eligible or not, are excluded from the FA count and denominator.
+- **Minimum history: 1,000 grid observations (10,000 steps).** It is counted from the first non-dropped grid observation after the last detector-series gap (A1.1).
+  - *Reason:* the minimum history exists so that the expanding percentile score and B4's 200-observation median/MAD window are estimated from a stable number of observations. Those are counts, so it is kept as a count.
+- **Event eligibility.** Every detector has a defined score at every grid observation in the scan window, and no detector-series gap lies inside it. Equivalently, the first observation of the window has at least 1,000 grid observations of post-gap history.
+- **Cost, stated (G2).** No event with t_e^g within 11,280 steps (1,000 + 128 grid observations) of the series start or of a detector-series gap is eligible. The frozen figure is about 1,128 steps.
+  - Events made ineligible by the minimum history are reported separately from spikes merged by the dedup and from rewind events made ineligible.
+  - The number of assembled stretches longer than 11,280 steps is given in the structural report (A1.12).
+- **Rewind events (G5).** A rewind event is scored on the series P-SEG assigns to it (D.1).
+  - Its history is counted from the last detector-series gap on that series. A segment boundary that is not a gap does not reset the count.
+  - The event is ineligible if the first observation of its scan window has fewer than 1,000 grid observations of post-gap history on that series.
+  - The count of events made ineligible this way is reported beside the rewind-event count.
+
+**A1.5 Consequences, stated rather than tuned.**
+- **Window span.** On A1, D_div's windows span 320 and 1,280 steps. That is 16 and 64 times the optimizer's second-moment memory (W = 20 steps), against 1.6 and 6.4 times in the per-step design. S3 is restated accordingly.
+- **Resolution.** A1's lead resolution is 10 steps; the maximum uncensored lead is 1,280 steps.
+- **Scope condition on A1:** a precursor shorter than about one fast window (320 steps) favours the raw-reading baselines by construction.
+  - **This is a statement for the Methods and THESIS only (G11).** It does not qualify E2's label or §K: a REFUTE on A1 STOPs the project whatever the realised precursor lengths.
+- **E1 scope (G14).** E1's consistency-check label on A1 holds under approximate stationarity over 2,560-step horizons. The drift in y over that horizon is reported beside ρ.
+
+**A1.6 E3 like-for-like sensitivity (G8).**
+- A2 and A3 are scored per step as frozen.
+- As an E4-type sensitivity with no verdict, E2's statistic is also reported on A2 and A3 with the gradient norm subsampled to step mod 10 = 0 and the loss kept per step, using the A1.1–A1.4 operators and the A1 dedup. This makes the A1 versus A2/A3 comparison like-for-like.
+
+**A1.7 Suite (D.5), new cell: ten-step grid (G15).**
+- **Pass criteria, restated verbatim from D.5:** "A cell passes if, comparing the noisy-series result to this oracle, |recovered mean lead − oracle mean lead| ≤ 8 steps for every detector and the recovered C_min has the oracle's sign in ≥ 95 % of replicates."
+  - In this cell the lead tolerance is ±10 steps (one grid observation) in place of 8 steps. Every other D.5 criterion holds unchanged, including:
+    - the oracle (θ matched on the noisy series, applied to the series with noise × 10⁻³, every score finite);
+    - the planted null (false-support ≤ 0.05);
+    - the unequal-memory null (false-REFUTE and false-SUPPORT each ≤ 0.05);
+    - the decision flip (REFUTE).
+- **Series.**
+  - Planted per-step series observed only on step mod 10 = 0.
+  - Each series is at least 33,840 steps long (3 × 11,280) and has at least two gaps that contain grid steps.
+  - Planted events are placed so that all ten residues of t_e mod 10 occur.
+- **Ramps.** Precursor ramps L ∈ {640, 1,000, 1,500, 2,000} steps (64–200 grid observations), plus one ramp shorter than a fast window (200 steps), which must show the A1.5 scope condition.
+- **Loss spikes and pipeline.** Loss spikes are planted per step, with A1's 2,000-step dedup. The pipeline runs with the A1.1–A1.4 operators.
+- **Exercised on the grid:** planted null, decision flip, unequal-memory null, P-CENS cluster probe and k ladder.
+- **Probes:**
+  - (i) a dropped grid observation (carry-forward), including a dropped first post-gap observation;
+  - (ii) a rewind event at the minimum-history boundary, with a non-gap segment boundary that must not reset the count;
+  - (iii) a missing non-grid step inside a segment, which must fail D.1 completeness for that segment;
+  - (iv) a gap of 1–9 non-grid steps between two segments, which must leave detector state and eligibility unchanged and restart the loss windows;
+  - (v) small-N_out series of N_out = 4,000 and 12,000 grid observations, reporting n* and realised onset counts at each FA grid point. The n* = 0 guard must fire at 4,000 (headline n* = round(0.4) = 0), and grid points with n* < 2 must be marked "not matchable";
+  - (vi) a half-tie of FA × N_out / 10,000, which must round up.
+- **Regime span.** The regime span reports which grid cell A1 lands in.
+
+**A1.8 Unchanged.**
+- **Frozen values.** k = 4 primary rung; dedup 200 steps for every per-step run; headline FA 1 per 10,000 (grid observations for A1); window pair (32, 128); ratio 4; H = 32; scan window 129 points; minimum history 1,000 observations; all rule partitions; §K grading day 2026-11-20.
+- **Subsampling.** D.2 "Subsampling: none" holds for A1: every logged gradient-norm observation is used.
+- **Per-step runs.** Leg B (own runs log every step) and A2–A6 per-step runs follow D.2 as frozen, apart from the clarifications in A1.11.
+
+**A1.9 THESIS.** THESIS Amendment A4 (same commit) restates for A1:
+- the false-alarm wording of A3(a);
+- the window and lead scales;
+- the scope condition with its non-bearing on the kill rule;
+- the n* = 0 guard.
+
+**A1.10 Verbatim replacements for A1 (G10, S1).** For A1 only, the following frozen phrases read as shown. Per-step runs keep the original phrase. No other D.0a, D.1, D.2, D.3 or §K text changes.
+- **D.0a and D.3 E2 and §K:** "1 alarm onset per 10,000 out-of-window steps, alarm held H = 32 steps", "1 onset per 10,000 out-of-window steps, hold H = 32" → "1 onset per 10,000 out-of-window scored observations (grid observations on A1, steps elsewhere), hold H = 32 observations".
+- **D.3 E2:** "censored events as 128" → "censored events as 1,280 steps on A1 (128 steps on per-step runs)".
+- **D.3 E2:** "events are ≥ 200 steps apart" → "events are ≥ 2,000 steps apart on A1, ≥ 200 steps on per-step runs".
+- **D.2 scan window:** "the scan window is [t_e − 128, t_e]" → "on A1, the 129 grid observations in [t_e^g − 1,280, t_e^g] (A1.4)"; "lead = 128" → "lead = 1,280 steps on A1".
+- **D.2 eligibility:** "at least 1,000 steps of post-gap history" → "at least 1,000 grid observations of post-gap history on A1".
+- **D.7 frozen line:** "spike dedup 200 steps", "scan window 128", "minimum history 1,000 steps" → for A1: "spike dedup 2,000 steps", "scan window 129 grid observations (1,280 steps)", "minimum history 1,000 grid observations".
+- **D.1 completeness:** "full per-step resolution" → for A1, "every step for the loss and every grid step for the gradient norm" (A1.1).
+
+**A1.11 Clarifications applying to every run (G7, G16).** These fix points the frozen text left unspecified; no frozen number changes.
+- **(a) Rounding.** round(·) in P-FA is round-half-up for every run and FA target, implemented as ⌊x + 0.5⌋ (not Python's built-in round, which rounds half to even).
+- **(b) "All events".** In the FA exclusion (D.2 "False-alarm rate", F18), "all events" means every event at the rung that resolved on A1 (P-KLAD).
+
+**A1.12 Structural report before any A1 metric value enters the analysis.**
+- **When.** After this amendment is pushed, and after the A1 history passes D.1 and the route gate of DECISIONS entry 2 Addendum B.
+- **What.** A structural report computed from the step index and the per-row null masks only is committed to the repo, before loss events are enumerated and before any detector score. It contains:
+  - per segment, its first and last step and row count;
+  - P-SEG overlaps and every gap, with whether it contains a grid step;
+  - N in grid observations;
+  - the number of dropped grid observations and the longest consecutive run;
+  - the assembled stretches longer than 11,280 steps;
+  - the n* upper bounds at each FA grid point implied by N.
+- **Later.** N_out, the realised n* and the event counts depend on the loss and are reported with E2.
