@@ -552,3 +552,32 @@ Refines Addendum C item 1 (the per-segment gate); Addendum C items 2–5 stand. 
    - (iii) a rewind portion with an event at its first superseded step.
 4. **Scope.** Every run (A1–A6, Leg B) and the D.5 suite. Recorded as DESIGN Amendment 3 and pushed before any loss value is read for event enumeration.
 5. **Next.** Write `scripts/a1_events.py` and test it on synthetic series covering cases (i)–(iii), plus the k ladder and the eligibility counts. Commit it before it runs on A1. Then enumerate A1 events at k = 4 and k = 3 and resolve the ladder, before any detector score.
+
+## Entry 13 (2026-10-31) — A1 loss-spike events: the k ladder resolves at k = 4 (57 eligible events)
+
+1. **Run.**
+   - `scripts/a1_events.py` (MD5 fc4e92bf4876e7dccd8eaf38ce5784d4) and its tests `scripts/tests/test_a1_events.py` (37375b380fac9da606c6709a4a6b6fa1) were committed and pushed at 81481b6 before the A1 run.
+   - The tests passed 20/20 on JAE's machine immediately before the run, covering Amendment 3 suite cases (i)–(iii), the ladder and eligibility.
+   - The test's exact recomputation path for borderline steps (within 1e-6 relative of the threshold) is not exercised by any planted case.
+   - Outputs: `scripts/outputs/a1_events.json` (MD5 b3e2e57eb61be5e48f21b04be5f4711d) and `verification/A1_events.md` (b0e15c96022f66474696d0a2cf0fa816). Event times and counts only; no loss value is printed or saved.
+   - **This is the first read of A1 loss values. No detector score has been computed.**
+2. **Kept series (both rungs):**
+   - 466,300 steps in 3 blocks; 465,916 tested, plus 384 untested (the first 128 steps after each of the 3 block starts) = 466,300.
+   - 0 steps blocked by the 64-finite-value floor; 0 non-finite loss steps.
+3. **k = 4 (primary rung):**
+   - 196 spikes form 61 events (135 spikes merged by the 2,000-step chained dedup). 2 chains were open at a gap. 0 rewind events.
+   - **57 eligible.** 4 are ineligible on minimum history (2 in block 1, 1 in block 2, 1 in block 3); 0 because the scan window crosses a gap.
+   - By block (events / eligible): 1–14,200: 3 / 1; 52,301–160,500: 19 / 18; 160,601–504,500: 39 / 38.
+   - Chains: median 1–2 spikes, at most 12; longest span 3,916 steps.
+4. **k = 3 (computed for the ladder; not used):**
+   - 988 spikes form 21 events (967 merged); 17 eligible.
+   - Under the 2,000-step chained dedup, k = 3 spikes are dense enough that chains run on: the longest spans 78,432 steps and holds 184 spikes. More spikes therefore make *fewer* events.
+   - **Methods fact:** under chained dedup, events at the lower rung are not a superset of events at the higher rung. The design-review premise behind G16 ("k = 3 events are a superset of k = 4 events") does not hold. It has no effect here, because the ladder resolved at k = 4.
+5. **P-KLAD resolution: k = 4** (57 ≥ 5).
+   - Under P-KLAD, k = 4 applies to every Leg A run and to E8.
+   - Under Amendment 1 G12 the rung was resolved on A1 with the 2,000-step dedup. A2–A6 also report their eligible-event count at k = 3.
+   - §K's INSUFFICIENT EVENTS branch (CLOSE) cannot occur.
+6. **Consequences fixed now, before any detector score.**
+   - The FA exclusion covers the scan windows of all 61 k = 4 events, eligible or not (A1.11(b)).
+   - N_out and the realised n* follow from those windows and are computed at the detector stage. The upper bound remains 5 at the headline FA (entry 11). The n* = 0 guard cannot fire.
+7. **Next.** Detector stage for E2 on A1, which needs the committed D.5 synthetic validation suite to pass first (DESIGN D.5: "committed and ALL PASS before any hashed-data run"). That includes the Amendment 1 A1.7 ten-step grid cell, the Amendment 3 suite cases, and Phase 2 box 1's theorem checks. No detector is run on A1 until the suite passes.
