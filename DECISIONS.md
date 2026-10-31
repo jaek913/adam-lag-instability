@@ -495,3 +495,39 @@ Refines Addendum C item 1 (the per-segment gate); Addendum C items 2–5 stand. 
    - 20 end steps leave the kept series (14,201–14,210 and 504,501–504,510).
    - The 160,501–160,600 gap restarts the detector windows, and the minimum history (1,000 grid observations = 10,000 steps) applies again. No event is eligible within about 11,280 steps after 160,601 (Amendment 1 A1.4).
 7. **Sequence (JAE).** Amendment 2 and this entry are pushed before any loss event is enumerated. Then comes the A1.12 structural report on this assembly, from the step index and null masks only; its script is committed before it runs.
+
+## Entry 11 (2026-10-31) — A1 structural report (Amendment 1 A1.12) on the Amendment 2 assembly
+
+1. **Script and outputs.**
+   - The script, `scripts/a1_structural_report.py` (MD5 ea401c188862ea2466d5d63c4ae160e4), was committed and pushed at 9b50801 before it ran on A1.
+   - It was synthetic-tested on the real step spans with three planted dropped readings. The test reproduced Amendment 2's kept series, gaps and rewind portions, and caught the planted drops.
+   - Outputs: `verification/A1_structural_report.md` (MD5 2941e9e23bd0fe6d77c4722e8d7d9acf) and `scripts/outputs/a1_structural_report.json` (MD5 acded6f4e5112644b6252b15cf9395a9).
+   - Inputs: the step index and per-row non-null masks of `train/CrossEntropyLoss` and `optim/total_grad_norm` from the seven route-1 files (entry 9), and `scripts/outputs/a1_segment_metadata.json` (entry 10). No metric value was read. No loss event has been enumerated, and no detector score computed.
+2. **Kept series (Amendment 2).**
+
+   | block | steps | grid observations | earliest eligible t_e^g (A1.4) | eligible-anchor span |
+   |---|---|---|---|---|
+   | 1–14,200 | 14,200 | 1,420 | 11,290 | 2,920 steps |
+   | 52,301–160,500 | 108,200 | 10,820 | 63,590 | 96,920 steps |
+   | 160,601–504,500 | 343,900 | 34,390 | 171,890 | 332,620 steps |
+
+   - **N = 46,630 grid observations.** Dropped grid observations: 0. Kept steps without a loss value: 0.
+   - All three blocks are longer than 11,280 steps.
+3. **Gaps.** All three contain grid steps, so all are detector-series gaps.
+   - **14,201–52,300 (38,100 steps).** Owners: unused runs 002–007, with restarts at 14,200, 14,500, 39,350, 41,400, 42,200 and 51,450.
+   - **160,501–160,600 (100 steps).** Owner: unused run 011.
+   - **504,501–543,360 (38,860 steps).** Owners: unused runs 019–025, with restarts at 504,500, 505,550, 507,000, 508,500, 509,200, 511,350 and 521,000.
+4. **False-alarm budget.** n* upper bounds before any scan-window exclusion (round-half-up of FA × N / 10,000) are **2, 5, 9 and 23** at FA 0.5, 1, 2 and 5.
+   - These are tighter than Amendment 1's metadata bound (≤ 3, 5, 11, 27 from N ≤ 54,337), because the gaps remove grid observations.
+   - The n* = 0 guard (A1.2) cannot fire at the headline FA: its upper bound is 5. The realised n* is set by N_out after events are enumerated.
+   - FA 0.5 (upper bound 2) is at the "not matchable" edge (n* < 2) and may fall below it once scan windows are excluded.
+5. **Rewind portions of used segments** (scored on their own series):
+   - 001: 14,201–14,210 (1 grid step);
+   - 008: 73,101–73,110 (1);
+   - 010: 160,501–160,851 (35);
+   - 013: 212,001–212,965 (96);
+   - 016: 337,001–337,339 (33);
+   - 018: 504,501–504,510 (1).
+6. **Unscorable superseded portions of unused segments** (Addendum C item 5(i)): 14 ranges, 1,043 steps in total. These are lower bounds: unused segments' logged ends are taken from their served sparse rows, and the true ends may be later.
+7. **Provenance note.** The served last steps of the unused segments come from the 2026-10-30 browser query that produced item 8. Item 8 summarised them as "sparse"; the report script now records each value explicitly, as `UNUSED_SERVED_LAST`.
+8. **Next.** Enumerate A1 loss events (P-KLAD k ladder, A1 dedup 2,000 steps, NaN rule) on the kept series and on each rewind portion's own series. Then compute eligibility and the counts that A1.4 and Addendum C require, before any detector score. This requires a committed, synthetic-tested event script, run after this entry is pushed.

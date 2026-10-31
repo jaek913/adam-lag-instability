@@ -1,0 +1,844 @@
+{
+ "generated_utc": "2026-10-31T15:12:21+00:00",
+ "inputs": {
+  "metadata": "a1_segment_metadata.json",
+  "route1_files": {
+   "run-001": "run-001_ucv77bvt_history-v0_0000.parquet",
+   "run-008": "run-008_bnzb4pmk_history-v0_0000.parquet",
+   "run-010": "run-010_wqjq7xzw_history-v1_0000.parquet",
+   "run-013": "run-013_7lr31kjd_history-v0_0000.parquet",
+   "run-016": "run-016_0g0rjkxo_history-v1_0000.parquet",
+   "run-017": "run-017_d4g44zcc_history-v1_0000.parquet",
+   "run-018": "run-018_50br7dzw_history-v1_0000.parquet"
+  },
+  "run_last_step": 543360,
+  "unused_served_last_lower_bounds": {
+   "run-002": 14900,
+   "run-003": 39360,
+   "run-004": 41410,
+   "run-005": 42210,
+   "run-006": 51460,
+   "run-007": 52310,
+   "run-009": 73378,
+   "run-011": 160599,
+   "run-012": 160855,
+   "run-014": null,
+   "run-015": null,
+   "run-019": 505560,
+   "run-020": 507010,
+   "run-021": 508510,
+   "run-022": 509210,
+   "run-023": 511360,
+   "run-024": 521010,
+   "run-025": 543360
+  }
+ },
+ "segments": [
+  {
+   "seg": "run-001",
+   "id": "ucv77bvt",
+   "resume_step": null,
+   "used": true,
+   "historyLineCount": 14211,
+   "span": [
+    1,
+    14210
+   ],
+   "span_basis": "measured loss span (route-1 file)",
+   "rows": 14211,
+   "first_row_step": 0,
+   "last_row_step": 14210
+  },
+  {
+   "seg": "run-002",
+   "id": "yvnxfxho",
+   "resume_step": 14200,
+   "used": false,
+   "historyLineCount": 701,
+   "span": [
+    14201,
+    14900
+   ],
+   "span_basis": "resume+1 .. served last row (lower bound; Addendum B item 8)"
+  },
+  {
+   "seg": "run-003",
+   "id": "s9gkykls",
+   "resume_step": 14500,
+   "used": false,
+   "historyLineCount": 24861,
+   "span": [
+    14501,
+    39360
+   ],
+   "span_basis": "resume+1 .. served last row (lower bound; Addendum B item 8)"
+  },
+  {
+   "seg": "run-004",
+   "id": "auqmzpj6",
+   "resume_step": 39350,
+   "used": false,
+   "historyLineCount": 2061,
+   "span": [
+    39351,
+    41410
+   ],
+   "span_basis": "resume+1 .. served last row (lower bound; Addendum B item 8)"
+  },
+  {
+   "seg": "run-005",
+   "id": "gvf17mtk",
+   "resume_step": 41400,
+   "used": false,
+   "historyLineCount": 811,
+   "span": [
+    41401,
+    42210
+   ],
+   "span_basis": "resume+1 .. served last row (lower bound; Addendum B item 8)"
+  },
+  {
+   "seg": "run-006",
+   "id": "ahhqn92q",
+   "resume_step": 42200,
+   "used": false,
+   "historyLineCount": 9261,
+   "span": [
+    42201,
+    51460
+   ],
+   "span_basis": "resume+1 .. served last row (lower bound; Addendum B item 8)"
+  },
+  {
+   "seg": "run-007",
+   "id": "wx1kidf5",
+   "resume_step": 51450,
+   "used": false,
+   "historyLineCount": 861,
+   "span": [
+    51451,
+    52310
+   ],
+   "span_basis": "resume+1 .. served last row (lower bound; Addendum B item 8)"
+  },
+  {
+   "seg": "run-008",
+   "id": "bnzb4pmk",
+   "resume_step": 52300,
+   "used": true,
+   "historyLineCount": 20811,
+   "span": [
+    52301,
+    73110
+   ],
+   "span_basis": "measured loss span (route-1 file)",
+   "rows": 20811,
+   "first_row_step": 0,
+   "last_row_step": 73110
+  },
+  {
+   "seg": "run-009",
+   "id": "7wdi29fz",
+   "resume_step": 73100,
+   "used": false,
+   "historyLineCount": 279,
+   "span": [
+    73101,
+    73378
+   ],
+   "span_basis": "resume+1 .. served last row (lower bound; Addendum B item 8)"
+  },
+  {
+   "seg": "run-010",
+   "id": "wqjq7xzw",
+   "resume_step": 73100,
+   "used": true,
+   "historyLineCount": 87752,
+   "span": [
+    73101,
+    160851
+   ],
+   "span_basis": "measured loss span (route-1 file)",
+   "rows": 87752,
+   "first_row_step": 0,
+   "last_row_step": 160851
+  },
+  {
+   "seg": "run-011",
+   "id": "2j6q2kz8",
+   "resume_step": 160500,
+   "used": false,
+   "historyLineCount": 100,
+   "span": [
+    160501,
+    160599
+   ],
+   "span_basis": "resume+1 .. served last row (lower bound; Addendum B item 8)"
+  },
+  {
+   "seg": "run-012",
+   "id": "56ru0hsd",
+   "resume_step": 160600,
+   "used": false,
+   "historyLineCount": 256,
+   "span": [
+    160601,
+    160855
+   ],
+   "span_basis": "resume+1 .. served last row (lower bound; Addendum B item 8)"
+  },
+  {
+   "seg": "run-013",
+   "id": "7lr31kjd",
+   "resume_step": 160600,
+   "used": true,
+   "historyLineCount": 52366,
+   "span": [
+    160601,
+    212965
+   ],
+   "span_basis": "measured loss span (route-1 file)",
+   "rows": 52366,
+   "first_row_step": 0,
+   "last_row_step": 212965
+  },
+  {
+   "seg": "run-014",
+   "id": "vtnbhkmu",
+   "resume_step": 212000,
+   "used": false,
+   "historyLineCount": 1,
+   "span": null,
+   "span_basis": "resume+1 .. served last row (lower bound; Addendum B item 8)"
+  },
+  {
+   "seg": "run-015",
+   "id": "bxzbwm3j",
+   "resume_step": 212000,
+   "used": false,
+   "historyLineCount": 1,
+   "span": null,
+   "span_basis": "resume+1 .. served last row (lower bound; Addendum B item 8)"
+  },
+  {
+   "seg": "run-016",
+   "id": "0g0rjkxo",
+   "resume_step": 212000,
+   "used": true,
+   "historyLineCount": 125340,
+   "span": [
+    212001,
+    337339
+   ],
+   "span_basis": "measured loss span (route-1 file)",
+   "rows": 125340,
+   "first_row_step": 0,
+   "last_row_step": 337339
+  },
+  {
+   "seg": "run-017",
+   "id": "d4g44zcc",
+   "resume_step": 337000,
+   "used": true,
+   "historyLineCount": 71924,
+   "span": [
+    337001,
+    408923
+   ],
+   "span_basis": "measured loss span (route-1 file)",
+   "rows": 71924,
+   "first_row_step": 0,
+   "last_row_step": 408923
+  },
+  {
+   "seg": "run-018",
+   "id": "50br7dzw",
+   "resume_step": 408923,
+   "used": true,
+   "historyLineCount": 95587,
+   "span": [
+    408924,
+    504510
+   ],
+   "span_basis": "measured loss span (route-1 file)",
+   "rows": 95587,
+   "first_row_step": 408924,
+   "last_row_step": 504510
+  },
+  {
+   "seg": "run-019",
+   "id": "m22a5wug",
+   "resume_step": 504500,
+   "used": false,
+   "historyLineCount": 1061,
+   "span": [
+    504501,
+    505560
+   ],
+   "span_basis": "resume+1 .. served last row (lower bound; Addendum B item 8)"
+  },
+  {
+   "seg": "run-020",
+   "id": "iryle1e4",
+   "resume_step": 505550,
+   "used": false,
+   "historyLineCount": 1461,
+   "span": [
+    505551,
+    507010
+   ],
+   "span_basis": "resume+1 .. served last row (lower bound; Addendum B item 8)"
+  },
+  {
+   "seg": "run-021",
+   "id": "eidrl8dn",
+   "resume_step": 507000,
+   "used": false,
+   "historyLineCount": 1511,
+   "span": [
+    507001,
+    508510
+   ],
+   "span_basis": "resume+1 .. served last row (lower bound; Addendum B item 8)"
+  },
+  {
+   "seg": "run-022",
+   "id": "x1jigg0a",
+   "resume_step": 508500,
+   "used": false,
+   "historyLineCount": 711,
+   "span": [
+    508501,
+    509210
+   ],
+   "span_basis": "resume+1 .. served last row (lower bound; Addendum B item 8)"
+  },
+  {
+   "seg": "run-023",
+   "id": "l3qs9hoe",
+   "resume_step": 509200,
+   "used": false,
+   "historyLineCount": 2161,
+   "span": [
+    509201,
+    511360
+   ],
+   "span_basis": "resume+1 .. served last row (lower bound; Addendum B item 8)"
+  },
+  {
+   "seg": "run-024",
+   "id": "gqph7y8y",
+   "resume_step": 511350,
+   "used": false,
+   "historyLineCount": 9661,
+   "span": [
+    511351,
+    521010
+   ],
+   "span_basis": "resume+1 .. served last row (lower bound; Addendum B item 8)"
+  },
+  {
+   "seg": "run-025",
+   "id": "u3obk6mj",
+   "resume_step": 521000,
+   "used": false,
+   "historyLineCount": 22361,
+   "span": [
+    521001,
+    543360
+   ],
+   "span_basis": "resume+1 .. served last row (lower bound; Addendum B item 8)"
+  }
+ ],
+ "owner_intervals": [
+  {
+   "owner": "run-001",
+   "owner_used": true,
+   "range": [
+    1,
+    14200
+   ],
+   "tied_losers": []
+  },
+  {
+   "owner": "run-002",
+   "owner_used": false,
+   "range": [
+    14201,
+    14500
+   ],
+   "tied_losers": []
+  },
+  {
+   "owner": "run-003",
+   "owner_used": false,
+   "range": [
+    14501,
+    39350
+   ],
+   "tied_losers": []
+  },
+  {
+   "owner": "run-004",
+   "owner_used": false,
+   "range": [
+    39351,
+    41400
+   ],
+   "tied_losers": []
+  },
+  {
+   "owner": "run-005",
+   "owner_used": false,
+   "range": [
+    41401,
+    42200
+   ],
+   "tied_losers": []
+  },
+  {
+   "owner": "run-006",
+   "owner_used": false,
+   "range": [
+    42201,
+    51450
+   ],
+   "tied_losers": []
+  },
+  {
+   "owner": "run-007",
+   "owner_used": false,
+   "range": [
+    51451,
+    52300
+   ],
+   "tied_losers": []
+  },
+  {
+   "owner": "run-008",
+   "owner_used": true,
+   "range": [
+    52301,
+    73100
+   ],
+   "tied_losers": []
+  },
+  {
+   "owner": "run-010",
+   "owner_used": true,
+   "range": [
+    73101,
+    160500
+   ],
+   "tied_losers": [
+    "run-009"
+   ]
+  },
+  {
+   "owner": "run-011",
+   "owner_used": false,
+   "range": [
+    160501,
+    160600
+   ],
+   "tied_losers": []
+  },
+  {
+   "owner": "run-013",
+   "owner_used": true,
+   "range": [
+    160601,
+    212000
+   ],
+   "tied_losers": [
+    "run-012"
+   ]
+  },
+  {
+   "owner": "run-016",
+   "owner_used": true,
+   "range": [
+    212001,
+    337000
+   ],
+   "tied_losers": [
+    "run-014",
+    "run-015"
+   ]
+  },
+  {
+   "owner": "run-017",
+   "owner_used": true,
+   "range": [
+    337001,
+    408923
+   ],
+   "tied_losers": []
+  },
+  {
+   "owner": "run-018",
+   "owner_used": true,
+   "range": [
+    408924,
+    504500
+   ],
+   "tied_losers": []
+  },
+  {
+   "owner": "run-019",
+   "owner_used": false,
+   "range": [
+    504501,
+    505550
+   ],
+   "tied_losers": []
+  },
+  {
+   "owner": "run-020",
+   "owner_used": false,
+   "range": [
+    505551,
+    507000
+   ],
+   "tied_losers": []
+  },
+  {
+   "owner": "run-021",
+   "owner_used": false,
+   "range": [
+    507001,
+    508500
+   ],
+   "tied_losers": []
+  },
+  {
+   "owner": "run-022",
+   "owner_used": false,
+   "range": [
+    508501,
+    509200
+   ],
+   "tied_losers": []
+  },
+  {
+   "owner": "run-023",
+   "owner_used": false,
+   "range": [
+    509201,
+    511350
+   ],
+   "tied_losers": []
+  },
+  {
+   "owner": "run-024",
+   "owner_used": false,
+   "range": [
+    511351,
+    521000
+   ],
+   "tied_losers": []
+  },
+  {
+   "owner": "run-025",
+   "owner_used": false,
+   "range": [
+    521001,
+    543360
+   ],
+   "tied_losers": []
+  }
+ ],
+ "kept_blocks": [
+  {
+   "range": [
+    1,
+    14200
+   ],
+   "steps": 14200,
+   "owners": "run-001",
+   "grid_obs": 1420,
+   "dropped_grid_obs": 0,
+   "longest_dropped_run": 0,
+   "earliest_eligible_anchor_t_e_g": 11290,
+   "eligible_anchor_span_steps": 2920,
+   "longer_than_11280": true
+  },
+  {
+   "range": [
+    52301,
+    160500
+   ],
+   "steps": 108200,
+   "owners": "run-008; run-010",
+   "grid_obs": 10820,
+   "dropped_grid_obs": 0,
+   "longest_dropped_run": 0,
+   "earliest_eligible_anchor_t_e_g": 63590,
+   "eligible_anchor_span_steps": 96920,
+   "longer_than_11280": true
+  },
+  {
+   "range": [
+    160601,
+    504500
+   ],
+   "steps": 343900,
+   "owners": "run-013; run-016; run-017; run-018",
+   "grid_obs": 34390,
+   "dropped_grid_obs": 0,
+   "longest_dropped_run": 0,
+   "earliest_eligible_anchor_t_e_g": 171890,
+   "eligible_anchor_span_steps": 332620,
+   "longer_than_11280": true
+  }
+ ],
+ "gaps": [
+  {
+   "range": [
+    14201,
+    52300
+   ],
+   "cause": "owner run-002 unused; owner run-003 unused; owner run-004 unused; owner run-005 unused; owner run-006 unused; owner run-007 unused",
+   "steps": 38100,
+   "grid_steps": 3810,
+   "detector_series_gap": true,
+   "restarts_within": [
+    "run-002@14200",
+    "run-003@14500",
+    "run-004@39350",
+    "run-005@41400",
+    "run-006@42200",
+    "run-007@51450"
+   ]
+  },
+  {
+   "range": [
+    160501,
+    160600
+   ],
+   "cause": "owner run-011 unused",
+   "steps": 100,
+   "grid_steps": 10,
+   "detector_series_gap": true,
+   "restarts_within": [
+    "run-011@160500"
+   ]
+  },
+  {
+   "range": [
+    504501,
+    543360
+   ],
+   "cause": "owner run-019 unused; owner run-020 unused; owner run-021 unused; owner run-022 unused; owner run-023 unused; owner run-024 unused; owner run-025 unused",
+   "steps": 38860,
+   "grid_steps": 3886,
+   "detector_series_gap": true,
+   "restarts_within": [
+    "run-019@504500",
+    "run-020@505550",
+    "run-021@507000",
+    "run-022@508500",
+    "run-023@509200",
+    "run-024@511350",
+    "run-025@521000"
+   ]
+  }
+ ],
+ "detector_series": {
+  "N_grid_obs_kept": 46630,
+  "dropped_grid_obs": 0,
+  "longest_dropped_run": 0,
+  "kept_steps_without_loss": 0
+ },
+ "nstar_upper_bounds_before_exclusions": {
+  "0.5": 2,
+  "1": 5,
+  "2": 9,
+  "5": 23
+ },
+ "rewind_portions_used_segments": [
+  {
+   "seg": "run-001",
+   "range": [
+    14201,
+    14210
+   ],
+   "steps": 10,
+   "grid_steps": 1
+  },
+  {
+   "seg": "run-008",
+   "range": [
+    73101,
+    73110
+   ],
+   "steps": 10,
+   "grid_steps": 1
+  },
+  {
+   "seg": "run-010",
+   "range": [
+    160501,
+    160851
+   ],
+   "steps": 351,
+   "grid_steps": 35
+  },
+  {
+   "seg": "run-013",
+   "range": [
+    212001,
+    212965
+   ],
+   "steps": 965,
+   "grid_steps": 96
+  },
+  {
+   "seg": "run-016",
+   "range": [
+    337001,
+    337339
+   ],
+   "steps": 339,
+   "grid_steps": 33
+  },
+  {
+   "seg": "run-018",
+   "range": [
+    504501,
+    504510
+   ],
+   "steps": 10,
+   "grid_steps": 1
+  }
+ ],
+ "unscorable_superseded_unused_segments_lower_bound": [
+  {
+   "seg": "run-002",
+   "range": [
+    14501,
+    14900
+   ],
+   "steps": 400,
+   "grid_steps": 40
+  },
+  {
+   "seg": "run-003",
+   "range": [
+    39351,
+    39360
+   ],
+   "steps": 10,
+   "grid_steps": 1
+  },
+  {
+   "seg": "run-004",
+   "range": [
+    41401,
+    41410
+   ],
+   "steps": 10,
+   "grid_steps": 1
+  },
+  {
+   "seg": "run-005",
+   "range": [
+    42201,
+    42210
+   ],
+   "steps": 10,
+   "grid_steps": 1
+  },
+  {
+   "seg": "run-006",
+   "range": [
+    51451,
+    51460
+   ],
+   "steps": 10,
+   "grid_steps": 1
+  },
+  {
+   "seg": "run-007",
+   "range": [
+    52301,
+    52310
+   ],
+   "steps": 10,
+   "grid_steps": 1
+  },
+  {
+   "seg": "run-009",
+   "range": [
+    73101,
+    73378
+   ],
+   "steps": 278,
+   "grid_steps": 27
+  },
+  {
+   "seg": "run-012",
+   "range": [
+    160601,
+    160855
+   ],
+   "steps": 255,
+   "grid_steps": 25
+  },
+  {
+   "seg": "run-019",
+   "range": [
+    505551,
+    505560
+   ],
+   "steps": 10,
+   "grid_steps": 1
+  },
+  {
+   "seg": "run-020",
+   "range": [
+    507001,
+    507010
+   ],
+   "steps": 10,
+   "grid_steps": 1
+  },
+  {
+   "seg": "run-021",
+   "range": [
+    508501,
+    508510
+   ],
+   "steps": 10,
+   "grid_steps": 1
+  },
+  {
+   "seg": "run-022",
+   "range": [
+    509201,
+    509210
+   ],
+   "steps": 10,
+   "grid_steps": 1
+  },
+  {
+   "seg": "run-023",
+   "range": [
+    511351,
+    511360
+   ],
+   "steps": 10,
+   "grid_steps": 1
+  },
+  {
+   "seg": "run-024",
+   "range": [
+    521001,
+    521010
+   ],
+   "steps": 10,
+   "grid_steps": 1
+  }
+ ],
+ "note": "step index, non-null masks and run metadata only; no metric value read, printed or saved"
+}
