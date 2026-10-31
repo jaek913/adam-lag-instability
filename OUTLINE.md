@@ -8,10 +8,10 @@ Copied from the Research-to-Publication Standard's OUTLINE.md Template page (doc
 *   **Archetype:** empirical-with-verified-theory (THESIS Amendment A2(f): no original theorem; The Measurement Trap Appendix A.4 used as a descriptive index)
 *   **Source pin (rebuild only):** N/A — new work
 *   **Standard:** v1.10.2
-*   **Outline version:** v0.4 — 2026-10-30
+*   **Outline version:** v0.5 — 2026-10-31
 *   **Status:** draft
 *   **Format:** ML-format paper, 8–12 pages main text (page budget per section in §1); appendices outside the page count.
-*   **Outcome branches (pre-registered, DESIGN §K):** this outline is the full paper (E2 SUPPORT or INCONCLUSIVE → Leg B runs). If §K returns STOP (E2 REFUTE) or CLOSE (INSUFFICIENT EVENTS), the deliverable is a short null note built from the Leg A nodes only (ARG-01–ARG-10, ARG-14; FIG-1–FIG-5; TBL-1–TBL-5; S1–S5, S7–S8, S10–S11; L-01, L-03–L-07); Leg B nodes become DROPPED ("not necessary — §K did not proceed") by a dated outline version.
+*   **Outcome branches (pre-registered, DESIGN §K):** this outline is the full paper (E2 SUPPORT or INCONCLUSIVE → Leg B runs). If §K returns STOP (E2 REFUTE) or CLOSE (INSUFFICIENT EVENTS), the deliverable is a short null note built from the Leg A nodes only (ARG-01–ARG-10, ARG-14; FIG-1–FIG-5; TBL-1–TBL-5; S1–S5, S7–S8, S10–S13; L-01, L-03–L-07); Leg B nodes become DROPPED ("not necessary — §K did not proceed") by a dated outline version.
 
 ## Changelog
 
@@ -19,6 +19,7 @@ Copied from the Research-to-Publication Standard's OUTLINE.md Template page (doc
 *   v0.2 2026-10-30 — The unauthored key for arXiv:2603.09581 resolved to its authors from the arXiv record (Bai, Zhao, Zhou, Xu & Zhang) and re-keyed Bai-2026b; the ICML paper by the same group re-keyed Bai-2026a with its full author list (arXiv record of 2506.04805). Lettered in this paper's citation order. JAE approved the v0.1 drafting choices (null-note subset; own-work key lettering; FIG-2 event rule; Phase 5b checks).
 *   v0.3 2026-10-30 — Reconciled with DESIGN/THESIS after the design-stage adversarial review (verification/design_review.md; THESIS A3). The contrast is now on mean lead; FA counts alarm onsets per 10,000 out-of-window steps with a 32-step hold; left-censored events get lead 128 (P-CENS); rewind events are retained; E1 is relabelled a consistency check (CONSISTENT/INCONSISTENT/INDETERMINATE, not support for Claim A); E5 is an alignment control (circular-shift null); E8 is a characterization. ARG-06 and EQ-5 are restated because the Adaptation Rate Theorem bounds the fast average's lead over the slow average, not the detector's lead over a spike (THESIS A3(b)). LB-ids, displays, scope and limits are updated to match.
 *   v0.4 2026-10-30 — DESIGN Amendment 1 / THESIS A4 (A1 logs the gradient norm every 10 steps). For the primary run (OLMo-0424) the detector side runs on that grid. FA is counted per 10,000 out-of-window gradient-norm observations, with a 32-observation hold; windows are 320/1,280 steps; the scan window is 1,280 steps; censored lead is 1,280; dedup is 2,000 steps. ARG-08, EQ-3, EQ-4, EQ-7, EQ-11, S3 and S8 carry the A1 scales. New S11 covers the grid and its scope condition.
+*   v0.5 2026-10-31 — DESIGN Amendments 2–6 and the A1 event stage (DECISIONS entries 10–17). Amendment 2: P-SEG clarified (later run wins ties; supersession by resume step; an unused owner leaves a gap), so the kept A1 series has a second internal gap (S5, S10, new S12). Amendment 3: spike-rule construction (EQ-4). Amendment 4: E1's R̄ over half-open lags (EQ-6); P-PHIHAT primary on the level (EQ-10). Amendment 5: detector construction, with B3 and B4 per the ZClip 1.0.0 and trainscope 0651b25 source (EQ-3, TBL-1). Amendment 6: P-FA threshold matching scans from the top, plus an alarm-coverage stop (EQ-11, S8). LB-A1-nevents-k4, LB-A1-nevents-k3, LB-A1-rung, LB-A1-ineligible and LB-A1-rewind have landed (entry 13). New S13: under chained dedup, lower-rung events are not a superset of higher-rung events.
 
 ## 1. IMRaD structural map (the skeleton)
 
@@ -106,11 +107,11 @@ Names only; values live in claims.lock (Phase 3).
 
 | LB-id (ledger) | Finding (one line, no value) | Supports (ARG) | Status |
 |---|---|---|---|
-| LB-A1-nevents-k4 | Eligible event count on A1 at k = 4 | ARG-08 | NEW |
-| LB-A1-nevents-k3 | Eligible event count on A1 at k = 3 (if the ladder steps down) | ARG-08 | NEW |
-| LB-A1-rung | k-ladder rung that resolved | ARG-08 | NEW |
-| LB-A1-ineligible | Ineligible events counted, with reasons | ARG-08 | NEW |
-| LB-A1-rewind | Rewind events retained on their own segment (count) | ARG-08 | NEW |
+| LB-A1-nevents-k4 | Eligible event count on A1 at k = 4 | ARG-08 | LANDED (DECISIONS entry 13; scripts/outputs/a1_events.json) |
+| LB-A1-nevents-k3 | Eligible event count on A1 at k = 3 (if the ladder steps down) | ARG-08 | LANDED (DECISIONS entry 13; scripts/outputs/a1_events.json) |
+| LB-A1-rung | k-ladder rung that resolved | ARG-08 | LANDED (DECISIONS entry 13; scripts/outputs/a1_events.json) |
+| LB-A1-ineligible | Ineligible events counted, with reasons | ARG-08 | LANDED (DECISIONS entry 13; scripts/outputs/a1_events.json) |
+| LB-A1-rewind | Rewind events retained on their own segment (count) | ARG-08 | LANDED (DECISIONS entry 13; scripts/outputs/a1_events.json) |
 | LB-E1-label | E1 label (CONSISTENT / INCONSISTENT / INDETERMINATE; not support for Claim A) | ARG-07 | NEW |
 | LB-E1-predsign | A-priori predicted sign from the ACF criterion | ARG-07 | NEW |
 | LB-E1-rho | Realised forward correlation | ARG-07 | NEW |
@@ -153,7 +154,7 @@ Names only; values live in claims.lock (Phase 3).
 | FIG-5 | E5: D_div advance-ordering rate, real vs circularly shifted alarm series | 5.6 | ARG-10; 5.6 | NEW |
 | FIG-6 | Leg B spike rate across β₂ × LR (heatmap, diverged cells marked) | 5.7 | ARG-12; 5.7 | NEW |
 | FIG-7 | Spike rate vs b_g*(exp) within each LR | 5.7 | ARG-12; 5.7, 6.3 | NEW |
-| TBL-1 | Detector definitions: D_div and B1–B4, parameters, source or pin | 4.3 | ARG-04, ARG-05; 4.3 | NEW |
+| TBL-1 | Detector definitions: D_div and B1–B4, parameters, source or pin; B3 as coded in ZClip 1.0.0 (monitor mode, raw g) and B4 as coded in trainscope 0651b25 (upward CUSUM on y, reset at onsets and gaps), both vendored (Amendment 5) | 4.3 | ARG-04, ARG-05; 4.3 | NEW |
 | TBL-2 | Leg A data: A1–A6, identifier, role, inclusion outcome | 4.1 | ARG-09; 4.1, App. D | NEW |
 | TBL-3 | E2: mean and median lead, detection rate, misses and censored counts per detector, C_b, C_min with interval, verdict | 5.3 | ARG-08; 5.3, 7 | NEW |
 | TBL-4 | E3: per-run event count and sign of C_min | 5.4 | ARG-09; 5.4 | NEW |
@@ -163,15 +164,15 @@ Names only; values live in claims.lock (Phase 3).
 | TBL-8 | Construction-pin register with sweeps | App. C | ARG-10; 4.8, App. C | NEW |
 | EQ-1 | y(t) = ln g(t), g = pre-clip global gradient norm | 3.2 | ARG-05; 3.2, 4.3 | NEW |
 | EQ-2 | D(t) = SMA_32(y)(t) − SMA_128(y)(t) | 3.2 | ARG-05; 3.2, 4.3 | NEW |
-| EQ-3 | Detector score: expanding empirical percentile of D, minimum history 1,000 steps (1,000 grid observations on A1) | 4.3 | ARG-05; 4.3 | NEW |
-| EQ-4 | Spike rule L(t) > SMA_128(L)(t−1) + k·σ_128(L)(t−1), dedup 200 (2,000 on A1) | 4.2 | ARG-08; 4.2 | NEW |
+| EQ-3 | Detector score: expanding empirical percentile of D (ties counted ≤; SMAs include the current reading), defined only at j ≥ 1,000 observations, dropped readings counted (Amendment 5) | 4.3 | ARG-05; 4.3 | NEW |
+| EQ-4 | Spike rule L(t) > SMA_128(L)(t−1) + k·σ_128(L)(t−1), σ sample SD; tested only with a full 128-step trailing window on one series holding ≥ 64 finite values; chained dedup 200 (2,000 on A1), inclusive, closed at gaps (Amendment 3) | 4.2 | ARG-08; 4.2 | NEW |
 | EQ-5 | Fast-over-slow crossing lead α(w_s − w_f), (w_s − w_f)/2 at the midpoint (cited; motivation, not a bound on spike lead) | 3.3 | ARG-06; 3.3, 6.1 | NEW |
-| EQ-6 | Persistence-sign criterion sign[R̄(h, h+w_f) − R̄(h+w_f, h+w_s)] with R̄ as mean ACF (cited) | 3.4 | ARG-07; 3.4, 5.2 | NEW |
+| EQ-6 | Persistence-sign criterion sign[R̄(h, h+w_f) − R̄(h+w_f, h+w_s)] with R̄ the mean ACF over half-open lags [a, b), the exact discrete form of Thm 8b (cited; Amendment 4.1) | 3.4 | ARG-07; 3.4, 5.2 | NEW |
 | EQ-7 | C_b = mean lead(D_div) − mean lead(B_b) over eligible events (misses 0, censored 128; 1,280 steps on A1); C_min = min_b C_b | 4.5 | ARG-08; 4.5, 5.3 | NEW |
 | EQ-8 | Adam second-moment update v_t = β₂ v_{t−1} + (1−β₂) g_t² and step η/√v_t | 3.1 | ARG-02, ARG-11; 3.1, App. B | NEW |
 | EQ-9 | The Measurement Trap App. A.4 characteristic polynomial (its EQ-5), cited | App. B | ARG-11; 6.3, App. B | NEW |
-| EQ-10 | Robustness index b_g*(exp) = (1−φ)/α + φ (its EQ-6), with α = 1−β₂ | 4.6 | ARG-12; 4.6, 5.7 | NEW |
-| EQ-11 | Alarm onset with hold H = 32; FA = out-of-window onsets per 10,000 out-of-window steps (grid observations on A1); n* = round-half-up(FA × N_out / 10,000); n* = 0 on A1 → E2 unrun | 4.4 | ARG-08; 4.4 | NEW |
+| EQ-10 | Robustness index b_g*(exp) = (1−φ)/α + φ (its EQ-6), with α = 1−β₂ and φ the lag-1 persistence of the level of g², per A.4 scope S-4 (Amendment 4.2) | 4.6 | ARG-12; 4.6, 5.7 | NEW |
+| EQ-11 | Alarm onset with hold H = 32; FA = out-of-window onsets per 10,000 out-of-window steps (grid observations on A1); n* = round-half-up(FA × N_out / 10,000); n* = 0 on A1 → E2 unrun; θ by top scan (smallest candidate above which every candidate's count ≤ n*); alarm coverage > 10 % at headline FA → stop-and-report (Amendment 6) | 4.4 | ARG-08; 4.4 | NEW |
 
 ## 6. Assumptions & scope conditions
 
@@ -181,13 +182,15 @@ Names only; values live in claims.lock (Phase 3).
 | S2 | g is the pre-clip global gradient norm; a run logging post-clip norm is reported separately, never pooled | 4.1 `S2` | NEW |
 | S3 | Every Leg A run used β₂ = 0.95 (second-moment window 20 steps); Leg A tests the alarm independent of β₂, and the (32, 128) windows exceed the optimizer's own memory (1.6×/6.4× per step; 16×/64× on A1's 10-step grid) | 4.1 `S3` | NEW |
 | S4 | E1 assumes approximate weak stationarity of y; y drifts upward on A1, so E1 is a consistency check | 3.4 `S4` | NEW |
-| S5 | Leg A data are the public logs as staged after `prereg-v1`, hash-pinned; segments assembled by P-SEG; no window crosses a gap | 4.1 `S5` | NEW |
+| S5 | Leg A data are the public logs as staged after `prereg-v1`, hash-pinned; segments assembled by P-SEG as clarified in DESIGN Amendment 2 (later run wins ties; supersession by resume step); the kept series has two internal gaps; no window crosses a gap | 4.1 `S5` | NEW |
 | S6 | Leg B: 124M GPT-2-class model, 5,000 steps, 98,304 tokens/step (smaller than the reference batch; more gradient noise), clipping disabled, identical token order across cells | 4.6 `S6` | NEW |
 | S7 | Events at least 200 steps apart are treated as independent for resampling (block-of-3 sensitivity) | 4.5 `S7` | NEW |
 | S8 | Lead is measured inside a 128-step scan window; FA is out-of-window alarm onsets per 10,000 out-of-window steps (headline 1), each onset held 32 steps; a missed event has lead 0; an alarm already on at the window start gives lead 128, flagged (A1: 129 grid observations ending at the event's grid step, censored lead 1,280 steps, hold 32 observations) | 4.4 `S8` | NEW |
 | S9 | The A.4 index is a descriptive ordering only; no feedback gain is estimated | 4.6 `S9` | NEW |
-| S10 | Spikes that a checkpoint restart superseded are retained as rewind events on their own segment; dedup applies within a series | 4.1 `S10` | NEW |
+| S10 | Spikes that a checkpoint restart superseded are retained as rewind events on their own series (the kept series up to the resume step plus the superseded steps); rewind portions on unused segments are counted as unscorable; dedup applies within a series (Amendment 2, Amendment 3) | 4.1 `S10` | NEW |
 | S11 | On the primary run the gradient norm is logged every 10 steps, so its detectors run on that grid (windows 320/1,280 steps, lead resolution 10 steps, dedup 2,000 steps). A precursor shorter than about 320 steps favours raw-reading baselines by construction; this scope statement does not qualify the kill rule (DESIGN Amendment 1, THESIS A4) | 4.1 `S11` | NEW |
+| S12 | The primary run's kept series follows each restart: a later run wins ties, and any step a later run superseded leaves the kept series. Where the superseding run's log is incomplete this leaves a gap, and its minimum-history cost is stated (DESIGN Amendment 2; structural report) | 4.1 `S12` | NEW |
+| S13 | Under chained dedup, events at a lower spike threshold are not a superset of events at a higher one: dense lower-rung spikes merge into long chains (DECISIONS entry 13) | 4.2 `S13` | NEW |
 
 ## 7. Conclusions & limits-of-claim
 
