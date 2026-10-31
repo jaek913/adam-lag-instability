@@ -438,3 +438,25 @@ Result: 16 findings (G1–G16), all adopted, five with a stated adaptation, plus
 - (iii) A rewind portion with an event at its first superseded step. It must be enumerated as a rewind event on its own series, not merged with a kept-series event, and not counted twice.
 
 **Unchanged.** The spike inequality, k ladder (P-KLAD), NaN rule, event time t_e (the first step of the event), dedup distances and every other rule.
+
+## Amendment 4 (2026-10-31) — Theorem checks (Phase 2 box 1): E1's R̄ made exact; P-PHIHAT primary moved to the level
+
+**Status.** Appended below Amendment 3 under the append-only rule. Rationale: DECISIONS.md entry 15, the Phase 2 box 1 theorem checks against the as-published statements (JAE decisions 2026-10-31).
+- No E1 input (y = ln g) has been read.
+- No Leg B quantity exists.
+- §K's thresholds, windows, spike definition and FA grid are untouched (DESIGN header rule).
+
+**4.1 E1 — R̄ over half-open lag ranges (replaces the D.2 "Discrete estimate" sentence; applies on A1 in grid observations, Amendment 1 A1.2, and on every run where E1 or E3's sign check is computed).**
+- **Definition.** R̄(a, b) = mean of the sample ACF ρ̂_y(τ) over integer lags τ = a, a+1, …, b−1 (b − a lags).
+- **Criterion.** The predicted sign is sign[R̄(h, h+w_f) − R̄(h+w_f, h+w_s)]. At h = 16 with (w_f, w_s) = (32, 128), it averages lags 16–47 and 48–143 (in grid observations on A1).
+- **Reason.** For a trailing SMA over w observations, Cov(SMA_w(y)_t, y_{t+h}) = σ²·(1/w)·Σ_{j=0}^{w−1} ρ(h+j) exactly. Theorem 8b's identity (The Divergence Theorem, eqs. 69–72) in discrete form is therefore sign[mean ρ over h…h+w_f−1 − mean ρ over h+w_f…h+w_s−1], with the common factor (1 − w_f/w_s) > 0. The registered inclusive form averages w + 1 lags and counts lag h + w_f in both intervals.
+- **Sensitivity.** The registered inclusive form is reported as a sensitivity, with no verdict.
+- **Unchanged.** Every other part of E1 (label partition, permutation, scope).
+
+**4.2 P-PHIHAT — primary φ̂ on the level (replaces the D.4 "Measured inputs" first clause and the D.7 P-PHIHAT row).**
+- **Primary.** φ̂ = lag-1 autocorrelation of the raw level of g²(t) over steps 1,000–5,000 (or up to the divergence step).
+- **Sensitivity.** φ̂ of ln g²(t) after subtracting its trailing 128-step mean, over steps 1,128–5,000.
+- **Reason.** The Measurement Trap's Appendix A.4 (EQ-5/EQ-6) is stated for the level persistence, and its scope condition S-4 says detrended persistence "is not interchangeable" with it.
+- **Unchanged.** The index b_g*(exp)(φ̂, α_Adam) = (1−φ̂)/α_Adam + φ̂ remains a descriptive ordering only, with the D.4.1 caveats. Its stated direction, P-DIV and the planted-reorder suite case (F9) are unchanged.
+
+**D.5 suite addition.** A probe on an AR(1) series with known ρ(τ) = φ^τ. The half-open R̄ must reproduce the exact discrete covariance sign. A constructed ACF on which the inclusive and half-open forms disagree must be reported as such.

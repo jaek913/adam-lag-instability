@@ -599,3 +599,30 @@ Refines Addendum C item 1 (the per-segment gate); Addendum C items 2–5 stand. 
    - **Pushed off-machine:** every commit is pushed. **The data store has no off-machine backup yet.**
    - **Box 1 (theorem checks):** not done. It must precede each experiment's first run, so it is placed before the D.5 suite.
 3. **Order from here:** box 1 theorem checks, as a DECISIONS entry, then the D.5 suite, then PRV for E2, then E2.
+
+## Entry 15 (2026-10-31, JAE) — Phase 2 box 1: operators checked against the as-published theorem statements
+
+Sources: the project files `thedivergencetheorem.pdf`, `theadaptationratetheorem.pdf` and `themeasurementtrap.pdf`. Statements were read as published, through the project knowledge search, on 2026-10-31.
+
+- **T1 — D_div operator (E2, E3, E4, E8).**
+  - **Published:** The Divergence Theorem §3.1 defines D(t) = Ŷ_f(t) − Ŷ_s(t), a fast and a slow trailing estimator of one observable. Level domains use the trailing mean. Theorem 14 gives the optimal ratio r* ∈ [3, 7] and the calibration w_f* ≈ T_char/r*.
+  - **Ours:** SMA_32(y) − SMA_128(y), y = ln g, ratio 4.
+  - **Result: CONSISTENT.**
+  - **Disclosed:** only the ratio band is used. The absolute calibration w_f ≈ T_char/r* is not applied; the windows are fixed (32, 128) by pre-registration. T_char is not estimated for any rule.
+- **T2 — E1 sign prediction (Theorem 8b, Definition 13).**
+  - **Published:** sign Corr(D_t, Y_{t+h}) = sign[R̄(h, h+w_f) − R̄(h+w_f, h+w_s)] (eq. 63), with R̄ the continuous average over [a, b] (eq. 61), under weak stationarity. Remark 4 covers the quasi-stationary approximation.
+  - **Ours (registered):** R̄ as the mean of the sample ACF over lags a…b inclusive.
+  - **Finding:** the exact discrete form of the theorem's identity (eqs. 69–72) for a trailing SMA over w observations averages lags h…h+w−1. The inclusive form averages w + 1 lags and counts lag h + w_f in both intervals. It can change the predicted sign only when the two averages nearly coincide.
+  - **Decision (JAE):** amend to the exact half-open form, with the inclusive form as a sensitivity (DESIGN Amendment 4.1). E1's input y had not been read.
+  - The stationarity scope is already stated (E1 is labelled a consistency check; Amendment 1 G14).
+- **T3 — Adaptation Rate Theorem 3.1 (motivation only).**
+  - **Published:** after a step change, ΔT(α) = α(w_s − w_f), with midpoint (w_s − w_f)/2.
+  - **Ours:** THESIS A3(b) states 48 steps for (32, 128) as motivation, not as a lead bound. No operator or rule depends on it.
+  - **Result: CONSISTENT.**
+- **T4 — Measurement Trap Appendix A.4 (Leg B descriptive index; E6–E7).**
+  - **Published:** EQ-6 b_g*(exp) = (1 − φ(1−α))/α = (1−φ)/α + φ, for the kernel m(t) = αx(t−1) + (1−α)m(t−1). Scope condition S-4: φ is "the lag-1 autocorrelation of the level of the underlying variable … not of a detrended cyclical component … the two are not interchangeable."
+  - **Ours (registered):** primary φ̂ on ln g² minus its trailing 128-step mean (detrended).
+  - **Finding:** the registered primary departs from the published scope. The index's form is consistent. α_Adam = 1 − β₂ is the kernel weight α of EQ-5 directly, and Adam's inclusion of the current g_t² (not x(t−1)) is already among the D.4.1 caveats.
+  - **Decision (JAE):** the primary φ̂ moves to the raw level of g², and the detrended φ̂ becomes the sensitivity (DESIGN Amendment 4.2).
+- **Experiments with no theorem-derived operator:** E2's baselines B1–B4 (deployed tools), E5 (alignment null) and E8 (characterization) have nothing to check against a theorem. They inherit T1 for D_div.
+- **Box 1 evidence:** this entry plus DESIGN Amendment 4, pushed before each experiment's first run. E1 and E2 have not run; Leg B has not opened.
