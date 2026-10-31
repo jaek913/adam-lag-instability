@@ -383,3 +383,24 @@ Refines Addendum C item 1 (the per-segment gate); Addendum C items 2–5 stand. 
    - **Under Addendum D item 1, route 1 is run-001's source.** Route 1b is its cross-check: two raw windows stitched by scripts/a1_route1b_stitch.py, which is committed before it runs, with cell identity on every shared step.
    - **The other six segments** (Addendum C item 1) follow after this entry is pushed, each download approved first.
 6. **Scripts committed with this entry:** a1_d1_check.py (MD5 23c2388881217360335df745a94ac180), a1_rows_without_loss.py (41058084bea0626513ee3f8d9d3e6203) and a1_route1b_stitch.py (574295fd4571adf5e443af5823d39c8c). Each was tested on synthetic files before use. Route-1b requests carry one spec per column, because W&B returns a multi-key spec's rows only where every key is present (item 8).
+
+## Entry 8 (2026-10-30, JAE) — Run-001 route-1b cross-check: every cell identical to route 1
+
+1. **Pull (approved by JAE before the download; Addendum D item 2).** Two raw GraphQL `sampledHistory` responses for run-001 (`ucv77bvt`), one spec per column (loss, gradient norm, learning rate, clipping rate), `samples` 10,000, saved byte for byte as returned:
+   - `A1_run-001_ucv77bvt_route1b_w01_0-7999.json`: 1,060,646 bytes, MD5 7e4f807ccb57a4e63612b930f4c750b8, SHA-256 cea975e7d5484444e5a8cbc3efb9e5abf0b2ec2494b9c666836fc80492d153f2. Rows per column: 7,999 / 799 / 7,999 / 799.
+   - `A1_run-001_ucv77bvt_route1b_w02_8000-14210.json`: 845,817 bytes, MD5 372125ca69c949841657f2571bd92442, SHA-256 9a4ec687f85cc92635d1847552fc124ae2c169a90eb124800828833d98902340. Rows per column: 6,211 / 622 / 6,211 / 622.
+   - **`maxStep` is inclusive** (Addendum D item 2): row counts over [0, 7,999] and [8,000, 14,210] equal the route-1 counts. Every list is below the 10,000-row cap.
+2. **Delivery to disk.**
+   - **What happened:** the browser saves were delayed by several minutes, and each window arrived three times (one scripted save that appeared to fail, one button save, one frame save). All copies of a window have the same SHA-256, equal to the SHA-256 computed in the page on the exact response text before saving.
+   - **Where they went:** one copy of each was moved to the store (`A1\route1b\run-001\`), by checksum match. The duplicates are left in Downloads for JAE to delete; nothing references them.
+   - **Rule from now on:** route-1b files are identified by SHA-256 against the in-page hash, never by file name.
+3. **Stitch and cross-check** (scripts/outputs/route1b_stitch_A1_run001.json): `stitch_pass` true, with all six asserts true.
+   - The windows are below the cap, inside their bounds, and do not overlap, with no duplicate steps.
+   - Loss is contiguous over steps 1–14,210.
+   - **Cells are identical to route 1 on every step:** loss 14,210, learning rate 14,210, gradient norm 1,421, clipping rate 1,421. No step appears in only one copy, and no cell is mismatched (31,262 cells).
+   - **Stitched parquet:** `A1\route1b\run-001\run-001_ucv77bvt_route1b_stitched.parquet`, 14,210 rows, MD5 95c936862dfcfd2b2fd413762a810c6d, SHA-256 c3aa08e196c35c2b8f9c80413d980428e8d46497855da072ece2c20c5fb7a688.
+4. **Script-version disclosure.** Addendum D requires the stitch script to be committed before it runs.
+   - **The committed version (MD5 574295fd4571adf5e443af5823d39c8c, at 300c534)** first ran on an empty folder, because the downloads had not landed. It reported vacuous asserts and `stitch_pass` false, and the report was discarded and overwritten.
+   - **The real stitch** ran on a hardened version (MD5 fb3d0289b42f3015a262234fb4e3c7ae), which adds two input guards: stop if no window file matches, and stop if a matching file is not named as a window. The assert logic is unchanged.
+   - **Equivalence:** the committed version, run on the same inputs (scripts/outputs/route1b_stitch_A1_run001_committed300c534.json), gives identical asserts, counts, pass flag, window hashes, per-column comparison and stitched-parquet hashes. The hardened version is committed with this entry.
+5. **Outcome.** Run-001 is accepted for A1. Route 1 (`run-001_ucv77bvt_history-v0_0000.parquet`) is the source, and route 1b confirms it cell for cell. Next under Addendum C item 1: the other six complete segments (008, 010, 013, 016, 017, 018), each download approved first.

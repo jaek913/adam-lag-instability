@@ -84,8 +84,13 @@ def runs_of(sorted_steps):
 def main():
     label, wdir, pattern, out_parquet, out_report = sys.argv[1:6]
     route1 = sys.argv[6] if len(sys.argv) > 6 else None
-    files = sorted(glob.glob(os.path.join(wdir, pattern)),
-                   key=lambda p: int(NAME_RE.search(p).group(1)))
+    matched = glob.glob(os.path.join(wdir, pattern))
+    bad = [os.path.basename(p) for p in matched if not NAME_RE.search(p)]
+    if bad:
+        raise SystemExit(f"files match the glob but not the window name format: {bad}")
+    files = sorted(matched, key=lambda p: int(NAME_RE.search(p).group(1)))
+    if not files:
+        raise SystemExit(f"no window files match {pattern!r} in {wdir}; nothing stitched")
     rep = {"label": label, "checked_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
            "columns": COLS, "windows": [], "asserts": {}}
     data = {c: {} for c in COLS}

@@ -1,0 +1,118 @@
+{
+  "label": "A1-run-001",
+  "checked_utc": "2026-10-31T04:02:18+00:00",
+  "columns": [
+    "train/CrossEntropyLoss",
+    "optim/total_grad_norm",
+    "optim/learning_rate_group0",
+    "optim/clipping_rate"
+  ],
+  "windows": [
+    {
+      "file": "A1_run-001_ucv77bvt_route1b_w01_0-7999.json",
+      "n": 1,
+      "minStep": 0,
+      "maxStep": 7999,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 7999,
+        "optim/total_grad_norm": 799,
+        "optim/learning_rate_group0": 7999,
+        "optim/clipping_rate": 799
+      },
+      "md5": "7e4f807ccb57a4e63612b930f4c750b8",
+      "sha256": "cea975e7d5484444e5a8cbc3efb9e5abf0b2ec2494b9c666836fc80492d153f2"
+    },
+    {
+      "file": "A1_run-001_ucv77bvt_route1b_w02_8000-14210.json",
+      "n": 2,
+      "minStep": 8000,
+      "maxStep": 14210,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 6211,
+        "optim/total_grad_norm": 622,
+        "optim/learning_rate_group0": 6211,
+        "optim/clipping_rate": 622
+      },
+      "md5": "372125ca69c949841657f2571bd92442",
+      "sha256": "9a4ec687f85cc92635d1847552fc124ae2c169a90eb124800828833d98902340"
+    }
+  ],
+  "asserts": {
+    "i_all_windows_below_cap": true,
+    "ii_rows_inside_bounds": true,
+    "ii_windows_do_not_overlap": true,
+    "iii_no_duplicate_steps": true,
+    "iv_loss_contiguous": true,
+    "v_cells_identical_to_route1": true
+  },
+  "counts": {
+    "n_windows": 2,
+    "rows_per_column": {
+      "train/CrossEntropyLoss": 14210,
+      "optim/total_grad_norm": 1421,
+      "optim/learning_rate_group0": 14210,
+      "optim/clipping_rate": 1421
+    },
+    "loss_first": 1,
+    "loss_last": 14210,
+    "loss_n_blocks": 1,
+    "gn_off_grid": 0,
+    "duplicates_per_column": {
+      "train/CrossEntropyLoss": 0,
+      "optim/total_grad_norm": 0,
+      "optim/learning_rate_group0": 0,
+      "optim/clipping_rate": 0
+    }
+  },
+  "route1_compare": {
+    "route1_file": "C:\\Users\\jaek9\\Documents\\LaggingTruth\\data-stores\\adam-lag-instability\\A1\\run-001_ucv77bvt_history-v0_0000.parquet",
+    "md5_sha256": [
+      "e3942b58581e1fa10afdf096fdf6cb4a",
+      "f85eebb9ee25a5905af9335124fad59e60252ee6709cdc24150f5fe3609b95c9"
+    ],
+    "per_column": {
+      "train/CrossEntropyLoss": {
+        "route1_nonnull": 14210,
+        "route1b_nonnull": 14210,
+        "shared": 14210,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      },
+      "optim/total_grad_norm": {
+        "route1_nonnull": 1421,
+        "route1b_nonnull": 1421,
+        "shared": 1421,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      },
+      "optim/learning_rate_group0": {
+        "route1_nonnull": 14210,
+        "route1b_nonnull": 14210,
+        "shared": 14210,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      },
+      "optim/clipping_rate": {
+        "route1_nonnull": 1421,
+        "route1b_nonnull": 1421,
+        "shared": 1421,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      }
+    }
+  },
+  "stitch_pass": true,
+  "stitched_parquet": {
+    "file": "C:\\Users\\jaek9\\Documents\\LaggingTruth\\data-stores\\adam-lag-instability\\A1\\route1b\\run-001\\run-001_ucv77bvt_route1b_stitched.parquet",
+    "rows": 14210,
+    "md5_sha256": [
+      "95c936862dfcfd2b2fd413762a810c6d",
+      "c3aa08e196c35c2b8f9c80413d980428e8d46497855da072ece2c20c5fb7a688"
+    ]
+  },
+  "note": "counts, flags and hashes only; no metric value printed or saved"
+}
