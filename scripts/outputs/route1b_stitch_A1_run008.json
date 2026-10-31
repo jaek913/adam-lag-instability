@@ -1,0 +1,132 @@
+{
+  "label": "A1-run-008",
+  "checked_utc": "2026-10-31T04:44:29+00:00",
+  "columns": [
+    "train/CrossEntropyLoss",
+    "optim/total_grad_norm",
+    "optim/learning_rate_group0",
+    "optim/clipping_rate"
+  ],
+  "windows": [
+    {
+      "file": "A1_run-008_bnzb4pmk_route1b_w01_52300-60299.json",
+      "n": 1,
+      "minStep": 52300,
+      "maxStep": 60299,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 7999,
+        "optim/total_grad_norm": 799,
+        "optim/learning_rate_group0": 7999,
+        "optim/clipping_rate": 799
+      },
+      "md5": "7ebdb61eb47461347ba6ee9cab926ac3",
+      "sha256": "f24ca08e729f0348096d91169d181358dae83abf0af6b33297fc6c41e2fa715a"
+    },
+    {
+      "file": "A1_run-008_bnzb4pmk_route1b_w02_60300-68299.json",
+      "n": 2,
+      "minStep": 60300,
+      "maxStep": 68299,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 8000,
+        "optim/total_grad_norm": 800,
+        "optim/learning_rate_group0": 8000,
+        "optim/clipping_rate": 800
+      },
+      "md5": "9cfd7b51108ea6e693b3f47939aa05aa",
+      "sha256": "c1ddacb8e51a74a7233f10c283b34d7fb7230c41b70e61d925a5952d97b2a5d8"
+    },
+    {
+      "file": "A1_run-008_bnzb4pmk_route1b_w03_68300-73210.json",
+      "n": 3,
+      "minStep": 68300,
+      "maxStep": 73210,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 4811,
+        "optim/total_grad_norm": 482,
+        "optim/learning_rate_group0": 4811,
+        "optim/clipping_rate": 482
+      },
+      "md5": "265de4035a4c21dfad09fe0479803850",
+      "sha256": "df24a9a34f6385b835dd6e9cbd7ed59217976db8428d67800f3864bbef3cc843"
+    }
+  ],
+  "asserts": {
+    "i_all_windows_below_cap": true,
+    "ii_rows_inside_bounds": true,
+    "ii_windows_do_not_overlap": true,
+    "iii_no_duplicate_steps": true,
+    "iv_loss_contiguous": true,
+    "v_cells_identical_to_route1": true
+  },
+  "counts": {
+    "n_windows": 3,
+    "rows_per_column": {
+      "train/CrossEntropyLoss": 20810,
+      "optim/total_grad_norm": 2081,
+      "optim/learning_rate_group0": 20810,
+      "optim/clipping_rate": 2081
+    },
+    "loss_first": 52301,
+    "loss_last": 73110,
+    "loss_n_blocks": 1,
+    "gn_off_grid": 0,
+    "duplicates_per_column": {
+      "train/CrossEntropyLoss": 0,
+      "optim/total_grad_norm": 0,
+      "optim/learning_rate_group0": 0,
+      "optim/clipping_rate": 0
+    }
+  },
+  "route1_compare": {
+    "route1_file": "C:\\Users\\jaek9\\Documents\\LaggingTruth\\data-stores\\adam-lag-instability\\A1\\run-008_bnzb4pmk_history-v0_0000.parquet",
+    "md5_sha256": [
+      "9dc7505753996ddd07841f49dbd01dca",
+      "0cd3af92c2225544760b4f31346f74f7f9c8a672fa1250135bdc1ee0eda5b92d"
+    ],
+    "per_column": {
+      "train/CrossEntropyLoss": {
+        "route1_nonnull": 20810,
+        "route1b_nonnull": 20810,
+        "shared": 20810,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      },
+      "optim/total_grad_norm": {
+        "route1_nonnull": 2081,
+        "route1b_nonnull": 2081,
+        "shared": 2081,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      },
+      "optim/learning_rate_group0": {
+        "route1_nonnull": 20810,
+        "route1b_nonnull": 20810,
+        "shared": 20810,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      },
+      "optim/clipping_rate": {
+        "route1_nonnull": 2081,
+        "route1b_nonnull": 2081,
+        "shared": 2081,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      }
+    }
+  },
+  "stitch_pass": true,
+  "stitched_parquet": {
+    "file": "C:\\Users\\jaek9\\Documents\\LaggingTruth\\data-stores\\adam-lag-instability\\A1\\route1b\\run-008\\run-008_bnzb4pmk_route1b_stitched.parquet",
+    "rows": 20810,
+    "md5_sha256": [
+      "192f090bf0e0219ed9780be912dad16f",
+      "53d4d2c617153b58bfa66d9379b3ea6c42975aef995390e1528cf725a3e7465c"
+    ]
+  },
+  "note": "counts, flags and hashes only; no metric value printed or saved"
+}

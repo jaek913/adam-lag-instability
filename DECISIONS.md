@@ -404,3 +404,42 @@ Refines Addendum C item 1 (the per-segment gate); Addendum C items 2–5 stand. 
    - **The real stitch** ran on a hardened version (MD5 fb3d0289b42f3015a262234fb4e3c7ae), which adds two input guards: stop if no window file matches, and stop if a matching file is not named as a window. The assert logic is unchanged.
    - **Equivalence:** the committed version, run on the same inputs (scripts/outputs/route1b_stitch_A1_run001_committed300c534.json), gives identical asserts, counts, pass flag, window hashes, per-column comparison and stitched-parquet hashes. The hardened version is committed with this entry.
 5. **Outcome.** Run-001 is accepted for A1. Route 1 (`run-001_ucv77bvt_history-v0_0000.parquet`) is the source, and route 1b confirms it cell for cell. Next under Addendum C item 1: the other six complete segments (008, 010, 013, 016, 017, 018), each download approved first.
+
+## Entry 9 (2026-10-31, JAE) — All seven complete A1 segments pass: route 1 is the source, route 1b identical cell for cell
+
+1. **Approval (JAE, 2026-10-30 23:30 CT).** JAE approved the route-1 files and route-1b windows of runs 008, 010, 013, 016, 017 and 018 in one batch, on condition that run-001 had passed the MD5 check, D.1 and the cross-check (entries 7–8; met).
+   - **Order, per segment:** route-1 download → manifest MD5 → SHA-256 → store → D.1 → route-1b windows → stitch cross-check.
+   - **Hard stop** on any MD5 mismatch, D.1 failure or cell mismatch. Counts and flags only.
+2. **Processing.** `scripts/a1_process_segment.py` (MD5 0d81d58d96e806d0dc959a372cb73829), tested on synthetic segments: one passing, and one each with a wrong MD5, a tampered cell and a missing window.
+   - It reads one manifest per segment (`scripts/manifests/a1_<seg>.json`): the route-1 manifest MD5 and size, the server line count, and each window's size and in-page SHA-256.
+   - It identifies downloaded files by content hash only, and calls the committed `a1_d1_check.py` and `a1_route1b_stitch.py` unchanged.
+   - **Window plan:** windows of at most 8,000 steps, from loss_first − 1 to loss_last + 100.
+3. **Results.** Every segment returned `SEGMENT_PASS` true. Outputs: `scripts/outputs/process_A1_<seg>.json`, `d1_A1_<seg>.json` and `route1b_stitch_A1_<seg>.json`.
+
+   | seg | id | loss steps | rows = server lines | bookkeeping row | gn grid steps | windows | cells compared, all identical |
+   |---|---|---|---|---|---|---|---|
+   | run-001 | ucv77bvt | 1–14,210 | 14,211 = 14,211 | step 0 | 1,421 | 2 | 31,262 |
+   | run-008 | bnzb4pmk | 52,301–73,110 | 20,811 = 20,811 | step 0 | 2,081 | 3 | 45,782 |
+   | run-010 | wqjq7xzw | 73,101–160,851 | 87,752 = 87,752 | step 0 | 8,775 | 11 | 193,052 |
+   | run-013 | 7lr31kjd | 160,601–212,965 | 52,366 = 52,366 | step 0 | 5,236 | 7 | 115,202 |
+   | run-016 | 0g0rjkxo | 212,001–337,339 | 125,340 = 125,340 | step 0 | 12,533 | 16 | 275,744 |
+   | run-017 | d4g44zcc | 337,001–408,923 | 71,924 = 71,924 | step 0 | 7,192 | 10 | 158,230 |
+   | run-018 | 50br7dzw | 408,924–504,510 | 95,587 = 95,587 | none (strict pass) | 9,559 | 12 | 210,292 |
+
+   **Totals:** 1,029,564 cells compared, 0 mismatches, 0 one-sided steps.
+   - **In every segment:** every route-1 MD5 matched its manifest; the gradient norm was present on every grid step and never off-grid; and no row without loss existed other than a bookkeeping-only edge row.
+   - **Run-017** has an empty tail window (`w10_409000-409023`, 61 bytes, 0 rows), the margin past its last step; it is checked like every other window.
+4. **Coverage (step index only; formalised in the A1.12 structural report).** Under P-SEG (later segment wins):
+   - **Before the first gap:** steps 1–14,210 (run-001).
+   - **The gap:** 14,211–52,300 (Addendum C item 3).
+   - **After the gap:** 52,301–504,510 contiguous.
+   - **Overlaps where a later segment supersedes an earlier one's tail (rewind portions, both segments used):**
+     - 008/010: 73,101–73,110 (10 steps);
+     - 010/013: 160,601–160,851 (251);
+     - 013/016: 212,001–212,965 (965);
+     - 016/017: 337,001–337,339 (339);
+     - 017/018: none (contiguous at 408,923 | 408,924).
+   - **Scorability:** these superseded tails lie in used segments, so events in them are scorable on their own series (Addendum C item 5).
+   - **Not covered:** 504,511–543,360 (segments 019–025, sparse).
+5. **Records.** SOURCES.md rows for the six route-1 files, all 59 route-1b windows (fetch and landing UTC, MD5, SHA-256) and the seven stitched files (derived; not sources).
+6. **Next (JAE's sequence):** the Amendment 1, A1.12 structural report, from the step index and null masks of the seven route-1 files, before any loss event is enumerated or any detector score is computed. Route 3 (AI2) remains open until the 2026-11-13 cutoff (Addendum C item 2).

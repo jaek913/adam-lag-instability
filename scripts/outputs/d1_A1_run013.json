@@ -1,0 +1,61 @@
+{
+  "label": "A1-run-013",
+  "file": "C:\\Users\\jaek9\\Documents\\LaggingTruth\\data-stores\\adam-lag-instability\\A1\\run-013_7lr31kjd_history-v0_0000.parquet",
+  "checked_utc": "2026-10-31T04:47:31+00:00",
+  "bytes": 79773595,
+  "md5": "6efbccaac9a7ab9660e20d7c02a8d642",
+  "sha256": "0c1601e469e0e4338e5301a3e8dc2fbcb4629b08f1c25be627eaa9c718de5b7b",
+  "md5_matches_manifest": true,
+  "n_columns": 2137,
+  "required_present": {
+    "_step": true,
+    "train/CrossEntropyLoss": true,
+    "optim/total_grad_norm": true
+  },
+  "step_dtype": "double",
+  "non_integral_steps": 0,
+  "rows": 52366,
+  "null_step_rows": 0,
+  "unique_steps": 52366,
+  "duplicate_steps": 0,
+  "first_step": 0,
+  "last_step": 212965,
+  "n_contiguous_blocks": 2,
+  "blocks_first_20": [
+    [
+      0,
+      0
+    ],
+    [
+      160601,
+      212965
+    ]
+  ],
+  "server_historyLineCount": 52366,
+  "rows_minus_server_lines": 0,
+  "loss_rows": 52365,
+  "loss_first": 160601,
+  "loss_last": 212965,
+  "loss_n_contiguous_blocks": 1,
+  "rows_without_loss_steps_first_20": [
+    0
+  ],
+  "rows_without_loss_count": 1,
+  "gn_rows": 5236,
+  "gn_off_grid_count": 0,
+  "grid_steps_in_loss_span": 5236,
+  "grid_steps_missing_gn_count": 0,
+  "grid_steps_missing_gn_first_20": [],
+  "D1_pass": true,
+  "note": "step index and non-null masks only; no metric value printed or saved",
+  "bookkeeping_only_rows": 1,
+  "bookkeeping_only_steps_first_20": [
+    0
+  ],
+  "rows_without_loss_not_bookkeeping": 0,
+  "rows_without_loss_not_bookkeeping_first_20": [],
+  "core_first_step": 160601,
+  "core_last_step": 212965,
+  "core_n_contiguous_blocks": 1,
+  "D1_pass_strict": false
+}

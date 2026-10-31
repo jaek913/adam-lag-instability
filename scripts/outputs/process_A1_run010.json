@@ -1,0 +1,182 @@
+{
+  "seg": "run-010",
+  "id": "wqjq7xzw",
+  "manifest": "a1_run-010.json",
+  "route1": {
+    "store": "C:\\Users\\jaek9\\Documents\\LaggingTruth\\data-stores\\adam-lag-instability\\A1\\run-010_wqjq7xzw_history-v1_0000.parquet",
+    "bytes": 135471623,
+    "md5": "49ee8e2c7058d604e6cd405f6e97bc54",
+    "sha256": "e59075b4650b13e1f735b99c34dbe36a1bc518b654da32e34a92200d01845c84",
+    "md5_matches_manifest": true,
+    "landed_utc": "2026-10-31T04:45:13Z"
+  },
+  "D1": {
+    "md5_matches_manifest": true,
+    "rows": 87752,
+    "server_historyLineCount": 87752,
+    "rows_minus_server_lines": 0,
+    "first_step": 0,
+    "last_step": 160851,
+    "n_contiguous_blocks": 2,
+    "duplicate_steps": 0,
+    "non_integral_steps": 0,
+    "loss_rows": 87751,
+    "loss_first": 73101,
+    "loss_last": 160851,
+    "loss_n_contiguous_blocks": 1,
+    "bookkeeping_only_rows": 1,
+    "rows_without_loss_not_bookkeeping": 0,
+    "gn_rows": 8775,
+    "gn_off_grid_count": 0,
+    "grid_steps_in_loss_span": 8775,
+    "grid_steps_missing_gn_count": 0,
+    "D1_pass_strict": false,
+    "D1_pass": true
+  },
+  "route1b_windows": [
+    {
+      "name": "A1_run-010_wqjq7xzw_route1b_w01_73100-81099.json",
+      "bytes": 1094736,
+      "md5": "cd923f677cdb36fc4cd1f5b88f51c1a8",
+      "sha256": "d491113120c7a0527c21e085a7f0d4b757617a310aeba505e47f46d9357dbf2f",
+      "fetched_utc": "2026-10-31T04:44:56Z",
+      "landed_utc": "2026-10-31T04:45:12Z"
+    },
+    {
+      "name": "A1_run-010_wqjq7xzw_route1b_w02_81100-89099.json",
+      "bytes": 1095003,
+      "md5": "42ff81b3f46698c5492816ca889bdd99",
+      "sha256": "d0c53ae36c24454b0b2ab33ad1b3d67b31637a5d4821a9f738b59e5cedd080bb",
+      "fetched_utc": "2026-10-31T04:44:58Z",
+      "landed_utc": "2026-10-31T04:45:11Z"
+    },
+    {
+      "name": "A1_run-010_wqjq7xzw_route1b_w03_89100-97099.json",
+      "bytes": 1094992,
+      "md5": "bbf708c6bf24036ba524b3f3b23164b3",
+      "sha256": "351e144a1012160f4efbf18ec941b59b12e50f74b5f74eff61c8f14262e5a39d",
+      "fetched_utc": "2026-10-31T04:45:00Z",
+      "landed_utc": "2026-10-31T04:45:02Z"
+    },
+    {
+      "name": "A1_run-010_wqjq7xzw_route1b_w04_97100-105099.json",
+      "bytes": 1106345,
+      "md5": "f9bc5b090b731576d3fe6a55c28a0599",
+      "sha256": "23271b52a9fb64143200edcc6e5e0ff1b54d18c39ef5e0adc1ee36558e14a8bf",
+      "fetched_utc": "2026-10-31T04:45:02Z",
+      "landed_utc": "2026-10-31T04:45:04Z"
+    },
+    {
+      "name": "A1_run-010_wqjq7xzw_route1b_w05_105100-113099.json",
+      "bytes": 1112607,
+      "md5": "e4ba36bff7cbba1f54074c2891068f8d",
+      "sha256": "082f0a8e52cab0cb8e19248574640d4942df7b6249e80e9157c126a212e58a4d",
+      "fetched_utc": "2026-10-31T04:45:04Z",
+      "landed_utc": "2026-10-31T04:45:06Z"
+    },
+    {
+      "name": "A1_run-010_wqjq7xzw_route1b_w06_113100-121099.json",
+      "bytes": 1112638,
+      "md5": "3adfc9dd29166cb3e270b4b18164fbc0",
+      "sha256": "a69aacbbb6ead8813d657d2eb0d1f7f3e00d37c07bbe81f05e599b4401fd194c",
+      "fetched_utc": "2026-10-31T04:45:06Z",
+      "landed_utc": "2026-10-31T04:45:08Z"
+    },
+    {
+      "name": "A1_run-010_wqjq7xzw_route1b_w07_121100-129099.json",
+      "bytes": 1112595,
+      "md5": "2a3516917a2dd0c51cd1f1075c923f5b",
+      "sha256": "98309af99f5c330e3d109433bebe5f3640bb42b94afd4bed8c00560af8fcc36c",
+      "fetched_utc": "2026-10-31T04:45:09Z",
+      "landed_utc": "2026-10-31T04:45:22Z"
+    },
+    {
+      "name": "A1_run-010_wqjq7xzw_route1b_w08_129100-137099.json",
+      "bytes": 1112549,
+      "md5": "7b540304d189f5eb46365022aba9535b",
+      "sha256": "501770951c37575f2f6b2f95eba3cfd86d1d944ffb1108b0d86e3a85b60173ef",
+      "fetched_utc": "2026-10-31T04:45:11Z",
+      "landed_utc": "2026-10-31T04:45:21Z"
+    },
+    {
+      "name": "A1_run-010_wqjq7xzw_route1b_w09_137100-145099.json",
+      "bytes": 1112640,
+      "md5": "1f09d9140f9090f213400951598274b8",
+      "sha256": "ad37523395a19be0ddb8916061e78937890cee6d793fa86cd4a8f6a0f5f1919f",
+      "fetched_utc": "2026-10-31T04:45:12Z",
+      "landed_utc": "2026-10-31T04:45:19Z"
+    },
+    {
+      "name": "A1_run-010_wqjq7xzw_route1b_w10_145100-153099.json",
+      "bytes": 1112475,
+      "md5": "e038fbf3d6b25038b4361be7df2be204",
+      "sha256": "0bbac8f1903cd0d3164ff410a36d021c8d033dd60b0d7461fd09152315ff05f2",
+      "fetched_utc": "2026-10-31T04:45:15Z",
+      "landed_utc": "2026-10-31T04:45:18Z"
+    },
+    {
+      "name": "A1_run-010_wqjq7xzw_route1b_w11_153100-160951.json",
+      "bytes": 1078146,
+      "md5": "fb871a23fb06ab5ef2820569764cd9dc",
+      "sha256": "8e13bf8790f1dd6e0542916ca1a22f617e594b6e843235785e476b63754c687a",
+      "fetched_utc": "2026-10-31T04:45:17Z",
+      "landed_utc": "2026-10-31T04:45:17Z"
+    }
+  ],
+  "stitch": {
+    "asserts": {
+      "i_all_windows_below_cap": true,
+      "ii_rows_inside_bounds": true,
+      "ii_windows_do_not_overlap": true,
+      "iii_no_duplicate_steps": true,
+      "iv_loss_contiguous": true,
+      "v_cells_identical_to_route1": true
+    },
+    "rows_per_column": {
+      "train/CrossEntropyLoss": 87751,
+      "optim/total_grad_norm": 8775,
+      "optim/learning_rate_group0": 87751,
+      "optim/clipping_rate": 8775
+    },
+    "per_column": {
+      "train/CrossEntropyLoss": {
+        "route1_nonnull": 87751,
+        "route1b_nonnull": 87751,
+        "shared": 87751,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      },
+      "optim/total_grad_norm": {
+        "route1_nonnull": 8775,
+        "route1b_nonnull": 8775,
+        "shared": 8775,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      },
+      "optim/learning_rate_group0": {
+        "route1_nonnull": 87751,
+        "route1b_nonnull": 87751,
+        "shared": 87751,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      },
+      "optim/clipping_rate": {
+        "route1_nonnull": 8775,
+        "route1b_nonnull": 8775,
+        "shared": 8775,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      }
+    },
+    "stitched_md5_sha256": [
+      "3b1074f05965a8337aba34e022b5784c",
+      "7eaae34fd7b92505da1dcc3b1df7dfd40da09b2d51a18783f08664fa72362bba"
+    ],
+    "stitch_pass": true
+  },
+  "SEGMENT_PASS": true
+}

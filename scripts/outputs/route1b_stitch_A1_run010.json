@@ -1,0 +1,244 @@
+{
+  "label": "A1-run-010",
+  "checked_utc": "2026-10-31T04:46:19+00:00",
+  "columns": [
+    "train/CrossEntropyLoss",
+    "optim/total_grad_norm",
+    "optim/learning_rate_group0",
+    "optim/clipping_rate"
+  ],
+  "windows": [
+    {
+      "file": "A1_run-010_wqjq7xzw_route1b_w01_73100-81099.json",
+      "n": 1,
+      "minStep": 73100,
+      "maxStep": 81099,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 7999,
+        "optim/total_grad_norm": 799,
+        "optim/learning_rate_group0": 7999,
+        "optim/clipping_rate": 799
+      },
+      "md5": "cd923f677cdb36fc4cd1f5b88f51c1a8",
+      "sha256": "d491113120c7a0527c21e085a7f0d4b757617a310aeba505e47f46d9357dbf2f"
+    },
+    {
+      "file": "A1_run-010_wqjq7xzw_route1b_w02_81100-89099.json",
+      "n": 2,
+      "minStep": 81100,
+      "maxStep": 89099,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 8000,
+        "optim/total_grad_norm": 800,
+        "optim/learning_rate_group0": 8000,
+        "optim/clipping_rate": 800
+      },
+      "md5": "42ff81b3f46698c5492816ca889bdd99",
+      "sha256": "d0c53ae36c24454b0b2ab33ad1b3d67b31637a5d4821a9f738b59e5cedd080bb"
+    },
+    {
+      "file": "A1_run-010_wqjq7xzw_route1b_w03_89100-97099.json",
+      "n": 3,
+      "minStep": 89100,
+      "maxStep": 97099,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 8000,
+        "optim/total_grad_norm": 800,
+        "optim/learning_rate_group0": 8000,
+        "optim/clipping_rate": 800
+      },
+      "md5": "bbf708c6bf24036ba524b3f3b23164b3",
+      "sha256": "351e144a1012160f4efbf18ec941b59b12e50f74b5f74eff61c8f14262e5a39d"
+    },
+    {
+      "file": "A1_run-010_wqjq7xzw_route1b_w04_97100-105099.json",
+      "n": 4,
+      "minStep": 97100,
+      "maxStep": 105099,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 8000,
+        "optim/total_grad_norm": 800,
+        "optim/learning_rate_group0": 8000,
+        "optim/clipping_rate": 800
+      },
+      "md5": "f9bc5b090b731576d3fe6a55c28a0599",
+      "sha256": "23271b52a9fb64143200edcc6e5e0ff1b54d18c39ef5e0adc1ee36558e14a8bf"
+    },
+    {
+      "file": "A1_run-010_wqjq7xzw_route1b_w05_105100-113099.json",
+      "n": 5,
+      "minStep": 105100,
+      "maxStep": 113099,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 8000,
+        "optim/total_grad_norm": 800,
+        "optim/learning_rate_group0": 8000,
+        "optim/clipping_rate": 800
+      },
+      "md5": "e4ba36bff7cbba1f54074c2891068f8d",
+      "sha256": "082f0a8e52cab0cb8e19248574640d4942df7b6249e80e9157c126a212e58a4d"
+    },
+    {
+      "file": "A1_run-010_wqjq7xzw_route1b_w06_113100-121099.json",
+      "n": 6,
+      "minStep": 113100,
+      "maxStep": 121099,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 8000,
+        "optim/total_grad_norm": 800,
+        "optim/learning_rate_group0": 8000,
+        "optim/clipping_rate": 800
+      },
+      "md5": "3adfc9dd29166cb3e270b4b18164fbc0",
+      "sha256": "a69aacbbb6ead8813d657d2eb0d1f7f3e00d37c07bbe81f05e599b4401fd194c"
+    },
+    {
+      "file": "A1_run-010_wqjq7xzw_route1b_w07_121100-129099.json",
+      "n": 7,
+      "minStep": 121100,
+      "maxStep": 129099,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 8000,
+        "optim/total_grad_norm": 800,
+        "optim/learning_rate_group0": 8000,
+        "optim/clipping_rate": 800
+      },
+      "md5": "2a3516917a2dd0c51cd1f1075c923f5b",
+      "sha256": "98309af99f5c330e3d109433bebe5f3640bb42b94afd4bed8c00560af8fcc36c"
+    },
+    {
+      "file": "A1_run-010_wqjq7xzw_route1b_w08_129100-137099.json",
+      "n": 8,
+      "minStep": 129100,
+      "maxStep": 137099,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 8000,
+        "optim/total_grad_norm": 800,
+        "optim/learning_rate_group0": 8000,
+        "optim/clipping_rate": 800
+      },
+      "md5": "7b540304d189f5eb46365022aba9535b",
+      "sha256": "501770951c37575f2f6b2f95eba3cfd86d1d944ffb1108b0d86e3a85b60173ef"
+    },
+    {
+      "file": "A1_run-010_wqjq7xzw_route1b_w09_137100-145099.json",
+      "n": 9,
+      "minStep": 137100,
+      "maxStep": 145099,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 8000,
+        "optim/total_grad_norm": 800,
+        "optim/learning_rate_group0": 8000,
+        "optim/clipping_rate": 800
+      },
+      "md5": "1f09d9140f9090f213400951598274b8",
+      "sha256": "ad37523395a19be0ddb8916061e78937890cee6d793fa86cd4a8f6a0f5f1919f"
+    },
+    {
+      "file": "A1_run-010_wqjq7xzw_route1b_w10_145100-153099.json",
+      "n": 10,
+      "minStep": 145100,
+      "maxStep": 153099,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 8000,
+        "optim/total_grad_norm": 800,
+        "optim/learning_rate_group0": 8000,
+        "optim/clipping_rate": 800
+      },
+      "md5": "e038fbf3d6b25038b4361be7df2be204",
+      "sha256": "0bbac8f1903cd0d3164ff410a36d021c8d033dd60b0d7461fd09152315ff05f2"
+    },
+    {
+      "file": "A1_run-010_wqjq7xzw_route1b_w11_153100-160951.json",
+      "n": 11,
+      "minStep": 153100,
+      "maxStep": 160951,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 7752,
+        "optim/total_grad_norm": 776,
+        "optim/learning_rate_group0": 7752,
+        "optim/clipping_rate": 776
+      },
+      "md5": "fb871a23fb06ab5ef2820569764cd9dc",
+      "sha256": "8e13bf8790f1dd6e0542916ca1a22f617e594b6e843235785e476b63754c687a"
+    }
+  ],
+  "asserts": {
+    "i_all_windows_below_cap": true,
+    "ii_rows_inside_bounds": true,
+    "ii_windows_do_not_overlap": true,
+    "iii_no_duplicate_steps": true,
+    "iv_loss_contiguous": true,
+    "v_cells_identical_to_route1": true
+  },
+  "counts": {
+    "n_windows": 11,
+    "rows_per_column": {
+      "train/CrossEntropyLoss": 87751,
+      "optim/total_grad_norm": 8775,
+      "optim/learning_rate_group0": 87751,
+      "optim/clipping_rate": 8775
+    },
+    "loss_first": 73101,
+    "loss_last": 160851,
+    "loss_n_blocks": 1,
+    "gn_off_grid": 0,
+    "duplicates_per_column": {
+      "train/CrossEntropyLoss": 0,
+      "optim/total_grad_norm": 0,
+      "optim/learning_rate_group0": 0,
+      "optim/clipping_rate": 0
+    }
+  },
+  "route1_compare": {
+    "route1_file": "C:\\Users\\jaek9\\Documents\\LaggingTruth\\data-stores\\adam-lag-instability\\A1\\run-010_wqjq7xzw_history-v1_0000.parquet",
+    "md5_sha256": [
+      "49ee8e2c7058d604e6cd405f6e97bc54",
+      "e59075b4650b13e1f735b99c34dbe36a1bc518b654da32e34a92200d01845c84"
+    ],
+    "per_column": {
+      "train/CrossEntropyLoss": {
+        "route1_nonnull": 87751,
+        "route1b_nonnull": 87751,
+        "shared": 87751,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      },
+      "optim/total_grad_norm": {
+        "route1_nonnull": 8775,
+        "route1b_nonnull": 8775,
+        "shared": 8775,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      },
+      "optim/learning_rate_group0": {
+        "route1_nonnull": 87751,
+        "route1b_nonnull": 87751,
+        "shared": 87751,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      },
+      "optim/clipping_rate": {
+        "route1_nonnull": 8775,
+        "route1b_nonnull": 8775,
+        "shared": 8775,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      }
+    }
+  },
+  "stitch_pass": true,
+  "stitched_parquet": {
+    "file": "C:\\Users\\jaek9\\Documents\\LaggingTruth\\data-stores\\adam-lag-instability\\A1\\route1b\\run-010\\run-010_wqjq7xzw_route1b_stitched.parquet",
+    "rows": 87751,
+    "md5_sha256": [
+      "3b1074f05965a8337aba34e022b5784c",
+      "7eaae34fd7b92505da1dcc3b1df7dfd40da09b2d51a18783f08664fa72362bba"
+    ]
+  },
+  "note": "counts, flags and hashes only; no metric value printed or saved"
+}

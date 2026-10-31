@@ -1,0 +1,118 @@
+{
+  "seg": "run-008",
+  "id": "bnzb4pmk",
+  "manifest": "a1_run-008.json",
+  "route1": {
+    "store": "C:\\Users\\jaek9\\Documents\\LaggingTruth\\data-stores\\adam-lag-instability\\A1\\run-008_bnzb4pmk_history-v0_0000.parquet",
+    "bytes": 31778101,
+    "md5": "9dc7505753996ddd07841f49dbd01dca",
+    "sha256": "0cd3af92c2225544760b4f31346f74f7f9c8a672fa1250135bdc1ee0eda5b92d",
+    "md5_matches_manifest": true,
+    "landed_utc": "2026-10-31T04:35:27Z"
+  },
+  "D1": {
+    "md5_matches_manifest": true,
+    "rows": 20811,
+    "server_historyLineCount": 20811,
+    "rows_minus_server_lines": 0,
+    "first_step": 0,
+    "last_step": 73110,
+    "n_contiguous_blocks": 2,
+    "duplicate_steps": 0,
+    "non_integral_steps": 0,
+    "loss_rows": 20810,
+    "loss_first": 52301,
+    "loss_last": 73110,
+    "loss_n_contiguous_blocks": 1,
+    "bookkeeping_only_rows": 1,
+    "rows_without_loss_not_bookkeeping": 0,
+    "gn_rows": 2081,
+    "gn_off_grid_count": 0,
+    "grid_steps_in_loss_span": 2081,
+    "grid_steps_missing_gn_count": 0,
+    "D1_pass_strict": false,
+    "D1_pass": true
+  },
+  "route1b_windows": [
+    {
+      "name": "A1_run-008_bnzb4pmk_route1b_w01_52300-60299.json",
+      "bytes": 1094675,
+      "md5": "7ebdb61eb47461347ba6ee9cab926ac3",
+      "sha256": "f24ca08e729f0348096d91169d181358dae83abf0af6b33297fc6c41e2fa715a",
+      "fetched_utc": "2026-10-31T04:34:46Z",
+      "landed_utc": "2026-10-31T04:41:03Z"
+    },
+    {
+      "name": "A1_run-008_bnzb4pmk_route1b_w02_60300-68299.json",
+      "bytes": 1095019,
+      "md5": "9cfd7b51108ea6e693b3f47939aa05aa",
+      "sha256": "c1ddacb8e51a74a7233f10c283b34d7fb7230c41b70e61d925a5952d97b2a5d8",
+      "fetched_utc": "2026-10-31T04:34:48Z",
+      "landed_utc": "2026-10-31T04:35:33Z"
+    },
+    {
+      "name": "A1_run-008_bnzb4pmk_route1b_w03_68300-73210.json",
+      "bytes": 658594,
+      "md5": "265de4035a4c21dfad09fe0479803850",
+      "sha256": "df24a9a34f6385b835dd6e9cbd7ed59217976db8428d67800f3864bbef3cc843",
+      "fetched_utc": "2026-10-31T04:34:50Z",
+      "landed_utc": "2026-10-31T04:35:27Z"
+    }
+  ],
+  "stitch": {
+    "asserts": {
+      "i_all_windows_below_cap": true,
+      "ii_rows_inside_bounds": true,
+      "ii_windows_do_not_overlap": true,
+      "iii_no_duplicate_steps": true,
+      "iv_loss_contiguous": true,
+      "v_cells_identical_to_route1": true
+    },
+    "rows_per_column": {
+      "train/CrossEntropyLoss": 20810,
+      "optim/total_grad_norm": 2081,
+      "optim/learning_rate_group0": 20810,
+      "optim/clipping_rate": 2081
+    },
+    "per_column": {
+      "train/CrossEntropyLoss": {
+        "route1_nonnull": 20810,
+        "route1b_nonnull": 20810,
+        "shared": 20810,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      },
+      "optim/total_grad_norm": {
+        "route1_nonnull": 2081,
+        "route1b_nonnull": 2081,
+        "shared": 2081,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      },
+      "optim/learning_rate_group0": {
+        "route1_nonnull": 20810,
+        "route1b_nonnull": 20810,
+        "shared": 20810,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      },
+      "optim/clipping_rate": {
+        "route1_nonnull": 2081,
+        "route1b_nonnull": 2081,
+        "shared": 2081,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      }
+    },
+    "stitched_md5_sha256": [
+      "192f090bf0e0219ed9780be912dad16f",
+      "53d4d2c617153b58bfa66d9379b3ea6c42975aef995390e1528cf725a3e7465c"
+    ],
+    "stitch_pass": true
+  },
+  "SEGMENT_PASS": true
+}

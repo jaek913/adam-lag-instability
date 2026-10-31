@@ -1,0 +1,230 @@
+{
+  "label": "A1-run-017",
+  "checked_utc": "2026-10-31T04:50:49+00:00",
+  "columns": [
+    "train/CrossEntropyLoss",
+    "optim/total_grad_norm",
+    "optim/learning_rate_group0",
+    "optim/clipping_rate"
+  ],
+  "windows": [
+    {
+      "file": "A1_run-017_d4g44zcc_route1b_w01_337000-344999.json",
+      "n": 1,
+      "minStep": 337000,
+      "maxStep": 344999,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 7999,
+        "optim/total_grad_norm": 799,
+        "optim/learning_rate_group0": 7999,
+        "optim/clipping_rate": 799
+      },
+      "md5": "fd2c893a7903d86f76862571b7201c72",
+      "sha256": "1e4a9a3d95a33131118c1368add49051fa8bc4febe7e101cbd21d70cb322eb49"
+    },
+    {
+      "file": "A1_run-017_d4g44zcc_route1b_w02_345000-352999.json",
+      "n": 2,
+      "minStep": 345000,
+      "maxStep": 352999,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 8000,
+        "optim/total_grad_norm": 800,
+        "optim/learning_rate_group0": 8000,
+        "optim/clipping_rate": 800
+      },
+      "md5": "ecd46a70f7a2e9d70ce2d5efea9fe05a",
+      "sha256": "9b3d6e923dfbbb9b21b125d11740f8366d1ce37614e65de000e1f49483968e43"
+    },
+    {
+      "file": "A1_run-017_d4g44zcc_route1b_w03_353000-360999.json",
+      "n": 3,
+      "minStep": 353000,
+      "maxStep": 360999,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 8000,
+        "optim/total_grad_norm": 800,
+        "optim/learning_rate_group0": 8000,
+        "optim/clipping_rate": 800
+      },
+      "md5": "95dcfd218045baada8a839d3faaa1d87",
+      "sha256": "ab5905fa9f7a6988ba7b26e3924c3a162ac803572134130b75d7f76f6659c96c"
+    },
+    {
+      "file": "A1_run-017_d4g44zcc_route1b_w04_361000-368999.json",
+      "n": 4,
+      "minStep": 361000,
+      "maxStep": 368999,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 8000,
+        "optim/total_grad_norm": 800,
+        "optim/learning_rate_group0": 8000,
+        "optim/clipping_rate": 800
+      },
+      "md5": "9d7119e30dc5c7e70f0b503428771e38",
+      "sha256": "6cc95f37de97e7b0838774fc6e04e219f33c27c02b32bc82ddc8dd4369721dfd"
+    },
+    {
+      "file": "A1_run-017_d4g44zcc_route1b_w05_369000-376999.json",
+      "n": 5,
+      "minStep": 369000,
+      "maxStep": 376999,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 8000,
+        "optim/total_grad_norm": 800,
+        "optim/learning_rate_group0": 8000,
+        "optim/clipping_rate": 800
+      },
+      "md5": "9c18942039f98d6b81058b4d78a13c0c",
+      "sha256": "8ea6bdc61f2278ff40aa4ddfee938458228b0bbbd5cfddae7a796b6e45ef07a0"
+    },
+    {
+      "file": "A1_run-017_d4g44zcc_route1b_w06_377000-384999.json",
+      "n": 6,
+      "minStep": 377000,
+      "maxStep": 384999,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 8000,
+        "optim/total_grad_norm": 800,
+        "optim/learning_rate_group0": 8000,
+        "optim/clipping_rate": 800
+      },
+      "md5": "ac30c4a1ff730c9319a24600063f15d6",
+      "sha256": "ad31d7f513fb4aa5ecb750a636bd7cbbf14d1ba951742a997ce245adbf04b573"
+    },
+    {
+      "file": "A1_run-017_d4g44zcc_route1b_w07_385000-392999.json",
+      "n": 7,
+      "minStep": 385000,
+      "maxStep": 392999,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 8000,
+        "optim/total_grad_norm": 800,
+        "optim/learning_rate_group0": 8000,
+        "optim/clipping_rate": 800
+      },
+      "md5": "6aff76c2fc0abc26cc1480b675943a17",
+      "sha256": "50e02e13370f760e6750bcb1d5467f48a9e8d573f7efba7c8dc14333091f02f8"
+    },
+    {
+      "file": "A1_run-017_d4g44zcc_route1b_w08_393000-400999.json",
+      "n": 8,
+      "minStep": 393000,
+      "maxStep": 400999,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 8000,
+        "optim/total_grad_norm": 800,
+        "optim/learning_rate_group0": 8000,
+        "optim/clipping_rate": 800
+      },
+      "md5": "ae2fd8cb163c226462ec8767e9dc2643",
+      "sha256": "d1239090fcb5bb5f41100c178a614a5e345549038e3c2b52889e116c98d765a0"
+    },
+    {
+      "file": "A1_run-017_d4g44zcc_route1b_w09_401000-408999.json",
+      "n": 9,
+      "minStep": 401000,
+      "maxStep": 408999,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 7924,
+        "optim/total_grad_norm": 793,
+        "optim/learning_rate_group0": 7924,
+        "optim/clipping_rate": 793
+      },
+      "md5": "17cab3fa6130fbcc6242412ccb35e016",
+      "sha256": "1ec6a2351f625e992e212262a40a57a81e6e6b0317ff34d93e2308d6951e9a99"
+    },
+    {
+      "file": "A1_run-017_d4g44zcc_route1b_w10_409000-409023.json",
+      "n": 10,
+      "minStep": 409000,
+      "maxStep": 409023,
+      "rows_per_column": {
+        "train/CrossEntropyLoss": 0,
+        "optim/total_grad_norm": 0,
+        "optim/learning_rate_group0": 0,
+        "optim/clipping_rate": 0
+      },
+      "md5": "064442f28494ad9a97bc529815ceaeaf",
+      "sha256": "f3632b2504e4b04b4b48fbd8c6fcad99a2bbd55fd7b9f23c178a50043be1e10c"
+    }
+  ],
+  "asserts": {
+    "i_all_windows_below_cap": true,
+    "ii_rows_inside_bounds": true,
+    "ii_windows_do_not_overlap": true,
+    "iii_no_duplicate_steps": true,
+    "iv_loss_contiguous": true,
+    "v_cells_identical_to_route1": true
+  },
+  "counts": {
+    "n_windows": 10,
+    "rows_per_column": {
+      "train/CrossEntropyLoss": 71923,
+      "optim/total_grad_norm": 7192,
+      "optim/learning_rate_group0": 71923,
+      "optim/clipping_rate": 7192
+    },
+    "loss_first": 337001,
+    "loss_last": 408923,
+    "loss_n_blocks": 1,
+    "gn_off_grid": 0,
+    "duplicates_per_column": {
+      "train/CrossEntropyLoss": 0,
+      "optim/total_grad_norm": 0,
+      "optim/learning_rate_group0": 0,
+      "optim/clipping_rate": 0
+    }
+  },
+  "route1_compare": {
+    "route1_file": "C:\\Users\\jaek9\\Documents\\LaggingTruth\\data-stores\\adam-lag-instability\\A1\\run-017_d4g44zcc_history-v1_0000.parquet",
+    "md5_sha256": [
+      "f22cbd63928fd2d6ecc2a9b7d2557ba1",
+      "2020a4a705dc71f7ee844e10fd01c4624e6330c42ad763abce2ec3bebcca89c2"
+    ],
+    "per_column": {
+      "train/CrossEntropyLoss": {
+        "route1_nonnull": 71923,
+        "route1b_nonnull": 71923,
+        "shared": 71923,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      },
+      "optim/total_grad_norm": {
+        "route1_nonnull": 7192,
+        "route1b_nonnull": 7192,
+        "shared": 7192,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      },
+      "optim/learning_rate_group0": {
+        "route1_nonnull": 71923,
+        "route1b_nonnull": 71923,
+        "shared": 71923,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      },
+      "optim/clipping_rate": {
+        "route1_nonnull": 7192,
+        "route1b_nonnull": 7192,
+        "shared": 7192,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      }
+    }
+  },
+  "stitch_pass": true,
+  "stitched_parquet": {
+    "file": "C:\\Users\\jaek9\\Documents\\LaggingTruth\\data-stores\\adam-lag-instability\\A1\\route1b\\run-017\\run-017_d4g44zcc_route1b_stitched.parquet",
+    "rows": 71923,
+    "md5_sha256": [
+      "dc5add7e679b5df7e5d06d7225ae7be6",
+      "a2f9f9fa2e3791f607b2e2115540578a7011873542daebfa08defd9546d7d275"
+    ]
+  },
+  "note": "counts, flags and hashes only; no metric value printed or saved"
+}

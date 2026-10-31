@@ -1,0 +1,190 @@
+{
+  "seg": "run-018",
+  "id": "50br7dzw",
+  "manifest": "a1_run-018.json",
+  "route1": {
+    "store": "C:\\Users\\jaek9\\Documents\\LaggingTruth\\data-stores\\adam-lag-instability\\A1\\run-018_50br7dzw_history-v1_0000.parquet",
+    "bytes": 147571822,
+    "md5": "fac3463a023deba976b20c91b1b96006",
+    "sha256": "d53b9bf1c39fccecef7a768f09e2f574aaaf8d3391b36ef0270d9f5666eb0cab",
+    "md5_matches_manifest": true,
+    "landed_utc": "2026-10-31T04:51:58Z"
+  },
+  "D1": {
+    "md5_matches_manifest": true,
+    "rows": 95587,
+    "server_historyLineCount": 95587,
+    "rows_minus_server_lines": 0,
+    "first_step": 408924,
+    "last_step": 504510,
+    "n_contiguous_blocks": 1,
+    "duplicate_steps": 0,
+    "non_integral_steps": 0,
+    "loss_rows": 95587,
+    "loss_first": 408924,
+    "loss_last": 504510,
+    "loss_n_contiguous_blocks": 1,
+    "bookkeeping_only_rows": 0,
+    "rows_without_loss_not_bookkeeping": 0,
+    "gn_rows": 9559,
+    "gn_off_grid_count": 0,
+    "grid_steps_in_loss_span": 9559,
+    "grid_steps_missing_gn_count": 0,
+    "D1_pass_strict": true,
+    "D1_pass": true
+  },
+  "route1b_windows": [
+    {
+      "name": "A1_run-018_50br7dzw_route1b_w01_408923-416922.json",
+      "bytes": 1114752,
+      "md5": "ab3f735a139d83c68466aad98bf0614d",
+      "sha256": "6f00accfd7c512e20fc259e13bf44ea859883f8a6574fa81fd3414fa6f0edbd7",
+      "fetched_utc": "2026-10-31T04:51:15Z",
+      "landed_utc": "2026-10-31T04:52:00Z"
+    },
+    {
+      "name": "A1_run-018_50br7dzw_route1b_w02_416923-424922.json",
+      "bytes": 1114776,
+      "md5": "9bb2468671df8a404c0471c688d8bfa7",
+      "sha256": "a48e1060d01f645fffb522fb3b220a2bda8552b7470ec296bde8337f1e71766e",
+      "fetched_utc": "2026-10-31T04:51:17Z",
+      "landed_utc": "2026-10-31T04:51:57Z"
+    },
+    {
+      "name": "A1_run-018_50br7dzw_route1b_w03_424923-432922.json",
+      "bytes": 1114876,
+      "md5": "31131e513f74afbc7a999fa9e58ef9fb",
+      "sha256": "980c001211d74b7003db7e12fef3fdc8011476efcd2b061a67f3c19e0e5b9440",
+      "fetched_utc": "2026-10-31T04:51:19Z",
+      "landed_utc": "2026-10-31T04:51:56Z"
+    },
+    {
+      "name": "A1_run-018_50br7dzw_route1b_w04_432923-440922.json",
+      "bytes": 1115918,
+      "md5": "822a60c1fe94432bbe5964f7d81ccb3c",
+      "sha256": "85f2d704ae807ac0d95f476a99e573d5e733745e8059f71e796753b8e139fa00",
+      "fetched_utc": "2026-10-31T04:51:21Z",
+      "landed_utc": "2026-10-31T04:51:55Z"
+    },
+    {
+      "name": "A1_run-018_50br7dzw_route1b_w05_440923-448922.json",
+      "bytes": 1116017,
+      "md5": "72a63a4e03fb09fe5ac72934c9f98f82",
+      "sha256": "4082615e01caadc3c2bd76ad059a8264527fb30a170cbecb53f1524fd503380a",
+      "fetched_utc": "2026-10-31T04:51:23Z",
+      "landed_utc": "2026-10-31T04:51:53Z"
+    },
+    {
+      "name": "A1_run-018_50br7dzw_route1b_w06_448923-456922.json",
+      "bytes": 1115956,
+      "md5": "4cd22ce2833271d8344cf003c1779a34",
+      "sha256": "99a5f3c9939849b44c29d19b76566f6eb2d6a3cdad84563255125c38420acf2f",
+      "fetched_utc": "2026-10-31T04:51:26Z",
+      "landed_utc": "2026-10-31T04:51:52Z"
+    },
+    {
+      "name": "A1_run-018_50br7dzw_route1b_w07_456923-464922.json",
+      "bytes": 1115959,
+      "md5": "7e93e3e9cbfd05324cabc372b441e818",
+      "sha256": "fe1d34b483d5a7f3275c384e817324fd2e008d432288f887e202d76ec96862e9",
+      "fetched_utc": "2026-10-31T04:51:28Z",
+      "landed_utc": "2026-10-31T04:51:50Z"
+    },
+    {
+      "name": "A1_run-018_50br7dzw_route1b_w08_464923-472922.json",
+      "bytes": 1115808,
+      "md5": "a5c0257c25106d82d5e87cfc26c5d5cd",
+      "sha256": "162cf869c6fed84b00623669fbc538abe23c930e2ba5276565cdbfc42e013ac8",
+      "fetched_utc": "2026-10-31T04:51:30Z",
+      "landed_utc": "2026-10-31T04:51:49Z"
+    },
+    {
+      "name": "A1_run-018_50br7dzw_route1b_w09_472923-480922.json",
+      "bytes": 1107947,
+      "md5": "ccd31a1b36b83a98b2ff48860e9be9a0",
+      "sha256": "9b50ef2227d260e4d67725317cb91dc9b815450bcc71d116edd2c96359543fcd",
+      "fetched_utc": "2026-10-31T04:51:32Z",
+      "landed_utc": "2026-10-31T04:51:47Z"
+    },
+    {
+      "name": "A1_run-018_50br7dzw_route1b_w10_480923-488922.json",
+      "bytes": 1108067,
+      "md5": "610e165ef222aab22ac806e3d729c8e8",
+      "sha256": "63babe3e57779cd380216ddee47694a680328bdfca7ed6e383a19ed09ea07767",
+      "fetched_utc": "2026-10-31T04:51:34Z",
+      "landed_utc": "2026-10-31T04:51:46Z"
+    },
+    {
+      "name": "A1_run-018_50br7dzw_route1b_w11_488923-496922.json",
+      "bytes": 1107976,
+      "md5": "eb394c3d1b9fc60272277b791d2d694c",
+      "sha256": "7a6166ef9bfb877106d8d0f2601edc9d45f87eb5c61eb8f21654ea3c8bbd24bd",
+      "fetched_utc": "2026-10-31T04:51:36Z",
+      "landed_utc": "2026-10-31T04:51:44Z"
+    },
+    {
+      "name": "A1_run-018_50br7dzw_route1b_w12_496923-504610.json",
+      "bytes": 1051000,
+      "md5": "249cdb1fcaeaa0bc55907645672ea681",
+      "sha256": "079d16b7b1039c9a9e25f8d93796a8f018c954d234684ee7050421630d5003fb",
+      "fetched_utc": "2026-10-31T04:51:38Z",
+      "landed_utc": "2026-10-31T04:51:43Z"
+    }
+  ],
+  "stitch": {
+    "asserts": {
+      "i_all_windows_below_cap": true,
+      "ii_rows_inside_bounds": true,
+      "ii_windows_do_not_overlap": true,
+      "iii_no_duplicate_steps": true,
+      "iv_loss_contiguous": true,
+      "v_cells_identical_to_route1": true
+    },
+    "rows_per_column": {
+      "train/CrossEntropyLoss": 95587,
+      "optim/total_grad_norm": 9559,
+      "optim/learning_rate_group0": 95587,
+      "optim/clipping_rate": 9559
+    },
+    "per_column": {
+      "train/CrossEntropyLoss": {
+        "route1_nonnull": 95587,
+        "route1b_nonnull": 95587,
+        "shared": 95587,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      },
+      "optim/total_grad_norm": {
+        "route1_nonnull": 9559,
+        "route1b_nonnull": 9559,
+        "shared": 9559,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      },
+      "optim/learning_rate_group0": {
+        "route1_nonnull": 95587,
+        "route1b_nonnull": 95587,
+        "shared": 95587,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      },
+      "optim/clipping_rate": {
+        "route1_nonnull": 9559,
+        "route1b_nonnull": 9559,
+        "shared": 9559,
+        "only_route1": 0,
+        "only_route1b": 0,
+        "mismatched_cells": 0
+      }
+    },
+    "stitched_md5_sha256": [
+      "79e5d11437e1071dd551b0c47cf039ff",
+      "a81872ba9a1800981ad497a7e8ce57fcb29e8d3f1e49816ea81e81d84bf01cf0"
+    ],
+    "stitch_pass": true
+  },
+  "SEGMENT_PASS": true
+}
