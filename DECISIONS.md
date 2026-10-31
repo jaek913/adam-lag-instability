@@ -98,3 +98,29 @@ Per entry 3 item 5 there is no third round. N4 is amended without further review
 3. The chosen form adds a check that fails loudly if it is wrong.
 
 The amendment: the oracle series is the planted series with the noise amplitude scaled by 10⁻³ (not zero), and D.5 asserts that every detector's score is finite at every scored step of every oracle series. The reviewer's two N1 notes — (i) residual onset clustering and (ii) the meaning of P-CENS under P-HOLD — are added to DESIGN §D.2 as Methods statements, with no rule change. The design-stage review is closed.
+
+---
+
+## Entry 4 (2026-10-30) — Pre-registration freeze record; Phase 2 opened
+
+1. **Freeze.**
+   - `prereg-v1` commit `5bd193a56c18893fd3f21ab76ce88ed57ef3de80`, 2026-10-30 18:53:45 −0500. It holds THESIS.md (d31525ec8e6b8de043954a65a77f88ec), DESIGN.md (a9d051ac65fde38d5001a433b5d11506) and OUTLINE.md (2f15cbae97168515fac477e1f61f773f).
+   - Annotated tag `prereg-v1`, tag object `09d5b8048d24c833639a99ca357a9c3bed9dae24`, pushed with --follow-tags.
+   - §K grading day: **2026-11-20**, written in THESIS's Date station and DESIGN §K in that commit.
+2. **Public.** The repo was flipped public in the GitHub web UI. The anonymous GitHub API returned `visibility: public` at 2026-10-30 19:00:03 −05:00. This entry 4 is the inversion of origin-stays-private that entry 1 elected.
+3. **Zenodo.**
+   - Version DOI 10.5281/zenodo.23825294 (record https://zenodo.org/records/23825294); concept DOI 10.5281/zenodo.23825293.
+   - Archive `adam-lag-instability-prereg-v1.zip`, md5 4705043696ec3a562955bb6e97a1b1dd.
+   - Zenodo shows the record as published 2026-10-31. That is the UTC date: it archived after 00:00 UTC.
+   - The first GitHub release of `prereg-v1` was published before the Zenodo integration was switched on, so Zenodo did not archive it. JAE deleted that release page; the tag and commit were untouched. It was re-published from the same tag, and Zenodo archived the re-publication.
+4. **DOI recorded.** Commit `a624c86c1357b9b2189944d1fe192837f2cd2cde` (2026-10-30 19:10:49 −0500) changes one line of THESIS.md, the Registration line. That is the DOI-only follow-up the Pre-registration box allows.
+5. **Gates.** Phase 1 gate signed 2026-10-30 19:14 CT; Phase 0 box 7 closed at the same time. Phase 2 opened 2026-10-30 19:22 CT on JAE's instruction.
+6. **Task text versus the frozen design.** The Phase 1 and Phase 2 ClickUp task texts still carry pre-review wording:
+   - headline FA "1 per 10k steps";
+   - §K "median lead … B1" with PASS/KILL only;
+   - ramps 25/50/100/200;
+   - "Measurement Trap §3.5";
+   - E6 and b_g as verdict items.
+   
+   Each box is judged against the frozen DESIGN.md. Where the two differ, DESIGN governs.
+7. **No data has been pulled.** Per Phase 2 override (3), the first data contact is a column-name-only existence check on A1, recorded in the next entry.
