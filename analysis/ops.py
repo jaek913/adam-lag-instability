@@ -147,16 +147,13 @@ def alarm_from_scores(s, theta, hold=HOLD):
     return np.array(onsets, dtype=np.int64), alarm
 
 
-def b4_path(y, theta=None, hold=HOLD, k=B4_K, window=B4_WINDOW, minobs=B4_MINOBS, floor=B4_FLOOR):
-    """trainscope ChangePointDetector @0651b25 (upward accumulator), with P-B4 resets.
-    Returns (scores, onsets, alarm). theta=None -> no alarms, no resets (the reset-free path)."""
+def b4_z(y, window=B4_WINDOW, minobs=B4_MINOBS, floor=B4_FLOOR):
+    """trainscope ChangePointDetector @0651b25 robust z (theta-independent: a P-B4 reset clears
+    S+ only, never the median/MAD history). z[j] = nan during the warm-up (j < minobs)."""
     y = np.asarray(y, dtype=float)
     n = len(y)
-    s = np.full(n, np.nan)
+    z = np.full(n, np.nan)
     hist = deque()
-    sp = 0.0
-    onsets, alarm = [], np.zeros(n, bool)
-    busy_until, prev = -1, np.nan
     for j in range(n):
         x = y[j]
         if len(hist) < minobs:
@@ -168,22 +165,40 @@ def b4_path(y, theta=None, hold=HOLD, k=B4_K, window=B4_WINDOW, minobs=B4_MINOBS
         sd = mad * 1.4826
         if sd < floor:
             sd = floor
-        z = (x - med) / sd
-        sp = max(0.0, sp + (z - k))
+        z[j] = (x - med) / sd
         hist.append(x)
         if len(hist) > window:
             hist.popleft()
+    return z
+
+
+def b4_alarm(z, theta=None, hold=HOLD, k=B4_K):
+    """S+ recursion with P-B4 resets on a precomputed z. Returns (scores, onsets, alarm)."""
+    n = len(z)
+    s = np.full(n, np.nan)
+    sp = 0.0
+    onsets, alarm = [], np.zeros(n, bool)
+    busy_until, prev = -1, np.nan
+    for j in range(n):
+        if np.isnan(z[j]):
+            continue
+        sp = max(0.0, sp + (z[j] - k))
         if j < MIN_HIST:
             continue                                   # score gated (Amendment 5.2)
         s[j] = sp
-        if theta is not None:
-            if j > busy_until and sp >= theta and not (prev >= theta):
-                onsets.append(j)
-                busy_until = j + hold - 1
-                alarm[j:min(n, j + hold)] = True
-                sp = 0.0                               # P-B4: reset at each alarm onset
+        if theta is not None and j > busy_until and sp >= theta and not (prev >= theta):
+            onsets.append(j)
+            busy_until = j + hold - 1
+            alarm[j:min(n, j + hold)] = True
+            sp = 0.0                                   # P-B4: reset at each alarm onset
         prev = s[j]
     return s, np.array(onsets, dtype=np.int64), alarm
+
+
+def b4_path(y, theta=None, hold=HOLD, k=B4_K, window=B4_WINDOW, minobs=B4_MINOBS, floor=B4_FLOOR):
+    """trainscope ChangePointDetector @0651b25 (upward accumulator), with P-B4 resets.
+    Returns (scores, onsets, alarm). theta=None -> no alarms, no resets (the reset-free path)."""
+    return b4_alarm(b4_z(y, window, minobs, floor), theta, hold, k)
 
 
 # ------------------------------------------------------------------ P-FA top scan (Amendment 6)
