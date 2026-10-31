@@ -626,3 +626,23 @@ Sources: the project files `thedivergencetheorem.pdf`, `theadaptationratetheorem
   - **Decision (JAE):** the primary φ̂ moves to the raw level of g², and the detrended φ̂ becomes the sensitivity (DESIGN Amendment 4.2).
 - **Experiments with no theorem-derived operator:** E2's baselines B1–B4 (deployed tools), E5 (alignment null) and E8 (characterization) have nothing to check against a theorem. They inherit T1 for D_div.
 - **Box 1 evidence:** this entry plus DESIGN Amendment 4, pushed before each experiment's first run. E1 and E2 have not run; Leg B has not opened.
+
+## Entry 16 (2026-10-31, JAE) — Detector construction details fixed before the suite (DESIGN Amendment 5)
+
+1. **Trigger.** Building the D.5 suite showed detector details that change scores and alarm onsets:
+   - D_div's SMA convention, percentile ties and minimum-history count;
+   - B1's window convention;
+   - the exact ZClip (B3) and trainscope (B4) behaviour.
+2. **Sources read (2026-10-31).**
+   - **ZClip 1.0.0:** PyPI sdist, SHA-256 8fd6098e…622f, `zclip/zclip.py`.
+   - **trainscope:** commit 0651b25ea4817b7b04149f2532fb0f346f510cbe, `trainscope/core/detectors/changepoint.py`.
+   - **Findings:**
+     - **B3 (ZClip):** z uses (√v + 1e-6), and the variance update uses the post-update mean. Both are absent from DESIGN D.2's formula, which is corrected to the code (B3 is defined as ZClip's documented behaviour). The warm-up variance is the population variance.
+     - **B4 (trainscope):** the median/MAD baseline excludes the current reading and spans at most 200 prior readings; the warm-up is 30; the scale floor is 1e-12. It is two-sided by default; our upward-only pin is unchanged. Optional PELT only rescales after a fire, and is not used.
+3. **Decision (JAE, 2026-10-31).** Adopted as proposed:
+   - **(a)** B1 excludes the current reading, with ddof = 1.
+   - **(b)** D_div's percentile counts ties as ≤.
+   - **(c)** A score is defined only at j ≥ 1,000. **JAE's clarification:** j counts every grid observation from the first non-dropped reading after a gap, including later dropped (carried-forward) observations, consistent with F15.
+   - **Consistency-forced:** D_div's SMAs include the current reading (Amendment 4.1). B3 and B4 follow their code.
+   - **Probe added (JAE):** a hand-computed probe with a dropped reading inside the first 1,000 observations.
+4. **Scope.** Every run and the D.5 suite. Recorded as DESIGN Amendment 5. Pushed before the suite is built and before any gradient-norm value is read for scoring.

@@ -460,3 +460,52 @@ Result: 16 findings (G1–G16), all adopted, five with a stated adaptation, plus
 - **Unchanged.** The index b_g*(exp)(φ̂, α_Adam) = (1−φ̂)/α_Adam + φ̂ remains a descriptive ordering only, with the D.4.1 caveats. Its stated direction, P-DIV and the planted-reorder suite case (F9) are unchanged.
 
 **D.5 suite addition.** A probe on an AR(1) series with known ρ(τ) = φ^τ. The half-open R̄ must reproduce the exact discrete covariance sign. A constructed ACF on which the inclusive and half-open forms disagree must be reported as such.
+
+## Amendment 5 (2026-10-31) — Detector construction details (every run)
+
+**Status.** Appended below Amendment 4 under the append-only rule. Rationale: DECISIONS.md entry 16 (JAE decision 2026-10-31). Made and pushed before the D.5 suite is built or run, and before any gradient-norm value is read for scoring. No detector score exists for any run.
+
+**Trigger.** D.2 specifies the detectors at the level of their defining formulas. Building the suite showed construction details that change scores, alarm onsets and therefore leads. B3 and B4 are defined as the documented behaviour of named tools, so their details come from the tools' source code at the pinned versions. The remaining details are choices, fixed here.
+
+**5.1 Sources read (2026-10-31).**
+- **ZClip:** PyPI `zclip` 1.0.0 (sdist SHA-256 8fd6098e4b7ba81884c2493b187cc87d527e2be5478e2c8d4d77ab85318e622f, the only release), file `zclip/zclip.py`.
+- **trainscope:** `kaelvalen/trainscope` at commit 0651b25ea4817b7b04149f2532fb0f346f510cbe, file `trainscope/core/detectors/changepoint.py`.
+
+**5.2 Definitions (replace the corresponding D.2 text; units are observations, which are grid observations on A1, Amendment 1).**
+
+- **Observation index j.** j counts every observation of a series from the first non-dropped reading after the series start or last gap, starting at j = 0. **Dropped (carried-forward) observations count** (D.2 F15: observations equal steps, and a dropped reading is not a gap).
+- **Minimum history.** A detector score is defined at observation j only if j ≥ 1,000. Before that, no detector has a score (no alarm can occur), whatever its own warm-up. This matches the A1.4 eligibility rule used in entries 11 and 13.
+- **D_div.**
+  - D(j) = SMA_{w_f}(y)(j) − SMA_{w_s}(y)(j). SMA_w(y)(j) is the mean of y over observations j−w+1 … j, **including** the current one. This is the trailing estimator of Theorem 8b's exact discrete identity (Amendment 4.1). D(j) is defined for j ≥ w_s − 1.
+  - P_D(j) = #{s : w_s−1 ≤ s ≤ j, D(s) ≤ D(j)} / #{s : w_s−1 ≤ s ≤ j}. Ties count as ≤.
+  - Score s_div(j) = P_D(j).
+- **B1 (rolling z).**
+  - s_1(j) = (y(j) − m)/sd, where m and sd are the mean and sample SD (ddof = 1) of y over the trailing 50 observations j−50 … j−1, **excluding** j.
+  - If sd = 0, s_1(j) is undefined at that observation and is treated as no alarm. The count of such observations is reported.
+  - The P-B1 sweep {25, 50, 100} uses the same convention.
+- **B2 (raw reading).** s_2(j) = y(j).
+- **B3 (ZClip, monitor mode; on g, not y).** ZClip 1.0.0 `zscore` mode, as coded:
+  - **Warm-up.** The first 25 observations of a series (or after a gap) fill a buffer, with no score. At the 25th: μ = buffer mean, v = buffer population variance (ddof = 0).
+  - **Score.** From the 26th observation on, s_3(j) = (g(j) − μ)/(√v + 1e-6), using μ and v **before** the update.
+  - **Update.** μ ← 0.97·μ + 0.03·g(j), then v ← 0.97·v + 0.03·(g(j) − μ)², where the variance update uses the **updated** μ (as coded).
+  - **P-B3 (unchanged).** Updates use the raw g(j) (monitor mode), not ZClip's clipped value. The sweep uses the clipped value, with the threshold at ZClip's `adaptive_scaling` default and clip_factor 1.0.
+  - The documented decision threshold z = 2.5 is reported as an unmatched operating point.
+  - **Replaces** the D.2 formula, which omitted the 1e-6 term and the update order.
+- **B4 (trainscope CUSUM, upward; on y).** trainscope `ChangePointDetector` at 0651b25, as coded:
+  - **Warm-up.** The first 30 observations of a series (or after a gap, or after a reset) are appended to the history, with no score.
+  - **Robust z.** From then on, at each observation: median m and MAD over the history **before** the current observation is added (at most the 200 most recent; the current one excluded); σ = 1.4826·MAD, floored at 1e-12; z = (y(j) − m)/σ.
+  - **Accumulator.** S⁺ ← max(0, S⁺ + z − k), with k = 1.0, and s_4(j) = S⁺.
+  - **History.** The current observation is then appended and the history trimmed to 200. The history keeps every value, spikes included.
+  - **P-B4 (unchanged).** Upward side only. Applied to y. S⁺ is reset to 0 at each alarm onset (P-HOLD) and at each gap. A reset does not clear the median/MAD history; a gap does.
+  - trainscope's optional `ruptures` PELT step only rescales the score after a fire, never decides an alarm, and is not used.
+  - The documented threshold h = 6.0 is reported as an unmatched operating point.
+- **Alarm rule (unchanged).** s(j) ≥ θ, with onset and hold per P-HOLD. Undefined scores are never alarms.
+
+**5.3 D.5 suite additions (hand-computed probes, committed as permanent suite probes; PRV pass 3).**
+- (i) D_div on a short hand series: SMAs, D and P_D, including a tie.
+- (ii) B1 with the current observation excluded, including the sd = 0 case.
+- (iii) B3 against ZClip 1.0.0's own class, run in the suite on the same sequence; it must match to 1e-12.
+- (iv) B4 against trainscope 0651b25's `ChangePointDetector` (upward accumulator, PELT absent); S⁺ must match to 1e-12 up to its first fire.
+- (v) **A dropped reading inside the first 1,000 observations** (JAE). It must count toward j, carry y forward, and leave the first defined score at j = 1,000.
+
+**Unchanged.** Windows (32, 128), ratio, H, the FA rule and grid, P-FA matching, leads, censoring, the spike rule and every outcome partition.
