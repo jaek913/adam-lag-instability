@@ -238,3 +238,84 @@ Entry 2 and Addendum A are unchanged. This addendum governs A1 only; for A2–A6
    No frozen number changes.
 6. **Metric-value embargo.** No A1 metric value has been read. The embargo lifts when this entry, Amendment 1 and A4 are pushed to the public repository. The route 1b gate on run-025 (Addendum B item 3) is then the first step that touches A1 metric cells, compared by script with no value displayed. After it comes the A1.12 structural report, before any loss event or detector score.
 7. **Discrepancy Register:** D-01's design consequence is adjudicated by this amendment. The dossier stays open for its second focused review (Register header). D-02 is unchanged: OPEN, awaiting route 1b or route 3.
+
+## Entry 2 — Addendum B, item 8 (2026-10-30, ~20:30 CT) — Route 1b gate on run-025: FAILS condition (b) at the source; seven other segments are complete server-side
+
+Run after Amendment 1 was public at f66e67d. All checks were done in JAE's logged-in browser via W&B GraphQL (forge.coreweave.com). Only step indices and non-null counts were computed; no metric value was displayed, saved or downloaded.
+
+1. **Run-025 (u3obk6mj): the server holds 383 rows, not 22,361.** All four interfaces return the same 383 rows; the server's `historyLineCount` of 22,361 is not backed by retrievable rows.
+   - `parquetHistory` returns a single URL: the route-1 artifact object `0848b70fa58cad98edf64b7744871394`.
+   - The legacy `history` returns 383 rows (steps 0–543,360).
+   - `sampledHistory` returns 382 loss rows and 58 gradient-norm rows.
+   - The route 1b gate therefore fails condition (b) for run-025 at the source. Route 3 is the only route for run-025's missing steps.
+2. **Origin.** The run config gives the original run as `mitchish7`:
+   - `remote_save_folder` = s3://ai2-llm/checkpoints/OLMo-medium/mitchish7;
+   - run-025 resumed from `.../step521000`.
+   
+   The projects `ai2-llm/olmo-medium`, `OLMo-medium`, `OLMo-7B-mitchish` and `olmo` are not visible to an outside account.
+3. **All 25 segments: server history versus served rows.** A `sampledHistory` call returns at most 10,000 rows. Segments at that cap were re-counted by paging in 8,000-step windows; no window exceeded 8,001 rows, so those counts are exact.
+   - **Complete and contiguous (served loss steps = last − first + 1):**
+
+     | Segment | Steps | Server lines | Loss rows |
+     |---|---|---|---|
+     | run-001 | 1–14,210 | 14,211 | 14,210 |
+     | run-008 | 52,301–73,110 | 20,811 | 20,810 |
+     | run-010 | 73,101–160,851 | 87,752 | 87,751 |
+     | run-013 | 160,601–212,965 | 52,366 | 52,365 |
+     | run-016 | 212,001–337,339 | 125,340 | 125,339 |
+     | run-017 | 337,001–408,923 | 71,924 | 71,923 |
+     | run-018 | 408,924–504,510 | 95,587 | 95,587 |
+
+     The loss rows are complete. The one-line difference against the server lines is unexplained until the pull reads `_step` directly.
+   - **Gradient norm on these seven:** present on every grid step in each span, none off-grid (1,421; 2,081; 8,775; 5,236; 12,533; 7,192; 9,559 rows = grid steps in span). This matches D-01 and Amendment 1 A1.1, with no dropped observations.
+   - **Sparse (served rows ≪ server lines):** runs 002–007, 009, 011, 012 and 019–025. Typical pattern: every 1,000 steps, then a short every-step block.
+   - **Empty:** runs 014 and 015 (1 server line, no served loss row).
+4. **Consequence under the frozen rules.** By D.1, a segment failing the completeness check is not used, and gaps between used segments are recorded, with windows restarting after them. From route 1b alone, A1 would be assembled (P-SEG) from runs 001, 008, 010, 013, 016, 017 and 018:
+   - steps 1–14,210;
+   - a gap 14,211–52,300;
+   - 52,301–504,510 contiguous;
+   - nothing after 504,510.
+   
+   Route 3 could fill both missing ranges.
+5. **The gate as written (item 3) names run-025 and cannot pass.** Re-specifying it, for example to apply per segment, is a decision for JAE. No data pull has been made.
+
+## Entry 2 — Addendum C (2026-10-30, JAE) — Per-segment route 1b gate; route-3 cutoff; coverage record and selection threat
+
+Supersedes Addendum B item 3 (the run-025 gate), which cannot pass (item 8). Addendum B items 1, 2 and 4–7 stand. This addendum is committed and pushed publicly before the gate runs. No A1 metric value enters any analysis until Amendment 1 (public at f66e67d) and this addendum are both pushed.
+
+1. **Per-segment gate.** Route 1b is accepted for an A1 segment only if both conditions hold:
+   - **(a)** its pulled rows reproduce that segment's route-1 artifact rows (`run-<id>-history:vN`, file `0000.parquet`) exactly: same `_step` values, same columns, identical cells on those rows, compared by script, with no value displayed;
+   - **(b)** it passes the D.1 completeness check: served steps contiguous, count = last − first + 1, no duplicate steps.
+   
+   **Order:** run-001 first. Only if run-001 passes are the other six complete segments (008, 010, 013, 016, 017, 018) pulled and gated. **A failing segment is not used** (D.1 as frozen). Each pull and each route-1 artifact needed for (a) is a download stated to JAE first (file name and size) and approved before it is made.
+2. **Route-3 cutoff: 2026-11-13.**
+   - **Route 3 arrives by 2026-11-13, passes D.1 and matches the gated segments:** E2 uses route 3. Matching means cells identical on every step the gated W&B segments hold, compared by script.
+   - **Route 3 arrives by then but does not match:** a Discrepancy Register dossier is opened, and E2 uses the gated W&B segments. *(Author's fill-in for a case JAE's rule left open; JAE to confirm.)*
+   - **Route 3 has not arrived by 2026-11-13:** E2 uses the gated W&B segments. A later route-3 copy is used only for a reported comparison, never for a second E2 run (§K: one real run).
+   - The §K grading day stays 2026-11-20.
+3. **Coverage record (from item 8; step index and non-null counts only).**
+   - If all seven complete segments pass, A1 under P-SEG covers steps **1–14,210** and **52,301–504,510**.
+   - This leaves **one internal gap, 14,211–52,300**. The run's logged range continues to 543,360, so steps **504,511–543,360** are also not covered.
+   - **Segments not used** (fail D.1, or empty): 002, 003, 004, 005, 006, 007, 009, 011, 012, 014, 015, 019, 020, 021, 022, 023, 024, 025.
+   - **Method note:** the counts in item 8 were computed in the browser from GraphQL responses that carried the loss and gradient-norm columns in page memory. Step indices and non-null flags were counted; no value was printed, inspected or saved.
+4. **Selection threat (stated now, before any loss value is read).** The incomplete segments are mostly short restart segments: 002, 004, 005, 007, 009, 011, 012, 014, 015 and 019–023 each span a few hundred to a few thousand steps. They are concentrated in the uncovered ranges: 14,211–52,300 and the run's last ~39k steps, where seven restarts fall within 504,511–543,360.
+   - Short segments after a restart are where crashes, loss spikes and rewinds are most likely. Dropping them may therefore drop disproportionately many spike events, and the hardest ones.
+   - **Effects:**
+     - A1's eligible-event count falls, so INSUFFICIENT EVENTS is likelier.
+     - The events that remain may be unrepresentative of instability in this run.
+   - **Reporting:** this is a Methods limitation and an E2 caveat. The structural report (Amendment 1, A1.12) lists the uncovered step ranges beside the restart points. Route 3, if it arrives by the cutoff, removes the threat.
+5. **Rewind events that become unscorable.** A rewind event lies in a portion of an earlier segment that a restart superseded (D.1 P-SEG).
+   - **In a used segment:** it is scored on that segment's own series, as frozen.
+   - **In an unused segment:** it cannot be scored. It also cannot be counted, because the spike rule needs 128 contiguous trailing loss steps (D.2), which a sparse segment does not have.
+   - **Reported instead:**
+     - (i) every superseded step range that lies in an unused segment, with its total length in steps;
+     - (ii) the count of rewind events found in the superseded portions of used segments.
+   - **Placement:** both are reported beside the rewind-event count and the A1.4 ineligibility counts, and stated as a lower-bound limitation: the true number of unscorable rewind events is unknown unless route 3 arrives.
+   - **When:** (i) comes from the step index in the A1.12 structural report. (ii) comes from the loss series after this addendum is pushed, before any detector score.
+
+## Entry 6 — note (2026-10-30) — transcript hash as committed
+
+`.gitattributes` sets `* text=auto eol=lf`, so the committed blob of verification/amendment1_review_transcript.md at f66e67d is the reviewer reply with its CRLF line endings normalised to LF.
+- **Committed blob:** MD5 346dcf90d4dcb15e1e6e867839679d54, 18,072 bytes.
+- **Raw attachment:** MD5 619a6766b38e2bd9cbfb795f13026d89, 18,246 bytes, as cited in entry 6.
+- The two differ only by the 174 carriage returns. No character of the text differs.
