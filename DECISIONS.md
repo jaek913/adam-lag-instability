@@ -664,3 +664,78 @@ Sources: the project files `thedivergencetheorem.pdf`, `theadaptationratetheorem
    - **Venue:** a fresh claude.ai incognito chat, web search off.
    - **Adjudication:** under the entry-3 rule, with no third round.
    - The package is built after this entry is pushed.
+
+## Entry 18 (2026-10-31, JAE) — Construction items 1–8 from the suite build decided (DESIGN Amendment 7)
+
+1. **Trigger.** Writing `analysis/ops.py`, `analysis/e2stat.py` and `analysis/pipeline.py` exposed eight details that the frozen text plus Amendments 1–6 leave unstated. They are listed with the author's provisional proposals in `verification/construction_items_pending.md` (opened 2026-10-31). None had been settled by running code on real data. No gradient-norm value had been read for scoring.
+2. **Decision (JAE, 2026-10-31).**
+   - **Items 1–5 and 7: accepted as proposed** (DESIGN Amendment 7.1–7.5, 7.7):
+     - B4 candidates come from the reset-free path;
+     - one common N_out;
+     - an undefined previous score counts as below θ;
+     - a fresh `default_rng(20261030)` per procedure, with a stated per-cell seed derivation for the suite;
+     - numpy linear percentile;
+     - a linear precursor ramp at A ∈ {1, 2, 3} × the stationary SD, with g = exp(y).
+   - **Item 6: changed.** Detection requires lead > 0. An alarm first at t_e^g (lead 0) is reported separately as "concurrent". The mean lead is unaffected, because concurrent events and misses both carry lead 0 (P-MISS). (DESIGN Amendment 7.6)
+   - **Item 8: accepted, with JAE's addition.** The end-to-end loss-series cell runs both a planted-effect and a planted-null case (DESIGN Amendment 7.8).
+3. **Code.**
+   - `analysis/e2stat.py` `lead()` now returns (lead, censored, detected, concurrent). `leads_table` carries the concurrent array.
+   - `analysis/pipeline.py` reports the concurrent count. Misses exclude concurrent events.
+   - `scripts/tests/test_e2stat.py` now has these probes: lead 0 → concurrent and not detected; lead 10 → detected; and a watch-fail on the superseded lead-0-detected rule.
+   - test_e2stat, test_ops, test_a1_loader and test_a1_events: ALL PASS.
+4. **Effect on outcomes.** None of the eight items changes §K's thresholds, windows, spike definition or FA grid.
+   - Item 6 changes only the reported detection rate and miss count; lead values, C_min and the E2 label are unchanged.
+   - Item 7 sets the power the suite measures, not any rule applied to A1.
+5. **Review scope.** The Amendments 2–6 review package was built before this entry, so Amendment 7 is outside it. Whether Amendment 7 gets its own independent check before the E2 run is open for JAE.
+
+## Entry 19 (2026-10-31, JAE) — D.5 oracle was a design-stage error; replaced by an independent reference implementation (DESIGN Amendment 8); suite items 9–14
+
+1. **Finding S-1 (author, while building the suite).** Synthetic data only; no real value had been read for scoring and no real threshold computed.
+   - **Evidence:** `verification/suite_findings.md`; `scripts/tests/probe_oracle_criterion.py`, run at A = 2, φ = 0.9 (8 replicates) and A = 3, φ = 0.5 (5 replicates).
+   - **Result:** under the frozen 10⁻³-noise oracle, B1 and B3 have oracle lead 99 (ramp onset) against 0.5–2.5 recovered, and B2 has oracle lead 0 against 11–38 recovered. No replicate met |diff| ≤ 8 for B1 or B3.
+   - **Severity: BLOCKER.** D.5 could never be ALL PASS, so E2 could never run.
+   - **Recorded (JAE):** the 10⁻³ oracle (F10, N2, N4) was a design-stage error, found by the suite before any real data.
+2. **Decision (JAE, 2026-10-31).** Option 1, as Amendment 8.1.
+   - The oracle is an independent reference implementation run on the same noisy series, with exact agreement required.
+   - **JAE's conditions:**
+     - (1) The reference is written from DESIGN.md and its amendments only, without reading the main code, by a separate agent given only those files. How it was written is recorded here when it lands.
+     - (2) Both implementations must reproduce the hand-computed deterministic probes exactly (onset, θ, lead, C_min).
+     - (3) All other D.5 criteria are kept. Planted-effect power is reported, not required.
+3. **Suite items 9–14 (JAE).** 9 and 12 are accepted as proposed. The others are changed:
+   - **10:** label-only stays primary, plus a +3 SD surge cell decaying over 50 readings, on the null and planted-effect cases.
+   - **11:** Gaussian stays primary, plus a Student-t (df 3, SD 1) cell on the planted null and decision flip at 20 events.
+   - **13:** h is calibrated on seeds disjoint from the evaluation seeds, and the calibration run and output are committed before the suite verdict run.
+   - **14:** per-replicate seeds come from `SeedSequence(20261030).spawn(n)`, independent of worker scheduling; one cell is checked single- versus multi-process. This supersedes Amendment 7.4's suite seed clause.
+4. **Review (JAE).** The Amendments 2–6 package had already been sent. Amendments 7–8 get a scoped single-round follow-up, adjudicated under the entry-3 rule with no third round.
+5. **Code since entry 18 (no rule change).**
+   - `analysis/ops.py` `b4_z` is vectorised, and `b4_alarm` runs on plain floats. A permanent test_ops probe asserts both are bit-identical to the reference loop, with a watch-fail.
+   - `analysis/pipeline.py` gains `thetas=` (apply given thresholds) and `coverage_stop=None` (suite reporting).
+   - All tests pass.
+6. **Reference implementation landed (2026-10-31; recorded per condition (1)).**
+   - **How it was written.** A separate agent worked in a clean cloud workspace. Its only input was DESIGN.md (MD5 e785ceedec02bccf9e9d73fc89fcf4b5, Amendments 1–8). It had no access to the repository, `analysis/`, `scripts/`, the web or past conversations, and was told to transcribe the text in plain per-observation loops and to list every interpretation.
+   - **Files** (committed under `reference/`):
+     - `ref_e2.py` 8924c520b3a1bf446c730a62ec638a4b
+     - `NOTES.md` 4f3637538b0567ec4aaf6cc4be001306 (interpretations N1–N35)
+     - `selftest.py` 63b42c2251e03a5be20d52db3a0f8cac (51 checks, values worked out by hand from the text, ALL PASS)
+   - **Text defects it surfaced, logged in the Discrepancy Register:**
+     - **D-03 (N12):** Amendment 5.2's B4 warm-up "or after a reset" contradicts the cited trainscope code and the amendment's own history clause.
+     - **D-04 (N10):** ZClip's weight is written as the literal 0.03 where the code computes 1 − 0.97.
+     - Both are pending JAE.
+   - **First comparison** (`scripts/suite/compare_ref.py`; reference run with the as-coded readings of D-03/D-04):
+     - θ, realised count, every lead, N_out, n* and C_min were identical on 10 replicates across 7 cells (planted effect; planted null at φ 0.5 and 0.98; surge null at 0.5; surge effect at 0.98; t3 null at 0.5).
+     - With the literal readings, surge-effect cell 94 rep 0 differs: B4 θ 132.407 vs 130.426, and one lead 41 vs 42.
+7. **Speed (no rule change).**
+   - `ops.b4_alarm` now locates onsets on the reset-free path and iterates only the post-reset stretches until the state merges exactly. It is bit-identical to the reference loop `b4_alarm_loop` on 960 randomised cases and about 8× faster.
+   - `pipeline.run` computes the reset-free state once per block.
+
+## Entry 20 (2026-10-31, JAE) — D-03 and D-04 settled as coded (DESIGN Amendment 9); suite items 15–16; item 17 to be measured
+
+1. **D-03 and D-04** (Discrepancy Register; found by the reference implementation, NOTES N12 and N10).
+   - **Decision (JAE):** as coded. Strike "or after a reset" from Amendment 5.2's B4 warm-up bullet (trainscope 0651b25 zeroes the accumulators only and keeps the history, consistent with Amendment 5.2's own reset clause). The coded weight (1 − α) governs for B3. Recorded as DESIGN Amendment 9.1–9.2.
+   - **Condition (JAE):** the reference implementation is updated from the amended DESIGN.md by its original author, not by reading `analysis/`. Full reference agreement is then rerun across the suite.
+2. **Items 15–16 (JAE):** built as proposed (Amendment 9.3).
+3. **Item 17 (JAE):** measure whether the unequal-memory null's "false-REFUTE ≤ 0.05" is attainable.
+   - **JAE's expectation:** unattainable by construction. Under a no-precursor null, REFUTE is the correct outcome, and C_min, the minimum of two zero-centred contrasts, is ≤ 0 more than half the time.
+   - **JAE's proposed replacement, to be brought as S-2:** for each memory baseline b, |median C_b| ≤ 1 observation and P(C_b > 0) ∈ [0.40, 0.60] (no memory-driven bias); false-SUPPORT ≤ 0.05 unchanged.
+   - The measured values are reported either way.
+4. **Review (JAE).** Amendment 9 joins the Amendments 7–8 follow-up review (scoped single round, entry-3 rule, no third round).

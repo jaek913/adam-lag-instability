@@ -1,0 +1,6 @@
+A 2.0 phi 0.9 n* 2
+det       ['D_div', 'B1', 'B2', 'B3', 'B4']
+rec mean  [ 6.9  2.5 11.   1.4  9.7]
+orc mean  [12.6 99.   0.  99.   9.8]
+per-rep |diff|<=8 frac [0.62 0.   0.38 0.   0.75]
+Cmin sign agree 0.875

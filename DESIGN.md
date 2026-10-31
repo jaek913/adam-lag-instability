@@ -534,3 +534,120 @@ Result: 16 findings (G1–G16), all adopted, five with a stated adaptation, plus
 - (i) A series on which the minimum candidate satisfies c ≤ n*. Matching must not select it: θ must come from the top scan, and the coverage fraction must be small.
 - (ii) A series whose top candidates are tied with c > n*. The detector must be reported as not matchable and never alarm.
 - (iii) A non-monotone c(v) with a dip below n* at a mid-range value under a higher value with c > n*. The top scan must stop above the excursion.
+
+## Amendment 7 (2026-10-31) — Construction items found while building the D.5 suite
+
+**Status.** Appended below Amendment 6 under the append-only rule. Rationale: DECISIONS.md entry 18 (JAE decision 2026-10-31). Made and pushed before the D.5 suite is frozen or run for the record, and before any gradient-norm value is read for scoring. No detector threshold has been computed for any run. The working record of the eight items is `verification/construction_items_pending.md`.
+
+**7.1 B4 candidate thresholds (P-FA, Amendment 6).** B4's score path depends on θ through its reset at each onset. The candidate set is the distinct out-of-window scored values of B4's **reset-free** path (θ = none). c(v) for each candidate is evaluated on the path **recomputed** at that candidate, with resets.
+
+**7.2 N_out.** One common denominator for all detectors: grid observations with j ≥ 1,000 that lie outside every scan window. An observation where a detector's score is undefined (for example B1 with sd = 0) stays in N_out and is a non-alarm.
+
+**7.3 Fresh crossing after an undefined score (P-HOLD).** An undefined s(j−1) counts as below θ. This is the same convention the frozen text uses for the first scored observation of a series and of each post-gap restart.
+
+**7.4 P-RNG streams.** Each procedure creates its own generator; no generator is shared across procedures.
+- The E2 resamples, the E1 permutation and the E5 shifts each use a fresh `default_rng(20261030)`.
+- Each D.5 suite cell × replicate uses `default_rng([20261030, c, r])`, where c is the cell's index in the committed suite cell table and r the replicate index (0-based).
+- Results therefore do not depend on the order in which procedures run.
+
+**7.5 Percentile method.** The 5th percentile of the resampled C_min (D.3 E2) uses numpy's default linear interpolation (`numpy.percentile`, `method="linear"`).
+
+**7.6 Detected and concurrent (D.3 E2 reporting).**
+- **Detected** requires lead > 0: the detector is first in alarm inside the scan window strictly before t_e^g. A left-censored event (lead = 1,280) counts as detected.
+- **Concurrent:** an event whose first in-window alarm is at t_e^g itself (lead 0). It is reported separately, per detector, as a "concurrent" count. It is neither detected nor a miss.
+- **Miss:** no in-window alarm.
+- The detection rate = detected / eligible events. Miss count and concurrent count are reported beside it.
+- **Lead values are unchanged.** A concurrent event has lead 0, as does a miss (P-MISS), so the mean lead, every C_b, C_min and the E2 label are unaffected.
+
+**7.7 Planted precursor (D.5 "Planted effect").**
+- **Shape.** A linear rise in y from 0 to A over the L observations ending at the event (L ∈ {64, 100, 150, 200}; the A1-grid cell uses {640, 1,000, 1,500, 2,000} steps), added to the AR(1) base. After the event the series returns to the base.
+- **Amplitude.** A ∈ {1, 2, 3} × the stationary SD of y. Every A is reported, and the pass criteria are applied at each A.
+- **Gradient norm.** The synthetic g = exp(y), since y = ln g by definition.
+
+**7.8 Suite events.**
+- In the detector cells, events are planted directly at known steps.
+- The spike rule is validated separately (`scripts/tests/test_a1_events.py`; the Amendment 3 suite cases).
+- **End-to-end cell (JAE).** A generated loss series carries spikes, the spike rule finds the events, and the full pipeline runs on them. It is run in two cases:
+  - **planted effect:** the precursor ramp in y ends at each loss spike;
+  - **planted null:** no precursor.
+  Each case must meet the D.5 pass criteria.
+
+**Unchanged.** Windows, ratio, H, the FA rule and grid, P-FA top-scan matching and the coverage stop (Amendment 6), lead and censoring definitions, the spike rule, every outcome partition, and §K's thresholds, windows, spike definition and FA grid.
+
+## Amendment 8 (2026-10-31) — D.5 oracle replaced by an independent reference implementation (suite finding S-1); suite construction items 9–14
+
+**Status.** Appended below Amendment 7 under the append-only rule. Rationale: DECISIONS.md entry 19 (JAE decision 2026-10-31). Evidence: `verification/suite_findings.md` S-1, `scripts/tests/probe_oracle_criterion.py` and its outputs (synthetic data only). Made before the D.5 suite is frozen or run for the record, and before any gradient-norm or loss value is read for scoring.
+
+**Defect (S-1).**
+- D.5's oracle (F10; fix rounds N2, N4; restated in A1.7) applies the θ matched on the noisy series to the same planted series with the noise scaled by 10⁻³. It requires |recovered mean lead − oracle mean lead| ≤ 8 steps for every detector.
+- For the detectors that normalise by a noise estimate (B1, B3), the 10⁻³ scaling makes the ramp about 1,000 noise-SDs tall, so the oracle lead is the ramp onset (L − 1). For B2, the noisy-series θ lies above the noise-free ramp, so the oracle lead is 0.
+- The recovered leads are bounded by the noise, so the criterion cannot be met by any correct pipeline. D.5 could never be ALL PASS, and no hashed-data run could happen.
+- **This was a design-stage error.** The design review adopted it without testing it on the normalised detectors. The suite found it before any real data.
+
+**8.1 Replacement oracle (replaces the D.5 "Oracle" sentence and pass criteria, and the A1.7 lead tolerance).**
+- **Reference implementation.** The oracle is an independent re-implementation of the whole chain on per-observation loops: block preparation (carry-forward, j counting), scores D_div and B1–B4, P-FA top-scan matching with hold and the coverage figure, leads (detected, concurrent, censored), C_b and C_min.
+  - It is written from DESIGN.md (D.0–D.7 and Amendments 1–8) only, by a separate agent that is given only DESIGN.md and has no access to `analysis/` or `scripts/`.
+  - It lives in `reference/`. How it was written is recorded in DECISIONS.md.
+- **Pass, per suite cell.** On the same noisy series, both implementations must give:
+  - θ and the realised onset count, equal to 1e-6 relative;
+  - identical onset steps and identical leads (with the detected, concurrent and censored flags) for every detector;
+  - C_min equal to 1e-6;
+  - the same C_min sign in **100 %** of replicates.
+- **Hand probes.** Both implementations must also reproduce exactly every hand-computed deterministic probe: onset, θ, lead and C_min (including the Amendment 5.3, 6.3 and 7.6 probes).
+- **Kept unchanged:**
+  - the planted null (false-support ≤ 0.05);
+  - the unequal-memory null (false-REFUTE and false-SUPPORT each ≤ 0.05);
+  - the decision flip (REFUTE);
+  - dynamic range, the k ladder, regime span, alignment control, assembly probes, Leg B probes and the broken fixture.
+- **Planted-effect cells (including the A1.7 ten-step grid cell).** These report, per cell, the recovered mean and median lead with the detection, concurrent and miss counts for every detector, plus the rule's outcome rates (SUPPORT, INCONCLUSIVE, REFUTE). This is power. It is reported, not required.
+- The 10⁻³ noise series and its finite-score assertion are withdrawn.
+
+**8.2 Suite construction (items 9–14; JAE).**
+- **(9) Series.**
+  - Each per-step cell series has 50,000 observations.
+  - Events are placed at uniform random positions, with consecutive t_e at least scan + L_max + 1 = 329 observations apart and the first t_e ≥ 1,000 + scan + L_max.
+  - The A1.7 ten-step grid cell keeps its own geometry (A1.7).
+- **(10) Event in y.**
+  - **Primary:** the event is a label at t_e. The ramp, if any, ends at t_e, and y then returns to the AR(1) base.
+  - **Added surge cell:** the same series with y += 3·(50 − i)/50 at t_e + i, for i = 0 … 49. This is a +3 SD surge decaying linearly to 0 over 50 observations. Post-event out-of-window onsets then enter FA matching, as in real logs.
+  - The surge cell runs for the planted null and the planted effect (L = 100, A = 2), across the φ_y grid at 20 events.
+- **(11) Innovations.**
+  - **Primary:** Gaussian AR(1) with mean 0 and unit stationary SD; g = exp(y).
+  - **Added:** a Student-t cell (df = 3, scaled to unit innovation SD) for the planted null and the decision flip, across the φ_y grid at 20 events.
+- **(12) Cell crossing.** 200 replicates per cell.
+  - Planted effect: φ_y (5) × L (4) × A (3) at 20 events.
+  - Regime span: φ_y (5) × events {5, 10, 20, 40} at L = 100, A = 2.
+  - Planted null and decision flip: φ_y (5) at 20 events.
+- **(13) Null with every detector's detection rate at 30–50 % (F1).**
+  - Each event gets a one-observation pulse of height h at a uniform random offset in [1, scan] before it, with no ramp.
+  - h is set per φ_y by a calibration run so that every detector's detection rate at headline FA lies in 30–50 %.
+  - Calibration uses seeds disjoint from every evaluation seed. The calibration script and its output are committed before the suite verdict run.
+- **(14) Seeds and execution.** This **supersedes Amendment 7.4's suite clause.** The E2, E1 and E5 clauses of 7.4 are unchanged.
+  - The per-replicate seeds are children of `numpy.random.SeedSequence(20261030).spawn(N)`.
+  - Each cell × replicate has a fixed child index, given in the committed cell table. Calibration uses an index range disjoint from every evaluation range.
+  - Results are independent of worker scheduling. One cell is run both single-process and multi-process, and the results must be identical.
+  - The suite is run with multiprocessing on the Windows host.
+
+**Unchanged.** Every rule applied to real data: detectors, windows, ratio, H, the FA rule and grid, P-FA top-scan matching, the coverage stop, leads and censoring, the spike rule, every outcome partition, and §K's thresholds, windows, spike definition and FA grid.
+
+## Amendment 9 (2026-10-31) — Amendment 5.2 wording corrected to the cited source (D-03, D-04); suite items 15–16
+
+**Status.** Appended below Amendment 8 under the append-only rule. Rationale: DECISIONS.md entry 20 (JAE decision 2026-10-31); Discrepancy Register D-03 and D-04. Both wording defects were found by the independent reference implementation (Amendment 8.1). No real value has been read for scoring.
+
+**9.1 B4 warm-up (D-03; corrects the Amendment 5.2 B4 "Warm-up" bullet).**
+- **Corrected text.** "The first 30 observations of a series (or after a gap) are appended to the history, with no score." The words "or after a reset" are struck.
+- **Source.** trainscope 0651b25 `ChangePointDetector.update` (vendored: `scripts/tests/third_party/trainscope_0651b25/changepoint.py`, lines 79–82 warm-up and lines 106–113 fire).
+  - The warm-up applies only while the history holds fewer than 30 values.
+  - A fire zeroes the accumulators only and keeps the history.
+- This matches Amendment 5.2's own clause "A reset does not clear the median/MAD history". After a P-B4 reset, scoring continues at the next observation with S⁺ = 0.
+
+**9.2 B3 update weight (D-04; clarifies the Amendment 5.2 B3 "Update" bullet).** The weight written there as 0.03 is ZClip 1.0.0's coded expression (1 − α) with α = 0.97, evaluated in float64 (vendored `zclip.py` lines 79–80). The coded expression governs.
+
+**9.3 Suite items 15–16 (D.5; JAE).**
+- **(15) Decision flip.** Ramp length L = 8 observations, A = 3 (× stationary SD), 20 events, across the φ_y grid; also the Student-t cell (Amendment 8.2(11)). Pass: REFUTE in ≥ 95 % of replicates.
+- **(16) Unequal-memory null.**
+  - The two synthetic baselines are S₁(j) = y(j) and S₄₀(j) = max(y(j−39) … y(j)), so one exceedance keeps S₄₀ above θ for 40 observations.
+  - In this cell the baseline set is {S₁, S₄₀}. Both are matched with D_div at the same FA by P-FA (Amendment 6.1), and C_min is taken over these two.
+  - The pass criterion is pending the item-17 measurement (finding S-2, if any).
+
+**Unchanged.** Everything else in Amendments 5–8 and the frozen text.

@@ -147,9 +147,31 @@ def alarm_from_scores(s, theta, hold=HOLD):
     return np.array(onsets, dtype=np.int64), alarm
 
 
-def b4_z(y, window=B4_WINDOW, minobs=B4_MINOBS, floor=B4_FLOOR):
+def b4_z(y, window=B4_WINDOW, minobs=B4_MINOBS, floor=B4_FLOOR, chunk=4096):
     """trainscope ChangePointDetector @0651b25 robust z (theta-independent: a P-B4 reset clears
-    S+ only, never the median/MAD history). z[j] = nan during the warm-up (j < minobs)."""
+    S+ only, never the median/MAD history). z[j] = nan during the warm-up (j < minobs).
+    Vectorised form of b4_z_loop (bit-identical; asserted in scripts/tests/test_ops.py): for
+    j >= window the history is exactly y[j-window:j]; for minobs <= j < window it is y[:j]."""
+    y = np.asarray(y, dtype=float)
+    n = len(y)
+    z = np.full(n, np.nan)
+    for j in range(minobs, min(n, window)):
+        h = y[:j]
+        med = float(np.median(h))
+        sd = max(float(np.median(np.abs(h - med))) * 1.4826, floor)
+        z[j] = (y[j] - med) / sd
+    if n > window:
+        win = np.lib.stride_tricks.sliding_window_view(y[:-1], window)   # row r = y[r : r+window]
+        for a in range(0, n - window, chunk):
+            h = win[a:a + chunk]
+            med = np.median(h, axis=1)
+            sd = np.maximum(np.median(np.abs(h - med[:, None]), axis=1) * 1.4826, floor)
+            z[window + a: window + a + len(h)] = (y[window + a: window + a + len(h)] - med) / sd
+    return z
+
+
+def b4_z_loop(y, window=B4_WINDOW, minobs=B4_MINOBS, floor=B4_FLOOR):
+    """Reference loop transcription of trainscope's per-reading update (kept for the equality test)."""
     y = np.asarray(y, dtype=float)
     n = len(y)
     z = np.full(n, np.nan)
@@ -172,27 +194,100 @@ def b4_z(y, window=B4_WINDOW, minobs=B4_MINOBS, floor=B4_FLOOR):
     return z
 
 
-def b4_alarm(z, theta=None, hold=HOLD, k=B4_K):
-    """S+ recursion with P-B4 resets on a precomputed z. Returns (scores, onsets, alarm)."""
+def b4_free_state(z, k=B4_K):
+    """Reset-free S+: (state after each observation, gated score array). Same float arithmetic as
+    b4_alarm_loop with theta=None."""
     n = len(z)
-    s = np.full(n, np.nan)
+    zl = np.asarray(z, dtype=float).tolist()
+    st, sc = [math.nan] * n, [math.nan] * n
+    sp = 0.0
+    for j in range(n):
+        zj = zl[j]
+        if zj == zj:
+            sp = max(0.0, sp + (zj - k))
+            if j >= MIN_HIST:
+                sc[j] = sp
+        st[j] = sp
+    return np.array(st), np.array(sc)
+
+
+def b4_alarm(z, theta=None, hold=HOLD, k=B4_K, free=None):
+    """S+ recursion with P-B4 resets on a precomputed z. Returns (scores, onsets, alarm).
+    Exact fast form of b4_alarm_loop (bit-identical; asserted in scripts/tests/test_ops.py).
+    Up to the first onset the path IS the reset-free path. After each reset the restarted path is
+    iterated with the same float arithmetic until its state equals the reset-free state exactly;
+    from there the two recursions coincide, so the next onset is located on the reset-free path.
+    free: optional precomputed b4_free_state(z, k)."""
+    n = len(z)
+    st_free, s_free = b4_free_state(z, k) if free is None else free
+    if theta is None:
+        return s_free.copy(), np.array([], dtype=np.int64), np.zeros(n, bool)
+    zl = np.asarray(z, dtype=float).tolist()
+    stl = st_free.tolist()
+    sl = s_free.copy()
+    ge = np.where(np.isnan(s_free), False, s_free >= theta)
+    cross = np.nonzero(ge & ~np.concatenate([[False], ge[:-1]]))[0]   # fresh crossings on the free path
+    onsets, alarm = [], np.zeros(n, bool)
+    m, busy = MIN_HIST - 1, -1                         # path == free at every index >= m
+    while True:
+        start = max(m + 1, busy + 1)
+        i = int(np.searchsorted(cross, start))
+        if i >= len(cross):
+            break
+        j = int(cross[i])
+        merged_at = None
+        while True:                                    # onset at j, then the divergent stretch
+            onsets.append(j)
+            busy = j + hold - 1
+            alarm[j:min(n, j + hold)] = True
+            sp, prev, u, fired = 0.0, sl[j], j + 1, None
+            while u < n:
+                zu = zl[u]
+                if zu != zu:
+                    u += 1
+                    continue
+                sp = max(0.0, sp + (zu - k))
+                sl[u] = sp
+                if u > busy and sp >= theta and not (prev >= theta):
+                    fired = u
+                    break
+                prev = sp
+                if sp == stl[u]:
+                    merged_at = u
+                    break
+                u += 1
+            if fired is None:
+                break
+            j = fired
+        if merged_at is None:
+            break
+        m = merged_at
+    return sl, np.array(onsets, dtype=np.int64), alarm
+
+
+def b4_alarm_loop(z, theta=None, hold=HOLD, k=B4_K):
+    """Reference loop transcription (kept for the equality test). Returns (scores, onsets, alarm)."""
+    n = len(z)
+    zl = np.asarray(z, dtype=float).tolist()           # plain floats: same IEEE arithmetic, faster loop
+    sl = [math.nan] * n
     sp = 0.0
     onsets, alarm = [], np.zeros(n, bool)
-    busy_until, prev = -1, np.nan
+    busy_until, prev = -1, math.nan
     for j in range(n):
-        if np.isnan(z[j]):
+        zj = zl[j]
+        if zj != zj:                                   # nan
             continue
-        sp = max(0.0, sp + (z[j] - k))
+        sp = max(0.0, sp + (zj - k))
         if j < MIN_HIST:
             continue                                   # score gated (Amendment 5.2)
-        s[j] = sp
+        sl[j] = sp
         if theta is not None and j > busy_until and sp >= theta and not (prev >= theta):
             onsets.append(j)
             busy_until = j + hold - 1
             alarm[j:min(n, j + hold)] = True
             sp = 0.0                                   # P-B4: reset at each alarm onset
-        prev = s[j]
-    return s, np.array(onsets, dtype=np.int64), alarm
+        prev = sl[j]
+    return np.array(sl, dtype=float), np.array(onsets, dtype=np.int64), alarm
 
 
 def b4_path(y, theta=None, hold=HOLD, k=B4_K, window=B4_WINDOW, minobs=B4_MINOBS, floor=B4_FLOOR):

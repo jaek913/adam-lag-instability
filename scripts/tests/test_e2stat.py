@@ -29,23 +29,26 @@ def main():
     # block from step 0, 1,000 obs (steps 0..9,990)
     # event at t_e = 5,007 -> t_e^g = 5,000; window = steps 3,720..5,000
     b = blk(0, 1000, [])
-    ok("miss -> lead 0, not detected", E.lead(b, 5007, G, S) == (0, False, False))
+    ok("miss -> lead 0, not detected", E.lead(b, 5007, G, S) == (0, False, False, False))
     b = blk(0, 1000, [495])                            # alarm at step 4,950
-    ok("alarm at 4,950 -> lead 50 (t_e^g - step)", E.lead(b, 5007, G, S) == (50, False, True))
+    ok("alarm at 4,950 -> lead 50 (t_e^g - step)", E.lead(b, 5007, G, S) == (50, False, True, False))
     b = blk(0, 1000, [500])                            # alarm at t_e^g itself
-    ok("alarm first at t_e^g -> lead 0 but detected", E.lead(b, 5007, G, S) == (0, False, True))
+    ok("alarm first at t_e^g -> lead 0, concurrent, NOT detected (Amendment 7 item 6)", E.lead(b, 5007, G, S) == (0, False, False, True))
+    ok("WATCH-FAIL: the superseded rule (lead 0 counted as detected) is rejected", E.lead(b, 5007, G, S)[2] is not True)
+    b = blk(0, 1000, [499, 500])                       # alarm at 4,990 and t_e^g
+    ok("alarm at t_e^g - 10 -> lead 10, detected, not concurrent", E.lead(b, 5007, G, S) == (10, False, True, False))
     b = blk(0, 1000, [372, 380])                       # alarm at window start 3,720 only
-    ok("alarm at window start, not before -> lead 1,280 uncensored", E.lead(b, 5007, G, S) == (1280, False, True))
+    ok("alarm at window start, not before -> lead 1,280 uncensored", E.lead(b, 5007, G, S) == (1280, False, True, False))
     b = blk(0, 1000, range(371, 373))                  # alarm at 3,710 and 3,720
-    ok("alarm at 3,710 and 3,720 -> censored, lead 1,280", E.lead(b, 5007, G, S) == (1280, True, True))
+    ok("alarm at 3,710 and 3,720 -> censored, lead 1,280", E.lead(b, 5007, G, S) == (1280, True, True, False))
     b = blk(0, 1000, [371])                            # alarm only before the window
-    ok("alarm only before window -> miss", E.lead(b, 5007, G, S) == (0, False, False))
+    ok("alarm only before window -> miss", E.lead(b, 5007, G, S) == (0, False, False, False))
     t_e_anchored = 5007 - 4950                         # what anchoring on t_e instead of t_e^g would give
     ok("WATCH-FAIL: t_e anchoring (57) differs from the t_e^g lead (50)",
        t_e_anchored == 57 and E.lead(blk(0, 1000, [495]), 5007, G, S)[0] == 50)
     # per-step run: grid 1, scan 128
-    ok("per-step: alarm at t_e-10 -> lead 10", E.lead(blk(0, 500, [290]), 300, 1, 128) == (10, False, True))
-    ok("per-step: censored at 128", E.lead(blk(0, 500, [171, 172]), 300, 1, 128) == (128, True, True))
+    ok("per-step: alarm at t_e-10 -> lead 10", E.lead(blk(0, 500, [290]), 300, 1, 128) == (10, False, True, False))
+    ok("per-step: censored at 128", E.lead(blk(0, 500, [171, 172]), 300, 1, 128) == (128, True, True, False))
 
     # contrast by hand: 4 events
     la = {"D_div": np.array([100, 50, 0, 30.]), "B1": np.array([20, 50, 0, 10.]), "B2": np.array([0, 0, 0, 0.]),

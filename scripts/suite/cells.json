@@ -1,0 +1,1241 @@
+{
+ "cells": [
+  {
+   "cell": 0,
+   "kind": "planted_effect",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 64,
+   "A": 1.0,
+   "reps": 200,
+   "child_first": 0
+  },
+  {
+   "cell": 1,
+   "kind": "planted_effect",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 64,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 200
+  },
+  {
+   "cell": 2,
+   "kind": "planted_effect",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 64,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 400
+  },
+  {
+   "cell": 3,
+   "kind": "planted_effect",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 100,
+   "A": 1.0,
+   "reps": 200,
+   "child_first": 600
+  },
+  {
+   "cell": 4,
+   "kind": "planted_effect",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 800
+  },
+  {
+   "cell": 5,
+   "kind": "planted_effect",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 100,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 1000
+  },
+  {
+   "cell": 6,
+   "kind": "planted_effect",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 150,
+   "A": 1.0,
+   "reps": 200,
+   "child_first": 1200
+  },
+  {
+   "cell": 7,
+   "kind": "planted_effect",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 150,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 1400
+  },
+  {
+   "cell": 8,
+   "kind": "planted_effect",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 150,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 1600
+  },
+  {
+   "cell": 9,
+   "kind": "planted_effect",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 200,
+   "A": 1.0,
+   "reps": 200,
+   "child_first": 1800
+  },
+  {
+   "cell": 10,
+   "kind": "planted_effect",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 200,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 2000
+  },
+  {
+   "cell": 11,
+   "kind": "planted_effect",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 200,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 2200
+  },
+  {
+   "cell": 12,
+   "kind": "planted_effect",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 64,
+   "A": 1.0,
+   "reps": 200,
+   "child_first": 2400
+  },
+  {
+   "cell": 13,
+   "kind": "planted_effect",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 64,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 2600
+  },
+  {
+   "cell": 14,
+   "kind": "planted_effect",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 64,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 2800
+  },
+  {
+   "cell": 15,
+   "kind": "planted_effect",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 100,
+   "A": 1.0,
+   "reps": 200,
+   "child_first": 3000
+  },
+  {
+   "cell": 16,
+   "kind": "planted_effect",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 3200
+  },
+  {
+   "cell": 17,
+   "kind": "planted_effect",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 100,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 3400
+  },
+  {
+   "cell": 18,
+   "kind": "planted_effect",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 150,
+   "A": 1.0,
+   "reps": 200,
+   "child_first": 3600
+  },
+  {
+   "cell": 19,
+   "kind": "planted_effect",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 150,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 3800
+  },
+  {
+   "cell": 20,
+   "kind": "planted_effect",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 150,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 4000
+  },
+  {
+   "cell": 21,
+   "kind": "planted_effect",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 200,
+   "A": 1.0,
+   "reps": 200,
+   "child_first": 4200
+  },
+  {
+   "cell": 22,
+   "kind": "planted_effect",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 200,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 4400
+  },
+  {
+   "cell": 23,
+   "kind": "planted_effect",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 200,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 4600
+  },
+  {
+   "cell": 24,
+   "kind": "planted_effect",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 64,
+   "A": 1.0,
+   "reps": 200,
+   "child_first": 4800
+  },
+  {
+   "cell": 25,
+   "kind": "planted_effect",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 64,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 5000
+  },
+  {
+   "cell": 26,
+   "kind": "planted_effect",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 64,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 5200
+  },
+  {
+   "cell": 27,
+   "kind": "planted_effect",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 100,
+   "A": 1.0,
+   "reps": 200,
+   "child_first": 5400
+  },
+  {
+   "cell": 28,
+   "kind": "planted_effect",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 5600
+  },
+  {
+   "cell": 29,
+   "kind": "planted_effect",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 100,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 5800
+  },
+  {
+   "cell": 30,
+   "kind": "planted_effect",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 150,
+   "A": 1.0,
+   "reps": 200,
+   "child_first": 6000
+  },
+  {
+   "cell": 31,
+   "kind": "planted_effect",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 150,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 6200
+  },
+  {
+   "cell": 32,
+   "kind": "planted_effect",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 150,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 6400
+  },
+  {
+   "cell": 33,
+   "kind": "planted_effect",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 200,
+   "A": 1.0,
+   "reps": 200,
+   "child_first": 6600
+  },
+  {
+   "cell": 34,
+   "kind": "planted_effect",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 200,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 6800
+  },
+  {
+   "cell": 35,
+   "kind": "planted_effect",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 200,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 7000
+  },
+  {
+   "cell": 36,
+   "kind": "planted_effect",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 64,
+   "A": 1.0,
+   "reps": 200,
+   "child_first": 7200
+  },
+  {
+   "cell": 37,
+   "kind": "planted_effect",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 64,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 7400
+  },
+  {
+   "cell": 38,
+   "kind": "planted_effect",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 64,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 7600
+  },
+  {
+   "cell": 39,
+   "kind": "planted_effect",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 100,
+   "A": 1.0,
+   "reps": 200,
+   "child_first": 7800
+  },
+  {
+   "cell": 40,
+   "kind": "planted_effect",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 8000
+  },
+  {
+   "cell": 41,
+   "kind": "planted_effect",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 100,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 8200
+  },
+  {
+   "cell": 42,
+   "kind": "planted_effect",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 150,
+   "A": 1.0,
+   "reps": 200,
+   "child_first": 8400
+  },
+  {
+   "cell": 43,
+   "kind": "planted_effect",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 150,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 8600
+  },
+  {
+   "cell": 44,
+   "kind": "planted_effect",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 150,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 8800
+  },
+  {
+   "cell": 45,
+   "kind": "planted_effect",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 200,
+   "A": 1.0,
+   "reps": 200,
+   "child_first": 9000
+  },
+  {
+   "cell": 46,
+   "kind": "planted_effect",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 200,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 9200
+  },
+  {
+   "cell": 47,
+   "kind": "planted_effect",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 200,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 9400
+  },
+  {
+   "cell": 48,
+   "kind": "planted_effect",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 64,
+   "A": 1.0,
+   "reps": 200,
+   "child_first": 9600
+  },
+  {
+   "cell": 49,
+   "kind": "planted_effect",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 64,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 9800
+  },
+  {
+   "cell": 50,
+   "kind": "planted_effect",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 64,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 10000
+  },
+  {
+   "cell": 51,
+   "kind": "planted_effect",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 100,
+   "A": 1.0,
+   "reps": 200,
+   "child_first": 10200
+  },
+  {
+   "cell": 52,
+   "kind": "planted_effect",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 10400
+  },
+  {
+   "cell": 53,
+   "kind": "planted_effect",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 100,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 10600
+  },
+  {
+   "cell": 54,
+   "kind": "planted_effect",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 150,
+   "A": 1.0,
+   "reps": 200,
+   "child_first": 10800
+  },
+  {
+   "cell": 55,
+   "kind": "planted_effect",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 150,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 11000
+  },
+  {
+   "cell": 56,
+   "kind": "planted_effect",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 150,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 11200
+  },
+  {
+   "cell": 57,
+   "kind": "planted_effect",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 200,
+   "A": 1.0,
+   "reps": 200,
+   "child_first": 11400
+  },
+  {
+   "cell": 58,
+   "kind": "planted_effect",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 200,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 11600
+  },
+  {
+   "cell": 59,
+   "kind": "planted_effect",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 200,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 11800
+  },
+  {
+   "cell": 60,
+   "kind": "regime_span",
+   "phi": 0.5,
+   "n_events": 5,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 12000
+  },
+  {
+   "cell": 61,
+   "kind": "regime_span",
+   "phi": 0.5,
+   "n_events": 10,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 12200
+  },
+  {
+   "cell": 62,
+   "kind": "regime_span",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 12400
+  },
+  {
+   "cell": 63,
+   "kind": "regime_span",
+   "phi": 0.5,
+   "n_events": 40,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 12600
+  },
+  {
+   "cell": 64,
+   "kind": "regime_span",
+   "phi": 0.8,
+   "n_events": 5,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 12800
+  },
+  {
+   "cell": 65,
+   "kind": "regime_span",
+   "phi": 0.8,
+   "n_events": 10,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 13000
+  },
+  {
+   "cell": 66,
+   "kind": "regime_span",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 13200
+  },
+  {
+   "cell": 67,
+   "kind": "regime_span",
+   "phi": 0.8,
+   "n_events": 40,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 13400
+  },
+  {
+   "cell": 68,
+   "kind": "regime_span",
+   "phi": 0.9,
+   "n_events": 5,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 13600
+  },
+  {
+   "cell": 69,
+   "kind": "regime_span",
+   "phi": 0.9,
+   "n_events": 10,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 13800
+  },
+  {
+   "cell": 70,
+   "kind": "regime_span",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 14000
+  },
+  {
+   "cell": 71,
+   "kind": "regime_span",
+   "phi": 0.9,
+   "n_events": 40,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 14200
+  },
+  {
+   "cell": 72,
+   "kind": "regime_span",
+   "phi": 0.95,
+   "n_events": 5,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 14400
+  },
+  {
+   "cell": 73,
+   "kind": "regime_span",
+   "phi": 0.95,
+   "n_events": 10,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 14600
+  },
+  {
+   "cell": 74,
+   "kind": "regime_span",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 14800
+  },
+  {
+   "cell": 75,
+   "kind": "regime_span",
+   "phi": 0.95,
+   "n_events": 40,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 15000
+  },
+  {
+   "cell": 76,
+   "kind": "regime_span",
+   "phi": 0.98,
+   "n_events": 5,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 15200
+  },
+  {
+   "cell": 77,
+   "kind": "regime_span",
+   "phi": 0.98,
+   "n_events": 10,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 15400
+  },
+  {
+   "cell": 78,
+   "kind": "regime_span",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 15600
+  },
+  {
+   "cell": 79,
+   "kind": "regime_span",
+   "phi": 0.98,
+   "n_events": 40,
+   "L": 100,
+   "A": 2.0,
+   "reps": 200,
+   "child_first": 15800
+  },
+  {
+   "cell": 80,
+   "kind": "planted_null",
+   "phi": 0.5,
+   "n_events": 20,
+   "reps": 200,
+   "child_first": 16000
+  },
+  {
+   "cell": 81,
+   "kind": "planted_null",
+   "phi": 0.8,
+   "n_events": 20,
+   "reps": 200,
+   "child_first": 16200
+  },
+  {
+   "cell": 82,
+   "kind": "planted_null",
+   "phi": 0.9,
+   "n_events": 20,
+   "reps": 200,
+   "child_first": 16400
+  },
+  {
+   "cell": 83,
+   "kind": "planted_null",
+   "phi": 0.95,
+   "n_events": 20,
+   "reps": 200,
+   "child_first": 16600
+  },
+  {
+   "cell": 84,
+   "kind": "planted_null",
+   "phi": 0.98,
+   "n_events": 20,
+   "reps": 200,
+   "child_first": 16800
+  },
+  {
+   "cell": 85,
+   "kind": "surge_null",
+   "phi": 0.5,
+   "n_events": 20,
+   "surge": true,
+   "reps": 200,
+   "child_first": 17000
+  },
+  {
+   "cell": 86,
+   "kind": "surge_effect",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 100,
+   "A": 2.0,
+   "surge": true,
+   "reps": 200,
+   "child_first": 17200
+  },
+  {
+   "cell": 87,
+   "kind": "surge_null",
+   "phi": 0.8,
+   "n_events": 20,
+   "surge": true,
+   "reps": 200,
+   "child_first": 17400
+  },
+  {
+   "cell": 88,
+   "kind": "surge_effect",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 100,
+   "A": 2.0,
+   "surge": true,
+   "reps": 200,
+   "child_first": 17600
+  },
+  {
+   "cell": 89,
+   "kind": "surge_null",
+   "phi": 0.9,
+   "n_events": 20,
+   "surge": true,
+   "reps": 200,
+   "child_first": 17800
+  },
+  {
+   "cell": 90,
+   "kind": "surge_effect",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 100,
+   "A": 2.0,
+   "surge": true,
+   "reps": 200,
+   "child_first": 18000
+  },
+  {
+   "cell": 91,
+   "kind": "surge_null",
+   "phi": 0.95,
+   "n_events": 20,
+   "surge": true,
+   "reps": 200,
+   "child_first": 18200
+  },
+  {
+   "cell": 92,
+   "kind": "surge_effect",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 100,
+   "A": 2.0,
+   "surge": true,
+   "reps": 200,
+   "child_first": 18400
+  },
+  {
+   "cell": 93,
+   "kind": "surge_null",
+   "phi": 0.98,
+   "n_events": 20,
+   "surge": true,
+   "reps": 200,
+   "child_first": 18600
+  },
+  {
+   "cell": 94,
+   "kind": "surge_effect",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 100,
+   "A": 2.0,
+   "surge": true,
+   "reps": 200,
+   "child_first": 18800
+  },
+  {
+   "cell": 95,
+   "kind": "t3_null",
+   "phi": 0.5,
+   "n_events": 20,
+   "innov": "t3",
+   "reps": 200,
+   "child_first": 19000
+  },
+  {
+   "cell": 96,
+   "kind": "t3_null",
+   "phi": 0.8,
+   "n_events": 20,
+   "innov": "t3",
+   "reps": 200,
+   "child_first": 19200
+  },
+  {
+   "cell": 97,
+   "kind": "t3_null",
+   "phi": 0.9,
+   "n_events": 20,
+   "innov": "t3",
+   "reps": 200,
+   "child_first": 19400
+  },
+  {
+   "cell": 98,
+   "kind": "t3_null",
+   "phi": 0.95,
+   "n_events": 20,
+   "innov": "t3",
+   "reps": 200,
+   "child_first": 19600
+  },
+  {
+   "cell": 99,
+   "kind": "t3_null",
+   "phi": 0.98,
+   "n_events": 20,
+   "innov": "t3",
+   "reps": 200,
+   "child_first": 19800
+  },
+  {
+   "cell": 100,
+   "kind": "null_30_50",
+   "phi": 0.5,
+   "n_events": 20,
+   "pulse": "calibrated",
+   "reps": 200,
+   "child_first": 20000
+  },
+  {
+   "cell": 101,
+   "kind": "null_30_50",
+   "phi": 0.8,
+   "n_events": 20,
+   "pulse": "calibrated",
+   "reps": 200,
+   "child_first": 20200
+  },
+  {
+   "cell": 102,
+   "kind": "null_30_50",
+   "phi": 0.9,
+   "n_events": 20,
+   "pulse": "calibrated",
+   "reps": 200,
+   "child_first": 20400
+  },
+  {
+   "cell": 103,
+   "kind": "null_30_50",
+   "phi": 0.95,
+   "n_events": 20,
+   "pulse": "calibrated",
+   "reps": 200,
+   "child_first": 20600
+  },
+  {
+   "cell": 104,
+   "kind": "null_30_50",
+   "phi": 0.98,
+   "n_events": 20,
+   "pulse": "calibrated",
+   "reps": 200,
+   "child_first": 20800
+  },
+  {
+   "cell": 105,
+   "kind": "decision_flip",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 8,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 21000
+  },
+  {
+   "cell": 106,
+   "kind": "t3_decision_flip",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 8,
+   "A": 3.0,
+   "innov": "t3",
+   "reps": 200,
+   "child_first": 21200
+  },
+  {
+   "cell": 107,
+   "kind": "decision_flip",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 8,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 21400
+  },
+  {
+   "cell": 108,
+   "kind": "t3_decision_flip",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 8,
+   "A": 3.0,
+   "innov": "t3",
+   "reps": 200,
+   "child_first": 21600
+  },
+  {
+   "cell": 109,
+   "kind": "decision_flip",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 8,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 21800
+  },
+  {
+   "cell": 110,
+   "kind": "t3_decision_flip",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 8,
+   "A": 3.0,
+   "innov": "t3",
+   "reps": 200,
+   "child_first": 22000
+  },
+  {
+   "cell": 111,
+   "kind": "decision_flip",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 8,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 22200
+  },
+  {
+   "cell": 112,
+   "kind": "t3_decision_flip",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 8,
+   "A": 3.0,
+   "innov": "t3",
+   "reps": 200,
+   "child_first": 22400
+  },
+  {
+   "cell": 113,
+   "kind": "decision_flip",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 8,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 22600
+  },
+  {
+   "cell": 114,
+   "kind": "t3_decision_flip",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 8,
+   "A": 3.0,
+   "innov": "t3",
+   "reps": 200,
+   "child_first": 22800
+  },
+  {
+   "cell": 115,
+   "kind": "unequal_memory_null",
+   "phi": 0.5,
+   "n_events": 20,
+   "baselines": [
+    "S1",
+    "S40"
+   ],
+   "pending": "pass criterion: item 17 / S-2",
+   "reps": 200,
+   "child_first": 23000
+  },
+  {
+   "cell": 116,
+   "kind": "unequal_memory_null",
+   "phi": 0.8,
+   "n_events": 20,
+   "baselines": [
+    "S1",
+    "S40"
+   ],
+   "pending": "pass criterion: item 17 / S-2",
+   "reps": 200,
+   "child_first": 23200
+  },
+  {
+   "cell": 117,
+   "kind": "unequal_memory_null",
+   "phi": 0.9,
+   "n_events": 20,
+   "baselines": [
+    "S1",
+    "S40"
+   ],
+   "pending": "pass criterion: item 17 / S-2",
+   "reps": 200,
+   "child_first": 23400
+  },
+  {
+   "cell": 118,
+   "kind": "unequal_memory_null",
+   "phi": 0.95,
+   "n_events": 20,
+   "baselines": [
+    "S1",
+    "S40"
+   ],
+   "pending": "pass criterion: item 17 / S-2",
+   "reps": 200,
+   "child_first": 23600
+  },
+  {
+   "cell": 119,
+   "kind": "unequal_memory_null",
+   "phi": 0.98,
+   "n_events": 20,
+   "baselines": [
+    "S1",
+    "S40"
+   ],
+   "pending": "pass criterion: item 17 / S-2",
+   "reps": 200,
+   "child_first": 23800
+  }
+ ],
+ "calibration": [
+  {
+   "calib": 0,
+   "phi": 0.5,
+   "n_events": 20,
+   "child_first": 10000000,
+   "reps": 1000
+  },
+  {
+   "calib": 1,
+   "phi": 0.8,
+   "n_events": 20,
+   "child_first": 10001000,
+   "reps": 1000
+  },
+  {
+   "calib": 2,
+   "phi": 0.9,
+   "n_events": 20,
+   "child_first": 10002000,
+   "reps": 1000
+  },
+  {
+   "calib": 3,
+   "phi": 0.95,
+   "n_events": 20,
+   "child_first": 10003000,
+   "reps": 1000
+  },
+  {
+   "calib": 4,
+   "phi": 0.98,
+   "n_events": 20,
+   "child_first": 10004000,
+   "reps": 1000
+  }
+ ]
+}

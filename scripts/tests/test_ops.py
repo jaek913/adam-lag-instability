@@ -198,6 +198,37 @@ def main():
     ok("P-HOLD: crossing inside hold ignored; next after hold counts", list(on2) == [10, 50])
     ok("round_half_up(2.5) == 3 (not banker's)", ops.round_half_up(2.5) == 3 and round(2.5) == 2)
 
+    # Vectorised b4_z and list-based b4_alarm must be bit-identical to the reference loop
+    rng = np.random.default_rng(5)
+    same = True
+    for n in (10, 31, 150, 200, 201, 5000):
+        yy = np.cumsum(rng.standard_normal(n)) * 0.1
+        yy[n // 3:n // 3 + 5] = 3.0                    # ties in the history
+        zv, zl = ops.b4_z(yy), ops.b4_z_loop(yy)
+        same = same and np.array_equal(zv, zl, equal_nan=True)
+    ok("b4_z (vectorised) == b4_z_loop (reference) bit-for-bit, n in {10..5000}", same)
+    yy = np.cumsum(rng.standard_normal(3000)) * 0.1
+    zz = ops.b4_z_loop(yy)
+    yy2 = yy.copy()
+    yy2[2500] += 1e-9
+    # Fast b4_alarm (merge-with-free-path) must be bit-identical to b4_alarm_loop
+    mism, cases = 0, 0
+    for trial in range(12):
+        n = int(rng.integers(1300, 4000))
+        yb = np.cumsum(rng.standard_normal(n)) * 0.2 + rng.standard_normal(n)
+        zb = ops.b4_z(yb)
+        sf = ops.b4_alarm_loop(zb, None)[0]
+        vals = np.unique(sf[~np.isnan(sf)])
+        for th in list(rng.choice(vals, 5)) + [float(vals.max()), float(vals.max()) + 1.0]:
+            for hh in (1, 32):
+                fa_, lo_ = ops.b4_alarm(zb, th, hh), ops.b4_alarm_loop(zb, th, hh)
+                cases += 1
+                mism += not (np.array_equal(fa_[0], lo_[0], equal_nan=True) and np.array_equal(fa_[1], lo_[1])
+                             and np.array_equal(fa_[2], lo_[2]))
+    ok(f"b4_alarm (fast) == b4_alarm_loop bit-for-bit on {cases} randomised cases", mism == 0)
+    ok("WATCH-FAIL: a 1e-9 perturbation is detected by the equality check",
+       not np.array_equal(ops.b4_z(yy2), zz, equal_nan=True))
+
     for n, c in CHECKS:
         print(("PASS " if c else "FAIL ") + n)
     print("ALL PASS" if all(c for _, c in CHECKS) else "SOME FAILED")

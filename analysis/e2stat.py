@@ -19,30 +19,33 @@ def alarm_at(blocks, step, grid):
 
 
 def lead(blocks, t_e, grid, scan):
-    """Lead for one event (Amendment 1 A1.4 / G3). Returns (lead, censored, detected)."""
+    """Lead for one event (Amendment 1 A1.4 / G3). Returns (lead, censored, detected, concurrent).
+    Amendment 7 item 6: detected requires lead > 0 (censored counts as detected); an event whose
+    first in-window alarm is at t_e^g is concurrent, not detected. Its lead is 0 either way (P-MISS)."""
     teg = grid * (t_e // grid)
     ws = teg - scan
     before = alarm_at(blocks, ws - grid, grid)
     if alarm_at(blocks, ws, grid) and before:
-        return scan, True, True
+        return scan, True, True, False
     for st in range(ws, teg + 1, grid):
         if alarm_at(blocks, st, grid):
-            return teg - st, False, True
-    return 0, False, False
+            return teg - st, False, teg - st > 0, teg - st == 0
+    return 0, False, False, False
 
 
 def leads_table(alarms_by_detector, events, grid, scan):
     """alarms_by_detector[d][series] -> blocks. events: list of dicts with t_e, series.
-    Returns {d: (leads array, censored array, detected array)} over the given events."""
+    Returns {d: (leads, censored, detected, concurrent)} arrays over the given events."""
     out = {}
     for d, by_series in alarms_by_detector.items():
-        L, C, D = [], [], []
+        L, C, D, K = [], [], [], []
         for e in events:
-            l, c, det = lead(by_series[e["series"]], e["t_e"], grid, scan)
+            l, c, det, conc = lead(by_series[e["series"]], e["t_e"], grid, scan)
             L.append(l)
             C.append(c)
             D.append(det)
-        out[d] = (np.array(L, float), np.array(C, bool), np.array(D, bool))
+            K.append(conc)
+        out[d] = (np.array(L, float), np.array(C, bool), np.array(D, bool), np.array(K, bool))
     return out
 
 
@@ -74,5 +77,5 @@ def label(cmin_point, cmins):
     """D.3 E2 outcome partition (INSUFFICIENT EVENTS is decided before this, by P-KLAD)."""
     if cmin_point <= 0:
         return "REFUTE", None
-    p05 = float(np.percentile(cmins, 5))              # numpy default (linear); construction item 5
+    p05 = float(np.percentile(cmins, 5))              # numpy default (linear); Amendment 7.5
     return ("SUPPORT" if p05 > 0 else "INCONCLUSIVE"), p05
