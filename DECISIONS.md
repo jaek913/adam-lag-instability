@@ -357,3 +357,29 @@ Refines Addendum C item 1 (the per-segment gate); Addendum C items 2–5 stand. 
 
    Total 718,917,107 bytes (685.6 MiB).
 5. **Order (Addendum C item 1).** Run-001 first; the other six only after run-001's outcome is recorded. Each download is stated to JAE (file name and size) and approved before it is made.
+
+## Entry 7 (2026-10-30, JAE) — Run-001 route-1 artifact passes D.1; bookkeeping-only row rule
+
+1. **Download (Addendum D item 5; approved by JAE before the download).**
+   - File: `run-ucv77bvt-history:v0/0000.parquet`.
+   - Retrieved through the signed GCS link that W&B GraphQL returned. It arrived in Downloads under its object name and was moved to the store as `A1\run-001_ucv77bvt_history-v0_0000.parquet`.
+   - 22,056,943 bytes; MD5 e3942b58581e1fa10afdf096fdf6cb4a, matching the manifest; SHA-256 f85eebb9ee25a5905af9335124fad59e60252ee6709cdc24150f5fe3609b95c9.
+2. **D.1 check** (scripts/a1_d1_check.py; output scripts/outputs/d1_A1_run001.json). Step index and non-null masks only; no metric value was read.
+   - **Columns:** 2,129, with the required columns present by name.
+   - **Steps:** `_step` is stored as double, and all values are integral.
+   - **Rows:** 14,211 rows = the server's `historyLineCount` of 14,211. Steps 0–14,210 are contiguous, with no duplicates.
+   - **Loss:** on every step 1–14,210, in one block.
+   - **Gradient norm:** on all 1,421 grid steps in that span, none off-grid, none dropped.
+   - **Exceptions:** the only row without loss is step 0.
+   - **Item 8's one-line difference** between server lines and loss rows is this row.
+3. **Step 0's contents** (scripts/a1_rows_without_loss.py; output scripts/outputs/rows_without_loss_A1_run001.json). Its non-null columns are exactly `System/Peak GPU Memory (MB)`, `_runtime`, `_step` and `_timestamp`. There is no `train/`, `optim/` or `eval/` column: it is a log row written before training.
+4. **Rule (proposed by the author; approved by JAE 2026-10-30 22:27 CT by rerunning the check as conditioned).**
+   - **Bookkeeping-only row.** A history row with no `train/CrossEntropyLoss` whose only non-null columns are `_step`, `_runtime`, `_timestamp` or `System/…` is a non-training log row.
+   - **Handling.** Such rows are counted and reported, then removed before the D.1 completeness check. Any other row without loss fails D.1, and so does any hole left by removing bookkeeping rows. In effect, only rows at the edges can be removed.
+   - **Strict result.** `D1_pass_strict`, without the rule, is reported beside the result.
+   - **Scope.** The rule applies to every A1 segment and every other run checked by this script.
+5. **Outcome.**
+   - **Run-001 passes D.1 under the rule** (`D1_pass` true; `D1_pass_strict` false; 1 bookkeeping-only row; 0 other rows without loss).
+   - **Under Addendum D item 1, route 1 is run-001's source.** Route 1b is its cross-check: two raw windows stitched by scripts/a1_route1b_stitch.py, which is committed before it runs, with cell identity on every shared step.
+   - **The other six segments** (Addendum C item 1) follow after this entry is pushed, each download approved first.
+6. **Scripts committed with this entry:** a1_d1_check.py (MD5 23c2388881217360335df745a94ac180), a1_rows_without_loss.py (41058084bea0626513ee3f8d9d3e6203) and a1_route1b_stitch.py (574295fd4571adf5e443af5823d39c8c). Each was tested on synthetic files before use. Route-1b requests carry one spec per column, because W&B returns a multi-key spec's rows only where every key is present (item 8).

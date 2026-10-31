@@ -1,0 +1,23 @@
+{
+  "file": "C:\\Users\\jaek9\\Documents\\LaggingTruth\\data-stores\\adam-lag-instability\\A1\\run-001_ucv77bvt_history-v0_0000.parquet",
+  "rows_without_loss": 1,
+  "rows": [
+    {
+      "step": 0,
+      "n_nonnull_columns": 4,
+      "nonnull_by_prefix": {
+        "System": 1,
+        "_runtime": 1,
+        "_step": 1,
+        "_timestamp": 1
+      },
+      "nonnull_non_param_columns": [
+        "System/Peak GPU Memory (MB)",
+        "_runtime",
+        "_step",
+        "_timestamp"
+      ]
+    }
+  ],
+  "note": "column names and counts only; no metric value printed or saved"
+}
