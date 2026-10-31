@@ -413,3 +413,28 @@ Result: 16 findings (G1–G16), all adopted, five with a stated adaptation, plus
 - **(iii) The rejected alternative** (later-wins among used segments only) would have spliced 010's abandoned 160,501–160,600 onto 013, which restarted from a checkpoint on 011's trajectory. That would present a continuous series across a run boundary that did not exist.
 
 **Unchanged.** Every other D.1, D.2 and Amendment 1 rule. The P-SEG sensitivity (keep-earlier; rewind events excluded, E4) is computed on the same segment set.
+
+## Amendment 3 (2026-10-31) — Spike-rule construction details (every run)
+
+**Status.** Appended below Amendment 2 under the append-only rule. Rationale: DECISIONS.md entry 12 (JAE decision 2026-10-31). Made and pushed before any loss value is read for event enumeration on any run. No A1 loss event has been enumerated, and no detector score has been computed.
+
+**Trigger.** The D.2 spike definition — L(t) > SMA_128(L)(t−1) + k·σ_128(L)(t−1), over the finite values of L in the trailing 128 steps, with chained dedup (Amendment 1 A1.3: 2,000 steps on A1; 200 elsewhere) — leaves five construction details unstated. Each could change which steps are spikes, so each is fixed here before any loss value is read.
+
+**Clarifications (every run: A1–A6, Leg B and the D.5 suite).**
+- **(1) σ.** σ_128(L) is the sample standard deviation (ddof = 1) of the finite trailing values. This is the pandas `rolling().std()` default.
+- **(2) Testable steps.** Step t is tested for a spike only if both hold:
+  - all 128 trailing steps t−128 … t−1 lie on the same series since its start or its last gap;
+  - at least **64** of them hold finite L values (half the window, so that σ is never estimated from a handful of points).
+  
+  Untested steps are not spikes. Their count is reported per series and in total, separately by cause: (a) inside the first 128 steps after a series start or gap; (b) finite-value floor not met.
+- **(3) Dedup distance.** "Within D steps" is inclusive: a spike at step s joins the open event if s − (most recently merged spike) ≤ D.
+- **(4) Gaps close chains.** A dedup chain never crosses a gap; the open event closes at the gap.
+- **(5) Rewind series.** A rewind portion's own series is the kept series up to that segment's resume step, followed by the segment's own logged steps after it. Events are enumerated on this series with the same rules, and an event is a rewind event only if its event time t_e lies in the superseded portion. Events whose t_e lies before the resume step are kept-series events, enumerated on the kept series, and are not counted twice.
+  - History for eligibility on this series is counted from the last gap on it (Amendment 1 A1.4, G5).
+
+**D.5 suite additions (event enumeration).**
+- (i) A NaN run that drops the finite count below 64. The affected steps must be untested and counted under cause (b), and the NaN steps themselves must still count as spikes when tested.
+- (ii) A chain ending at a gap. The event must close at the gap, and a spike after the gap must open a new event.
+- (iii) A rewind portion with an event at its first superseded step. It must be enumerated as a rewind event on its own series, not merged with a kept-series event, and not counted twice.
+
+**Unchanged.** The spike inequality, k ladder (P-KLAD), NaN rule, event time t_e (the first step of the event), dedup distances and every other rule.

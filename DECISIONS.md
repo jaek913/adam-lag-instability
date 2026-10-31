@@ -531,3 +531,24 @@ Refines Addendum C item 1 (the per-segment gate); Addendum C items 2–5 stand. 
 6. **Unscorable superseded portions of unused segments** (Addendum C item 5(i)): 14 ranges, 1,043 steps in total. These are lower bounds: unused segments' logged ends are taken from their served sparse rows, and the true ends may be later.
 7. **Provenance note.** The served last steps of the unused segments come from the 2026-10-30 browser query that produced item 8. Item 8 summarised them as "sparse"; the report script now records each value explicitly, as `UNUSED_SERVED_LAST`.
 8. **Next.** Enumerate A1 loss events (P-KLAD k ladder, A1 dedup 2,000 steps, NaN rule) on the kept series and on each rewind portion's own series. Then compute eligibility and the counts that A1.4 and Addendum C require, before any detector score. This requires a committed, synthetic-tested event script, run after this entry is pushed.
+
+## Entry 12 (2026-10-31, JAE) — Spike-rule construction details fixed before any loss value is read (DESIGN Amendment 3)
+
+1. **Gap in the frozen text.** D.2's spike rule leaves five details open, any of which could change which steps are spikes:
+   - the σ convention;
+   - when a trailing window is full enough to test;
+   - whether the dedup distance is inclusive;
+   - whether chains cross gaps;
+   - how a rewind portion's own series is formed.
+2. **Proposal (author) and decision (JAE, 2026-10-31).**
+   - **(1)** σ is the sample SD (ddof = 1). Adopted.
+   - **(2)** Proposed: a full 128-step trailing window on the same series, with at least 2 finite values. **Changed by JAE:** at least **64** finite values (half the window), "so σ is never estimated from a handful of points". Steps that the floor blocks are counted and reported.
+   - **(3)** The dedup distance is inclusive (Δ ≤ D). Adopted.
+   - **(4)** A dedup chain never crosses a gap. Adopted.
+   - **(5)** A rewind portion's own series is the kept series up to the segment's resume step, plus the segment's own steps. Events on it are rewind events only if t_e lies in the superseded portion. Adopted.
+3. **Suite cases (JAE), added to D.5 by Amendment 3:**
+   - (i) a NaN run that drops the finite count below 64;
+   - (ii) a chain ending at a gap;
+   - (iii) a rewind portion with an event at its first superseded step.
+4. **Scope.** Every run (A1–A6, Leg B) and the D.5 suite. Recorded as DESIGN Amendment 3 and pushed before any loss value is read for event enumeration.
+5. **Next.** Write `scripts/a1_events.py` and test it on synthetic series covering cases (i)–(iii), plus the k ladder and the eligibility counts. Commit it before it runs on A1. Then enumerate A1 events at k = 4 and k = 3 and resolve the ladder, before any detector score.
