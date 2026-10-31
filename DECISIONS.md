@@ -443,3 +443,55 @@ Refines Addendum C item 1 (the per-segment gate); Addendum C items 2–5 stand. 
    - **Not covered:** 504,511–543,360 (segments 019–025, sparse).
 5. **Records.** SOURCES.md rows for the six route-1 files, all 59 route-1b windows (fetch and landing UTC, MD5, SHA-256) and the seven stitched files (derived; not sources).
 6. **Next (JAE's sequence):** the Amendment 1, A1.12 structural report, from the step index and null masks of the seven route-1 files, before any loss event is enumerated or any detector score is computed. Route 3 (AI2) remains open until the 2026-11-13 cutoff (Addendum C item 2).
+
+## Entry 10 (2026-10-31, JAE) — P-SEG clarified for A1 (DESIGN Amendment 2): ties to the later run; any superseding segment removes steps from the kept series
+
+1. **Evidence (W&B GraphQL run metadata only: `createdAt`, `historyLineCount`, config `load_path`; no metric value).**
+   - Each A1 segment's `load_path` names the checkpoint it resumed from.
+   - For all six used segments that restarted, resume step + 1 equals the first loss step measured in entries 7–9: 52,300→52,301; 73,100→73,101; 160,600→160,601; 212,000→212,001; 337,000→337,001; 408,923→408,924. Run-001 has no `load_path`; it starts at step 1.
+   - **Resume steps:**
+
+     | run | resume step | run | resume step |
+     |---|---|---|---|
+     | 001 | — (start) | 014 | 212,000 |
+     | 002 | 14,200 | 015 | 212,000 |
+     | 003 | 14,500 | 016 | 212,000 |
+     | 004 | 39,350 | 017 | 337,000 |
+     | 005 | 41,400 | 018 | 408,923 |
+     | 006 | 42,200 | 019 | 504,500 |
+     | 007 | 51,450 | 020 | 505,550 |
+     | 008 | 52,300 | 021 | 507,000 |
+     | 009 | 73,100 | 022 | 508,500 |
+     | 010 | 73,100 | 023 | 509,200 |
+     | 011 | 160,500 | 024 | 511,350 |
+     | 012 | 160,600 | 025 | 521,000 |
+     | 013 | 160,600 | | |
+
+   - The copies' `createdAt` runs in the same order as the run numbers.
+2. **The gap in D.1 P-SEG.** First-step ordering ties for 009/010, 012/013 and 014/015/016. Unused segments (002, 011, 019) supersede steps of used segments, a case D.1 does not address.
+3. **Decision (JAE, 2026-10-31): option 1, faithful.** Literal later-wins among used segments only was rejected.
+   - **JAE's rationale:** P-SEG's stated reason — the later segment is the trajectory that continued — applies whether or not the superseding segment is used. Option 2 would splice 010's abandoned 160,501–160,600 onto 013, which restarted from a checkpoint on 011's trajectory, fabricating a continuous series across a run boundary.
+   - **Rules:**
+     - ties go to the later run;
+     - any superseding segment, used or not, removes the superseded steps from the kept series;
+     - an unused owner makes a gap;
+     - superseded tails of used segments are rewind portions, scored on their own series;
+     - superseded portions of unused segments are unscorable.
+4. **Rule (b) as written (DESIGN Amendment 2).** Supersession is decided by resume step, not by how far the superseding segment logged.
+   - **Reason:** sparse segments' last logged rows understate their reach. 011's last logged row is 160,599, yet 012 and 013 resume from its checkpoint at 160,600.
+   - **Check:** this rule, computed from the resume steps and the seven used spans by script, reproduces the kept series and the six rewind portions in Amendment 2 exactly.
+5. **Kept A1 series:**
+   - 1–14,200 | gap 14,201–52,300 | 52,301–160,500 | gap 160,501–160,600 | 160,601–504,500;
+   - the uncovered remainder runs to 543,360.
+   
+   **Rewind portions** (used segments, scored on their own series):
+   - 001: 14,201–14,210 (10 steps);
+   - 008: 73,101–73,110 (10);
+   - 010: 160,501–160,851 (351);
+   - 013: 212,001–212,965 (965);
+   - 016: 337,001–337,339 (339);
+   - 018: 504,501–504,510 (10).
+6. **Costs (stated in Amendment 2).**
+   - 20 end steps leave the kept series (14,201–14,210 and 504,501–504,510).
+   - The 160,501–160,600 gap restarts the detector windows, and the minimum history (1,000 grid observations = 10,000 steps) applies again. No event is eligible within about 11,280 steps after 160,601 (Amendment 1 A1.4).
+7. **Sequence (JAE).** Amendment 2 and this entry are pushed before any loss event is enumerated. Then comes the A1.12 structural report on this assembly, from the step index and null masks only; its script is committed before it runs.

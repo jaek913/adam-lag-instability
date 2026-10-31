@@ -372,3 +372,44 @@ Result: 16 findings (G1–G16), all adopted, five with a stated adaptation, plus
   - the assembled stretches longer than 11,280 steps;
   - the n* upper bounds at each FA grid point implied by N.
 - **Later.** N_out, the realised n* and the event counts depend on the loss and are reported with E2.
+
+## Amendment 2 (2026-10-31) — P-SEG clarification: ties, and segments superseded by an unused segment
+
+**Status.** Appended below Amendment 1 under the append-only rule. Rationale: DECISIONS.md entry 10 (JAE decision 2026-10-31). Made and pushed before any A1 loss event is enumerated and before any detector score is computed. No A1 metric value has entered any analysis.
+
+**Trigger.** D.1 P-SEG orders segments by first step and keeps the later segment's rows on overlapping steps, "because training resumed from the checkpoint and the later segment is the trajectory that continued". On A1 the rule is incomplete in two ways, shown by each run's resume checkpoint (`load_path` in the run config; resume step + 1 equals the measured first loss step for all six used segments that restarted; DECISIONS entry 10):
+- **Ties.**
+  - Runs 009 and 010 both resume from step 73,100.
+  - Runs 012 and 013 both resume from 160,600.
+  - Runs 014, 015 and 016 all resume from 212,000.
+- **Unused superseders.** Segments that fail D.1 (not used) supersede steps of used segments:
+  - 002 (resume 14,200) supersedes 001's steps 14,201–14,210;
+  - 011 (resume 160,500) supersedes 010's 160,501–160,600;
+  - 019 (resume 504,500) supersedes 018's 504,501–504,510.
+  
+  D.1 is silent on this case.
+
+**Clarification (applies to every run assembled under P-SEG).**
+- **(a) Ordering.** Segments are ordered by resume step (first step), and ties are broken by run order: the later run wins.
+- **(b) Supersession by resume step.** A step s logged by segment X is superseded if any later segment Y (in the order of (a)), used or not, has resume step r_Y < s. Training restarted from r_Y, so everything X logged after r_Y was abandoned, however far Y itself logged; a sparse segment's last logged row is not used to bound it. The kept series takes each step s from the last segment in order whose resume step is below s.
+- **(c) Unused owner.** A step whose owner under (b) is unused is a **gap** in the kept series (D.1, D.2 "Gaps and state"; for A1, a detector-series gap if it contains a grid step, Amendment 1 A1.1).
+- **(d) Superseded tails of used segments** are rewind portions. Events in them are scored on that segment's own series, as frozen (D.1 F5).
+- **(e) Superseded portions of unused segments** cannot be scored. They are reported as unscorable — segment unavailable (DECISIONS Addendum C item 5).
+
+**Effect on A1.**
+- **The kept series** is steps 1–14,200 | gap 14,201–52,300 | 52,301–160,500 | gap 160,501–160,600 | 160,601–504,500. The kept series ends at 504,500, where 019 (unused) takes over.
+- **Under the literal reading** it would have been 1–14,210 | gap | 52,301–504,510.
+- **Rewind portions of used segments** (scored on their own series):
+  - 001: 14,201–14,210;
+  - 008: 73,101–73,110;
+  - 010: 160,501–160,851;
+  - 013: 212,001–212,965;
+  - 016: 337,001–337,339;
+  - 018: 504,501–504,510.
+
+**Costs, stated.**
+- **(i) End steps.** 20 steps leave the kept series at segment ends: 14,201–14,210 and 504,501–504,510. They remain as rewind portions.
+- **(ii) The new 100-step gap at 160,501–160,600.** It restarts every detector window, and the minimum history applies again (1,000 grid observations = 10,000 steps). No event whose scan window begins within that history is eligible. That covers t_e^g up to about 160,601 + 11,280 steps (Amendment 1 A1.4): roughly 11,280 steps of the kept series hold no eligible event.
+- **(iii) The rejected alternative** (later-wins among used segments only) would have spliced 010's abandoned 160,501–160,600 onto 013, which restarted from a checkpoint on 011's trajectory. That would present a continuous series across a run boundary that did not exist.
+
+**Unchanged.** Every other D.1, D.2 and Amendment 1 rule. The P-SEG sensitivity (keep-earlier; rewind events excluded, E4) is computed on the same segment set.

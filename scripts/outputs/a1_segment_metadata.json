@@ -1,0 +1,231 @@
+{
+ "source": "W&B GraphQL run metadata (createdAt, historyLineCount, config load_path), ai2-llm/OLMo-7B group OLMo-1.7-7B, read 2026-10-31 in JAE's logged-in browser; no metric value",
+ "note": "load_path is shown as its last path components (as read); resume_step parsed from 'step<N>'. run-001 has no load_path (training start).",
+ "segments": [
+  {
+   "seg": "run-001",
+   "id": "ucv77bvt",
+   "createdAt": "2024-04-17T23:16:04Z",
+   "historyLineCount": 14211,
+   "load_path_tail": null,
+   "resume_step": null,
+   "used": true
+  },
+  {
+   "seg": "run-002",
+   "id": "yvnxfxho",
+   "createdAt": "2024-04-17T23:35:55Z",
+   "historyLineCount": 701,
+   "load_path_tail": "step14200/",
+   "resume_step": 14200,
+   "used": false
+  },
+  {
+   "seg": "run-003",
+   "id": "s9gkykls",
+   "createdAt": "2024-04-17T23:37:44Z",
+   "historyLineCount": 24861,
+   "load_path_tail": "mitchish7/step14500",
+   "resume_step": 14500,
+   "used": false
+  },
+  {
+   "seg": "run-004",
+   "id": "auqmzpj6",
+   "createdAt": "2024-04-18T00:12:36Z",
+   "historyLineCount": 2061,
+   "load_path_tail": "mitchish7/step39350",
+   "resume_step": 39350,
+   "used": false
+  },
+  {
+   "seg": "run-005",
+   "id": "gvf17mtk",
+   "createdAt": "2024-04-18T00:17:14Z",
+   "historyLineCount": 811,
+   "load_path_tail": "mitchish7/step41400-unsharded",
+   "resume_step": 41400,
+   "used": false
+  },
+  {
+   "seg": "run-006",
+   "id": "ahhqn92q",
+   "createdAt": "2024-04-18T00:19:33Z",
+   "historyLineCount": 9261,
+   "load_path_tail": "mitchish7/step42200-unsharded",
+   "resume_step": 42200,
+   "used": false
+  },
+  {
+   "seg": "run-007",
+   "id": "wx1kidf5",
+   "createdAt": "2024-04-18T00:33:48Z",
+   "historyLineCount": 861,
+   "load_path_tail": "mitchish7/step51450-unsharded",
+   "resume_step": 51450,
+   "used": false
+  },
+  {
+   "seg": "run-008",
+   "id": "bnzb4pmk",
+   "createdAt": "2024-04-18T00:36:17Z",
+   "historyLineCount": 20811,
+   "load_path_tail": "mitchish7/step52300-unsharded",
+   "resume_step": 52300,
+   "used": true
+  },
+  {
+   "seg": "run-009",
+   "id": "7wdi29fz",
+   "createdAt": "2024-04-18T01:06:57Z",
+   "historyLineCount": 279,
+   "load_path_tail": "mitchish7/step73100",
+   "resume_step": 73100,
+   "used": false
+  },
+  {
+   "seg": "run-010",
+   "id": "wqjq7xzw",
+   "createdAt": "2024-04-18T01:08:33Z",
+   "historyLineCount": 87752,
+   "load_path_tail": "step73100-unsharded",
+   "resume_step": 73100,
+   "used": true
+  },
+  {
+   "seg": "run-011",
+   "id": "2j6q2kz8",
+   "createdAt": "2024-04-18T03:20:12Z",
+   "historyLineCount": 100,
+   "load_path_tail": "step160500-unsharded",
+   "resume_step": 160500,
+   "used": false
+  },
+  {
+   "seg": "run-012",
+   "id": "56ru0hsd",
+   "createdAt": "2024-04-18T03:22:38Z",
+   "historyLineCount": 256,
+   "load_path_tail": "step160600",
+   "resume_step": 160600,
+   "used": false
+  },
+  {
+   "seg": "run-013",
+   "id": "7lr31kjd",
+   "createdAt": "2024-04-18T03:25:20Z",
+   "historyLineCount": 52366,
+   "load_path_tail": "step160600",
+   "resume_step": 160600,
+   "used": true
+  },
+  {
+   "seg": "run-014",
+   "id": "vtnbhkmu",
+   "createdAt": "2024-04-18T04:51:33Z",
+   "historyLineCount": 1,
+   "load_path_tail": "step212000",
+   "resume_step": 212000,
+   "used": false
+  },
+  {
+   "seg": "run-015",
+   "id": "bxzbwm3j",
+   "createdAt": "2024-04-18T04:51:44Z",
+   "historyLineCount": 1,
+   "load_path_tail": "step212000",
+   "resume_step": 212000,
+   "used": false
+  },
+  {
+   "seg": "run-016",
+   "id": "0g0rjkxo",
+   "createdAt": "2024-04-18T04:51:53Z",
+   "historyLineCount": 125340,
+   "load_path_tail": "step212000",
+   "resume_step": 212000,
+   "used": true
+  },
+  {
+   "seg": "run-017",
+   "id": "d4g44zcc",
+   "createdAt": "2024-04-18T08:26:45Z",
+   "historyLineCount": 71924,
+   "load_path_tail": "step337000",
+   "resume_step": 337000,
+   "used": true
+  },
+  {
+   "seg": "run-018",
+   "id": "50br7dzw",
+   "createdAt": "2024-04-18T10:53:10Z",
+   "historyLineCount": 95587,
+   "load_path_tail": "step408923",
+   "resume_step": 408923,
+   "used": true
+  },
+  {
+   "seg": "run-019",
+   "id": "m22a5wug",
+   "createdAt": "2024-04-18T13:09:02Z",
+   "historyLineCount": 1061,
+   "load_path_tail": "step504500",
+   "resume_step": 504500,
+   "used": false
+  },
+  {
+   "seg": "run-020",
+   "id": "iryle1e4",
+   "createdAt": "2024-04-18T13:28:27Z",
+   "historyLineCount": 1461,
+   "load_path_tail": "step505550",
+   "resume_step": 505550,
+   "used": false
+  },
+  {
+   "seg": "run-021",
+   "id": "eidrl8dn",
+   "createdAt": "2024-04-18T13:48:42Z",
+   "historyLineCount": 1511,
+   "load_path_tail": "step507000",
+   "resume_step": 507000,
+   "used": false
+  },
+  {
+   "seg": "run-022",
+   "id": "x1jigg0a",
+   "createdAt": "2024-04-18T14:04:33Z",
+   "historyLineCount": 711,
+   "load_path_tail": "step508500",
+   "resume_step": 508500,
+   "used": false
+  },
+  {
+   "seg": "run-023",
+   "id": "l3qs9hoe",
+   "createdAt": "2024-04-18T14:19:27Z",
+   "historyLineCount": 2161,
+   "load_path_tail": "step509200",
+   "resume_step": 509200,
+   "used": false
+  },
+  {
+   "seg": "run-024",
+   "id": "gqph7y8y",
+   "createdAt": "2024-04-18T14:38:31Z",
+   "historyLineCount": 9661,
+   "load_path_tail": "step511350",
+   "resume_step": 511350,
+   "used": false
+  },
+  {
+   "seg": "run-025",
+   "id": "u3obk6mj",
+   "createdAt": "2024-04-18T15:20:05Z",
+   "historyLineCount": 22361,
+   "load_path_tail": "step521000",
+   "resume_step": 521000,
+   "used": false
+  }
+ ]
+}
