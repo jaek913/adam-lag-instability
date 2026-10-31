@@ -25,7 +25,7 @@ Dated 2026-10-30. Extracted from planning doc v0.5 Part 2 (planning/adam-lag-ins
 
 **Date (grading day).** The §K kill-rule verdict (Leg A, experiment E2 on OLMo-0424) is graded on the `prereg-v1` commit date + 21 days: **2026-11-20** (written in the `prereg-v1` commit, dated 2026-10-30; the same date appears in DESIGN §K). Leg B carries no verdict (Amendments A2(d), A3(c)); the reporting date for its characterizations (E6–E8) is set at Phase 2 open if §K returns PROCEED. On each grading day the verdict is recorded in DECISIONS.md and RECORD.md whether or not the experiment has run; an unrun experiment on its grading day is itself recorded and the day is re-set once, by dated amendment.
 
-**Registration.** git commit of THESIS+DESIGN+OUTLINE, tagged `prereg-v1`, in a repo made public at that commit and before the first analysis commit; Zenodo snapshot DOI on the prereg-v1 tag: YES (JAE, 2026-10-30), recorded here at Phase 1 close: [DOI]. No OSF.
+**Registration.** git commit of THESIS+DESIGN+OUTLINE, tagged `prereg-v1`, in a repo made public at that commit and before the first analysis commit; Zenodo snapshot DOI on the prereg-v1 tag: YES (JAE, 2026-10-30), recorded here at Phase 1 close: version DOI [10.5281/zenodo.23825294](https://doi.org/10.5281/zenodo.23825294) (prereg-v1 release; record https://zenodo.org/records/23825294); concept DOI [10.5281/zenodo.23825293](https://doi.org/10.5281/zenodo.23825293) (all versions). No OSF.
 
 **Amendment A2 (2026-10-30, pre-freeze; JAE decisions) — Phase 1 design findings carried into the thesis.** Source: DESIGN.md at commit ab5dd47 (MD5 95781d186dc0f0ec6cd74a4c662397f3) §D.0, §D.2, §D.3, §D.4.1, and DECISIONS.md entry 2.
 
