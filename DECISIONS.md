@@ -319,3 +319,41 @@ Supersedes Addendum B item 3 (the run-025 gate), which cannot pass (item 8). Add
 - **Committed blob:** MD5 346dcf90d4dcb15e1e6e867839679d54, 18,072 bytes.
 - **Raw attachment:** MD5 619a6766b38e2bd9cbfb795f13026d89, 18,246 bytes, as cited in entry 6.
 - The two differ only by the 174 carriage returns. No character of the text differs.
+
+## Entry 2 — Addendum D (2026-10-30, JAE) — Source priority per segment (route 1 first); route-1b storage and stitch
+
+Refines Addendum C item 1 (the per-segment gate); Addendum C items 2–5 stand. Committed and pushed publicly before any A1 segment download.
+
+1. **Route 1 first, per segment.** For each of the seven complete segments, the route-1 history artifact is downloaded and checked against D.1 completeness:
+   - rows contiguous from first to last step, no duplicate steps;
+   - row count compared with the server's `historyLineCount`, with any one-line difference explained from `_step` (item 8 found one per segment);
+   - `optim/total_grad_norm` and `train/CrossEntropyLoss` present by name.
+   
+   **Outcomes:**
+   - **The artifact passes:** route 1 is the source for that segment, and route 1b is a cross-check only, requiring cell identity on every step, compared by script.
+   - **The artifact fails:** route 1b is the candidate source, gated by Addendum C item 1 (a) and (b).
+2. **Route-1b storage.**
+   - Each server window (one GraphQL `sampledHistory` response) is saved raw, as returned, as its own file: `A1_<seg>_<id>_route1b_w<NN>_<minStep>-<maxStep>.json`. Each has its own MD5 and SHA-256, recorded in SOURCES.md with the query text, the window bounds and the download time (UTC).
+   - Windows are requested so that no window exceeds 8,000 steps, below the server's 10,000-row sampling cap. Each file is checked to hold fewer rows than the cap.
+   - Whether `maxStep` is inclusive is determined from the first two windows and recorded.
+3. **Stitch by committed script.** `scripts/a1_route1b_stitch.py` is committed before it is run on any segment. It builds a segment's series from its window files only and asserts:
+   - (i) every window is below the sampling cap;
+   - (ii) the union of steps is contiguous from first to last;
+   - (iii) no step appears in more than one window. If the window bounds overlap, a step appearing twice fails the stitch rather than being silently deduplicated.
+   - (iv) where route 1 is available, cells are identical to route 1 on every shared step.
+   
+   It writes the stitched parquet, a JSON report of the asserts, and the MD5 and SHA-256 of every input and output. No metric value is printed.
+4. **Route-1 artifacts (from W&B GraphQL metadata, 2026-10-30; sizes in bytes; MD5 = manifest digest).** The sizes grow with each segment's server line count, at about 1.5 KB per line; run-025's artifact is about 4 KB per row. Completeness is decided only by the downloaded file.
+
+   | seg | id | artifact | file | bytes | MiB | MD5 |
+   |---|---|---|---|---|---|---|
+   | run-001 | ucv77bvt | run-ucv77bvt-history:v0 | 0000.parquet | 22,056,943 | 21.0 | e3942b58581e1fa10afdf096fdf6cb4a |
+   | run-008 | bnzb4pmk | run-bnzb4pmk-history:v0 | 0000.parquet | 31,778,101 | 30.3 | 9dc7505753996ddd07841f49dbd01dca |
+   | run-010 | wqjq7xzw | run-wqjq7xzw-history:v1 | 0000.parquet | 135,471,623 | 129.2 | 49ee8e2c7058d604e6cd405f6e97bc54 |
+   | run-013 | 7lr31kjd | run-7lr31kjd-history:v0 | 0000.parquet | 79,773,595 | 76.1 | 6efbccaac9a7ab9660e20d7c02a8d642 |
+   | run-016 | 0g0rjkxo | run-0g0rjkxo-history:v1 | 0000.parquet | 192,839,290 | 183.9 | a2795e7d079cafab921041a0a7e3d173 |
+   | run-017 | d4g44zcc | run-d4g44zcc-history:v1 | 0000.parquet | 109,425,733 | 104.4 | f22cbd63928fd2d6ecc2a9b7d2557ba1 |
+   | run-018 | 50br7dzw | run-50br7dzw-history:v1 | 0000.parquet | 147,571,822 | 140.7 | fac3463a023deba976b20c91b1b96006 |
+
+   Total 718,917,107 bytes (685.6 MiB).
+5. **Order (Addendum C item 1).** Run-001 first; the other six only after run-001's outcome is recorded. Each download is stated to JAE (file name and size) and approved before it is made.
