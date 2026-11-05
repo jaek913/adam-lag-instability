@@ -16,7 +16,7 @@ from multiprocessing import Pool
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "scripts", "suite"))
-OUTDIR = os.path.join(ROOT, "scripts", "outputs", "ref_agreement")
+OUTDIR = os.path.join(ROOT, "scripts", "outputs", "ref_agreement_v2")   # v2: onsets + flags compared (Amendment 8.1)
 EXCLUDE = {"unequal_memory_null", "null_30_50"}
 
 

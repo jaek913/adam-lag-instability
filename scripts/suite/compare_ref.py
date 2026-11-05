@@ -1,6 +1,8 @@
 """Amendment 8.1 oracle check: analysis/ (pipeline) vs reference/ (independent implementation) on the
 same series. Usage: python scripts/suite/compare_ref.py <cell> <first_rep> <n_reps>
-The reference runs with its own FROZEN constants (as amended through Amendment 9; D-03/D-04 closed)."""
+The reference runs with its own FROZEN constants (as amended through Amendment 9; D-03/D-04 closed).
+Compared (Amendment 8.1): N_out, n*; per detector theta (1e-6 rel), realised count, onset steps, every lead
+and its censored/detected/concurrent flags; C_min (1e-6, same sign)."""
 import json
 import math
 import os
@@ -42,6 +44,11 @@ def compare(blocks, events, grid, scan):
             diffs.append((d + " theta", ad["theta"], rd["theta"]))
         if ad["realised"] != rd["realised"]:
             diffs.append((d + " realised", ad["realised"], rd["realised"]))
+        if list(ad["onsets"]) != [int(x) for x in rd["onsets"]]:
+            diffs.append((d + " onsets", ad["onsets"][:8], list(rd["onsets"])[:8]))
+        for fl in ("censored", "detected", "concurrent"):
+            if [bool(x) for x in a["flags"][d][fl]] != [bool(x) for x in rd[fl]]:
+                diffs.append((d + " " + fl, a["flags"][d][fl], list(rd[fl])))
         al = a["leads"][d]
         if list(map(float, al)) != list(map(float, rd["leads"])):
             k = [i for i in range(len(al)) if float(al[i]) != float(rd["leads"][i])]

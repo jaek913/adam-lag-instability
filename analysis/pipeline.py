@@ -79,17 +79,19 @@ def run(blocks, events, *, fa=1.0, grid=10, scan=1280, hold=ops.HOLD, n_draws=10
             sc = p["s4_free"] if d == "B4" else p["fixed"][d]
             sv = sc[ops.MIN_HIST:]
             nonfinite += int(np.sum(~np.isfinite(sv)))
-        blocks_alarm, cov_num = [], 0
+        blocks_alarm, cov_num, onset_steps = [], 0, []
         for p in prep:
             if d == "B4":
-                s, _, al = ops.b4_alarm(p["z4"], m["theta"] if m["matchable"] else math.inf, hold, free=p["fr4"])
+                s, on, al = ops.b4_alarm(p["z4"], m["theta"] if m["matchable"] else math.inf, hold, free=p["fr4"])
             else:
                 s = p["fixed"][d]
-                _, al = ops.alarm_from_scores(s, m["theta"], hold)
+                on, al = ops.alarm_from_scores(s, m["theta"], hold)
             cov_num += int(np.sum(np.where(np.isnan(s), False, s >= m["theta"]) & p["oos"]))
             blocks_alarm.append((p["first"], al))
+            onset_steps += [int(p["first"] + grid * j) for j in on]
         coverage = cov_num / n_out if n_out else float("nan")
-        result["detectors"][d] = {**m, "coverage": coverage, "nonfinite_scored": nonfinite}
+        result["detectors"][d] = {**m, "coverage": coverage, "nonfinite_scored": nonfinite,
+                                  "onsets": sorted(onset_steps)}
         alarms[d] = {"kept": blocks_alarm}
 
     result["thetas"] = {d: result["detectors"][d]["theta"] for d in DET}
@@ -116,4 +118,6 @@ def run(blocks, events, *, fa=1.0, grid=10, scan=1280, hold=ops.HOLD, n_draws=10
     else:
         result["label"] = "REFUTE" if cmin <= 0 else "C_min>0"
     result["leads"] = {d: leads[d].tolist() for d in DET}
+    result["flags"] = {d: {"censored": lt[d][1].tolist(), "detected": lt[d][2].tolist(),
+                           "concurrent": lt[d][3].tolist()} for d in DET}
     return result

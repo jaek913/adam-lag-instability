@@ -739,3 +739,19 @@ Sources: the project files `thedivergencetheorem.pdf`, `theadaptationratetheorem
    - **JAE's proposed replacement, to be brought as S-2:** for each memory baseline b, |median C_b| ≤ 1 observation and P(C_b > 0) ∈ [0.40, 0.60] (no memory-driven bias); false-SUPPORT ≤ 0.05 unchanged.
    - The measured values are reported either way.
 4. **Review (JAE).** Amendment 9 joins the Amendments 7–8 follow-up review (scoped single round, entry-3 rule, no third round).
+
+## Entry 21 (2026-11-05) — Reference-agreement run v1: all identical, but the harness under-checked Amendment 8.1; v2 rerun
+
+1. **v1 result.** JAE ran `scripts/suite/run_ref_agreement.py --workers 16` at commit 1fc1f43; it finished 2026-11-05.
+   - 110 cells × 200 replicates = 22,000 comparisons, 0 differing. Verified on device: 110 files, each with exactly the 200 replicates 0–199.
+   - Manifest with per-file MD5: `verification/ref_agreement_summary.md`. Outputs: `scripts/outputs/ref_agreement/`.
+2. **Finding (author, before recording v1 as satisfying 8.1).** `compare_ref.py` compared θ, realised counts, leads, N_out, n* and C_min. It did not compare onset steps or the censored/detected/concurrent flags, which Amendment 8.1 requires.
+   - Equal leads don't determine the flags: lead 0 can be a miss or concurrent; lead 1,280 can be censored or an onset exactly at the window start.
+   - Equal counts don't determine onset positions.
+   - v1 is therefore recorded as incomplete against 8.1. It is kept as a clean run.
+3. **Fix (code only; no rule change).**
+   - `analysis/pipeline.py` now returns per-detector onset steps and per-event flags.
+   - `compare_ref.py` compares both.
+   - New watch-to-fail test `scripts/tests/test_compare_ref.py` (10/10): an unperturbed run is identical, and each compared field, perturbed in the reference output, is detected (onset +1 step, each flag flipped, lead +1, θ × (1 + 1e-5), realised +1, C_min + 1e-3, N_out + 1).
+4. **v2.** The full suite is rerun into `scripts/outputs/ref_agreement_v2/` on the committed code. The 8.1 condition in entry 20 is met only by an all-identical v2.
+5. **Housekeeping.** A `git fetch` from the analysis VM left `.git/objects/maintenance.lock`. It was moved to `.git/stale-maintenance-lock-20261105` (not deleted) so that git on the host is not blocked.
