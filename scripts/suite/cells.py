@@ -36,13 +36,22 @@ def build():
     for phi in PHI:
         add("t3_null", phi=phi, n_events=20, innov="t3")
     for phi in PHI:
-        add("null_30_50", phi=phi, n_events=20, pulse="calibrated")
+        add("null_30_50", phi=phi, n_events=20, pulse="calibrated",
+            superseded="Amendment 10.2: replaced by the null_pulse_sweep cells")
     for phi in PHI:
         add("decision_flip", phi=phi, n_events=20, L=8, A=3.0)                 # Amendment 9.3(15)
         add("t3_decision_flip", phi=phi, n_events=20, L=8, A=3.0, innov="t3")
     for phi in PHI:
         add("unequal_memory_null", phi=phi, n_events=20, baselines=["S1", "S40"],
             pending="pass criterion: item 17 / S-2")                               # Amendment 9.3(16)
+    # ---- appended 2026-11-06 (Amendment 10); earlier indices and seed ranges unchanged ----
+    for phi in PHI:
+        for d in ["D_div", "B1", "B2", "B3", "B4"]:
+            add("null_pulse_sweep", phi=phi, n_events=20, pulse_for=d,
+                pulse_h="from scripts/outputs/calibration_pulse.json [phi][detector]")   # Amendment 10.2
+    for phi in PHI:
+        for h in [1.5, 2.0, 2.5]:
+            add("step_characterization", phi=phi, n_events=20, step_h=h, report_only=True)  # Amendment 10.3
     for c in cells:
         c["reps"] = REPS
         c["child_first"] = c["cell"] * REPS

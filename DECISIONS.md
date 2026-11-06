@@ -776,3 +776,26 @@ Sources: the project files `thedivergencetheorem.pdf`, `theadaptationratetheorem
    - **(B)** the reference's hand probes (selftest T2–T10) run on ours, including end-to-end T9 and T10 through both full chains: θ, onsets, realised count, coverage, leads, flags and C_min = −12/5.
    - **(C)** the A1-grid lead probes run end-to-end through both chains: miss, lead 50, concurrent at t_e^g, uncensored 1,280 with the onset exactly at the window start, censored 1,280, and an alarm only before the window.
    - **First-draft error, recorded:** the censored probe first used hold = 1. Both chains, consistently, gave no censoring, because a spike at 3,720 directly after one at 3,710 is not a fresh crossing. The expected value was wrong, not either code. The probe now uses hold = 2, and the hold-1 case is kept as a watch-fail.
+
+## Entry 23 (2026-11-06, JAE) — S-2 and S-3 decided (DESIGN Amendment 10)
+
+1. **S-2 (unequal-memory null).** JAE chose option 1, the invariance criterion (Amendment 10.1).
+   - Pass: |C_S1 − C_S40| ≤ 1 in ≥ 95 % of replicates; |median C_b| ≤ 1; false-SUPPORT ≤ 0.05.
+   - Reported, not required: false-REFUTE and P(C_b > 0 | C_b ≠ 0).
+   - **JAE's conditions:**
+     - The criterion was chosen after the measurement, so it is graded on fresh disjoint seeds: cells 115–119, child indices 23,000–23,999, never used.
+     - The item-17 measurement run (indices 20,000,000+) is recorded as exploratory, like a calibration.
+   - **Recorded at JAE's request:** his proposed band P(C_b > 0) ∈ [0.40, 0.60] failed (0.20–0.27) because about half of replicates (46–58 %) have C_b exactly 0.
+2. **S-3 (30–50 % detection null).** JAE chose option 3, the pulse with a per-detector sweep (Amendment 10.2).
+   - On the calibration seeds, h is swept so that each detector separately reaches 30–50 % at some h.
+   - False-SUPPORT ≤ 0.05 is graded at every calibrated h on disjoint evaluation seeds, and the detector × h detection-rate table is reported.
+   - **Stated in the amendment (JAE):**
+     - the frozen "every detector in 30–50 %" construction is unattainable because detectors respond differently to the same planted shape;
+     - this sweep is the lookup E2 uses when detection rates are ≤ 50 %.
+   - **Step construction (JAE):** it is a precursor, not a null, because it rewards the fastest detector and biases toward REFUTE. It is kept only as a reported characterization labelled "step precursor, not a null" (Amendment 10.3).
+3. **Feasibility check (author, before writing 10.2).** A pulse sweep at φ_y = 0.9 on calibration seeds (`scripts/outputs/s3_pulse_phi0.9_highh.txt`) shows every detector can be brought into the band separately:
+   - D_div: 0.267 at h = 40, 0.767 at h = 80;
+   - B4: 0.492 at h = 40.
+   - The h = 300 point did not finish within the run's time limit and is not used.
+   - **Seed note:** the S-3 pulse probes used child indices 10,000,000+ (the φ 0.5 calibration range) and the step probe 10,000,000+ and 10,500,000+. All are calibration or unallocated indices, never evaluation.
+4. **Review (JAE).** Amendment 10 joins the follow-up review, which now covers Amendments 7–10.

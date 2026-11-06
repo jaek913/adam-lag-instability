@@ -145,3 +145,8 @@ Mean leads under the null are 1.2–1.7 steps for every detector.
 1. **Step construction with the band widened to [0.20, 0.80] for every detector.** Calibrate h per φ_y on the calibration seeds. Criterion: false-SUPPORT ≤ 0.05.
 2. **Step construction with the band applied to the median detector.** The median detector's rate is calibrated into 30–50 %, and every detector's rate is reported. Criterion: false-SUPPORT ≤ 0.05.
 3. **Keep the pulse construction and drop the 30–50 % requirement.** The cell becomes a reported characterization: detection rate by detector across h. The false-SUPPORT ≤ 0.05 criterion still applies at each h.
+
+## Decided 2026-11-06 (JAE) — DECISIONS entry 23, DESIGN Amendment 10
+
+- **S-2:** invariance criterion (|C_S1 − C_S40| ≤ 1 in ≥ 95 %; |median C_b| ≤ 1; false-SUPPORT ≤ 0.05), graded on the unused evaluation seeds of cells 115–119. False-REFUTE and P(C_b > 0 | C_b ≠ 0) are reported. The item-17 measurement is exploratory. JAE's proposed [0.40, 0.60] band failed because about half of replicates have C_b = 0 exactly.
+- **S-3:** pulse with a per-detector calibration sweep. False-SUPPORT ≤ 0.05 at every calibrated h on evaluation seeds, with the detector × h table reported; this is the E2 lookup for detection rates ≤ 50 %. The step is a reported characterization only, labelled "step precursor, not a null".

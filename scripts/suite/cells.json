@@ -991,6 +991,7 @@
    "phi": 0.5,
    "n_events": 20,
    "pulse": "calibrated",
+   "superseded": "Amendment 10.2: replaced by the null_pulse_sweep cells",
    "reps": 200,
    "child_first": 20000
   },
@@ -1000,6 +1001,7 @@
    "phi": 0.8,
    "n_events": 20,
    "pulse": "calibrated",
+   "superseded": "Amendment 10.2: replaced by the null_pulse_sweep cells",
    "reps": 200,
    "child_first": 20200
   },
@@ -1009,6 +1011,7 @@
    "phi": 0.9,
    "n_events": 20,
    "pulse": "calibrated",
+   "superseded": "Amendment 10.2: replaced by the null_pulse_sweep cells",
    "reps": 200,
    "child_first": 20400
   },
@@ -1018,6 +1021,7 @@
    "phi": 0.95,
    "n_events": 20,
    "pulse": "calibrated",
+   "superseded": "Amendment 10.2: replaced by the null_pulse_sweep cells",
    "reps": 200,
    "child_first": 20600
   },
@@ -1027,6 +1031,7 @@
    "phi": 0.98,
    "n_events": 20,
    "pulse": "calibrated",
+   "superseded": "Amendment 10.2: replaced by the null_pulse_sweep cells",
    "reps": 200,
    "child_first": 20800
   },
@@ -1199,6 +1204,406 @@
    "pending": "pass criterion: item 17 / S-2",
    "reps": 200,
    "child_first": 23800
+  },
+  {
+   "cell": 120,
+   "kind": "null_pulse_sweep",
+   "phi": 0.5,
+   "n_events": 20,
+   "pulse_for": "D_div",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 24000
+  },
+  {
+   "cell": 121,
+   "kind": "null_pulse_sweep",
+   "phi": 0.5,
+   "n_events": 20,
+   "pulse_for": "B1",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 24200
+  },
+  {
+   "cell": 122,
+   "kind": "null_pulse_sweep",
+   "phi": 0.5,
+   "n_events": 20,
+   "pulse_for": "B2",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 24400
+  },
+  {
+   "cell": 123,
+   "kind": "null_pulse_sweep",
+   "phi": 0.5,
+   "n_events": 20,
+   "pulse_for": "B3",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 24600
+  },
+  {
+   "cell": 124,
+   "kind": "null_pulse_sweep",
+   "phi": 0.5,
+   "n_events": 20,
+   "pulse_for": "B4",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 24800
+  },
+  {
+   "cell": 125,
+   "kind": "null_pulse_sweep",
+   "phi": 0.8,
+   "n_events": 20,
+   "pulse_for": "D_div",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 25000
+  },
+  {
+   "cell": 126,
+   "kind": "null_pulse_sweep",
+   "phi": 0.8,
+   "n_events": 20,
+   "pulse_for": "B1",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 25200
+  },
+  {
+   "cell": 127,
+   "kind": "null_pulse_sweep",
+   "phi": 0.8,
+   "n_events": 20,
+   "pulse_for": "B2",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 25400
+  },
+  {
+   "cell": 128,
+   "kind": "null_pulse_sweep",
+   "phi": 0.8,
+   "n_events": 20,
+   "pulse_for": "B3",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 25600
+  },
+  {
+   "cell": 129,
+   "kind": "null_pulse_sweep",
+   "phi": 0.8,
+   "n_events": 20,
+   "pulse_for": "B4",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 25800
+  },
+  {
+   "cell": 130,
+   "kind": "null_pulse_sweep",
+   "phi": 0.9,
+   "n_events": 20,
+   "pulse_for": "D_div",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 26000
+  },
+  {
+   "cell": 131,
+   "kind": "null_pulse_sweep",
+   "phi": 0.9,
+   "n_events": 20,
+   "pulse_for": "B1",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 26200
+  },
+  {
+   "cell": 132,
+   "kind": "null_pulse_sweep",
+   "phi": 0.9,
+   "n_events": 20,
+   "pulse_for": "B2",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 26400
+  },
+  {
+   "cell": 133,
+   "kind": "null_pulse_sweep",
+   "phi": 0.9,
+   "n_events": 20,
+   "pulse_for": "B3",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 26600
+  },
+  {
+   "cell": 134,
+   "kind": "null_pulse_sweep",
+   "phi": 0.9,
+   "n_events": 20,
+   "pulse_for": "B4",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 26800
+  },
+  {
+   "cell": 135,
+   "kind": "null_pulse_sweep",
+   "phi": 0.95,
+   "n_events": 20,
+   "pulse_for": "D_div",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 27000
+  },
+  {
+   "cell": 136,
+   "kind": "null_pulse_sweep",
+   "phi": 0.95,
+   "n_events": 20,
+   "pulse_for": "B1",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 27200
+  },
+  {
+   "cell": 137,
+   "kind": "null_pulse_sweep",
+   "phi": 0.95,
+   "n_events": 20,
+   "pulse_for": "B2",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 27400
+  },
+  {
+   "cell": 138,
+   "kind": "null_pulse_sweep",
+   "phi": 0.95,
+   "n_events": 20,
+   "pulse_for": "B3",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 27600
+  },
+  {
+   "cell": 139,
+   "kind": "null_pulse_sweep",
+   "phi": 0.95,
+   "n_events": 20,
+   "pulse_for": "B4",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 27800
+  },
+  {
+   "cell": 140,
+   "kind": "null_pulse_sweep",
+   "phi": 0.98,
+   "n_events": 20,
+   "pulse_for": "D_div",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 28000
+  },
+  {
+   "cell": 141,
+   "kind": "null_pulse_sweep",
+   "phi": 0.98,
+   "n_events": 20,
+   "pulse_for": "B1",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 28200
+  },
+  {
+   "cell": 142,
+   "kind": "null_pulse_sweep",
+   "phi": 0.98,
+   "n_events": 20,
+   "pulse_for": "B2",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 28400
+  },
+  {
+   "cell": 143,
+   "kind": "null_pulse_sweep",
+   "phi": 0.98,
+   "n_events": 20,
+   "pulse_for": "B3",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 28600
+  },
+  {
+   "cell": 144,
+   "kind": "null_pulse_sweep",
+   "phi": 0.98,
+   "n_events": 20,
+   "pulse_for": "B4",
+   "pulse_h": "from scripts/outputs/calibration_pulse.json [phi][detector]",
+   "reps": 200,
+   "child_first": 28800
+  },
+  {
+   "cell": 145,
+   "kind": "step_characterization",
+   "phi": 0.5,
+   "n_events": 20,
+   "step_h": 1.5,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 29000
+  },
+  {
+   "cell": 146,
+   "kind": "step_characterization",
+   "phi": 0.5,
+   "n_events": 20,
+   "step_h": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 29200
+  },
+  {
+   "cell": 147,
+   "kind": "step_characterization",
+   "phi": 0.5,
+   "n_events": 20,
+   "step_h": 2.5,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 29400
+  },
+  {
+   "cell": 148,
+   "kind": "step_characterization",
+   "phi": 0.8,
+   "n_events": 20,
+   "step_h": 1.5,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 29600
+  },
+  {
+   "cell": 149,
+   "kind": "step_characterization",
+   "phi": 0.8,
+   "n_events": 20,
+   "step_h": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 29800
+  },
+  {
+   "cell": 150,
+   "kind": "step_characterization",
+   "phi": 0.8,
+   "n_events": 20,
+   "step_h": 2.5,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 30000
+  },
+  {
+   "cell": 151,
+   "kind": "step_characterization",
+   "phi": 0.9,
+   "n_events": 20,
+   "step_h": 1.5,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 30200
+  },
+  {
+   "cell": 152,
+   "kind": "step_characterization",
+   "phi": 0.9,
+   "n_events": 20,
+   "step_h": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 30400
+  },
+  {
+   "cell": 153,
+   "kind": "step_characterization",
+   "phi": 0.9,
+   "n_events": 20,
+   "step_h": 2.5,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 30600
+  },
+  {
+   "cell": 154,
+   "kind": "step_characterization",
+   "phi": 0.95,
+   "n_events": 20,
+   "step_h": 1.5,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 30800
+  },
+  {
+   "cell": 155,
+   "kind": "step_characterization",
+   "phi": 0.95,
+   "n_events": 20,
+   "step_h": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 31000
+  },
+  {
+   "cell": 156,
+   "kind": "step_characterization",
+   "phi": 0.95,
+   "n_events": 20,
+   "step_h": 2.5,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 31200
+  },
+  {
+   "cell": 157,
+   "kind": "step_characterization",
+   "phi": 0.98,
+   "n_events": 20,
+   "step_h": 1.5,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 31400
+  },
+  {
+   "cell": 158,
+   "kind": "step_characterization",
+   "phi": 0.98,
+   "n_events": 20,
+   "step_h": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 31600
+  },
+  {
+   "cell": 159,
+   "kind": "step_characterization",
+   "phi": 0.98,
+   "n_events": 20,
+   "step_h": 2.5,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 31800
   }
  ],
  "calibration": [

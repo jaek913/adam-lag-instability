@@ -651,3 +651,38 @@ Result: 16 findings (G1–G16), all adopted, five with a stated adaptation, plus
   - The pass criterion is pending the item-17 measurement (finding S-2, if any).
 
 **Unchanged.** Everything else in Amendments 5–8 and the frozen text.
+
+## Amendment 10 (2026-11-06) — Unequal-memory null criterion (S-2) and the 30–50 % detection null (S-3)
+
+**Status.** Appended below Amendment 9 under the append-only rule. Rationale: DECISIONS.md entry 23 (JAE decisions 2026-11-06). Evidence: `verification/suite_findings.md` S-2 and S-3. Synthetic data only; no real value has been read for scoring.
+
+**10.1 Unequal-memory null (replaces the D.5 "Planted null with unequal alarm memory" pass criterion; construction per Amendment 9.3(16)).**
+- **Why the frozen criterion fails (S-2).** False-REFUTE was measured at 0.735–0.800 in every φ_y cell. With no precursor, C_min (the minimum of two near-zero contrasts) is ≤ 0 in most replicates. REFUTE is the correct outcome there, so "false-REFUTE ≤ 0.05" cannot be met.
+- **Pass, per φ_y cell (200 replicates):**
+  - (a) false-SUPPORT ≤ 0.05;
+  - (b) |median C_b| ≤ 1 observation for b ∈ {S₁, S₄₀};
+  - (c) |C_S1 − C_S40| ≤ 1 observation in ≥ 95 % of replicates.
+- **Reported, not required:** the false-REFUTE rate, P(C_b > 0 | C_b ≠ 0), and the share of replicates with C_b = 0.
+- **What it tests.** Under P-HOLD the alarm state is the hold after a fresh crossing, so a baseline's raw alarm memory should not reach the alarm state or the contrast. The cell checks that invariance.
+- **Seeds.** The criterion was chosen after the S-2 measurement (child indices 20,000,000–20,004,199), so that run is recorded as exploratory. The criterion is graded on the evaluation seeds of the unequal-memory cells in `scripts/suite/cells.json` (cells 115–119, child indices 23,000–23,999), which no run has used.
+
+**10.2 Detection-rate null (replaces the D.5 F1 clause "including cells where every detector's detection rate at headline FA is between 30 % and 50 %" and Amendment 8.2(13)).**
+- **Why the frozen construction fails (S-3).** It is unattainable because the detectors respond differently to the same planted shape.
+  - With a one-observation pulse at φ_y = 0.9, B1–B3 reach 30–50 % near h = 3 and saturate by h = 6.
+  - B4 reaches 0.49 at h = 40.
+  - D_div is at 0.27 at h = 40 and 0.77 at h = 80.
+  - No single h puts all five detectors in the band.
+- **Construction.** A one-observation pulse of height h at a uniform offset in [1, scan] before each event, with no ramp (unchanged from 8.2(13)).
+- **Calibration sweep (calibration seeds only).** Per φ_y, h is swept on that φ_y's calibration range in `cells.json` so that **each detector separately** reaches 30–50 % detection at some h. That gives up to five values h_{φ,d}, one per detector.
+  - The sweep starts from the grid {1, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10, 15, 20, 30, 40, 50, 60, 80, 100, 120}. Where no grid point puts detector d in the band, midpoints are bisected on the calibration seeds until one does.
+  - h_{φ,d} is the calibrated h whose calibration detection rate for d is closest to 0.40.
+  - The calibration script and its output are committed before the suite verdict run.
+- **Pass (evaluation seeds, disjoint from calibration).** At every calibrated h_{φ,d}, 200 replicates: false-SUPPORT ≤ 0.05.
+- **Reported:** detection rate for every detector at every calibrated h (the detector × h table), with the outcome rates.
+- **Use in E2.** This sweep is the lookup E2 uses when A1's realised detection rates are ≤ 50 %. The false-SUPPORT rate is read at the calibrated h nearest the realised rate, per detector.
+
+**10.3 Step precursor (characterization only; not a null).**
+- A step of height h from a uniform offset in [1, scan] before each event through t_e is a precursor. It rewards the fastest-responding detector and biases the rule toward REFUTE, so a false-SUPPORT criterion on it would pass trivially.
+- It is kept as a reported characterization, labelled "step precursor, not a null": detection rate and mean lead by detector × h, h ∈ {1.5, 2, 2.5}, 200 replicates per φ_y. It has no pass criterion.
+
+**Unchanged.** Every rule applied to real data, and every other D.5 criterion as amended through Amendment 9.
