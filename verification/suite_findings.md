@@ -107,3 +107,41 @@ Mean leads under the null are 1.2–1.7 steps for every detector.
    - Also report the share of replicates with C_b = 0.
 3. **Options 1 and 2 together.**
 - In every option, false-REFUTE is reported and not required.
+
+## S-3 (BLOCKER for one D.5 cell) — no single pulse height puts every detector's detection rate in 30–50 %
+
+**Frozen text (D.5, F1).** The planted null must include "cells where every detector's detection rate at headline FA is between 30 % and 50 %". The construction is Amendment 8.2(13): a one-observation pulse of height h at a uniform offset in [1, scan] before each event, with h calibrated per φ_y.
+
+**Measurement (2026-11-06; calibration seeds 10,000,000+, disjoint from evaluation; φ_y = 0.9; 50,000 obs; 20 events; headline FA).**
+
+*Pulse*, `scripts/suite/probe_null3050_pulse.py`, 8 replicates → `scripts/outputs/s3_pulse_phi0.9.txt`:
+
+| h | D_div | B1 | B2 | B3 | B4 |
+|---|---|---|---|---|---|
+| 3 | 0.013 | 0.381 | 0.331 | 0.613 | 0.025 |
+| 6 | 0.013 | 0.956 | 1.000 | 1.000 | 0.025 |
+| 10 | 0.025 | 1.000 | 1.000 | 1.000 | 0.050 |
+| 20 | 0.044 | 1.000 | 1.000 | 1.000 | 0.087 |
+
+- D_div averages over 32 and 128 observations, so a single observation barely moves it.
+- B4's CUSUM resets and its median/MAD baseline absorb the pulse.
+- The raw-reading detectors saturate by h = 6.
+- **The construction is infeasible by mechanism**, not by tuning: no h gives all five detectors 30–50 %.
+
+*Alternative: step of height h from a uniform offset in [1, scan] through t_e*, `scripts/suite/probe_null3050_step.py`, 6 replicates → `scripts/outputs/s3_step_phi0.9.txt`:
+
+| h | D_div | B1 | B2 | B3 | B4 | mean lead D_div / B1 / B2 / B3 / B4 |
+|---|---|---|---|---|---|---|
+| 1.5 | 0.24 | 0.09 | 0.31 | 0.20 | 0.27 | 10.8 / 6.8 / 14.7 / 14.4 / 11.9 |
+| 2.5 | 0.67 | 0.28 | 0.76 | 0.51 | 0.67 | 33.3 / 17.6 / 41.1 / 32.7 / 33.4 |
+
+- All five detectors respond, but B1 (rolling z, which adapts to the step) stays well below the others.
+- Interpolating, no h puts all five in 30–50 % at once. Around h ≈ 2, D_div, B2, B3 and B4 fall roughly in 0.35–0.55 while B1 sits near 0.2.
+- A step is a sudden level shift, which favours the raw reading (B2 leads D_div). That is the right direction for a no-false-support null.
+
+**Severity.** BLOCKER for this one cell: D.5 cannot be ALL PASS with it as written. Every other D.5 null criterion is unaffected.
+
+**Options (for JAE).**
+1. **Step construction with the band widened to [0.20, 0.80] for every detector.** Calibrate h per φ_y on the calibration seeds. Criterion: false-SUPPORT ≤ 0.05.
+2. **Step construction with the band applied to the median detector.** The median detector's rate is calibrated into 30–50 %, and every detector's rate is reported. Criterion: false-SUPPORT ≤ 0.05.
+3. **Keep the pulse construction and drop the 30–50 % requirement.** The cell becomes a reported characterization: detection rate by detector across h. The false-SUPPORT ≤ 0.05 criterion still applies at each h.

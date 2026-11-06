@@ -755,3 +755,24 @@ Sources: the project files `thedivergencetheorem.pdf`, `theadaptationratetheorem
    - New watch-to-fail test `scripts/tests/test_compare_ref.py` (10/10): an unperturbed run is identical, and each compared field, perturbed in the reference output, is detected (onset +1 step, each flag flipped, lead +1, θ × (1 + 1e-5), realised +1, C_min + 1e-3, N_out + 1).
 4. **v2.** The full suite is rerun into `scripts/outputs/ref_agreement_v2/` on the committed code. The 8.1 condition in entry 20 is met only by an all-identical v2.
 5. **Housekeeping.** A `git fetch` from the analysis VM left `.git/objects/maintenance.lock`. It was moved to `.git/stale-maintenance-lock-20261105` (not deleted) so that git on the host is not blocked.
+
+## Entry 22 (2026-11-06) — Reference agreement v2: Amendment 8.1 met for the E2-chain cells
+
+1. **Run.** JAE ran `scripts/suite/run_ref_agreement.py --workers 16` at commit aad6cf7 (= origin/main; analysis/, scripts/suite/ and reference/ unchanged against HEAD).
+   - Every field Amendment 8.1 names was compared, including onset steps and the censored/detected/concurrent flags (entry 21).
+   - **22,000 comparisons, 0 differing.** Verified on device: 110 files, each with exactly the replicates 0–199.
+   - Manifest with per-file MD5: `verification/ref_agreement_summary.md` (v2 section). Outputs: `scripts/outputs/ref_agreement_v2/`.
+2. **Status.**
+   - Met: entry 20's condition (full reference agreement after Amendment 9) and Amendment 8.1's agreement criterion, for the 110 E2-chain cells (planted effect, regime span, planted null, surge null and effect, t3 null, decision flip, t3 decision flip).
+   - Still open for D.5:
+     - the hand-probe set reproduced exactly by both implementations (8.1);
+     - the unequal-memory cells (S-2, pending JAE);
+     - null_30_50 calibration (8.2(13));
+     - the remaining D.5 probe groups (dynamic range, k ladder, alignment control, assembly, ten-step grid, broken fixture);
+     - the suite verdict run, with the item-14 single- vs multi-process identity check.
+3. **License note (PRV re-earn rule).** This agreement holds for the code at aad6cf7. Any later change to analysis/ or reference/ re-runs the affected agreement before the suite verdict.
+4. **Hand-probe condition (Amendment 8.1) met.** `scripts/tests/test_hand_probes_cross.py`, 56/56 ALL PASS. Both implementations must reproduce the same hand-computed values:
+   - **(A)** our hand probes run on the reference: D_div with ties; B1 with sd = 0; B3 against ZClip 1.0.0's own class and B4 against trainscope 0651b25's own class (both vendored); the dropped reading inside the first 1,000 observations; the 6.3 non-monotone top scan; P-HOLD; n* half-up.
+   - **(B)** the reference's hand probes (selftest T2–T10) run on ours, including end-to-end T9 and T10 through both full chains: θ, onsets, realised count, coverage, leads, flags and C_min = −12/5.
+   - **(C)** the A1-grid lead probes run end-to-end through both chains: miss, lead 50, concurrent at t_e^g, uncensored 1,280 with the onset exactly at the window start, censored 1,280, and an alarm only before the window.
+   - **First-draft error, recorded:** the censored probe first used hold = 1. Both chains, consistently, gave no censoring, because a spike at 3,720 directly after one at 3,710 is not a fresh crossing. The expected value was wrong, not either code. The probe now uses hold = 2, and the hold-1 case is kept as a watch-fail.
