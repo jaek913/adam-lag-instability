@@ -42,8 +42,7 @@ def build():
         add("decision_flip", phi=phi, n_events=20, L=8, A=3.0)                 # Amendment 9.3(15)
         add("t3_decision_flip", phi=phi, n_events=20, L=8, A=3.0, innov="t3")
     for phi in PHI:
-        add("unequal_memory_null", phi=phi, n_events=20, baselines=["S1", "S40"],
-            pending="pass criterion: item 17 / S-2")                               # Amendment 9.3(16)
+        add("unequal_memory_null", phi=phi, n_events=20, baselines=["S1", "S40"])  # Amendment 9.3(16); criterion 10.1
     # ---- appended 2026-11-06 (Amendment 10); earlier indices and seed ranges unchanged ----
     for phi in PHI:
         for d in ["D_div", "B1", "B2", "B3", "B4"]:
@@ -52,6 +51,11 @@ def build():
     for phi in PHI:
         for h in [1.5, 2.0, 2.5]:
             add("step_characterization", phi=phi, n_events=20, step_h=h, report_only=True)  # Amendment 10.3
+    # ---- appended 2026-11-06 (Amendment 11): A1's realised event count ----
+    for phi in PHI:
+        add("realised_count_null", phi=phi, n_events=57)
+        add("realised_count_flip", phi=phi, n_events=57, L=8, A=3.0)
+        add("realised_count_effect", phi=phi, n_events=57, L=100, A=2.0)
     for c in cells:
         c["reps"] = REPS
         c["child_first"] = c["cell"] * REPS

@@ -73,8 +73,18 @@ def pulses(rng, n, t_events, h, scan):
     return p
 
 
+def step(rng, n, t_events, h, scan):
+    """Step of height h from a uniform offset u in [1, scan] before each event through t_e (Amendment 10.3;
+    a precursor, reported as a characterization only)."""
+    s = np.zeros(n)
+    for t in t_events:
+        u = int(rng.integers(1, scan + 1))
+        s[t - u:t + 1] += h
+    return s
+
+
 def make_series(index, *, n=50000, phi, n_events, L=None, A=0.0, innov="gauss", surge_on=False,
-                pulse_h=None, scan=128):
+                pulse_h=None, step_h=None, scan=128):
     """One replicate. Returns (blocks, events) in the pipeline/reference input format, plus meta."""
     rng = child_rng(index)
     x = ar1(rng, n, phi, innov)
@@ -86,6 +96,8 @@ def make_series(index, *, n=50000, phi, n_events, L=None, A=0.0, innov="gauss", 
         y += surge(n, t_ev)
     if pulse_h is not None:
         y += pulses(rng, n, t_ev, pulse_h, scan)
+    if step_h is not None:
+        y += step(rng, n, t_ev, step_h, scan)
     g = np.exp(y)
     blocks = [{"first_step": 0, "y": y, "g": g}]
     events = [{"t_e": t, "eligible": True} for t in t_ev]

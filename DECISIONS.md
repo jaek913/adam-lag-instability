@@ -799,3 +799,39 @@ Sources: the project files `thedivergencetheorem.pdf`, `theadaptationratetheorem
    - The h = 300 point did not finish within the run's time limit and is not used.
    - **Seed note:** the S-3 pulse probes used child indices 10,000,000+ (the φ 0.5 calibration range) and the step probe 10,000,000+ and 10,500,000+. All are calibration or unallocated indices, never evaluation.
 4. **Review (JAE).** Amendment 10 joins the follow-up review, which now covers Amendments 7–10.
+
+## Entry 24 (2026-11-06) — Pulse calibration done; suite verdict runner and grader built
+
+1. **Calibration (Amendment 10.2).** JAE ran `scripts/suite/calibrate_pulse.py --workers 16` at b3619ce; it finished 2026-11-06.
+   - 100 replicates per point, on calibration seeds only.
+   - Every detector reached [0.30, 0.50] at every φ_y. Output: `scripts/outputs/calibration_pulse.json` (MD5 33eda9739f49572a5370c58c13ab536b).
+   - Chosen h (D_div / B1 / B2 / B3 / B4):
+
+     | φ_y | D_div | B1 | B2 | B3 | B4 |
+     |---|---|---|---|---|---|
+     | 0.5 | 25 | 3.5 | 3.5 | 3.5 | 9 |
+     | 0.8 | 40 | 3.5 | 3.5 | 3 | 22.5 |
+     | 0.9 | 50 | 3 | 3 | 2.5 | 35 |
+     | 0.95 | 60 | 2.5 | 3 | 2 | 60 |
+     | 0.98 | 60 | 2 | 3 | 1.5 | 80 |
+
+   - This confirms S-3: the slow-average and cumulative detectors need pulses 10–40 times taller than the raw-reading detectors to reach the same detection rate.
+2. **Runner and grader.**
+   - `scripts/suite/run_suite.py`: statistical cells, multiprocessing, resumable.
+   - `scripts/suite/grade_suite.py` applies the Amendment 7–10 criteria per cell kind and checks two things: completeness (replicates 0–199 exactly), and the agreement licence (analysis/ops.py, pipeline.py, e2stat.py and reference/ref_e2.py byte-identical to aad6cf7, the commit reference-agreement v2 certified).
+   - `scripts/suite/check_identity.py`: the single- vs multi-process identity check (Amendment 8.2(14)).
+3. **Grader bug found by its watch-to-fail test.** `scripts/tests/test_grade_suite.py` grades fabricated outputs: an all-passing set gives ALL PASS, and each single violation gives FAIL. On its first run, the unequal-memory |median C_b| = 1.5 case graded as a pass.
+   - Cause: that branch returned a numpy boolean, and `np.False_ is False` is false, so the failure was never counted.
+   - Fixed by casting to a plain bool; the test is now 8/8. No real suite output had been graded.
+4. **synth.py.** Added the Amendment 10.3 step. Every existing construction is unchanged: same series for the same index, checked against HEAD for the ramp and pulse cases. synth.py is not in the agreement licence because both implementations read the same generated series.
+5. **Unequal-memory cells.** The `pending` tag was removed from cells 115–119 (criterion settled by Amendment 10.1). No other cell changed.
+
+## Entry 25 (2026-11-06, JAE) — Suite cells added at A1's realised event count (DESIGN Amendment 11)
+
+1. **Finding (author, while building the verdict runner).** D.5's "at the realised event count" and the Phase 2 checklist's "at the REAL event count" were not met: the nulls and decision flip ran at 20 events and the regime span stopped at 40, while A1 has 57 eligible events (entry 13).
+2. **Decision (JAE).** Add a planted null, a decision flip and a planted effect at 57 events, across the φ_y grid, 200 replicates each, on new disjoint seeds.
+   - The null and flip are graded as in D.5.
+   - The power at 57 is reported: it is the detection probability at the observed regime that E2 must report if INCONCLUSIVE.
+   - Recorded as DESIGN Amendment 11, citing D.5 and the Phase 2 checklist.
+   - **Noted (JAE):** the count 57 came from the loss series alone, before any detector score (P-KLAD order).
+3. **Review (JAE).** The follow-up review now covers Amendments 7–11.

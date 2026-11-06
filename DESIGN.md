@@ -686,3 +686,19 @@ Result: 16 findings (G1–G16), all adopted, five with a stated adaptation, plus
 - It is kept as a reported characterization, labelled "step precursor, not a null": detection rate and mean lead by detector × h, h ∈ {1.5, 2, 2.5}, 200 replicates per φ_y. It has no pass criterion.
 
 **Unchanged.** Every rule applied to real data, and every other D.5 criterion as amended through Amendment 9.
+
+## Amendment 11 (2026-11-06) — Suite cells at A1's realised event count (57)
+
+**Status.** Appended below Amendment 10 under the append-only rule. Rationale: DECISIONS.md entry 25 (JAE decision 2026-11-06).
+
+**Gap.**
+- D.5 requires the planted null to hold "at the realised event count". The Phase 2 checklist's experiment-validation gate asks for the planted effect, planted null and planted decision flip "at the REAL event count".
+- A1's realised count is 57 eligible events at k = 4 (DECISIONS entry 13). It was enumerated from the loss series alone, before any detector score was computed or any gradient-norm value read for scoring, in the P-KLAD order.
+- Amendment 8.2(12) put the nulls and the decision flip at 20 events, and the regime span stops at 40, so no cell tested the realised count.
+
+**11.1 Added cells (57 events, across the φ_y grid, 200 replicates each, on new SeedSequence child ranges disjoint from every earlier range).**
+- **Planted null at 57:** no precursor. Pass: false-SUPPORT ≤ 0.05.
+- **Decision flip at 57:** L = 8, A = 3 (Amendment 9.3(15)). Pass: REFUTE in ≥ 95 % of replicates.
+- **Planted effect at 57:** L = 100, A = 2 (the regime-span setting). Reported, not required. Its outcome rates are the detection probability at this effect and this event count that E2 reports beside an INCONCLUSIVE.
+
+**Unchanged.** Every other cell and criterion, and every rule applied to real data.

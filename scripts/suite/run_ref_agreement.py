@@ -7,7 +7,9 @@ Usage:
   python scripts/suite/run_ref_agreement.py --workers 16            (all eligible cells)
   python scripts/suite/run_ref_agreement.py --cells 25 --workers 1 --out-suffix _single   (item-14 check)
 Cells excluded: unequal_memory_null (S1/S40 baselines are not part of the E2 chain; Amendment 9.3(16))
-and null_30_50 (pulse height h not yet calibrated; Amendment 8.2(13))."""
+and null_30_50 (superseded by the Amendment 10.2 pulse-sweep cells). Series are built by
+run_suite.series_kwargs, so pulse-sweep, step and realised-count cells use exactly the suite's construction.
+Cells already on disk (v2: cells 0-99, 105-114) are skipped by the resume logic."""
 import argparse
 import json
 import os
@@ -17,24 +19,25 @@ from multiprocessing import Pool
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "scripts", "suite"))
 OUTDIR = os.path.join(ROOT, "scripts", "outputs", "ref_agreement_v2")   # v2: onsets + flags compared (Amendment 8.1)
-EXCLUDE = {"unequal_memory_null", "null_30_50"}
+EXCLUDE = {"unequal_memory_null", "null_30_50"}    # S1/S40 are not the E2 chain; null_30_50 superseded (10.2)
+CAL = None
 
 
 def task(args):
     cell, rep = args
     import compare_ref  # noqa: E402  (imports pipeline, synth, ref_e2)
     import synth
+    import run_suite
     c = CELLS[cell]
-    kw = dict(phi=c["phi"], n_events=c["n_events"], L=c.get("L"), A=c.get("A", 0.0),
-              innov=c.get("innov", "gauss"), surge_on=c.get("surge", False))
+    kw = run_suite.series_kwargs(c, CAL)               # same construction as the suite verdict run
     blocks, events = synth.make_series(c["child_first"] + rep, **kw)
     d = compare_ref.compare(blocks, events, 1, 128)
     return cell, rep, [list(map(str, x)) for x in d]
 
 
-def _init(cells):
-    global CELLS
-    CELLS = cells
+def _init(cells, cal):
+    global CELLS, CAL
+    CELLS, CAL = cells, cal
 
 
 def main():
@@ -45,7 +48,8 @@ def main():
     ap.add_argument("--out-suffix", type=str, default="")
     a = ap.parse_args()
     table = json.load(open(os.path.join(ROOT, "scripts", "suite", "cells.json")))["cells"]
-    sel = [int(x) for x in a.cells.split(",")] if a.cells else [c["cell"] for c in table if c["kind"] not in EXCLUDE]
+    sel = ([int(x) for x in a.cells.split(",")] if a.cells else
+           [c["cell"] for c in table if c["kind"] not in EXCLUDE and "superseded" not in c])
     os.makedirs(OUTDIR, exist_ok=True)
     todo, files = [], {}
     for ci in sel:
@@ -60,7 +64,8 @@ def main():
     print(f"{len(sel)} cells, {len(todo)} replicate comparisons to run, {a.workers} workers", flush=True)
     handles = {ci: open(p, "a", newline="\n") for ci, p in files.items()}
     n_diff = 0
-    with Pool(a.workers, initializer=_init, initargs=(table,)) as pool:
+    cal = json.load(open(os.path.join(ROOT, "scripts", "outputs", "calibration_pulse.json")))
+    with Pool(a.workers, initializer=_init, initargs=(table, cal)) as pool:
         for k, (ci, rep, d) in enumerate(pool.imap_unordered(task, todo, chunksize=1), 1):
             handles[ci].write(json.dumps({"cell": ci, "rep": rep, "identical": not d, "diffs": d}) + "\n")
             handles[ci].flush()
