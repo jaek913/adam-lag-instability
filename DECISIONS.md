@@ -862,3 +862,36 @@ Sources: the project files `thedivergencetheorem.pdf`, `theadaptationratetheorem
    - **Rationale (JAE):** the rule's purpose, that no experiment touches real data with unvalidated code, is preserved per experiment.
    - Build order: ten-step grid and assembly probes first (A1 is both). Target: E2 gate ALL PASS by 2026-11-18.
 3. **Review (JAE).** The follow-up review covers Amendments 7–12.
+
+## Entry 28 (2026-11-07) — Statistical cells of the E2 gate: ALL PASS (grid-10 and end-to-end cells on provisional construction 19a–19f)
+
+1. **Runs (JAE's host, after e69f2f4).**
+   - `calibrate_flip.py` → `scripts/outputs/calibration_flip.json` (MD5 ecdf4c30003673d70e48292af69a5ea0). A = 5 at every φ_y and L, except φ 0.5 with L 24, where A = 4.
+   - `run_ref_agreement.py` covered the 65 new cells (fresh flips, long flips, grid-10, end-to-end), so 215 E2-chain cells are complete and identical.
+   - `run_suite.py` ran 13,000 new replicates.
+   - `grade_suite.py`: **ALL PASS**. 80 graded cells PASS, 145 reported, 0 FAIL. The licence checks pass (analysis/ and reference/ byte-identical to aad6cf7).
+2. **Code state of the run.** The 40 grid-10 and end-to-end cells ran on files not yet committed: `analysis/synth_e2e.py` ea5b385c5cf8053ccbfccf3fb3bef405, `scripts/suite/run_suite.py` 0a46d50525819675670805d87fca2760, `scripts/suite/run_ref_agreement.py` 79f5e14fdff9e8980248760c0b85f301, `scripts/suite/cells.json` e273b7a7ac4e6f7ce531ae1bb5caec06.
+   - These hashes were recorded before the run and re-verified after it, unchanged. They are committed with this entry, so the run is reproducible from the commit.
+   - `grade_suite.py` was then changed only to write its verdict as UTF-8; the Windows default encoding had garbled "—". The same outputs were regraded: ALL PASS (`verification/suite_verdict.md` 8d6b1541e244fe54a49b4b15ed581f5b). No grading logic changed, and the watch-to-fail test still passes 12/12.
+3. **Results of note.**
+   - **Fresh decision flips (Amendment 12.1).** SUPPORT ≤ 0.005 in all 15 cells, PASS. The reported REFUTE power against an 8-observation precursor is 0.825–0.950.
+   - **Long flips (reported).** REFUTE 0.935–0.990 at L = 16 and 24.
+   - **Ten-step grid cell (A1.7).** The A1 spike rule recovered exactly the planted 57 events, with all ten residues, in every replicate. The null's false-SUPPORT is 0.000 at every φ_y.
+   - **End-to-end loss cell (7.8).** Events were recovered exactly in every replicate, and the null's false-SUPPORT is ≤ 0.005.
+4. **Severity addendum (S-5).** In the A1-like grid-10 geometry, with ramps of 640–2,000 steps at A = 2, E2 returns REFUTE 0.755–1.000 and SUPPORT ≤ 0.070. B2's mean lead is far above every other detector's (for example 238 steps vs B3 46 and B1 24 at φ 0.9, L 2,000): a long linear ramp crosses the raw threshold early. The 200-step short ramp returns REFUTE 0.935–0.990, which shows the A1.5 scope condition.
+5. **Conditional on 19a–19f.** These statistical cells pass on the provisional construction in `verification/suite_findings.md` items 19a–19f, which is pending JAE. If JAE changes any of them, the 40 affected cells are re-run.
+6. **Still open for the E2 gate (Amendment 12.2):** dynamic range, assembly probes, broken fixture; then PRV.
+
+## Entry 29 (2026-11-07, JAE) — Items 19a–19f accepted; short-ramp bar; A1-structure cells (DESIGN Amendment 13)
+
+1. **19a–19f:** accepted as written (Amendment 13.1). No rerun of the 40 cells.
+2. **Short-ramp cell (JAE: option 2).** A1.7's "must show" is a gate (Amendment 13.2).
+   - Binding: SUPPORT ≤ 0.05 in the Amendment 12.1 form, which was fixed before this cell was measured, graded on fresh disjoint seeds.
+   - REFUTE is reported (0.935–0.990).
+   - Pipeline criterion only: it does not qualify §K (G11 unchanged), and the A1.5 scope statement stays in the Methods.
+3. **A1-structure cell set (JAE; Amendment 13.3).** Synthetic series on A1's actual block/gap layout from the committed A1.12 structural report (step index only), so the short 1–14,200 block and the 160,501–160,600 gap are exercised.
+   - Cells: planted null, decision flip and planted effect at 57 eligible events, graded as the existing cells, on fresh disjoint seeds.
+   - Ineligible planted events are reported per block against the eligibility rule's prediction.
+   - **Author's construction, mirroring entry 13:** 61 planted, of which 4 are ineligible on minimum history (2 / 1 / 1 by block) and 57 eligible (1 / 13 / 43); flip L = 80 steps; effect L = 1,000 steps.
+   - Part of the E2 gate.
+4. **Review (JAE).** The follow-up review covers Amendments 7–13.

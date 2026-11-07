@@ -76,6 +76,16 @@ def build():
     for phi in PHI:
         add("e2e_null", phi=phi, grid=1)
         add("e2e_effect", phi=phi, grid=1, L=100, A=2.0, report_only=True)
+    # ---- appended 2026-11-07 (Amendment 13): short ramp re-graded on fresh seeds; A1-structure cells ----
+    for c in list(cells):
+        if c["kind"] == "grid10_short" and "superseded" not in c:
+            c["superseded"] = "Amendment 13.2: measured before the bar; re-graded on fresh seeds"
+            add("grid10_short", **{k: v for k, v in c.items() if k not in ("cell", "kind", "superseded", "report_only")},
+                fresh_of=c["cell"])
+    for phi in PHI:
+        add("a1s_null", phi=phi)
+        add("a1s_flip", phi=phi, L=80, A=3.0)
+        add("a1s_effect", phi=phi, L=1000, A=2.0, report_only=True)
     for c in cells:
         c["reps"] = REPS
         c["child_first"] = c["cell"] * REPS

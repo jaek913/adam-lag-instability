@@ -2,7 +2,7 @@
 
 Graded from `scripts/outputs/suite_v1` by `scripts/suite/grade_suite.py`.
 
-**FAIL (15: [105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 161, 164, 167, 170, 173])**
+**ALL PASS**
 
 | cell | kind | result | verdict |
 |---|---|---|---|
@@ -10,7 +10,7 @@ Graded from `scripts/outputs/suite_v1` by `scripts/suite/grade_suite.py`.
 | licence | analysis/pipeline.py | unchanged since aad6cf7 | PASS |
 | licence | analysis/e2stat.py | unchanged since aad6cf7 | PASS |
 | licence | reference/ref_e2.py | unchanged since aad6cf7 | PASS |
-| agreement | reference agreement (8.1) on 165 E2-chain cells | complete and all identical | PASS |
+| agreement | reference agreement (8.1) on 215 E2-chain cells | complete and all identical | PASS |
 | 0 | planted_effect (phi=0.5, n_events=20, L=64, A=1.0) | reported; SUPPORT/INCONCL/REFUTE 0.050/0.280/0.670 | mean lead B1 1.6, B2 2.1, B3 1.5, B4 3.3, D_div 3.5 | REPORTED |
 | 1 | planted_effect (phi=0.5, n_events=20, L=64, A=2.0) | reported; SUPPORT/INCONCL/REFUTE 0.075/0.325/0.600 | mean lead B1 2.0, B2 6.2, B3 2.6, B4 13.0, D_div 12.6 | REPORTED |
 | 2 | planted_effect (phi=0.5, n_events=20, L=64, A=3.0) | reported; SUPPORT/INCONCL/REFUTE 0.040/0.225/0.735 | mean lead B1 2.1, B2 15.9, B3 2.9, B4 25.3, D_div 20.3 | REPORTED |
@@ -111,16 +111,6 @@ Graded from `scripts/outputs/suite_v1` by `scripts/suite/grade_suite.py`.
 | 97 | t3_null (phi=0.9, n_events=20, innov=t3) | false-SUPPORT 0.000 (<= 0.05); SUPPORT/INCONCL/REFUTE 0.000/0.130/0.870 | PASS |
 | 98 | t3_null (phi=0.95, n_events=20, innov=t3) | false-SUPPORT 0.000 (<= 0.05); SUPPORT/INCONCL/REFUTE 0.000/0.065/0.935 | PASS |
 | 99 | t3_null (phi=0.98, n_events=20, innov=t3) | false-SUPPORT 0.000 (<= 0.05); SUPPORT/INCONCL/REFUTE 0.000/0.125/0.875 | PASS |
-| 105 | decision_flip (phi=0.5, n_events=20, L=8, A=3.0) | REFUTE 0.885 (>= 0.95); SUPPORT/INCONCL/REFUTE 0.005/0.110/0.885 | FAIL |
-| 106 | t3_decision_flip (phi=0.5, n_events=20, L=8, A=3.0, innov=t3) | REFUTE 0.810 (>= 0.95); SUPPORT/INCONCL/REFUTE 0.000/0.190/0.810 | FAIL |
-| 107 | decision_flip (phi=0.8, n_events=20, L=8, A=3.0) | REFUTE 0.880 (>= 0.95); SUPPORT/INCONCL/REFUTE 0.000/0.120/0.880 | FAIL |
-| 108 | t3_decision_flip (phi=0.8, n_events=20, L=8, A=3.0, innov=t3) | REFUTE 0.880 (>= 0.95); SUPPORT/INCONCL/REFUTE 0.000/0.120/0.880 | FAIL |
-| 109 | decision_flip (phi=0.9, n_events=20, L=8, A=3.0) | REFUTE 0.870 (>= 0.95); SUPPORT/INCONCL/REFUTE 0.000/0.130/0.870 | FAIL |
-| 110 | t3_decision_flip (phi=0.9, n_events=20, L=8, A=3.0, innov=t3) | REFUTE 0.845 (>= 0.95); SUPPORT/INCONCL/REFUTE 0.000/0.155/0.845 | FAIL |
-| 111 | decision_flip (phi=0.95, n_events=20, L=8, A=3.0) | REFUTE 0.910 (>= 0.95); SUPPORT/INCONCL/REFUTE 0.000/0.090/0.910 | FAIL |
-| 112 | t3_decision_flip (phi=0.95, n_events=20, L=8, A=3.0, innov=t3) | REFUTE 0.855 (>= 0.95); SUPPORT/INCONCL/REFUTE 0.005/0.140/0.855 | FAIL |
-| 113 | decision_flip (phi=0.98, n_events=20, L=8, A=3.0) | REFUTE 0.905 (>= 0.95); SUPPORT/INCONCL/REFUTE 0.000/0.095/0.905 | FAIL |
-| 114 | t3_decision_flip (phi=0.98, n_events=20, L=8, A=3.0, innov=t3) | REFUTE 0.915 (>= 0.95); SUPPORT/INCONCL/REFUTE 0.000/0.085/0.915 | FAIL |
 | 115 | unequal_memory_null (phi=0.5, n_events=20) | false-SUPPORT 0.005 (<= 0.05); max|median C_b| 0.00 (<= 1); share |C_S1-C_S40|<=1 1.000 (>= 0.95); reported: false-REFUTE 0.775, P(C_b>0|C_b!=0) S1 0.511 S40 0.511; SUPPORT/INCONCL/REFUTE 0.005/0.220/0.775 | PASS |
 | 116 | unequal_memory_null (phi=0.8, n_events=20) | false-SUPPORT 0.005 (<= 0.05); max|median C_b| 0.00 (<= 1); share |C_S1-C_S40|<=1 0.990 (>= 0.95); reported: false-REFUTE 0.795, P(C_b>0|C_b!=0) S1 0.471 S40 0.471; SUPPORT/INCONCL/REFUTE 0.005/0.200/0.795 | PASS |
 | 117 | unequal_memory_null (phi=0.9, n_events=20) | false-SUPPORT 0.010 (<= 0.05); max|median C_b| 0.00 (<= 1); share |C_S1-C_S40|<=1 1.000 (>= 0.95); reported: false-REFUTE 0.790, P(C_b>0|C_b!=0) S1 0.467 S40 0.467; SUPPORT/INCONCL/REFUTE 0.010/0.200/0.790 | PASS |
@@ -167,17 +157,77 @@ Graded from `scripts/outputs/suite_v1` by `scripts/suite/grade_suite.py`.
 | 158 | step_characterization (phi=0.98, n_events=20, step_h=2.0) | reported; SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | mean lead B1 33.3, B2 22.7, B3 42.3, B4 10.5, D_div 15.0 | REPORTED |
 | 159 | step_characterization (phi=0.98, n_events=20, step_h=2.5) | reported; SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | mean lead B1 45.5, B2 37.1, B3 53.9, B4 15.4, D_div 24.1 | REPORTED |
 | 160 | realised_count_null (phi=0.5, n_events=57) | false-SUPPORT 0.005 (<= 0.05); SUPPORT/INCONCL/REFUTE 0.005/0.145/0.850 | PASS |
-| 161 | realised_count_flip (phi=0.5, n_events=57, L=8, A=3.0) | REFUTE 0.885 (>= 0.95); SUPPORT/INCONCL/REFUTE 0.005/0.110/0.885 | FAIL |
 | 162 | realised_count_effect (phi=0.5, n_events=57, L=100, A=2.0) | reported; SUPPORT/INCONCL/REFUTE 0.150/0.300/0.550 | mean lead B1 2.1, B2 11.7, B3 3.2, B4 24.1, D_div 22.2 | REPORTED |
 | 163 | realised_count_null (phi=0.8, n_events=57) | false-SUPPORT 0.000 (<= 0.05); SUPPORT/INCONCL/REFUTE 0.000/0.205/0.795 | PASS |
-| 164 | realised_count_flip (phi=0.8, n_events=57, L=8, A=3.0) | REFUTE 0.875 (>= 0.95); SUPPORT/INCONCL/REFUTE 0.000/0.125/0.875 | FAIL |
 | 165 | realised_count_effect (phi=0.8, n_events=57, L=100, A=2.0) | reported; SUPPORT/INCONCL/REFUTE 0.010/0.205/0.785 | mean lead B1 1.9, B2 9.7, B3 2.9, B4 12.5, D_div 9.3 | REPORTED |
 | 166 | realised_count_null (phi=0.9, n_events=57) | false-SUPPORT 0.000 (<= 0.05); SUPPORT/INCONCL/REFUTE 0.000/0.170/0.830 | PASS |
-| 167 | realised_count_flip (phi=0.9, n_events=57, L=8, A=3.0) | REFUTE 0.910 (>= 0.95); SUPPORT/INCONCL/REFUTE 0.000/0.090/0.910 | FAIL |
 | 168 | realised_count_effect (phi=0.9, n_events=57, L=100, A=2.0) | reported; SUPPORT/INCONCL/REFUTE 0.000/0.080/0.920 | mean lead B1 1.7, B2 8.7, B3 3.1, B4 7.8, D_div 5.7 | REPORTED |
 | 169 | realised_count_null (phi=0.95, n_events=57) | false-SUPPORT 0.010 (<= 0.05); SUPPORT/INCONCL/REFUTE 0.010/0.160/0.830 | PASS |
-| 170 | realised_count_flip (phi=0.95, n_events=57, L=8, A=3.0) | REFUTE 0.900 (>= 0.95); SUPPORT/INCONCL/REFUTE 0.005/0.095/0.900 | FAIL |
 | 171 | realised_count_effect (phi=0.95, n_events=57, L=100, A=2.0) | reported; SUPPORT/INCONCL/REFUTE 0.010/0.080/0.910 | mean lead B1 1.9, B2 7.5, B3 2.9, B4 4.8, D_div 4.2 | REPORTED |
 | 172 | realised_count_null (phi=0.98, n_events=57) | false-SUPPORT 0.000 (<= 0.05); SUPPORT/INCONCL/REFUTE 0.000/0.210/0.790 | PASS |
-| 173 | realised_count_flip (phi=0.98, n_events=57, L=8, A=3.0) | REFUTE 0.930 (>= 0.95); SUPPORT/INCONCL/REFUTE 0.000/0.070/0.930 | FAIL |
 | 174 | realised_count_effect (phi=0.98, n_events=57, L=100, A=2.0) | reported; SUPPORT/INCONCL/REFUTE 0.010/0.145/0.845 | mean lead B1 1.6, B2 7.2, B3 3.3, B4 4.1, D_div 4.8 | REPORTED |
+| 175 | decision_flip (phi=0.5, n_events=20, L=8, A=3.0) | SUPPORT 0.000 (<= 0.05); reported: REFUTE 0.865 (kill-rule power vs short precursor); SUPPORT/INCONCL/REFUTE 0.000/0.135/0.865 | PASS |
+| 176 | t3_decision_flip (phi=0.5, n_events=20, L=8, A=3.0, innov=t3) | SUPPORT 0.000 (<= 0.05); reported: REFUTE 0.825 (kill-rule power vs short precursor); SUPPORT/INCONCL/REFUTE 0.000/0.175/0.825 | PASS |
+| 177 | decision_flip (phi=0.8, n_events=20, L=8, A=3.0) | SUPPORT 0.000 (<= 0.05); reported: REFUTE 0.870 (kill-rule power vs short precursor); SUPPORT/INCONCL/REFUTE 0.000/0.130/0.870 | PASS |
+| 178 | t3_decision_flip (phi=0.8, n_events=20, L=8, A=3.0, innov=t3) | SUPPORT 0.005 (<= 0.05); reported: REFUTE 0.845 (kill-rule power vs short precursor); SUPPORT/INCONCL/REFUTE 0.005/0.150/0.845 | PASS |
+| 179 | decision_flip (phi=0.9, n_events=20, L=8, A=3.0) | SUPPORT 0.000 (<= 0.05); reported: REFUTE 0.890 (kill-rule power vs short precursor); SUPPORT/INCONCL/REFUTE 0.000/0.110/0.890 | PASS |
+| 180 | t3_decision_flip (phi=0.9, n_events=20, L=8, A=3.0, innov=t3) | SUPPORT 0.005 (<= 0.05); reported: REFUTE 0.875 (kill-rule power vs short precursor); SUPPORT/INCONCL/REFUTE 0.005/0.120/0.875 | PASS |
+| 181 | decision_flip (phi=0.95, n_events=20, L=8, A=3.0) | SUPPORT 0.005 (<= 0.05); reported: REFUTE 0.905 (kill-rule power vs short precursor); SUPPORT/INCONCL/REFUTE 0.005/0.090/0.905 | PASS |
+| 182 | t3_decision_flip (phi=0.95, n_events=20, L=8, A=3.0, innov=t3) | SUPPORT 0.005 (<= 0.05); reported: REFUTE 0.865 (kill-rule power vs short precursor); SUPPORT/INCONCL/REFUTE 0.005/0.130/0.865 | PASS |
+| 183 | decision_flip (phi=0.98, n_events=20, L=8, A=3.0) | SUPPORT 0.000 (<= 0.05); reported: REFUTE 0.835 (kill-rule power vs short precursor); SUPPORT/INCONCL/REFUTE 0.000/0.165/0.835 | PASS |
+| 184 | t3_decision_flip (phi=0.98, n_events=20, L=8, A=3.0, innov=t3) | SUPPORT 0.000 (<= 0.05); reported: REFUTE 0.890 (kill-rule power vs short precursor); SUPPORT/INCONCL/REFUTE 0.000/0.110/0.890 | PASS |
+| 185 | realised_count_flip (phi=0.5, n_events=57, L=8, A=3.0) | SUPPORT 0.000 (<= 0.05); reported: REFUTE 0.845 (kill-rule power vs short precursor); SUPPORT/INCONCL/REFUTE 0.000/0.155/0.845 | PASS |
+| 186 | realised_count_flip (phi=0.8, n_events=57, L=8, A=3.0) | SUPPORT 0.005 (<= 0.05); reported: REFUTE 0.865 (kill-rule power vs short precursor); SUPPORT/INCONCL/REFUTE 0.005/0.130/0.865 | PASS |
+| 187 | realised_count_flip (phi=0.9, n_events=57, L=8, A=3.0) | SUPPORT 0.000 (<= 0.05); reported: REFUTE 0.860 (kill-rule power vs short precursor); SUPPORT/INCONCL/REFUTE 0.000/0.140/0.860 | PASS |
+| 188 | realised_count_flip (phi=0.95, n_events=57, L=8, A=3.0) | SUPPORT 0.000 (<= 0.05); reported: REFUTE 0.860 (kill-rule power vs short precursor); SUPPORT/INCONCL/REFUTE 0.000/0.140/0.860 | PASS |
+| 189 | realised_count_flip (phi=0.98, n_events=57, L=8, A=3.0) | SUPPORT 0.000 (<= 0.05); reported: REFUTE 0.950 (kill-rule power vs short precursor); SUPPORT/INCONCL/REFUTE 0.000/0.050/0.950 | PASS |
+| 190 | flip_long (phi=0.5, n_events=20, L=16, A=from scripts/outputs/calibration_flip.json [phi][L]) | reported; SUPPORT/INCONCL/REFUTE 0.000/0.020/0.980 | mean lead B1 2.7, B2 6.6, B3 3.4, B4 6.9, D_div 0.9 | REPORTED |
+| 191 | flip_long (phi=0.5, n_events=20, L=24, A=from scripts/outputs/calibration_flip.json [phi][L]) | reported; SUPPORT/INCONCL/REFUTE 0.000/0.025/0.975 | mean lead B1 2.3, B2 7.3, B3 3.0, B4 9.2, D_div 2.2 | REPORTED |
+| 192 | flip_long (phi=0.8, n_events=20, L=16, A=from scripts/outputs/calibration_flip.json [phi][L]) | reported; SUPPORT/INCONCL/REFUTE 0.000/0.060/0.940 | mean lead B1 2.0, B2 6.1, B3 2.9, B4 3.2, D_div 1.3 | REPORTED |
+| 193 | flip_long (phi=0.8, n_events=20, L=24, A=from scripts/outputs/calibration_flip.json [phi][L]) | reported; SUPPORT/INCONCL/REFUTE 0.000/0.020/0.980 | mean lead B1 2.3, B2 9.1, B3 3.8, B4 6.4, D_div 2.3 | REPORTED |
+| 194 | flip_long (phi=0.9, n_events=20, L=16, A=from scripts/outputs/calibration_flip.json [phi][L]) | reported; SUPPORT/INCONCL/REFUTE 0.000/0.065/0.935 | mean lead B1 1.8, B2 6.0, B3 3.6, B4 1.9, D_div 1.2 | REPORTED |
+| 195 | flip_long (phi=0.9, n_events=20, L=24, A=from scripts/outputs/calibration_flip.json [phi][L]) | reported; SUPPORT/INCONCL/REFUTE 0.000/0.045/0.955 | mean lead B1 1.8, B2 8.8, B3 3.8, B4 2.9, D_div 2.3 | REPORTED |
+| 196 | flip_long (phi=0.95, n_events=20, L=16, A=from scripts/outputs/calibration_flip.json [phi][L]) | reported; SUPPORT/INCONCL/REFUTE 0.000/0.065/0.935 | mean lead B1 2.1, B2 6.2, B3 5.0, B4 1.5, D_div 1.5 | REPORTED |
+| 197 | flip_long (phi=0.95, n_events=20, L=24, A=from scripts/outputs/calibration_flip.json [phi][L]) | reported; SUPPORT/INCONCL/REFUTE 0.000/0.035/0.965 | mean lead B1 2.2, B2 9.4, B3 5.1, B4 2.0, D_div 1.8 | REPORTED |
+| 198 | flip_long (phi=0.98, n_events=20, L=16, A=from scripts/outputs/calibration_flip.json [phi][L]) | reported; SUPPORT/INCONCL/REFUTE 0.000/0.020/0.980 | mean lead B1 3.6, B2 6.7, B3 8.7, B4 1.5, D_div 1.2 | REPORTED |
+| 199 | flip_long (phi=0.98, n_events=20, L=24, A=from scripts/outputs/calibration_flip.json [phi][L]) | reported; SUPPORT/INCONCL/REFUTE 0.000/0.010/0.990 | mean lead B1 3.1, B2 9.5, B3 9.3, B4 1.8, D_div 1.9 | REPORTED |
+| 200 | grid10_null (phi=0.5) | false-SUPPORT 0.000 (<= 0.05); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.015/0.985 | PASS |
+| 201 | grid10_effect (phi=0.5, L=640, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.030/0.080/0.890 | mean lead B1 21.1, B2 60.9, B3 26.0, B4 138.3, D_div 74.0 | REPORTED |
+| 202 | grid10_effect (phi=0.5, L=1000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.035/0.090/0.875 | mean lead B1 23.1, B2 125.8, B3 35.6, B4 244.6, D_div 157.9 | REPORTED |
+| 203 | grid10_effect (phi=0.5, L=1500, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.070/0.175/0.755 | mean lead B1 28.7, B2 243.0, B3 51.2, B4 394.6, D_div 307.5 | REPORTED |
+| 204 | grid10_effect (phi=0.5, L=2000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.020/0.060/0.920 | mean lead B1 27.5, B2 335.0, B3 49.0, B4 376.7, D_div 230.0 | REPORTED |
+| 205 | grid10_short (phi=0.5, L=200, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.010/0.990 | mean lead B1 15.6, B2 19.7, B3 17.5, B4 22.6, D_div 2.4 | REPORTED |
+| 206 | grid10_null (phi=0.8) | false-SUPPORT 0.000 (<= 0.05); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.035/0.965 | PASS |
+| 207 | grid10_effect (phi=0.8, L=640, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.100/0.900 | mean lead B1 21.7, B2 55.9, B3 26.7, B4 65.3, D_div 39.1 | REPORTED |
+| 208 | grid10_effect (phi=0.8, L=1000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.015/0.080/0.905 | mean lead B1 22.3, B2 105.0, B3 34.2, B4 136.2, D_div 82.3 | REPORTED |
+| 209 | grid10_effect (phi=0.8, L=1500, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.080/0.920 | mean lead B1 24.1, B2 201.2, B3 43.4, B4 227.6, D_div 133.6 | REPORTED |
+| 210 | grid10_effect (phi=0.8, L=2000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.005/0.995 | mean lead B1 23.3, B2 274.8, B3 44.0, B4 251.2, D_div 97.6 | REPORTED |
+| 211 | grid10_short (phi=0.8, L=200, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.010/0.030/0.960 | mean lead B1 14.2, B2 19.7, B3 18.1, B4 18.7, D_div 5.4 | REPORTED |
+| 212 | grid10_null (phi=0.9) | false-SUPPORT 0.000 (<= 0.05); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.040/0.960 | PASS |
+| 213 | grid10_effect (phi=0.9, L=640, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.010/0.125/0.865 | mean lead B1 17.8, B2 48.2, B3 26.9, B4 41.0, D_div 26.3 | REPORTED |
+| 214 | grid10_effect (phi=0.9, L=1000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.095/0.905 | mean lead B1 19.4, B2 91.9, B3 33.3, B4 82.6, D_div 48.1 | REPORTED |
+| 215 | grid10_effect (phi=0.9, L=1500, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.005/0.030/0.965 | mean lead B1 24.6, B2 176.3, B3 45.1, B4 147.3, D_div 73.3 | REPORTED |
+| 216 | grid10_effect (phi=0.9, L=2000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | mean lead B1 24.1, B2 237.7, B3 46.4, B4 179.1, D_div 58.8 | REPORTED |
+| 217 | grid10_short (phi=0.9, L=200, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.045/0.955 | mean lead B1 14.6, B2 21.3, B3 17.9, B4 16.3, D_div 3.8 | REPORTED |
+| 218 | grid10_null (phi=0.95) | false-SUPPORT 0.000 (<= 0.05); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.040/0.960 | PASS |
+| 219 | grid10_effect (phi=0.95, L=640, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.100/0.900 | mean lead B1 18.4, B2 45.1, B3 26.5, B4 31.5, D_div 17.8 | REPORTED |
+| 220 | grid10_effect (phi=0.95, L=1000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.080/0.920 | mean lead B1 22.2, B2 84.8, B3 34.7, B4 55.3, D_div 30.9 | REPORTED |
+| 221 | grid10_effect (phi=0.95, L=1500, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.040/0.960 | mean lead B1 20.6, B2 150.1, B3 42.9, B4 106.7, D_div 52.5 | REPORTED |
+| 222 | grid10_effect (phi=0.95, L=2000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.005/0.995 | mean lead B1 23.2, B2 202.3, B3 46.3, B4 132.1, D_div 40.8 | REPORTED |
+| 223 | grid10_short (phi=0.95, L=200, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.005/0.060/0.935 | mean lead B1 17.4, B2 17.6, B3 19.7, B4 18.5, D_div 4.6 | REPORTED |
+| 224 | grid10_null (phi=0.98) | false-SUPPORT 0.000 (<= 0.05); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.075/0.925 | PASS |
+| 225 | grid10_effect (phi=0.98, L=640, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.145/0.855 | mean lead B1 19.6, B2 43.6, B3 31.6, B4 24.0, D_div 23.2 | REPORTED |
+| 226 | grid10_effect (phi=0.98, L=1000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.125/0.875 | mean lead B1 20.3, B2 76.2, B3 36.1, B4 48.9, D_div 35.7 | REPORTED |
+| 227 | grid10_effect (phi=0.98, L=1500, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.085/0.915 | mean lead B1 22.4, B2 127.8, B3 46.1, B4 80.2, D_div 48.6 | REPORTED |
+| 228 | grid10_effect (phi=0.98, L=2000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.025/0.975 | mean lead B1 22.5, B2 170.0, B3 49.2, B4 94.8, D_div 37.9 | REPORTED |
+| 229 | grid10_short (phi=0.98, L=200, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.005/0.040/0.955 | mean lead B1 17.3, B2 18.8, B3 23.6, B4 20.6, D_div 5.1 | REPORTED |
+| 230 | e2e_null (phi=0.5) | false-SUPPORT 0.000 (<= 0.05); events recovered exactly in 200/200; SUPPORT/INCONCL/REFUTE 0.000/0.180/0.820 | PASS |
+| 231 | e2e_effect (phi=0.5, L=100, A=2.0) | reported; events recovered exactly in 200/200; SUPPORT/INCONCL/REFUTE 0.125/0.375/0.500 | mean lead B1 2.2, B2 12.7, B3 3.1, B4 23.9, D_div 23.7 | REPORTED |
+| 232 | e2e_null (phi=0.8) | false-SUPPORT 0.000 (<= 0.05); events recovered exactly in 200/200; SUPPORT/INCONCL/REFUTE 0.000/0.115/0.885 | PASS |
+| 233 | e2e_effect (phi=0.8, L=100, A=2.0) | reported; events recovered exactly in 200/200; SUPPORT/INCONCL/REFUTE 0.025/0.185/0.790 | mean lead B1 1.7, B2 10.5, B3 2.3, B4 11.8, D_div 9.2 | REPORTED |
+| 234 | e2e_null (phi=0.9) | false-SUPPORT 0.000 (<= 0.05); events recovered exactly in 200/200; SUPPORT/INCONCL/REFUTE 0.000/0.135/0.865 | PASS |
+| 235 | e2e_effect (phi=0.9, L=100, A=2.0) | reported; events recovered exactly in 200/200; SUPPORT/INCONCL/REFUTE 0.005/0.150/0.845 | mean lead B1 1.9, B2 9.2, B3 2.9, B4 7.3, D_div 6.2 | REPORTED |
+| 236 | e2e_null (phi=0.95) | false-SUPPORT 0.005 (<= 0.05); events recovered exactly in 200/200; SUPPORT/INCONCL/REFUTE 0.005/0.155/0.840 | PASS |
+| 237 | e2e_effect (phi=0.95, L=100, A=2.0) | reported; events recovered exactly in 200/200; SUPPORT/INCONCL/REFUTE 0.005/0.150/0.845 | mean lead B1 1.8, B2 8.2, B3 2.9, B4 4.8, D_div 4.8 | REPORTED |
+| 238 | e2e_null (phi=0.98) | false-SUPPORT 0.000 (<= 0.05); events recovered exactly in 200/200; SUPPORT/INCONCL/REFUTE 0.000/0.140/0.860 | PASS |
+| 239 | e2e_effect (phi=0.98, L=100, A=2.0) | reported; events recovered exactly in 200/200; SUPPORT/INCONCL/REFUTE 0.005/0.185/0.810 | mean lead B1 1.9, B2 7.3, B3 2.9, B4 3.9, D_div 4.7 | REPORTED |

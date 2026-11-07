@@ -14,7 +14,10 @@ Checks:
       share(|C_S1 - C_S40| <= 1) >= 0.95;
     planted_effect, regime_span, surge_effect, realised_count_effect, step_characterization: reported (power);
     grid10_* and e2e_* (A1.7, 7.8): nulls false-SUPPORT <= 0.05, others reported; in every replicate the spike
-      rule must recover exactly the planted events, and grid-10 cells must contain all ten residues of t_e mod 10."""
+      rule must recover exactly the planted events, and grid-10 cells must contain all ten residues of t_e mod 10;
+    grid10_short (fresh seeds, Amendment 13.2): SUPPORT <= 0.05, REFUTE reported;
+    a1s_* (Amendment 13.3): null false-SUPPORT <= 0.05; flip SUPPORT <= 0.05; effect reported; in every replicate
+      the A1 eligibility rule reproduces the design (4 ineligible, 2/1/1 by block, 57 eligible)."""
 import argparse
 import hashlib
 import json
@@ -25,11 +28,13 @@ import sys
 import numpy as np
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-NULLS = {"planted_null", "surge_null", "t3_null", "null_pulse_sweep", "realised_count_null", "grid10_null", "e2e_null"}
-FLIPS = {"decision_flip", "t3_decision_flip", "realised_count_flip"}
+NULLS = {"planted_null", "surge_null", "t3_null", "null_pulse_sweep", "realised_count_null", "grid10_null", "e2e_null",
+         "a1s_null"}
+FLIPS = {"decision_flip", "t3_decision_flip", "realised_count_flip", "grid10_short", "a1s_flip"}
 REPORT = {"planted_effect", "regime_span", "surge_effect", "realised_count_effect", "step_characterization", "flip_long",
-          "grid10_effect", "grid10_short", "e2e_effect"}
-E2E = {"grid10_null", "grid10_effect", "grid10_short", "e2e_null", "e2e_effect"}
+          "grid10_effect", "e2e_effect", "a1s_effect"}
+E2E = {"grid10_null", "grid10_effect", "grid10_short", "e2e_null", "e2e_effect", "a1s_null", "a1s_flip", "a1s_effect"}
+A1S = {"a1s_null", "a1s_flip", "a1s_effect"}
 LICENSED = ["analysis/ops.py", "analysis/pipeline.py", "analysis/e2stat.py", "reference/ref_e2.py"]
 
 
@@ -100,11 +105,19 @@ def main():
         ok = None if ok is None else bool(ok)
         if c["kind"] in E2E:                           # the spike rule must recover exactly the planted events
             em = all(r.get("events_match") is True for r in rows)
-            res = all(r.get("residues") == list(range(10)) for r in rows) if c.get("grid") == 10 else True
+            res = (all(r.get("residues") == list(range(10)) for r in rows)
+                   if (c.get("grid") == 10 or c["kind"] in A1S) else True)
             text += f"; events recovered exactly in {sum(r.get('events_match') is True for r in rows)}/{len(rows)}"
-            if c.get("grid") == 10:
+            if c.get("grid") == 10 or c["kind"] in A1S:
                 text += "; all ten residues of t_e mod 10 in every replicate" if res else "; RESIDUES MISSING"
-            if not (em and res):
+            el = True
+            if c["kind"] in A1S:                       # Amendment 13.3 eligibility check
+                el = all(r.get("eligibility_match") is True and r.get("n_eligible") == 57
+                         and r.get("ineligible_by_block") == r.get("predicted_ineligible_by_block") == [2, 1, 1]
+                         for r in rows)
+                text += ("; eligibility rule reproduces the design (4 ineligible, 2/1/1 by block; 57 eligible) in every replicate"
+                         if el else "; ELIGIBILITY MISMATCH")
+            if not (em and res and el):
                 ok = False
         tag = "PASS" if ok else ("FAIL" if ok is False else "REPORTED")
         extra = ""
@@ -117,9 +130,9 @@ def main():
         if ok is False:
             fails.append(c["cell"])
     verdict = "ALL PASS" if not fails else f"FAIL ({len(fails)}: {fails[:20]})"
-    with open(a.out, "w", newline="\n") as f:
+    with open(a.out, "w", newline="\n", encoding="utf-8") as f:
         f.write("# D.5 suite verdict — statistical cells\n\n")
-        f.write(f"Graded from `{os.path.relpath(a.dir, ROOT)}` by `scripts/suite/grade_suite.py`.\n\n**{verdict}**\n\n")
+        f.write(f"Graded from `{os.path.relpath(a.dir, ROOT).replace(os.sep, '/')}` by `scripts/suite/grade_suite.py`.\n\n**{verdict}**\n\n")
         f.write("| cell | kind | result | verdict |\n|---|---|---|---|\n" + "\n".join(lines) + "\n")
     print(verdict)
     sys.exit(0 if not fails else 1)

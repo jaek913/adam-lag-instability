@@ -22,8 +22,10 @@ OUTDIR = os.path.join(ROOT, "scripts", "outputs", "suite_v1")
 RUN_KINDS = {"planted_effect", "regime_span", "planted_null", "surge_null", "surge_effect", "t3_null",
              "decision_flip", "t3_decision_flip", "unequal_memory_null", "null_pulse_sweep", "step_characterization",
              "realised_count_null", "realised_count_flip", "realised_count_effect", "flip_long",
-             "grid10_null", "grid10_effect", "grid10_short", "e2e_null", "e2e_effect"}
+             "grid10_null", "grid10_effect", "grid10_short", "e2e_null", "e2e_effect",
+             "a1s_null", "a1s_flip", "a1s_effect"}
 E2E = {"grid10_null", "grid10_effect", "grid10_short", "e2e_null", "e2e_effect"}
+A1S = {"a1s_null", "a1s_flip", "a1s_effect"}
 CALIB = os.path.join(ROOT, "scripts", "outputs", "calibration_pulse.json")
 
 
@@ -44,6 +46,10 @@ def build(c, rep, cal):
     """(blocks, events, grid, scan, meta) for one replicate; used by this runner and run_ref_agreement."""
     import synth
     import synth_e2e
+    if c["kind"] in A1S:
+        import synth_a1layout
+        b, e, m = synth_a1layout.make_a1(c["child_first"] + rep, phi_obs=c["phi"], L=c.get("L"), A=c.get("A", 0.0))
+        return b, e, m["grid"], m["scan"], m
     if c["kind"] in E2E:
         b, e, m = synth_e2e.make_e2e(c["child_first"] + rep, grid=c["grid"], phi_obs=c["phi"], L=c.get("L"),
                                      A=c.get("A", 0.0))
@@ -76,6 +82,9 @@ def task(args):
         row["events_match"] = meta["events_match"]
         row["n_events"] = meta["n_events"]
         row["residues"] = meta["residues"]
+    for k in ("eligibility_match", "n_eligible", "ineligible_by_block", "predicted_ineligible_by_block"):
+        if k in meta:
+            row[k] = meta[k]
     return cell, rep, row
 
 

@@ -37,6 +37,9 @@ def rows_for(c, mutate=None):
         if k in G.E2E:
             row["events_match"] = True
             row["residues"] = list(range(10))
+        if k in G.A1S:
+            row.update(eligibility_match=True, n_eligible=57, ineligible_by_block=[2, 1, 1],
+                       predicted_ineligible_by_block=[2, 1, 1])
         out.append(row)
     return mutate(out) if mutate else out
 
@@ -102,6 +105,12 @@ def main():
         return rows
     rc, out = run(table, {g10: badres})
     ok("WATCH-FAIL grid-10 cell missing a t_e mod 10 residue -> FAIL", rc == 1)
+    a1n = next(c["cell"] for c in table if c["kind"] == "a1s_null")
+    def badel(rows):
+        rows[9]["ineligible_by_block"] = [2, 2, 0]
+        return rows
+    rc, out = run(table, {a1n: badel})
+    ok("WATCH-FAIL A1-structure cell with ineligible events in the wrong blocks -> FAIL", rc == 1)
     rc, out = run(table, {null: lambda r: r[:-1]})
     ok("WATCH-FAIL a missing replicate -> FAIL (INCOMPLETE)", rc == 1)
     rc, out = run(table, {null: lambda r: sup(r, 10)})                   # exactly 0.05 -> passes

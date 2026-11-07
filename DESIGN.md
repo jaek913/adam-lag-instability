@@ -732,3 +732,29 @@ Result: 16 findings (G1–G16), all adopted, five with a stated adaptation, plus
 - **Order and target.** The ten-step grid and assembly probes are built first, since A1 is both. The E2 gate is targeted to reach ALL PASS by 2026-11-18.
 
 **Unchanged.** Every rule applied to real data, and every other D.5 criterion as amended through Amendment 11.
+
+## Amendment 13 (2026-11-07) — Ten-step grid and end-to-end construction (items 19a–19f); short-ramp bar; A1-structure cells
+
+**Status.** Appended below Amendment 12 under the append-only rule. Rationale: DECISIONS.md entry 29 (JAE decisions 2026-11-07). Synthetic data only; the A1 layout is read from the committed structural report (step index only).
+
+**13.1 Construction items 19a–19f accepted as written** (`verification/suite_findings.md`; `analysis/synth_e2e.py` ea5b385c5cf8053ccbfccf3fb3bef405). The 40 cells already run under them stand, with no rerun (DECISIONS entry 28).
+
+**13.2 Short-ramp cell (A1.7 "must show the A1.5 scope condition").**
+- A1.7's "must show" is a gate. Binding criterion, in the Amendment 12.1 form fixed before this cell was measured: SUPPORT ≤ 0.05, graded on fresh disjoint seeds.
+- Reported: the REFUTE rate (measured 0.935–0.990 on the first seeds, which are kept as the record).
+- This is a pipeline criterion only. It does not qualify §K (G11 unchanged), and the A1.5 scope statement stays in the Methods.
+
+**13.3 A1-structure cells (E2 gate).**
+- **Layout.** Synthetic series on A1's kept-series block/gap layout, from `scripts/outputs/a1_structural_report.json` `kept_blocks` (step index only): steps 1–14,200, 52,301–160,500 and 160,601–504,500, observed on step mod 10 = 0, giving 46,630 grid observations. This exercises the short first block (1,420 grid observations, mostly consumed by the 1,000-observation minimum history) and the 160,501–160,600 gap.
+- **Events.** 61 planted loss spikes, mirroring A1's realised enumeration (entry 13): 57 eligible and 4 ineligible on minimum history (2 in block 1, 1 in block 2, 1 in block 3).
+  - The eligible events are split 1 / 13 / 43 across the blocks, roughly in proportion to each block's eligible span, with one placed in block 1's 2,920-step eligible span.
+  - Residues of t_e mod 10 cycle 0–9. Spacing is ≥ L_max + scan + grid steps.
+  - Loss construction, spike rule (k = 4, dedup 2,000) and gradient-norm construction are as in 13.1 (19c, 19d).
+- **Cells (across the φ_y grid, 200 replicates each, fresh disjoint seeds):**
+  - planted null: false-SUPPORT ≤ 0.05;
+  - decision flip, L = 80 steps (8 grid observations), A = 3: SUPPORT ≤ 0.05, REFUTE reported (12.1);
+  - planted effect, L = 1,000 steps, A = 2: reported.
+- **Eligibility check, every replicate.** The A1 eligibility rule (`scripts/a1_events.py` `eligibility`) must reproduce the designed eligibility of every planted event: 4 ineligible, split 2 / 1 / 1 by block, and 57 eligible. Ineligible events are reported per block against the rule's prediction. The spike rule must recover exactly the 61 planted events.
+- Reference agreement (8.1) applies to these cells.
+
+**Unchanged.** Every rule applied to real data, and every other D.5 criterion as amended through Amendment 12.

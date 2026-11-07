@@ -2095,6 +2095,7 @@
    "L": 200,
    "A": 2.0,
    "report_only": true,
+   "superseded": "Amendment 13.2: measured before the bar; re-graded on fresh seeds",
    "reps": 200,
    "child_first": 41000
   },
@@ -2158,6 +2159,7 @@
    "L": 200,
    "A": 2.0,
    "report_only": true,
+   "superseded": "Amendment 13.2: measured before the bar; re-graded on fresh seeds",
    "reps": 200,
    "child_first": 42200
   },
@@ -2221,6 +2223,7 @@
    "L": 200,
    "A": 2.0,
    "report_only": true,
+   "superseded": "Amendment 13.2: measured before the bar; re-graded on fresh seeds",
    "reps": 200,
    "child_first": 43400
   },
@@ -2284,6 +2287,7 @@
    "L": 200,
    "A": 2.0,
    "report_only": true,
+   "superseded": "Amendment 13.2: measured before the bar; re-graded on fresh seeds",
    "reps": 200,
    "child_first": 44600
   },
@@ -2347,6 +2351,7 @@
    "L": 200,
    "A": 2.0,
    "report_only": true,
+   "superseded": "Amendment 13.2: measured before the bar; re-graded on fresh seeds",
    "reps": 200,
    "child_first": 45800
   },
@@ -2444,6 +2449,191 @@
    "report_only": true,
    "reps": 200,
    "child_first": 47800
+  },
+  {
+   "cell": 240,
+   "kind": "grid10_short",
+   "phi": 0.5,
+   "grid": 10,
+   "L": 200,
+   "A": 2.0,
+   "fresh_of": 205,
+   "reps": 200,
+   "child_first": 48000
+  },
+  {
+   "cell": 241,
+   "kind": "grid10_short",
+   "phi": 0.8,
+   "grid": 10,
+   "L": 200,
+   "A": 2.0,
+   "fresh_of": 211,
+   "reps": 200,
+   "child_first": 48200
+  },
+  {
+   "cell": 242,
+   "kind": "grid10_short",
+   "phi": 0.9,
+   "grid": 10,
+   "L": 200,
+   "A": 2.0,
+   "fresh_of": 217,
+   "reps": 200,
+   "child_first": 48400
+  },
+  {
+   "cell": 243,
+   "kind": "grid10_short",
+   "phi": 0.95,
+   "grid": 10,
+   "L": 200,
+   "A": 2.0,
+   "fresh_of": 223,
+   "reps": 200,
+   "child_first": 48600
+  },
+  {
+   "cell": 244,
+   "kind": "grid10_short",
+   "phi": 0.98,
+   "grid": 10,
+   "L": 200,
+   "A": 2.0,
+   "fresh_of": 229,
+   "reps": 200,
+   "child_first": 48800
+  },
+  {
+   "cell": 245,
+   "kind": "a1s_null",
+   "phi": 0.5,
+   "reps": 200,
+   "child_first": 49000
+  },
+  {
+   "cell": 246,
+   "kind": "a1s_flip",
+   "phi": 0.5,
+   "L": 80,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 49200
+  },
+  {
+   "cell": 247,
+   "kind": "a1s_effect",
+   "phi": 0.5,
+   "L": 1000,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 49400
+  },
+  {
+   "cell": 248,
+   "kind": "a1s_null",
+   "phi": 0.8,
+   "reps": 200,
+   "child_first": 49600
+  },
+  {
+   "cell": 249,
+   "kind": "a1s_flip",
+   "phi": 0.8,
+   "L": 80,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 49800
+  },
+  {
+   "cell": 250,
+   "kind": "a1s_effect",
+   "phi": 0.8,
+   "L": 1000,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 50000
+  },
+  {
+   "cell": 251,
+   "kind": "a1s_null",
+   "phi": 0.9,
+   "reps": 200,
+   "child_first": 50200
+  },
+  {
+   "cell": 252,
+   "kind": "a1s_flip",
+   "phi": 0.9,
+   "L": 80,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 50400
+  },
+  {
+   "cell": 253,
+   "kind": "a1s_effect",
+   "phi": 0.9,
+   "L": 1000,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 50600
+  },
+  {
+   "cell": 254,
+   "kind": "a1s_null",
+   "phi": 0.95,
+   "reps": 200,
+   "child_first": 50800
+  },
+  {
+   "cell": 255,
+   "kind": "a1s_flip",
+   "phi": 0.95,
+   "L": 80,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 51000
+  },
+  {
+   "cell": 256,
+   "kind": "a1s_effect",
+   "phi": 0.95,
+   "L": 1000,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 51200
+  },
+  {
+   "cell": 257,
+   "kind": "a1s_null",
+   "phi": 0.98,
+   "reps": 200,
+   "child_first": 51400
+  },
+  {
+   "cell": 258,
+   "kind": "a1s_flip",
+   "phi": 0.98,
+   "L": 80,
+   "A": 3.0,
+   "reps": 200,
+   "child_first": 51600
+  },
+  {
+   "cell": 259,
+   "kind": "a1s_effect",
+   "phi": 0.98,
+   "L": 1000,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 51800
   }
  ],
  "calibration": [
