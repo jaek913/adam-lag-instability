@@ -835,3 +835,30 @@ Sources: the project files `thedivergencetheorem.pdf`, `theadaptationratetheorem
    - Recorded as DESIGN Amendment 11, citing D.5 and the Phase 2 checklist.
    - **Noted (JAE):** the count 57 came from the loss series alone, before any detector score (P-KLAD order).
 3. **Review (JAE).** The follow-up review now covers Amendments 7–11.
+
+## Entry 26 (2026-11-06) — Suite verdict run v1: FAIL (decision flip, S-4); severity record S-5
+
+1. **Run.** JAE ran the suite at 6b5d7f5 on 2026-11-06.
+   - Reference agreement: the 55 new cells were added, so all 165 E2-chain cells are complete and identical.
+   - `run_suite.py`: 170 cells × 200 replicates.
+   - Identity check on cell 25: IDENTICAL (Amendment 8.2(14) met).
+   - Graded with `grade_suite.py`: `verification/suite_verdict.md`, **FAIL on 15 cells**, all of them decision-flip cells. Everything else is PASS or reported.
+   - Outputs: `scripts/outputs/suite_v1/`, committed as a clean run.
+2. **S-4 (BLOCKER).** At L = 8 the decision flip cannot reach REFUTE ≥ 0.95. A chance D_div alarm early in the scan window (lead about 120) outweighs the baselines' genuine leads, which are capped at L − 1 = 7. Taller or longer short ramps (L = 8, A = 8 or 12; L = 16, A = 6) reach about 0.96 on 25 replicates on never-used seeds (40,000,000+). Options are in `verification/suite_findings.md` S-4. **Pending JAE.** The firewall holds: no criterion or construction was changed after seeing the result.
+3. **S-5 (severity record).** Planted linear ramps return REFUTE in 48–100 % of replicates and SUPPORT in ≤ 12 %, at both 20 and 57 events. This is recorded as the measured severity of E2 under the D.5 planted effect. It bears on the interpretation and reporting of an A1 REFUTE. §K is unchanged.
+
+## Entry 27 (2026-11-06, JAE) — S-4 and suite scope decided (DESIGN Amendment 12)
+
+1. **S-4 (JAE: option 3).**
+   - The decision flip keeps L = 8, A = 3. The binding criterion becomes SUPPORT ≤ 0.05 on fresh disjoint seeds.
+   - The REFUTE rate is reported as the kill rule's measured power against short-precursor worlds (v1: 0.81–0.93). It is stated in the Methods and beside the E2 result, with the mechanism: a single chance D_div alarm early in a window outweighs baseline leads of at most 7.
+   - L ∈ {16, 24} are added as reported cells with A calibrated on calibration seeds, with no criterion.
+   - **JAE's condition:** Amendment 12 states plainly that the binding criterion was changed after the frozen REFUTE ≥ 0.95 bar failed, why (it assumed a zero chance-alarm floor under mean lead), and that the construction was not changed.
+2. **Suite scope (JAE: option 1, as an amendment).** D.5's "ALL PASS before any hashed-data run" becomes per-experiment gates (Amendment 12.2).
+   - E2 group gates E2, E3 and E4: dynamic range, ten-step grid, end-to-end loss cell, assembly probes, broken fixture, plus all cells already built.
+   - E1's exact-identity hand probe gates E1.
+   - E5 alignment gates E5.
+   - The Leg B probes gate Leg B's first hashed-data run.
+   - **Rationale (JAE):** the rule's purpose, that no experiment touches real data with unvalidated code, is preserved per experiment.
+   - Build order: ten-step grid and assembly probes first (A1 is both). Target: E2 gate ALL PASS by 2026-11-18.
+3. **Review (JAE).** The follow-up review covers Amendments 7–12.

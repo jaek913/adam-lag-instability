@@ -1042,6 +1042,7 @@
    "n_events": 20,
    "L": 8,
    "A": 3.0,
+   "superseded": "Amendment 12.1: v1 record of the failed REFUTE >= 0.95 bar; re-graded on fresh seeds",
    "reps": 200,
    "child_first": 21000
   },
@@ -1053,6 +1054,7 @@
    "L": 8,
    "A": 3.0,
    "innov": "t3",
+   "superseded": "Amendment 12.1: v1 record of the failed REFUTE >= 0.95 bar; re-graded on fresh seeds",
    "reps": 200,
    "child_first": 21200
   },
@@ -1063,6 +1065,7 @@
    "n_events": 20,
    "L": 8,
    "A": 3.0,
+   "superseded": "Amendment 12.1: v1 record of the failed REFUTE >= 0.95 bar; re-graded on fresh seeds",
    "reps": 200,
    "child_first": 21400
   },
@@ -1074,6 +1077,7 @@
    "L": 8,
    "A": 3.0,
    "innov": "t3",
+   "superseded": "Amendment 12.1: v1 record of the failed REFUTE >= 0.95 bar; re-graded on fresh seeds",
    "reps": 200,
    "child_first": 21600
   },
@@ -1084,6 +1088,7 @@
    "n_events": 20,
    "L": 8,
    "A": 3.0,
+   "superseded": "Amendment 12.1: v1 record of the failed REFUTE >= 0.95 bar; re-graded on fresh seeds",
    "reps": 200,
    "child_first": 21800
   },
@@ -1095,6 +1100,7 @@
    "L": 8,
    "A": 3.0,
    "innov": "t3",
+   "superseded": "Amendment 12.1: v1 record of the failed REFUTE >= 0.95 bar; re-graded on fresh seeds",
    "reps": 200,
    "child_first": 22000
   },
@@ -1105,6 +1111,7 @@
    "n_events": 20,
    "L": 8,
    "A": 3.0,
+   "superseded": "Amendment 12.1: v1 record of the failed REFUTE >= 0.95 bar; re-graded on fresh seeds",
    "reps": 200,
    "child_first": 22200
   },
@@ -1116,6 +1123,7 @@
    "L": 8,
    "A": 3.0,
    "innov": "t3",
+   "superseded": "Amendment 12.1: v1 record of the failed REFUTE >= 0.95 bar; re-graded on fresh seeds",
    "reps": 200,
    "child_first": 22400
   },
@@ -1126,6 +1134,7 @@
    "n_events": 20,
    "L": 8,
    "A": 3.0,
+   "superseded": "Amendment 12.1: v1 record of the failed REFUTE >= 0.95 bar; re-graded on fresh seeds",
    "reps": 200,
    "child_first": 22600
   },
@@ -1137,6 +1146,7 @@
    "L": 8,
    "A": 3.0,
    "innov": "t3",
+   "superseded": "Amendment 12.1: v1 record of the failed REFUTE >= 0.95 bar; re-graded on fresh seeds",
    "reps": 200,
    "child_first": 22800
   },
@@ -1615,6 +1625,7 @@
    "n_events": 57,
    "L": 8,
    "A": 3.0,
+   "superseded": "Amendment 12.1: v1 record of the failed REFUTE >= 0.95 bar; re-graded on fresh seeds",
    "reps": 200,
    "child_first": 32200
   },
@@ -1643,6 +1654,7 @@
    "n_events": 57,
    "L": 8,
    "A": 3.0,
+   "superseded": "Amendment 12.1: v1 record of the failed REFUTE >= 0.95 bar; re-graded on fresh seeds",
    "reps": 200,
    "child_first": 32800
   },
@@ -1671,6 +1683,7 @@
    "n_events": 57,
    "L": 8,
    "A": 3.0,
+   "superseded": "Amendment 12.1: v1 record of the failed REFUTE >= 0.95 bar; re-graded on fresh seeds",
    "reps": 200,
    "child_first": 33400
   },
@@ -1699,6 +1712,7 @@
    "n_events": 57,
    "L": 8,
    "A": 3.0,
+   "superseded": "Amendment 12.1: v1 record of the failed REFUTE >= 0.95 bar; re-graded on fresh seeds",
    "reps": 200,
    "child_first": 34000
   },
@@ -1727,6 +1741,7 @@
    "n_events": 57,
    "L": 8,
    "A": 3.0,
+   "superseded": "Amendment 12.1: v1 record of the failed REFUTE >= 0.95 bar; re-graded on fresh seeds",
    "reps": 200,
    "child_first": 34600
   },
@@ -1739,6 +1754,696 @@
    "A": 2.0,
    "reps": 200,
    "child_first": 34800
+  },
+  {
+   "cell": 175,
+   "kind": "decision_flip",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 8,
+   "A": 3.0,
+   "fresh_of": 105,
+   "reps": 200,
+   "child_first": 35000
+  },
+  {
+   "cell": 176,
+   "kind": "t3_decision_flip",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 8,
+   "A": 3.0,
+   "innov": "t3",
+   "fresh_of": 106,
+   "reps": 200,
+   "child_first": 35200
+  },
+  {
+   "cell": 177,
+   "kind": "decision_flip",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 8,
+   "A": 3.0,
+   "fresh_of": 107,
+   "reps": 200,
+   "child_first": 35400
+  },
+  {
+   "cell": 178,
+   "kind": "t3_decision_flip",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 8,
+   "A": 3.0,
+   "innov": "t3",
+   "fresh_of": 108,
+   "reps": 200,
+   "child_first": 35600
+  },
+  {
+   "cell": 179,
+   "kind": "decision_flip",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 8,
+   "A": 3.0,
+   "fresh_of": 109,
+   "reps": 200,
+   "child_first": 35800
+  },
+  {
+   "cell": 180,
+   "kind": "t3_decision_flip",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 8,
+   "A": 3.0,
+   "innov": "t3",
+   "fresh_of": 110,
+   "reps": 200,
+   "child_first": 36000
+  },
+  {
+   "cell": 181,
+   "kind": "decision_flip",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 8,
+   "A": 3.0,
+   "fresh_of": 111,
+   "reps": 200,
+   "child_first": 36200
+  },
+  {
+   "cell": 182,
+   "kind": "t3_decision_flip",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 8,
+   "A": 3.0,
+   "innov": "t3",
+   "fresh_of": 112,
+   "reps": 200,
+   "child_first": 36400
+  },
+  {
+   "cell": 183,
+   "kind": "decision_flip",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 8,
+   "A": 3.0,
+   "fresh_of": 113,
+   "reps": 200,
+   "child_first": 36600
+  },
+  {
+   "cell": 184,
+   "kind": "t3_decision_flip",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 8,
+   "A": 3.0,
+   "innov": "t3",
+   "fresh_of": 114,
+   "reps": 200,
+   "child_first": 36800
+  },
+  {
+   "cell": 185,
+   "kind": "realised_count_flip",
+   "phi": 0.5,
+   "n_events": 57,
+   "L": 8,
+   "A": 3.0,
+   "fresh_of": 161,
+   "reps": 200,
+   "child_first": 37000
+  },
+  {
+   "cell": 186,
+   "kind": "realised_count_flip",
+   "phi": 0.8,
+   "n_events": 57,
+   "L": 8,
+   "A": 3.0,
+   "fresh_of": 164,
+   "reps": 200,
+   "child_first": 37200
+  },
+  {
+   "cell": 187,
+   "kind": "realised_count_flip",
+   "phi": 0.9,
+   "n_events": 57,
+   "L": 8,
+   "A": 3.0,
+   "fresh_of": 167,
+   "reps": 200,
+   "child_first": 37400
+  },
+  {
+   "cell": 188,
+   "kind": "realised_count_flip",
+   "phi": 0.95,
+   "n_events": 57,
+   "L": 8,
+   "A": 3.0,
+   "fresh_of": 170,
+   "reps": 200,
+   "child_first": 37600
+  },
+  {
+   "cell": 189,
+   "kind": "realised_count_flip",
+   "phi": 0.98,
+   "n_events": 57,
+   "L": 8,
+   "A": 3.0,
+   "fresh_of": 173,
+   "reps": 200,
+   "child_first": 37800
+  },
+  {
+   "cell": 190,
+   "kind": "flip_long",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 16,
+   "A": "from scripts/outputs/calibration_flip.json [phi][L]",
+   "report_only": true,
+   "reps": 200,
+   "child_first": 38000
+  },
+  {
+   "cell": 191,
+   "kind": "flip_long",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 24,
+   "A": "from scripts/outputs/calibration_flip.json [phi][L]",
+   "report_only": true,
+   "reps": 200,
+   "child_first": 38200
+  },
+  {
+   "cell": 192,
+   "kind": "flip_long",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 16,
+   "A": "from scripts/outputs/calibration_flip.json [phi][L]",
+   "report_only": true,
+   "reps": 200,
+   "child_first": 38400
+  },
+  {
+   "cell": 193,
+   "kind": "flip_long",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 24,
+   "A": "from scripts/outputs/calibration_flip.json [phi][L]",
+   "report_only": true,
+   "reps": 200,
+   "child_first": 38600
+  },
+  {
+   "cell": 194,
+   "kind": "flip_long",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 16,
+   "A": "from scripts/outputs/calibration_flip.json [phi][L]",
+   "report_only": true,
+   "reps": 200,
+   "child_first": 38800
+  },
+  {
+   "cell": 195,
+   "kind": "flip_long",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 24,
+   "A": "from scripts/outputs/calibration_flip.json [phi][L]",
+   "report_only": true,
+   "reps": 200,
+   "child_first": 39000
+  },
+  {
+   "cell": 196,
+   "kind": "flip_long",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 16,
+   "A": "from scripts/outputs/calibration_flip.json [phi][L]",
+   "report_only": true,
+   "reps": 200,
+   "child_first": 39200
+  },
+  {
+   "cell": 197,
+   "kind": "flip_long",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 24,
+   "A": "from scripts/outputs/calibration_flip.json [phi][L]",
+   "report_only": true,
+   "reps": 200,
+   "child_first": 39400
+  },
+  {
+   "cell": 198,
+   "kind": "flip_long",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 16,
+   "A": "from scripts/outputs/calibration_flip.json [phi][L]",
+   "report_only": true,
+   "reps": 200,
+   "child_first": 39600
+  },
+  {
+   "cell": 199,
+   "kind": "flip_long",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 24,
+   "A": "from scripts/outputs/calibration_flip.json [phi][L]",
+   "report_only": true,
+   "reps": 200,
+   "child_first": 39800
+  },
+  {
+   "cell": 200,
+   "kind": "grid10_null",
+   "phi": 0.5,
+   "grid": 10,
+   "reps": 200,
+   "child_first": 40000
+  },
+  {
+   "cell": 201,
+   "kind": "grid10_effect",
+   "phi": 0.5,
+   "grid": 10,
+   "L": 640,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 40200
+  },
+  {
+   "cell": 202,
+   "kind": "grid10_effect",
+   "phi": 0.5,
+   "grid": 10,
+   "L": 1000,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 40400
+  },
+  {
+   "cell": 203,
+   "kind": "grid10_effect",
+   "phi": 0.5,
+   "grid": 10,
+   "L": 1500,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 40600
+  },
+  {
+   "cell": 204,
+   "kind": "grid10_effect",
+   "phi": 0.5,
+   "grid": 10,
+   "L": 2000,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 40800
+  },
+  {
+   "cell": 205,
+   "kind": "grid10_short",
+   "phi": 0.5,
+   "grid": 10,
+   "L": 200,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 41000
+  },
+  {
+   "cell": 206,
+   "kind": "grid10_null",
+   "phi": 0.8,
+   "grid": 10,
+   "reps": 200,
+   "child_first": 41200
+  },
+  {
+   "cell": 207,
+   "kind": "grid10_effect",
+   "phi": 0.8,
+   "grid": 10,
+   "L": 640,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 41400
+  },
+  {
+   "cell": 208,
+   "kind": "grid10_effect",
+   "phi": 0.8,
+   "grid": 10,
+   "L": 1000,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 41600
+  },
+  {
+   "cell": 209,
+   "kind": "grid10_effect",
+   "phi": 0.8,
+   "grid": 10,
+   "L": 1500,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 41800
+  },
+  {
+   "cell": 210,
+   "kind": "grid10_effect",
+   "phi": 0.8,
+   "grid": 10,
+   "L": 2000,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 42000
+  },
+  {
+   "cell": 211,
+   "kind": "grid10_short",
+   "phi": 0.8,
+   "grid": 10,
+   "L": 200,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 42200
+  },
+  {
+   "cell": 212,
+   "kind": "grid10_null",
+   "phi": 0.9,
+   "grid": 10,
+   "reps": 200,
+   "child_first": 42400
+  },
+  {
+   "cell": 213,
+   "kind": "grid10_effect",
+   "phi": 0.9,
+   "grid": 10,
+   "L": 640,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 42600
+  },
+  {
+   "cell": 214,
+   "kind": "grid10_effect",
+   "phi": 0.9,
+   "grid": 10,
+   "L": 1000,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 42800
+  },
+  {
+   "cell": 215,
+   "kind": "grid10_effect",
+   "phi": 0.9,
+   "grid": 10,
+   "L": 1500,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 43000
+  },
+  {
+   "cell": 216,
+   "kind": "grid10_effect",
+   "phi": 0.9,
+   "grid": 10,
+   "L": 2000,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 43200
+  },
+  {
+   "cell": 217,
+   "kind": "grid10_short",
+   "phi": 0.9,
+   "grid": 10,
+   "L": 200,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 43400
+  },
+  {
+   "cell": 218,
+   "kind": "grid10_null",
+   "phi": 0.95,
+   "grid": 10,
+   "reps": 200,
+   "child_first": 43600
+  },
+  {
+   "cell": 219,
+   "kind": "grid10_effect",
+   "phi": 0.95,
+   "grid": 10,
+   "L": 640,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 43800
+  },
+  {
+   "cell": 220,
+   "kind": "grid10_effect",
+   "phi": 0.95,
+   "grid": 10,
+   "L": 1000,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 44000
+  },
+  {
+   "cell": 221,
+   "kind": "grid10_effect",
+   "phi": 0.95,
+   "grid": 10,
+   "L": 1500,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 44200
+  },
+  {
+   "cell": 222,
+   "kind": "grid10_effect",
+   "phi": 0.95,
+   "grid": 10,
+   "L": 2000,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 44400
+  },
+  {
+   "cell": 223,
+   "kind": "grid10_short",
+   "phi": 0.95,
+   "grid": 10,
+   "L": 200,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 44600
+  },
+  {
+   "cell": 224,
+   "kind": "grid10_null",
+   "phi": 0.98,
+   "grid": 10,
+   "reps": 200,
+   "child_first": 44800
+  },
+  {
+   "cell": 225,
+   "kind": "grid10_effect",
+   "phi": 0.98,
+   "grid": 10,
+   "L": 640,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 45000
+  },
+  {
+   "cell": 226,
+   "kind": "grid10_effect",
+   "phi": 0.98,
+   "grid": 10,
+   "L": 1000,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 45200
+  },
+  {
+   "cell": 227,
+   "kind": "grid10_effect",
+   "phi": 0.98,
+   "grid": 10,
+   "L": 1500,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 45400
+  },
+  {
+   "cell": 228,
+   "kind": "grid10_effect",
+   "phi": 0.98,
+   "grid": 10,
+   "L": 2000,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 45600
+  },
+  {
+   "cell": 229,
+   "kind": "grid10_short",
+   "phi": 0.98,
+   "grid": 10,
+   "L": 200,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 45800
+  },
+  {
+   "cell": 230,
+   "kind": "e2e_null",
+   "phi": 0.5,
+   "grid": 1,
+   "reps": 200,
+   "child_first": 46000
+  },
+  {
+   "cell": 231,
+   "kind": "e2e_effect",
+   "phi": 0.5,
+   "grid": 1,
+   "L": 100,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 46200
+  },
+  {
+   "cell": 232,
+   "kind": "e2e_null",
+   "phi": 0.8,
+   "grid": 1,
+   "reps": 200,
+   "child_first": 46400
+  },
+  {
+   "cell": 233,
+   "kind": "e2e_effect",
+   "phi": 0.8,
+   "grid": 1,
+   "L": 100,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 46600
+  },
+  {
+   "cell": 234,
+   "kind": "e2e_null",
+   "phi": 0.9,
+   "grid": 1,
+   "reps": 200,
+   "child_first": 46800
+  },
+  {
+   "cell": 235,
+   "kind": "e2e_effect",
+   "phi": 0.9,
+   "grid": 1,
+   "L": 100,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 47000
+  },
+  {
+   "cell": 236,
+   "kind": "e2e_null",
+   "phi": 0.95,
+   "grid": 1,
+   "reps": 200,
+   "child_first": 47200
+  },
+  {
+   "cell": 237,
+   "kind": "e2e_effect",
+   "phi": 0.95,
+   "grid": 1,
+   "L": 100,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 47400
+  },
+  {
+   "cell": 238,
+   "kind": "e2e_null",
+   "phi": 0.98,
+   "grid": 1,
+   "reps": 200,
+   "child_first": 47600
+  },
+  {
+   "cell": 239,
+   "kind": "e2e_effect",
+   "phi": 0.98,
+   "grid": 1,
+   "L": 100,
+   "A": 2.0,
+   "report_only": true,
+   "reps": 200,
+   "child_first": 47800
   }
  ],
  "calibration": [

@@ -29,9 +29,8 @@ def task(args):
     import synth
     import run_suite
     c = CELLS[cell]
-    kw = run_suite.series_kwargs(c, CAL)               # same construction as the suite verdict run
-    blocks, events = synth.make_series(c["child_first"] + rep, **kw)
-    d = compare_ref.compare(blocks, events, 1, 128)
+    blocks, events, grid, scan, _ = run_suite.build(c, rep, CAL)   # same construction as the suite verdict run
+    d = compare_ref.compare(blocks, events, grid, scan)
     return cell, rep, [list(map(str, x)) for x in d]
 
 

@@ -28,12 +28,15 @@ def rows_for(c, mutate=None):
         if k in G.NULLS:
             row["label"] = "SUPPORT" if r < 5 else "INCONCLUSIVE"        # 5/200 = 0.025
         elif k in G.FLIPS:
-            row["label"] = "REFUTE" if r < 196 else "INCONCLUSIVE"       # 0.98
+            row["label"] = "SUPPORT" if r < 5 else ("REFUTE" if r < 170 else "INCONCLUSIVE")   # SUPPORT 0.025
         elif k == "unequal_memory_null":
             row["label"] = "REFUTE"
             row["C"] = {"S1": 0.0, "S40": 0.0 if r < 196 else 3.0}       # invariance 0.98
         else:
             row["label"] = "INCONCLUSIVE"
+        if k in G.E2E:
+            row["events_match"] = True
+            row["residues"] = list(range(10))
         out.append(row)
     return mutate(out) if mutate else out
 
@@ -65,12 +68,14 @@ def main():
     rc, out = run(table, {null: lambda r: sup(r, 12)})                   # 12/200 = 0.06
     ok("WATCH-FAIL null false-SUPPORT 0.06 -> FAIL", rc == 1 and out.startswith("FAIL"))
 
-    def flip94(rows):
-        for i in range(188, 200):
-            rows[i]["label"] = "INCONCLUSIVE"
+    rc, out = run(table, {flip: lambda r: sup(r, 11)})                    # SUPPORT 11/200 = 0.055
+    ok("WATCH-FAIL flip SUPPORT 0.055 -> FAIL (Amendment 12.1)", rc == 1)
+    def norefute(rows):
+        for r_ in rows[5:]:
+            r_["label"] = "INCONCLUSIVE"
         return rows
-    rc, out = run(table, {flip: flip94})                                  # 188/200 = 0.94
-    ok("WATCH-FAIL flip REFUTE 0.94 -> FAIL", rc == 1)
+    rc, out = run(table, {flip: norefute})                                 # REFUTE 0, SUPPORT 0.025
+    ok("flip with REFUTE 0 but SUPPORT 0.025 passes (REFUTE is reported, not binding)", rc == 0)
 
     def inv94(rows):
         for i in range(188, 200):
@@ -86,6 +91,17 @@ def main():
         return rows
     rc, out = run(table, {um: med15})
     ok("WATCH-FAIL unequal-memory |median C_b| 1.5 -> FAIL", rc == 1)
+    g10 = next(c["cell"] for c in table if c["kind"] == "grid10_null")
+    def badmatch(rows):
+        rows[7]["events_match"] = False
+        return rows
+    rc, out = run(table, {g10: badmatch})
+    ok("WATCH-FAIL grid-10 cell with one replicate's events not recovered -> FAIL", rc == 1)
+    def badres(rows):
+        rows[3]["residues"] = list(range(9))
+        return rows
+    rc, out = run(table, {g10: badres})
+    ok("WATCH-FAIL grid-10 cell missing a t_e mod 10 residue -> FAIL", rc == 1)
     rc, out = run(table, {null: lambda r: r[:-1]})
     ok("WATCH-FAIL a missing replicate -> FAIL (INCOMPLETE)", rc == 1)
     rc, out = run(table, {null: lambda r: sup(r, 10)})                   # exactly 0.05 -> passes

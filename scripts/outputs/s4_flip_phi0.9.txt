@@ -1,0 +1,4 @@
+phi 0.9 gauss L=8 A=5.0: REFUTE 0.880 INCONCL 0.120 SUPPORT 0.000 | det rate D_div 0.02, B1 0.32, B2 0.81, B3 0.68, B4 0.03
+phi 0.9 gauss L=8 A=8.0: REFUTE 0.960 INCONCL 0.040 SUPPORT 0.000 | det rate D_div 0.05, B1 0.78, B2 1.00, B3 0.99, B4 0.08
+phi 0.9 gauss L=8 A=12.0: REFUTE 0.960 INCONCL 0.040 SUPPORT 0.000 | det rate D_div 0.09, B1 0.96, B2 1.00, B3 1.00, B4 0.33
+phi 0.9 gauss L=16 A=6.0: REFUTE 0.960 INCONCL 0.040 SUPPORT 0.000 | det rate D_div 0.11, B1 0.17, B2 0.99, B3 0.61, B4 0.28

@@ -150,3 +150,85 @@ Mean leads under the null are 1.2–1.7 steps for every detector.
 
 - **S-2:** invariance criterion (|C_S1 − C_S40| ≤ 1 in ≥ 95 %; |median C_b| ≤ 1; false-SUPPORT ≤ 0.05), graded on the unused evaluation seeds of cells 115–119. False-REFUTE and P(C_b > 0 | C_b ≠ 0) are reported. The item-17 measurement is exploratory. JAE's proposed [0.40, 0.60] band failed because about half of replicates have C_b = 0 exactly.
 - **S-3:** pulse with a per-detector calibration sweep. False-SUPPORT ≤ 0.05 at every calibrated h on evaluation seeds, with the detector × h table reported; this is the E2 lookup for detection rates ≤ 50 %. The step is a reported characterization only, labelled "step precursor, not a null".
+
+## Suite verdict run v1 (2026-11-06) — FAIL on the 15 decision-flip cells; everything else passes or is reported
+
+Run on JAE's host at 6b5d7f5 (`run_suite.py --workers 16`, 170 cells × 200 replicates). Reference agreement on all 165 E2-chain cells: complete and identical. Single- vs multi-process identity check on cell 25: IDENTICAL. Graded by `grade_suite.py` → `verification/suite_verdict.md`.
+
+| group | cells | result |
+|---|---|---|
+| planted null, surge null, t3 null, pulse-sweep null, null at 57 events | 45 | PASS; max false-SUPPORT 0.010 |
+| unequal-memory null (10.1) | 5 | PASS; invariance 0.965–1.000; median C_b = 0; false-SUPPORT ≤ 0.010 (reported: false-REFUTE 0.760–0.795) |
+| decision flip (20 events), t3 flip, flip at 57 events | 15 | **FAIL**: REFUTE 0.81–0.93 against ≥ 0.95; SUPPORT ≤ 0.005 |
+| planted effect, regime span, surge effect, effect at 57, step | 105 | reported (see S-5) |
+
+## S-4 (BLOCKER) — the decision flip at L = 8 cannot reach REFUTE ≥ 0.95 under the frozen lead statistic
+
+**Mechanism** (replicates of cell 109 inspected).
+- In every non-REFUTE replicate, D_div detected one event, about 5 %, through a chance alarm early in that event's 129-observation window. Its lead was about 120, giving a mean lead of about 6 over 20 events.
+- The baselines' genuine detections of an 8-observation ramp can lead by at most L − 1 = 7.
+- Under the frozen statistic (any in-window alarm is a lead; misses count 0), one chance D_div alarm can outweigh every baseline's genuine short leads, which makes C_min > 0 and the label INCONCLUSIVE. SUPPORT stays ≤ 0.005 because one chance alarm rarely survives resampling.
+
+**Amplitude and length do not fix it.** Measured on child indices 40,000,000+ (never used), φ 0.9, 25 replicates, `scripts/suite/probe_flip_amplitude.py` → `scripts/outputs/s4_flip_phi0.9.txt`:
+
+| L | A | REFUTE | INCONCLUSIVE | B2 detection |
+|---|---|---|---|---|
+| 8 | 5 | 0.88 | 0.12 | 0.81 |
+| 8 | 8 | 0.96 | 0.04 | 1.00 |
+| 8 | 12 | 0.96 | 0.04 | 1.00 |
+| 16 | 6 | 0.96 | 0.04 | 0.99 |
+
+The chance-alarm floor stays. Twenty-five replicates cannot resolve 0.95.
+
+**Options (for JAE).**
+1. **Longer, taller short ramp.** L ∈ {16, 24} (still shorter than w_f = 32) and A calibrated on calibration seeds so the best raw baseline detects ≥ 90 %. Graded at REFUTE ≥ 0.95 on fresh evaluation seeds, after a 200-replicate feasibility measurement.
+2. **Reframe the flip as "the rule never supports when the raw reading wins".** Pass: SUPPORT ≤ 0.05 (measured ≤ 0.005); REFUTE reported. This loses the requirement that the rule actively return REFUTE.
+3. **Both:** option 1's construction, with SUPPORT ≤ 0.05 as the binding criterion and REFUTE reported.
+
+In every option the chance-alarm floor is reported as a property of the frozen statistic, because it applies to E2 on A1 as well.
+
+## S-5 (severity record; not a pass criterion) — planted linear ramps mostly return REFUTE
+
+The share of 200 replicates returning SUPPORT / REFUTE, planted effect at 20 events (`suite_v1`). Columns are φ_y = 0.5, 0.8, 0.9, 0.95, 0.98.
+
+| (L, A) | 0.5 | 0.8 | 0.9 | 0.95 | 0.98 |
+|---|---|---|---|---|---|
+| (64, 1) | .05/.67 | .01/.78 | .00/.79 | .00/.83 | .01/.82 |
+| (64, 3) | .04/.73 | .01/.80 | .00/.86 | .00/.91 | .01/.89 |
+| (100, 2) | .10/.49 | .02/.79 | .01/.83 | .01/.86 | .01/.86 |
+| (150, 3) | .12/.64 | .01/.95 | .00/.98 | .00/.98 | .01/.94 |
+| (200, 3) | .05/.74 | .00/.99 | .00/1.00 | .00/1.00 | .00/.99 |
+
+At A1's 57 events (L = 100, A = 2), SUPPORT / REFUTE by φ_y is:
+- 0.5: .15/.55
+- 0.8: .01/.79
+- 0.9: .00/.92
+- 0.95: .01/.91
+- 0.98: .01/.85
+
+Mean leads at 57 events and φ 0.9 are D_div 5.7, B2 8.7, B4 7.8.
+
+**Reading.**
+- On a linear ramp in y, the raw reading (B2) and the CUSUM (B4) cross their matched thresholds as early as D_div or earlier. E2 therefore returns REFUTE in most replicates, even though a precursor exists.
+- The ramp is the D.5 / Amendment 7.7 planted effect. These numbers are its measured detection probability, which the Standard's severity check requires.
+- What they say: under this construction, E2 has little power to return SUPPORT. A REFUTE on A1 would be consistent with both "no D_div advantage" and "a linear-ramp precursor that the raw reading catches as fast".
+- §K's rule is frozen, since A1 has been touched. This record bears on how a REFUTE is interpreted and reported, not on the rule.
+
+## Pending construction items 19a–19f (ten-step grid cell A1.7 and end-to-end loss cell 7.8; provisional in `analysis/synth_e2e.py`)
+
+A1.7 fixes the observation grid, the minimum length (≥ 33,840 steps), ≥ 2 gaps, all ten residues of t_e mod 10, the ramp lengths and the 200-step short ramp. It leaves the following unstated.
+
+| # | Item | Proposal (provisional in code) |
+|---|---|---|
+| 19a | Geometry | Grid 10: three blocks of 155,000 steps with two 5,000-step gaps (no logged steps), giving 46,500 grid observations (A1: 46,630). Grid 1: one 50,000-step block (as in the other per-step cells). |
+| 19b | Events | Grid 10: 57 (A1's count), split evenly across blocks, uniform positions with spacing ≥ L_max + scan + grid, each with ≥ 1,000 grid observations of history plus the scan window. Residues forced to cycle 0–9. Grid 1: 20 events. |
+| 19c | Loss series | A deterministic period-4 base, 2.5 + 0.01·(0, 1, 0, −1), with a +0.1 spike at each planted t_e (the `test_a1_events.py` pattern, which produces no spurious spikes). The A1 spike rule (`a1_events.enumerate_series`, k = 4, dedup 2,000 on grid 10 and 200 on grid 1) must recover exactly the planted events, all eligible, in every replicate; the grader checks this. |
+| 19d | Gradient norm | Per-step AR(1) for ln g with unit stationary SD and φ_step = φ_y^(1/grid), so the lag-1 autocorrelation on the observation grid is φ_y. Observed at step mod grid = 0. Ramps are linear in steps, A × SD. |
+| 19e | Cells (200 replicates each) | Per φ_y: grid-10 null; grid-10 effect at L ∈ {640, 1,000, 1,500, 2,000} steps with A = 2; grid-10 short ramp L = 200, A = 2; grid-1 null; grid-1 effect at L = 100, A = 2. |
+| 19f | Criteria | Nulls: false-SUPPORT ≤ 0.05. Effect and short-ramp cells: reported. The A1.7 "±10 steps" lead tolerance is superseded by Amendment 8.1's reference agreement, which these cells also run, with grid 10 and scan 1,280. The short-ramp cell's "must show the A1.5 scope condition" is read as reported REFUTE / lead rates; whether that needs a numeric bar is JAE's call. |
+
+**Checks so far.**
+- One replicate each, grid 10 and grid 1: events recovered exactly (57 and 20).
+- Grid-parameterised eligibility = `a1_events.eligibility` at grid 10 on 311 sampled steps.
+- Reference agreement identical on three grid-10 and grid-1 replicates.
+- The grader's watch-to-fail test now also fails a grid-10 cell with one unrecovered event or a missing residue (12/12).

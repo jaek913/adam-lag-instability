@@ -702,3 +702,33 @@ Result: 16 findings (G1–G16), all adopted, five with a stated adaptation, plus
 - **Planted effect at 57:** L = 100, A = 2 (the regime-span setting). Reported, not required. Its outcome rates are the detection probability at this effect and this event count that E2 reports beside an INCONCLUSIVE.
 
 **Unchanged.** Every other cell and criterion, and every rule applied to real data.
+
+## Amendment 12 (2026-11-06) — Decision-flip criterion (S-4) and per-experiment suite gates
+
+**Status.** Appended below Amendment 11 under the append-only rule. Rationale: DECISIONS.md entry 27 (JAE decisions 2026-11-06). Evidence: `verification/suite_findings.md` S-4, `verification/suite_verdict.md` (suite run v1), `scripts/outputs/s4_flip_phi0.9.txt`.
+
+**12.1 Decision flip (replaces D.5 "Planted decision flip: … the rule must return REFUTE" as amended by 9.3(15)).**
+- **Stated plainly:** the binding criterion is changed after the frozen bar failed. Suite run v1 graded every decision-flip cell FAIL: REFUTE 0.81–0.93 against ≥ 0.95 (20 and 57 events; Gaussian and t3).
+- **Why the bar failed.** It assumed a zero chance-alarm floor under the mean-lead statistic.
+  - Under the frozen statistic, any in-window alarm is a lead and a miss counts 0.
+  - A single chance D_div alarm early in an event's 129-observation window has a lead of about 120.
+  - That outweighs the baselines' genuine leads on an 8-observation ramp (at most L − 1 = 7), which makes C_min > 0 and the label INCONCLUSIVE.
+- **The construction is not changed:** L = 8, A = 3, at 20 events (Gaussian and t3) and at 57 events, across the φ_y grid.
+- **Binding criterion:** SUPPORT ≤ 0.05, graded on fresh evaluation seeds disjoint from every earlier range. The v1 flip cells are kept as the record of the failed bar.
+- **Reported:** the REFUTE rate, as the kill rule's measured power against short-precursor worlds (v1: 0.81–0.93). It is stated in the Methods and beside the E2 result, with the mechanism above.
+- **Added reported cells (no criterion):** L ∈ {16, 24} at 20 events across the φ_y grid. A is calibrated on calibration seeds as the smallest value in {3, 4, 5, 6, 8, 10, 12} at which the best raw-reading baseline (B1, B2 or B3) detects ≥ 90 % of events.
+
+**12.2 Per-experiment suite gates (scopes D.5's "committed and ALL PASS before any hashed-data run").**
+- **Purpose preserved:** no experiment touches real data with unvalidated code. The gate applies per experiment, before that experiment's first hashed-data run.
+- **E2, E3, E4 gate.** Every statistical cell already built (Amendments 7–12) plus:
+  - dynamic range (lead separation at planted L differences of 50 steps, planted ties, planted cluster with censoring and chained dedup);
+  - the ten-step grid cell (A1.7);
+  - the end-to-end loss-series cell, planted effect and planted null (Amendment 7.8);
+  - the assembly probes (D.5);
+  - the broken fixture (verify.py).
+- **E1 gate.** E1's exact-identity hand probe (Amendment 4.1 suite addition).
+- **E5 gate.** The alignment control (D.5 "Alignment control (E5)").
+- **Leg B gate.** The Leg B probes (D.5 "Leg B"), before Leg B's first hashed-data run.
+- **Order and target.** The ten-step grid and assembly probes are built first, since A1 is both. The E2 gate is targeted to reach ALL PASS by 2026-11-18.
+
+**Unchanged.** Every rule applied to real data, and every other D.5 criterion as amended through Amendment 11.

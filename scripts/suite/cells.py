@@ -56,6 +56,26 @@ def build():
         add("realised_count_null", phi=phi, n_events=57)
         add("realised_count_flip", phi=phi, n_events=57, L=8, A=3.0)
         add("realised_count_effect", phi=phi, n_events=57, L=100, A=2.0)
+    # ---- appended 2026-11-06 (Amendment 12.1): decision flip re-graded on fresh seeds; long-ramp flips reported ----
+    for c in list(cells):
+        if c["kind"] in ("decision_flip", "t3_decision_flip", "realised_count_flip") and "superseded" not in c:
+            c["superseded"] = "Amendment 12.1: v1 record of the failed REFUTE >= 0.95 bar; re-graded on fresh seeds"
+            fresh = {k: v for k, v in c.items() if k not in ("cell", "superseded")}
+            add(c["kind"], **{k: v for k, v in fresh.items() if k != "kind"}, fresh_of=c["cell"])
+    for phi in PHI:
+        for L in (16, 24):
+            add("flip_long", phi=phi, n_events=20, L=L, A="from scripts/outputs/calibration_flip.json [phi][L]",
+                report_only=True)
+    # ---- appended 2026-11-06 (Amendment 12.2 E2 gate): ten-step grid cell (A1.7) and end-to-end loss cell (7.8);
+    #      construction provisional (suite_findings items 19a-19f) ----
+    for phi in PHI:
+        add("grid10_null", phi=phi, grid=10)
+        for L in (640, 1000, 1500, 2000):
+            add("grid10_effect", phi=phi, grid=10, L=L, A=2.0, report_only=True)
+        add("grid10_short", phi=phi, grid=10, L=200, A=2.0, report_only=True)
+    for phi in PHI:
+        add("e2e_null", phi=phi, grid=1)
+        add("e2e_effect", phi=phi, grid=1, L=100, A=2.0, report_only=True)
     for c in cells:
         c["reps"] = REPS
         c["child_first"] = c["cell"] * REPS

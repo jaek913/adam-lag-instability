@@ -8,10 +8,13 @@ Checks:
     scripts/outputs/ref_agreement_v2/ holds complete, all-identical agreement for every E2-chain cell graded;
   per cell kind:
     planted_null, surge_null, t3_null, null_pulse_sweep, realised_count_null: false-SUPPORT <= 0.05;
-    decision_flip, t3_decision_flip, realised_count_flip: REFUTE >= 0.95;
+    decision_flip, t3_decision_flip, realised_count_flip (fresh seeds, Amendment 12.1): SUPPORT <= 0.05;
+      REFUTE reported as the kill rule's power against short precursors;
     unequal_memory_null (10.1): false-SUPPORT <= 0.05, |median C_b| <= 1 for S1, S40,
       share(|C_S1 - C_S40| <= 1) >= 0.95;
-    planted_effect, regime_span, surge_effect, realised_count_effect, step_characterization: reported (power)."""
+    planted_effect, regime_span, surge_effect, realised_count_effect, step_characterization: reported (power);
+    grid10_* and e2e_* (A1.7, 7.8): nulls false-SUPPORT <= 0.05, others reported; in every replicate the spike
+      rule must recover exactly the planted events, and grid-10 cells must contain all ten residues of t_e mod 10."""
 import argparse
 import hashlib
 import json
@@ -22,9 +25,11 @@ import sys
 import numpy as np
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-NULLS = {"planted_null", "surge_null", "t3_null", "null_pulse_sweep", "realised_count_null"}
+NULLS = {"planted_null", "surge_null", "t3_null", "null_pulse_sweep", "realised_count_null", "grid10_null", "e2e_null"}
 FLIPS = {"decision_flip", "t3_decision_flip", "realised_count_flip"}
-REPORT = {"planted_effect", "regime_span", "surge_effect", "realised_count_effect", "step_characterization"}
+REPORT = {"planted_effect", "regime_span", "surge_effect", "realised_count_effect", "step_characterization", "flip_long",
+          "grid10_effect", "grid10_short", "e2e_effect"}
+E2E = {"grid10_null", "grid10_effect", "grid10_short", "e2e_null", "e2e_effect"}
 LICENSED = ["analysis/ops.py", "analysis/pipeline.py", "analysis/e2stat.py", "reference/ref_e2.py"]
 
 
@@ -34,8 +39,9 @@ def grade(rows, kind):
     rate = {k: labels.count(k) / n for k in ("SUPPORT", "INCONCLUSIVE", "REFUTE")}
     if kind in NULLS:
         return rate["SUPPORT"] <= 0.05, f"false-SUPPORT {rate['SUPPORT']:.3f} (<= 0.05)", rate
-    if kind in FLIPS:
-        return rate["REFUTE"] >= 0.95, f"REFUTE {rate['REFUTE']:.3f} (>= 0.95)", rate
+    if kind in FLIPS:                                  # Amendment 12.1: SUPPORT binding; REFUTE = reported power
+        return rate["SUPPORT"] <= 0.05, (f"SUPPORT {rate['SUPPORT']:.3f} (<= 0.05); reported: REFUTE {rate['REFUTE']:.3f} "
+                                         f"(kill-rule power vs short precursor)"), rate
     if kind == "unequal_memory_null":
         c1 = np.array([r["C"]["S1"] for r in rows])
         c40 = np.array([r["C"]["S40"] for r in rows])
@@ -92,6 +98,14 @@ def main():
             continue
         ok, text, rate = grade(rows, c["kind"])
         ok = None if ok is None else bool(ok)
+        if c["kind"] in E2E:                           # the spike rule must recover exactly the planted events
+            em = all(r.get("events_match") is True for r in rows)
+            res = all(r.get("residues") == list(range(10)) for r in rows) if c.get("grid") == 10 else True
+            text += f"; events recovered exactly in {sum(r.get('events_match') is True for r in rows)}/{len(rows)}"
+            if c.get("grid") == 10:
+                text += "; all ten residues of t_e mod 10 in every replicate" if res else "; RESIDUES MISSING"
+            if not (em and res):
+                ok = False
         tag = "PASS" if ok else ("FAIL" if ok is False else "REPORTED")
         extra = ""
         if c["kind"] in REPORT:

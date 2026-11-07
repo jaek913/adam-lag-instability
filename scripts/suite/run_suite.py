@@ -21,7 +21,9 @@ sys.path[:0] = [os.path.join(ROOT, "analysis"), os.path.join(ROOT, "scripts", "s
 OUTDIR = os.path.join(ROOT, "scripts", "outputs", "suite_v1")
 RUN_KINDS = {"planted_effect", "regime_span", "planted_null", "surge_null", "surge_effect", "t3_null",
              "decision_flip", "t3_decision_flip", "unequal_memory_null", "null_pulse_sweep", "step_characterization",
-             "realised_count_null", "realised_count_flip", "realised_count_effect"}
+             "realised_count_null", "realised_count_flip", "realised_count_effect", "flip_long",
+             "grid10_null", "grid10_effect", "grid10_short", "e2e_null", "e2e_effect"}
+E2E = {"grid10_null", "grid10_effect", "grid10_short", "e2e_null", "e2e_effect"}
 CALIB = os.path.join(ROOT, "scripts", "outputs", "calibration_pulse.json")
 
 
@@ -32,29 +34,48 @@ def series_kwargs(c, calib):
         kw["pulse_h"] = float(calib["phi"][str(c["phi"])]["chosen"][c["pulse_for"]])
     if c["kind"] == "step_characterization":
         kw["step_h"] = float(c["step_h"])
+    if c["kind"] == "flip_long":                       # Amendment 12.1: A from the flip calibration
+        fc = json.load(open(os.path.join(ROOT, "scripts", "outputs", "calibration_flip.json")))
+        kw["A"] = float(fc["phi"][str(c["phi"])]["chosen"][str(c["L"])])
     return kw
+
+
+def build(c, rep, cal):
+    """(blocks, events, grid, scan, meta) for one replicate; used by this runner and run_ref_agreement."""
+    import synth
+    import synth_e2e
+    if c["kind"] in E2E:
+        b, e, m = synth_e2e.make_e2e(c["child_first"] + rep, grid=c["grid"], phi_obs=c["phi"], L=c.get("L"),
+                                     A=c.get("A", 0.0))
+        return b, e, m["grid"], m["scan"], m
+    kw = series_kwargs(c, cal)
+    b, e = synth.make_series(c["child_first"] + rep, **kw)
+    meta = {"pulse_h": kw["pulse_h"]} if "pulse_h" in kw else {}
+    return b, e, 1, 128, meta
 
 
 def task(args):
     import pipeline
-    import synth
     import umem
     cell, rep = args
     c = CELLS[cell]
-    kw = series_kwargs(c, CAL)
-    blocks, events = synth.make_series(c["child_first"] + rep, **kw)
+    blocks, events, grid, scan, meta = build(c, rep, CAL)
     if c["kind"] == "unequal_memory_null":
         r = umem.run(blocks, events)
         row = {"label": r["label"], "C_min": r["C_min"], "p05": r["p05"], "C": r["C"], "nstar": r["nstar"],
                "mean_lead": r["mean_lead"]}
     else:
-        o = pipeline.run(blocks, events, grid=1, scan=128, coverage_stop=None, n_draws=1000, seed=20261030)
+        o = pipeline.run(blocks, events, grid=grid, scan=scan, coverage_stop=None, n_draws=1000, seed=20261030)
         row = {"label": o["label"], "C_min": o.get("C_min"), "p05": o.get("p05"), "C": o.get("C"),
                "nstar": o["nstar"], "N_out": o["N_out"], "argmax": o.get("argmax"),
                "coverage": {d: o["detectors"][d]["coverage"] for d in o["detectors"]},
                "per_detector": o.get("per_detector")}
-    if "pulse_h" in kw:
-        row["pulse_h"] = kw["pulse_h"]
+    if "pulse_h" in meta:
+        row["pulse_h"] = meta["pulse_h"]
+    if "events_match" in meta:
+        row["events_match"] = meta["events_match"]
+        row["n_events"] = meta["n_events"]
+        row["residues"] = meta["residues"]
     return cell, rep, row
 
 
