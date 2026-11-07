@@ -23,8 +23,8 @@ RUN_KINDS = {"planted_effect", "regime_span", "planted_null", "surge_null", "sur
              "decision_flip", "t3_decision_flip", "unequal_memory_null", "null_pulse_sweep", "step_characterization",
              "realised_count_null", "realised_count_flip", "realised_count_effect", "flip_long",
              "grid10_null", "grid10_effect", "grid10_short", "e2e_null", "e2e_effect",
-             "a1s_null", "a1s_flip", "a1s_effect"}
-E2E = {"grid10_null", "grid10_effect", "grid10_short", "e2e_null", "e2e_effect"}
+             "a1s_null", "a1s_flip", "a1s_effect", "dr_step", "dr_grid10"}
+E2E = {"grid10_null", "grid10_effect", "grid10_short", "e2e_null", "e2e_effect", "dr_grid10"}
 A1S = {"a1s_null", "a1s_flip", "a1s_effect"}
 CALIB = os.path.join(ROOT, "scripts", "outputs", "calibration_pulse.json")
 

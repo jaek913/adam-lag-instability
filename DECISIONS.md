@@ -895,3 +895,51 @@ Sources: the project files `thedivergencetheorem.pdf`, `theadaptationratetheorem
    - **Author's construction, mirroring entry 13:** 61 planted, of which 4 are ineligible on minimum history (2 / 1 / 1 by block) and 57 eligible (1 / 13 / 43); flip L = 80 steps; effect L = 1,000 steps.
    - Part of the E2 gate.
 4. **Review (JAE).** The follow-up review covers Amendments 7–13.
+
+## Entry 30 (2026-11-07) — Amendment 13 cells run: statistical cells of the E2 gate ALL PASS on committed code
+
+1. **Run.** JAE ran `run_ref_agreement.py` and `run_suite.py` at c884e79 (= origin/main; nothing uncommitted except outputs) for the 20 Amendment 13 cells.
+   - Graded with `grade_suite.py`: **ALL PASS**. 95 graded cells PASS, 145 reported, 0 FAIL. Reference agreement is complete and identical on 230 E2-chain cells, and the licence checks pass.
+   - Verdict: `verification/suite_verdict.md`.
+2. **Short ramp on fresh seeds (13.2).** SUPPORT 0.000 at every φ_y, PASS. Reported REFUTE: 0.940–0.985.
+3. **A1-structure cells (13.3).** In every replicate of all 15 cells:
+   - the spike rule recovered exactly the 61 planted events;
+   - the A1 eligibility code reproduced the design (4 ineligible on minimum history, 2/1/1 by block; 57 eligible).
+   - Null false-SUPPORT ≤ 0.010 and flip SUPPORT ≤ 0.010, PASS. Flip REFUTE (reported): 0.875–0.935.
+   - Effect at L = 1,000 steps, A = 2 (reported): SUPPORT / REFUTE by φ_y are 0.5: .255/.430; 0.8: .015/.810; 0.9: .000/.845; 0.95: .000/.895; 0.98: .000/.775.
+   - B2's mean lead is far above every other detector's (for example 88 steps at φ 0.9). This is consistent with S-5.
+4. **Still open for the E2 gate (Amendment 12.2):** assembly probes, dynamic range and the broken fixture; then the follow-up review (Amendments 7–13) and PRV.
+
+## Entry 31 (2026-11-07) — E2 gate: assembly probes and dynamic-range cluster/ties probes pass; two scope questions
+
+1. **Assembly probes** (D.5; Amendment 12.2): `scripts/tests/test_assembly_probes.py`, **16/16 ALL PASS**, run through the real `scripts/a1_d1_check.py` (as a subprocess), `analysis/a1_loader.py` and `scripts/a1_events.py`.
+   - **D.1 fails:** duplicate step; missing `optim/total_grad_norm` column; the norm present only under another name (resolution by NAME); point-sampled segment (every 100th step); a missing step inside a segment; loss missing on one step.
+   - **D.1 passes:** float64 `_step` with integral values; a null g at a grid step, which is counted as `grid_steps_missing_gn`.
+   - **Loader (A1.1 G6):** null, NaN, inf, 0 and negative g at grid steps are dropped, counted (5), carried forward from the previous scored observation, and do not open a gap.
+   - **Gaps:** the loss spike baseline restarts (a spike within 128 steps after the gap is untested), and a spike after the gap opens a new event rather than chaining across it.
+   - Rewind and P-SEG ownership stay covered by `test_a1_events.py` (Amendment 3 case iii) and `test_a1_loader.py`, which the gate re-runs.
+   - **Observation (not a frozen-rule failure).** `a1_d1_check.py` reports rows against the server's `historyLineCount` but does not gate on it. Addendum D item 1's comparison, with each one-line difference explained, was done by hand for all seven segments. A truncated but contiguous file would pass the script. A hard stop on |rows − historyLineCount| > 1 in `a1_process_segment.py` is proposed for any future segment (route 3); it affects no result already obtained.
+2. **Dynamic range: cluster and ties** (`scripts/tests/test_dynamic_range_cluster.py`, **10/10 ALL PASS**, hand-derived).
+   - **Chained dedup (spikes 200–400 steps apart, dedup 200 inclusive):** events at 2,000, 2,500 and 2,900 with 2, 1 and 2 spikes. Watch-fail: at 201 apart the spikes do not chain.
+   - **Left-censoring through both implementations:** leads [128, 90, 90], censored [T, F, F].
+   - **Ties:** three tied baselines give C_min = 2.5, and the resampled argmax is shared equally among them.
+3. **Open scope questions (for JAE).**
+   - **(a) Broken fixture.** The Standard says `verify.py` is "built with the first real paper at Phase 3 … do not pre-spec". It checks inputs against claims.lock, reruns scripts against the ledger, checks the 7 CIC flags (classes in the Phase-3 checklist) and checks the manuscript, none of which exists before Phase 3. Amendment 12.2 placed the D.5 broken fixture in the E2 gate, which conflicts with this.
+   - **(b) Dynamic-range lead separation.** Leads are bounded by the scan window (128 steps per-step; 1,280 on grid 10). So "lead distributions separate at planted L differences of 50 steps" can only be measured for L below the window. At D.5's L ∈ {150, 200} every detector that catches the ramp saturates at 128. A measurement probe is committed (`scripts/suite/probe_dynamic_range.py`, seeds 43,000,000+).
+     - First point, φ 0.9, A = 6, L = 50, 20 replicates (`scripts/outputs/dynamic_range_phi0.9_A6.txt`): D_div, B2 and B4 detect ≥ 0.95 with mean leads 14.7, 24.9 and 15.4.
+
+## Entry 32 (2026-11-07, JAE) — Broken fixture to Phase 3; PRV hash self-test; graded dynamic range (DESIGN Amendment 14)
+
+1. **Broken fixture (JAE: option 1).**
+   - It moves to the Phase 3 gate (verify.py, claims.lock and CIC, per the Standard), and Amendment 12.2's placement is corrected in the same amendment.
+   - Data integrity before E2 is already required by D.6 item 7.
+   - **Added (JAE):** a negative self-test of the PRV hash check. It is run once on a deliberately corrupted copy of one A1 file, in scratch and not the data store, and must halt. Recorded as a PRV self-test, part of the E2 gate.
+2. **Dynamic range (JAE: option 1, with conditions; this supersedes the dialog answer "Reported only").**
+   - Per-step L ∈ {25, 75, 125} at A = 6, across φ_y, 200 replicates, graded on non-overlap of the 10–90 % ranges of per-replicate mean lead between L and L + 50, for each detector that detects ≥ 80 % at both L.
+   - **JAE's conditions:**
+     - (1) the cell fails unless D_div and at least one baseline meet the ≥ 80 % detection condition at both L of every pair, so it cannot pass vacuously;
+     - (2) a grid-10 version at L ∈ {25, 75, 125} grid observations (250, 750, 1,250 steps), with the same criterion and leads in steps.
+   - Calibration seeds are used to measure and fresh disjoint seeds to grade.
+   - **Reason recorded:** leads cap at the scan window, so the frozen L = 150 and 200 saturate.
+   - Part of the E2 gate (Amendment 14.3).
+3. **Review (JAE).** The follow-up review covers Amendments 7–14.

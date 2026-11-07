@@ -17,7 +17,10 @@ Checks:
       rule must recover exactly the planted events, and grid-10 cells must contain all ten residues of t_e mod 10;
     grid10_short (fresh seeds, Amendment 13.2): SUPPORT <= 0.05, REFUTE reported;
     a1s_* (Amendment 13.3): null false-SUPPORT <= 0.05; flip SUPPORT <= 0.05; effect reported; in every replicate
-      the A1 eligibility rule reproduces the design (4 ineligible, 2/1/1 by block, 57 eligible)."""
+      the A1 eligibility rule reproduces the design (4 ineligible, 2/1/1 by block, 57 eligible);
+    dr_step, dr_grid10 (Amendment 14.3): per (grid, phi), over L pairs (25,75), (75,125): for each detector with
+      detection >= 80% at both L, the 10-90% ranges of per-replicate mean lead do not overlap; the group FAILS
+      unless D_div and >= 1 baseline meet the 80% condition at both L of every pair."""
 import argparse
 import hashlib
 import json
@@ -33,7 +36,36 @@ NULLS = {"planted_null", "surge_null", "t3_null", "null_pulse_sweep", "realised_
 FLIPS = {"decision_flip", "t3_decision_flip", "realised_count_flip", "grid10_short", "a1s_flip"}
 REPORT = {"planted_effect", "regime_span", "surge_effect", "realised_count_effect", "step_characterization", "flip_long",
           "grid10_effect", "e2e_effect", "a1s_effect"}
-E2E = {"grid10_null", "grid10_effect", "grid10_short", "e2e_null", "e2e_effect", "a1s_null", "a1s_flip", "a1s_effect"}
+E2E = {"grid10_null", "grid10_effect", "grid10_short", "e2e_null", "e2e_effect", "a1s_null", "a1s_flip", "a1s_effect",
+       "dr_grid10"}
+DR = {"dr_step", "dr_grid10"}
+DET = ["D_div", "B1", "B2", "B3", "B4"]
+
+
+def grade_dr(group):
+    """Amendment 14.3, one (grid, phi) group of three L cells. group: {L_obs: rows}. Returns (ok, text)."""
+    Ls = sorted(group)
+    stats = {}
+    for L in Ls:
+        rows = group[L]
+        stats[L] = {d: (float(np.mean([r["per_detector"][d]["detection_rate"] for r in rows])),
+                        float(np.percentile([r["per_detector"][d]["mean_lead"] for r in rows], 10)),
+                        float(np.percentile([r["per_detector"][d]["mean_lead"] for r in rows], 90))) for d in DET}
+    ok, parts = True, []
+    for lo, hi in zip(Ls[:-1], Ls[1:]):
+        eligible = [d for d in DET if stats[lo][d][0] >= 0.80 and stats[hi][d][0] >= 0.80]
+        if "D_div" not in eligible or not any(d != "D_div" for d in eligible):
+            ok = False
+            parts.append(f"({lo},{hi}): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L "
+                         f"(eligible: {eligible})")
+            continue
+        sep = {d: stats[lo][d][2] < stats[hi][d][1] for d in eligible}
+        if not all(sep.values()):
+            ok = False
+        parts.append(f"({lo},{hi}): " + ", ".join(
+            f"{d} [{stats[lo][d][1]:.0f},{stats[lo][d][2]:.0f}] vs [{stats[hi][d][1]:.0f},{stats[hi][d][2]:.0f}] "
+            f"{'sep' if sep[d] else 'OVERLAP'}" for d in eligible))
+    return ok, "; ".join(parts)
 A1S = {"a1s_null", "a1s_flip", "a1s_effect"}
 LICENSED = ["analysis/ops.py", "analysis/pipeline.py", "analysis/e2stat.py", "reference/ref_e2.py"]
 
@@ -57,7 +89,7 @@ def grade(rows, kind):
         return ok, (f"false-SUPPORT {rate['SUPPORT']:.3f} (<= 0.05); max|median C_b| {med:.2f} (<= 1); "
                     f"share |C_S1-C_S40|<=1 {inv:.3f} (>= 0.95); reported: false-REFUTE {rate['REFUTE']:.3f}, "
                     f"P(C_b>0|C_b!=0) S1 {cond['S1']:.3f} S40 {cond['S40']:.3f}"), rate
-    return None, "reported", rate
+    return None, ("reported (graded as a group, Amendment 14.3)" if kind in DR else "reported"), rate
 
 
 def main():
@@ -77,7 +109,7 @@ def main():
             lines.append(f"| licence | {f} | {'unchanged since ' + a.agreement_commit if ok else 'CHANGED - agreement must be re-run'} | {'PASS' if ok else 'FAIL'} |")
             if not ok:
                 fails.append(f)
-    graded = [c for c in table if c["kind"] in NULLS | FLIPS | REPORT | {"unequal_memory_null"}
+    graded = [c for c in table if c["kind"] in NULLS | FLIPS | REPORT | DR | {"unequal_memory_null"}
               and "superseded" not in c and "pending" not in c]
     if not a.skip_licence:                              # Amendment 8.1: agreement for every E2-chain cell graded
         ag_dir = os.path.join(ROOT, "scripts", "outputs", "ref_agreement_v2")
@@ -129,6 +161,25 @@ def main():
                      f"{rate['SUPPORT']:.3f}/{rate['INCONCLUSIVE']:.3f}/{rate['REFUTE']:.3f}{extra} | {tag} |")
         if ok is False:
             fails.append(c["cell"])
+    # Amendment 14.3: dynamic range graded per (grid, phi) group over L pairs
+    groups = {}
+    for c in graded:
+        if c["kind"] in DR:
+            p = os.path.join(a.dir, f"cell_{c['cell']:03d}.jsonl")
+            rows = [json.loads(l) for l in open(p)] if os.path.exists(p) else []
+            if sorted(r["rep"] for r in rows) != list(range(c["reps"])):
+                continue                              # already FAILed as INCOMPLETE above
+            key = (c["kind"], c["phi"])
+            groups.setdefault(key, {})[c.get("L_obs", c.get("L"))] = rows
+    for (kind, phi), grp in sorted(groups.items()):
+        if len(grp) != 3:
+            lines.append(f"| dyn-range | {kind} phi={phi} | INCOMPLETE GROUP ({sorted(grp)}) | FAIL |")
+            fails.append(f"{kind} {phi}")
+            continue
+        okd, txt = grade_dr(grp)
+        lines.append(f"| dyn-range | {kind} phi={phi} (L obs {sorted(grp)}) | {txt} | {'PASS' if okd else 'FAIL'} |")
+        if not okd:
+            fails.append(f"{kind} {phi}")
     verdict = "ALL PASS" if not fails else f"FAIL ({len(fails)}: {fails[:20]})"
     with open(a.out, "w", newline="\n", encoding="utf-8") as f:
         f.write("# D.5 suite verdict — statistical cells\n\n")

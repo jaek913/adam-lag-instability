@@ -25,6 +25,9 @@ def rows_for(c, mutate=None):
     for r in range(c["reps"]):
         k = c["kind"]
         row = {"cell": c["cell"], "rep": r, "per_detector": {d: {"mean_lead": 1.0} for d in DET}}
+        if k in G.DR:                                  # separated leads, full detection
+            lo = c.get("L_obs", c.get("L"))
+            row["per_detector"] = {d: {"mean_lead": float(lo + (r % 10)), "detection_rate": 1.0} for d in DET}
         if k in G.NULLS:
             row["label"] = "SUPPORT" if r < 5 else "INCONCLUSIVE"        # 5/200 = 0.025
         elif k in G.FLIPS:
@@ -111,6 +114,28 @@ def main():
         return rows
     rc, out = run(table, {a1n: badel})
     ok("WATCH-FAIL A1-structure cell with ineligible events in the wrong blocks -> FAIL", rc == 1)
+    drc = [c for c in table if c["kind"] == "dr_step" and c["phi"] == 0.9]
+    mid = next(c["cell"] for c in drc if c["L"] == 75)
+    def overlap(rows):
+        for r_ in rows:
+            for d in DET:
+                r_["per_detector"][d]["mean_lead"] = 25.0 + (r_["rep"] % 10)   # same as L=25 -> overlap
+        return rows
+    rc, out = run(table, {mid: overlap})
+    ok("WATCH-FAIL dynamic range: overlapping lead ranges at L=25 vs 75 -> FAIL", rc == 1)
+    def vacuous(rows):
+        for r_ in rows:
+            r_["per_detector"]["D_div"]["detection_rate"] = 0.5
+        return rows
+    rc, out = run(table, {mid: vacuous})
+    ok("WATCH-FAIL dynamic range: D_div below 80% detection -> FAIL (no vacuous pass)", rc == 1)
+    def base_only_div(rows):
+        for r_ in rows:
+            for d in ("B1", "B2", "B3", "B4"):
+                r_["per_detector"][d]["detection_rate"] = 0.1
+        return rows
+    rc, out = run(table, {mid: base_only_div})
+    ok("WATCH-FAIL dynamic range: no baseline at >= 80% -> FAIL (no vacuous pass)", rc == 1)
     rc, out = run(table, {null: lambda r: r[:-1]})
     ok("WATCH-FAIL a missing replicate -> FAIL (INCOMPLETE)", rc == 1)
     rc, out = run(table, {null: lambda r: sup(r, 10)})                   # exactly 0.05 -> passes

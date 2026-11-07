@@ -2,7 +2,7 @@
 
 Graded from `scripts/outputs/suite_v1` by `scripts/suite/grade_suite.py`.
 
-**ALL PASS**
+**FAIL (60: ['agreement 260', 'agreement 261', 'agreement 262', 'agreement 263', 'agreement 264', 'agreement 265', 'agreement 266', 'agreement 267', 'agreement 268', 'agreement 269', 'agreement 270', 'agreement 271', 'agreement 272', 'agreement 273', 'agreement 274', 'agreement 275', 'agreement 276', 'agreement 277', 'agreement 278', 'agreement 279'])**
 
 | cell | kind | result | verdict |
 |---|---|---|---|
@@ -10,7 +10,7 @@ Graded from `scripts/outputs/suite_v1` by `scripts/suite/grade_suite.py`.
 | licence | analysis/pipeline.py | unchanged since aad6cf7 | PASS |
 | licence | analysis/e2stat.py | unchanged since aad6cf7 | PASS |
 | licence | reference/ref_e2.py | unchanged since aad6cf7 | PASS |
-| agreement | reference agreement (8.1) on 215 E2-chain cells | complete and all identical | PASS |
+| agreement | reference agreement (8.1) on 260 E2-chain cells | MISSING or DIFFERENT: [260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279] | FAIL |
 | 0 | planted_effect (phi=0.5, n_events=20, L=64, A=1.0) | reported; SUPPORT/INCONCL/REFUTE 0.050/0.280/0.670 | mean lead B1 1.6, B2 2.1, B3 1.5, B4 3.3, D_div 3.5 | REPORTED |
 | 1 | planted_effect (phi=0.5, n_events=20, L=64, A=2.0) | reported; SUPPORT/INCONCL/REFUTE 0.075/0.325/0.600 | mean lead B1 2.0, B2 6.2, B3 2.6, B4 13.0, D_div 12.6 | REPORTED |
 | 2 | planted_effect (phi=0.5, n_events=20, L=64, A=3.0) | reported; SUPPORT/INCONCL/REFUTE 0.040/0.225/0.735 | mean lead B1 2.1, B2 15.9, B3 2.9, B4 25.3, D_div 20.3 | REPORTED |
@@ -196,31 +196,26 @@ Graded from `scripts/outputs/suite_v1` by `scripts/suite/grade_suite.py`.
 | 202 | grid10_effect (phi=0.5, L=1000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.035/0.090/0.875 | mean lead B1 23.1, B2 125.8, B3 35.6, B4 244.6, D_div 157.9 | REPORTED |
 | 203 | grid10_effect (phi=0.5, L=1500, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.070/0.175/0.755 | mean lead B1 28.7, B2 243.0, B3 51.2, B4 394.6, D_div 307.5 | REPORTED |
 | 204 | grid10_effect (phi=0.5, L=2000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.020/0.060/0.920 | mean lead B1 27.5, B2 335.0, B3 49.0, B4 376.7, D_div 230.0 | REPORTED |
-| 205 | grid10_short (phi=0.5, L=200, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.010/0.990 | mean lead B1 15.6, B2 19.7, B3 17.5, B4 22.6, D_div 2.4 | REPORTED |
 | 206 | grid10_null (phi=0.8) | false-SUPPORT 0.000 (<= 0.05); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.035/0.965 | PASS |
 | 207 | grid10_effect (phi=0.8, L=640, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.100/0.900 | mean lead B1 21.7, B2 55.9, B3 26.7, B4 65.3, D_div 39.1 | REPORTED |
 | 208 | grid10_effect (phi=0.8, L=1000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.015/0.080/0.905 | mean lead B1 22.3, B2 105.0, B3 34.2, B4 136.2, D_div 82.3 | REPORTED |
 | 209 | grid10_effect (phi=0.8, L=1500, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.080/0.920 | mean lead B1 24.1, B2 201.2, B3 43.4, B4 227.6, D_div 133.6 | REPORTED |
 | 210 | grid10_effect (phi=0.8, L=2000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.005/0.995 | mean lead B1 23.3, B2 274.8, B3 44.0, B4 251.2, D_div 97.6 | REPORTED |
-| 211 | grid10_short (phi=0.8, L=200, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.010/0.030/0.960 | mean lead B1 14.2, B2 19.7, B3 18.1, B4 18.7, D_div 5.4 | REPORTED |
 | 212 | grid10_null (phi=0.9) | false-SUPPORT 0.000 (<= 0.05); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.040/0.960 | PASS |
 | 213 | grid10_effect (phi=0.9, L=640, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.010/0.125/0.865 | mean lead B1 17.8, B2 48.2, B3 26.9, B4 41.0, D_div 26.3 | REPORTED |
 | 214 | grid10_effect (phi=0.9, L=1000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.095/0.905 | mean lead B1 19.4, B2 91.9, B3 33.3, B4 82.6, D_div 48.1 | REPORTED |
 | 215 | grid10_effect (phi=0.9, L=1500, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.005/0.030/0.965 | mean lead B1 24.6, B2 176.3, B3 45.1, B4 147.3, D_div 73.3 | REPORTED |
 | 216 | grid10_effect (phi=0.9, L=2000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | mean lead B1 24.1, B2 237.7, B3 46.4, B4 179.1, D_div 58.8 | REPORTED |
-| 217 | grid10_short (phi=0.9, L=200, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.045/0.955 | mean lead B1 14.6, B2 21.3, B3 17.9, B4 16.3, D_div 3.8 | REPORTED |
 | 218 | grid10_null (phi=0.95) | false-SUPPORT 0.000 (<= 0.05); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.040/0.960 | PASS |
 | 219 | grid10_effect (phi=0.95, L=640, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.100/0.900 | mean lead B1 18.4, B2 45.1, B3 26.5, B4 31.5, D_div 17.8 | REPORTED |
 | 220 | grid10_effect (phi=0.95, L=1000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.080/0.920 | mean lead B1 22.2, B2 84.8, B3 34.7, B4 55.3, D_div 30.9 | REPORTED |
 | 221 | grid10_effect (phi=0.95, L=1500, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.040/0.960 | mean lead B1 20.6, B2 150.1, B3 42.9, B4 106.7, D_div 52.5 | REPORTED |
 | 222 | grid10_effect (phi=0.95, L=2000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.005/0.995 | mean lead B1 23.2, B2 202.3, B3 46.3, B4 132.1, D_div 40.8 | REPORTED |
-| 223 | grid10_short (phi=0.95, L=200, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.005/0.060/0.935 | mean lead B1 17.4, B2 17.6, B3 19.7, B4 18.5, D_div 4.6 | REPORTED |
 | 224 | grid10_null (phi=0.98) | false-SUPPORT 0.000 (<= 0.05); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.075/0.925 | PASS |
 | 225 | grid10_effect (phi=0.98, L=640, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.145/0.855 | mean lead B1 19.6, B2 43.6, B3 31.6, B4 24.0, D_div 23.2 | REPORTED |
 | 226 | grid10_effect (phi=0.98, L=1000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.125/0.875 | mean lead B1 20.3, B2 76.2, B3 36.1, B4 48.9, D_div 35.7 | REPORTED |
 | 227 | grid10_effect (phi=0.98, L=1500, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.085/0.915 | mean lead B1 22.4, B2 127.8, B3 46.1, B4 80.2, D_div 48.6 | REPORTED |
 | 228 | grid10_effect (phi=0.98, L=2000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.025/0.975 | mean lead B1 22.5, B2 170.0, B3 49.2, B4 94.8, D_div 37.9 | REPORTED |
-| 229 | grid10_short (phi=0.98, L=200, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.005/0.040/0.955 | mean lead B1 17.3, B2 18.8, B3 23.6, B4 20.6, D_div 5.1 | REPORTED |
 | 230 | e2e_null (phi=0.5) | false-SUPPORT 0.000 (<= 0.05); events recovered exactly in 200/200; SUPPORT/INCONCL/REFUTE 0.000/0.180/0.820 | PASS |
 | 231 | e2e_effect (phi=0.5, L=100, A=2.0) | reported; events recovered exactly in 200/200; SUPPORT/INCONCL/REFUTE 0.125/0.375/0.500 | mean lead B1 2.2, B2 12.7, B3 3.1, B4 23.9, D_div 23.7 | REPORTED |
 | 232 | e2e_null (phi=0.8) | false-SUPPORT 0.000 (<= 0.05); events recovered exactly in 200/200; SUPPORT/INCONCL/REFUTE 0.000/0.115/0.885 | PASS |
@@ -231,3 +226,53 @@ Graded from `scripts/outputs/suite_v1` by `scripts/suite/grade_suite.py`.
 | 237 | e2e_effect (phi=0.95, L=100, A=2.0) | reported; events recovered exactly in 200/200; SUPPORT/INCONCL/REFUTE 0.005/0.150/0.845 | mean lead B1 1.8, B2 8.2, B3 2.9, B4 4.8, D_div 4.8 | REPORTED |
 | 238 | e2e_null (phi=0.98) | false-SUPPORT 0.000 (<= 0.05); events recovered exactly in 200/200; SUPPORT/INCONCL/REFUTE 0.000/0.140/0.860 | PASS |
 | 239 | e2e_effect (phi=0.98, L=100, A=2.0) | reported; events recovered exactly in 200/200; SUPPORT/INCONCL/REFUTE 0.005/0.185/0.810 | mean lead B1 1.9, B2 7.3, B3 2.9, B4 3.9, D_div 4.7 | REPORTED |
+| 240 | grid10_short (phi=0.5, L=200, A=2.0) | SUPPORT 0.000 (<= 0.05); reported: REFUTE 0.965 (kill-rule power vs short precursor); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.035/0.965 | PASS |
+| 241 | grid10_short (phi=0.8, L=200, A=2.0) | SUPPORT 0.000 (<= 0.05); reported: REFUTE 0.955 (kill-rule power vs short precursor); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.045/0.955 | PASS |
+| 242 | grid10_short (phi=0.9, L=200, A=2.0) | SUPPORT 0.000 (<= 0.05); reported: REFUTE 0.960 (kill-rule power vs short precursor); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.040/0.960 | PASS |
+| 243 | grid10_short (phi=0.95, L=200, A=2.0) | SUPPORT 0.000 (<= 0.05); reported: REFUTE 0.940 (kill-rule power vs short precursor); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.060/0.940 | PASS |
+| 244 | grid10_short (phi=0.98, L=200, A=2.0) | SUPPORT 0.000 (<= 0.05); reported: REFUTE 0.985 (kill-rule power vs short precursor); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.015/0.985 | PASS |
+| 245 | a1s_null (phi=0.5) | false-SUPPORT 0.000 (<= 0.05); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; eligibility rule reproduces the design (4 ineligible, 2/1/1 by block; 57 eligible) in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.130/0.870 | PASS |
+| 246 | a1s_flip (phi=0.5, L=80, A=3.0) | SUPPORT 0.005 (<= 0.05); reported: REFUTE 0.920 (kill-rule power vs short precursor); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; eligibility rule reproduces the design (4 ineligible, 2/1/1 by block; 57 eligible) in every replicate; SUPPORT/INCONCL/REFUTE 0.005/0.075/0.920 | PASS |
+| 247 | a1s_effect (phi=0.5, L=1000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; eligibility rule reproduces the design (4 ineligible, 2/1/1 by block; 57 eligible) in every replicate; SUPPORT/INCONCL/REFUTE 0.255/0.315/0.430 | mean lead B1 24.1, B2 121.3, B3 34.6, B4 242.5, D_div 250.6 | REPORTED |
+| 248 | a1s_null (phi=0.8) | false-SUPPORT 0.000 (<= 0.05); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; eligibility rule reproduces the design (4 ineligible, 2/1/1 by block; 57 eligible) in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.090/0.910 | PASS |
+| 249 | a1s_flip (phi=0.8, L=80, A=3.0) | SUPPORT 0.005 (<= 0.05); reported: REFUTE 0.900 (kill-rule power vs short precursor); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; eligibility rule reproduces the design (4 ineligible, 2/1/1 by block; 57 eligible) in every replicate; SUPPORT/INCONCL/REFUTE 0.005/0.095/0.900 | PASS |
+| 250 | a1s_effect (phi=0.8, L=1000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; eligibility rule reproduces the design (4 ineligible, 2/1/1 by block; 57 eligible) in every replicate; SUPPORT/INCONCL/REFUTE 0.015/0.175/0.810 | mean lead B1 23.3, B2 106.8, B3 33.3, B4 126.9, D_div 101.3 | REPORTED |
+| 251 | a1s_null (phi=0.9) | false-SUPPORT 0.000 (<= 0.05); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; eligibility rule reproduces the design (4 ineligible, 2/1/1 by block; 57 eligible) in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.130/0.870 | PASS |
+| 252 | a1s_flip (phi=0.9, L=80, A=3.0) | SUPPORT 0.005 (<= 0.05); reported: REFUTE 0.875 (kill-rule power vs short precursor); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; eligibility rule reproduces the design (4 ineligible, 2/1/1 by block; 57 eligible) in every replicate; SUPPORT/INCONCL/REFUTE 0.005/0.120/0.875 | PASS |
+| 253 | a1s_effect (phi=0.9, L=1000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; eligibility rule reproduces the design (4 ineligible, 2/1/1 by block; 57 eligible) in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.155/0.845 | mean lead B1 19.0, B2 87.6, B3 30.8, B4 73.5, D_div 58.8 | REPORTED |
+| 254 | a1s_null (phi=0.95) | false-SUPPORT 0.000 (<= 0.05); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; eligibility rule reproduces the design (4 ineligible, 2/1/1 by block; 57 eligible) in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.090/0.910 | PASS |
+| 255 | a1s_flip (phi=0.95, L=80, A=3.0) | SUPPORT 0.010 (<= 0.05); reported: REFUTE 0.930 (kill-rule power vs short precursor); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; eligibility rule reproduces the design (4 ineligible, 2/1/1 by block; 57 eligible) in every replicate; SUPPORT/INCONCL/REFUTE 0.010/0.060/0.930 | PASS |
+| 256 | a1s_effect (phi=0.95, L=1000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; eligibility rule reproduces the design (4 ineligible, 2/1/1 by block; 57 eligible) in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.105/0.895 | mean lead B1 19.0, B2 90.2, B3 31.9, B4 52.4, D_div 50.8 | REPORTED |
+| 257 | a1s_null (phi=0.98) | false-SUPPORT 0.010 (<= 0.05); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; eligibility rule reproduces the design (4 ineligible, 2/1/1 by block; 57 eligible) in every replicate; SUPPORT/INCONCL/REFUTE 0.010/0.100/0.890 | PASS |
+| 258 | a1s_flip (phi=0.98, L=80, A=3.0) | SUPPORT 0.000 (<= 0.05); reported: REFUTE 0.935 (kill-rule power vs short precursor); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; eligibility rule reproduces the design (4 ineligible, 2/1/1 by block; 57 eligible) in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.065/0.935 | PASS |
+| 259 | a1s_effect (phi=0.98, L=1000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; eligibility rule reproduces the design (4 ineligible, 2/1/1 by block; 57 eligible) in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.225/0.775 | mean lead B1 22.5, B2 74.7, B3 34.3, B4 42.4, D_div 50.6 | REPORTED |
+| 260 | dr_step phi=0.5 | INCOMPLETE (0 rows) | FAIL |
+| 261 | dr_step phi=0.5 | INCOMPLETE (0 rows) | FAIL |
+| 262 | dr_step phi=0.5 | INCOMPLETE (0 rows) | FAIL |
+| 263 | dr_grid10 phi=0.5 | INCOMPLETE (0 rows) | FAIL |
+| 264 | dr_grid10 phi=0.5 | INCOMPLETE (0 rows) | FAIL |
+| 265 | dr_grid10 phi=0.5 | INCOMPLETE (0 rows) | FAIL |
+| 266 | dr_step phi=0.8 | INCOMPLETE (0 rows) | FAIL |
+| 267 | dr_step phi=0.8 | INCOMPLETE (0 rows) | FAIL |
+| 268 | dr_step phi=0.8 | INCOMPLETE (0 rows) | FAIL |
+| 269 | dr_grid10 phi=0.8 | INCOMPLETE (0 rows) | FAIL |
+| 270 | dr_grid10 phi=0.8 | INCOMPLETE (0 rows) | FAIL |
+| 271 | dr_grid10 phi=0.8 | INCOMPLETE (0 rows) | FAIL |
+| 272 | dr_step phi=0.9 | INCOMPLETE (0 rows) | FAIL |
+| 273 | dr_step phi=0.9 | INCOMPLETE (0 rows) | FAIL |
+| 274 | dr_step phi=0.9 | INCOMPLETE (0 rows) | FAIL |
+| 275 | dr_grid10 phi=0.9 | INCOMPLETE (0 rows) | FAIL |
+| 276 | dr_grid10 phi=0.9 | INCOMPLETE (0 rows) | FAIL |
+| 277 | dr_grid10 phi=0.9 | INCOMPLETE (0 rows) | FAIL |
+| 278 | dr_step phi=0.95 | INCOMPLETE (0 rows) | FAIL |
+| 279 | dr_step phi=0.95 | INCOMPLETE (0 rows) | FAIL |
+| 280 | dr_step phi=0.95 | INCOMPLETE (0 rows) | FAIL |
+| 281 | dr_grid10 phi=0.95 | INCOMPLETE (0 rows) | FAIL |
+| 282 | dr_grid10 phi=0.95 | INCOMPLETE (0 rows) | FAIL |
+| 283 | dr_grid10 phi=0.95 | INCOMPLETE (0 rows) | FAIL |
+| 284 | dr_step phi=0.98 | INCOMPLETE (0 rows) | FAIL |
+| 285 | dr_step phi=0.98 | INCOMPLETE (0 rows) | FAIL |
+| 286 | dr_step phi=0.98 | INCOMPLETE (0 rows) | FAIL |
+| 287 | dr_grid10 phi=0.98 | INCOMPLETE (0 rows) | FAIL |
+| 288 | dr_grid10 phi=0.98 | INCOMPLETE (0 rows) | FAIL |
+| 289 | dr_grid10 phi=0.98 | INCOMPLETE (0 rows) | FAIL |

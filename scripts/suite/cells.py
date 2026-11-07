@@ -86,6 +86,12 @@ def build():
         add("a1s_null", phi=phi)
         add("a1s_flip", phi=phi, L=80, A=3.0)
         add("a1s_effect", phi=phi, L=1000, A=2.0, report_only=True)
+    # ---- appended 2026-11-07 (Amendment 14.3): graded dynamic range ----
+    for phi in PHI:
+        for L in (25, 75, 125):
+            add("dr_step", phi=phi, n_events=20, L=L, A=6.0)
+        for L in (25, 75, 125):
+            add("dr_grid10", phi=phi, grid=10, L=10 * L, A=6.0, L_obs=L)
     for c in cells:
         c["reps"] = REPS
         c["child_first"] = c["cell"] * REPS

@@ -758,3 +758,28 @@ Result: 16 findings (G1–G16), all adopted, five with a stated adaptation, plus
 - Reference agreement (8.1) applies to these cells.
 
 **Unchanged.** Every rule applied to real data, and every other D.5 criterion as amended through Amendment 12.
+
+## Amendment 14 (2026-11-07) — Broken fixture moved to Phase 3; PRV hash self-test; graded dynamic-range cells
+
+**Status.** Appended below Amendment 13 under the append-only rule. Rationale: DECISIONS.md entry 32 (JAE decisions 2026-11-07).
+
+**14.1 Broken fixture (corrects Amendment 12.2's placement).**
+- The D.5 broken fixture ("verify.py must fail on a corrupted hash, an out-of-tolerance value, and an unsigned CIC flag") moves to the **Phase 3 gate**. Per the Standard, verify.py is built at Phase 3 against claims.lock and the 7 CIC classes, and none of these exists before then.
+- Amendment 12.2's listing of the broken fixture under the E2 gate is withdrawn.
+
+**14.2 PRV hash self-test (E2 gate).**
+- Data integrity before E2 is already required by D.6 item 7: SHA-256 re-verification at read time, in PRV.
+- The check is `scripts/prv_hash_check.py`. It re-hashes every store file listed in SOURCES.md against its recorded SHA-256 and halts (exit 1) on any mismatch or missing file.
+- **Negative self-test.** Run once, in scratch (never the data store), on a copy of one A1 file. The intact copy must pass and a deliberately corrupted copy (one byte changed) must halt. Recorded as a PRV self-test, part of the E2 gate.
+
+**14.3 Dynamic range (replaces the D.5 clause "lead distributions separate at planted L differences of 50 steps").**
+- **Reason.** A lead cannot exceed the scan window (128 steps per-step; 1,280 steps on grid 10). At the frozen L = 150 and 200 steps, every detector that catches the ramp saturates at the window, so separation there cannot be measured.
+- **Cells.** Linear ramps at A = 6 (× stationary SD), across the φ_y grid, 200 replicates each.
+  - **Per-step:** L ∈ {25, 75, 125} observations, 20 events, scan 128.
+  - **Grid 10:** L ∈ {25, 75, 125} grid observations (250, 750, 1,250 steps), on the 13.1 construction (19a–19d), with leads in steps.
+- **Pass, per φ_y and grid, over the pairs (25, 75) and (75, 125).** For each detector that detects ≥ 80 % of events at both L of a pair, the 10th–90th-percentile ranges of the per-replicate mean lead must not overlap between L and L + 50.
+  - **No vacuous pass:** the cell fails unless D_div and at least one baseline meet the ≥ 80 % detection condition at both L of every pair.
+- **Seeds.** A measurement run on calibration seeds (reported, exploratory) precedes the graded run on fresh disjoint evaluation seeds.
+- Reference agreement (8.1) applies to these cells. The cluster and ties parts of the dynamic-range clause stand as committed (DECISIONS entry 31).
+
+**Unchanged.** Every rule applied to real data, and every other D.5 criterion as amended through Amendment 13.

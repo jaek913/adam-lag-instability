@@ -2634,6 +2634,321 @@
    "report_only": true,
    "reps": 200,
    "child_first": 51800
+  },
+  {
+   "cell": 260,
+   "kind": "dr_step",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 25,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 52000
+  },
+  {
+   "cell": 261,
+   "kind": "dr_step",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 75,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 52200
+  },
+  {
+   "cell": 262,
+   "kind": "dr_step",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 125,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 52400
+  },
+  {
+   "cell": 263,
+   "kind": "dr_grid10",
+   "phi": 0.5,
+   "grid": 10,
+   "L": 250,
+   "A": 6.0,
+   "L_obs": 25,
+   "reps": 200,
+   "child_first": 52600
+  },
+  {
+   "cell": 264,
+   "kind": "dr_grid10",
+   "phi": 0.5,
+   "grid": 10,
+   "L": 750,
+   "A": 6.0,
+   "L_obs": 75,
+   "reps": 200,
+   "child_first": 52800
+  },
+  {
+   "cell": 265,
+   "kind": "dr_grid10",
+   "phi": 0.5,
+   "grid": 10,
+   "L": 1250,
+   "A": 6.0,
+   "L_obs": 125,
+   "reps": 200,
+   "child_first": 53000
+  },
+  {
+   "cell": 266,
+   "kind": "dr_step",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 25,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 53200
+  },
+  {
+   "cell": 267,
+   "kind": "dr_step",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 75,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 53400
+  },
+  {
+   "cell": 268,
+   "kind": "dr_step",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 125,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 53600
+  },
+  {
+   "cell": 269,
+   "kind": "dr_grid10",
+   "phi": 0.8,
+   "grid": 10,
+   "L": 250,
+   "A": 6.0,
+   "L_obs": 25,
+   "reps": 200,
+   "child_first": 53800
+  },
+  {
+   "cell": 270,
+   "kind": "dr_grid10",
+   "phi": 0.8,
+   "grid": 10,
+   "L": 750,
+   "A": 6.0,
+   "L_obs": 75,
+   "reps": 200,
+   "child_first": 54000
+  },
+  {
+   "cell": 271,
+   "kind": "dr_grid10",
+   "phi": 0.8,
+   "grid": 10,
+   "L": 1250,
+   "A": 6.0,
+   "L_obs": 125,
+   "reps": 200,
+   "child_first": 54200
+  },
+  {
+   "cell": 272,
+   "kind": "dr_step",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 25,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 54400
+  },
+  {
+   "cell": 273,
+   "kind": "dr_step",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 75,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 54600
+  },
+  {
+   "cell": 274,
+   "kind": "dr_step",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 125,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 54800
+  },
+  {
+   "cell": 275,
+   "kind": "dr_grid10",
+   "phi": 0.9,
+   "grid": 10,
+   "L": 250,
+   "A": 6.0,
+   "L_obs": 25,
+   "reps": 200,
+   "child_first": 55000
+  },
+  {
+   "cell": 276,
+   "kind": "dr_grid10",
+   "phi": 0.9,
+   "grid": 10,
+   "L": 750,
+   "A": 6.0,
+   "L_obs": 75,
+   "reps": 200,
+   "child_first": 55200
+  },
+  {
+   "cell": 277,
+   "kind": "dr_grid10",
+   "phi": 0.9,
+   "grid": 10,
+   "L": 1250,
+   "A": 6.0,
+   "L_obs": 125,
+   "reps": 200,
+   "child_first": 55400
+  },
+  {
+   "cell": 278,
+   "kind": "dr_step",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 25,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 55600
+  },
+  {
+   "cell": 279,
+   "kind": "dr_step",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 75,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 55800
+  },
+  {
+   "cell": 280,
+   "kind": "dr_step",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 125,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 56000
+  },
+  {
+   "cell": 281,
+   "kind": "dr_grid10",
+   "phi": 0.95,
+   "grid": 10,
+   "L": 250,
+   "A": 6.0,
+   "L_obs": 25,
+   "reps": 200,
+   "child_first": 56200
+  },
+  {
+   "cell": 282,
+   "kind": "dr_grid10",
+   "phi": 0.95,
+   "grid": 10,
+   "L": 750,
+   "A": 6.0,
+   "L_obs": 75,
+   "reps": 200,
+   "child_first": 56400
+  },
+  {
+   "cell": 283,
+   "kind": "dr_grid10",
+   "phi": 0.95,
+   "grid": 10,
+   "L": 1250,
+   "A": 6.0,
+   "L_obs": 125,
+   "reps": 200,
+   "child_first": 56600
+  },
+  {
+   "cell": 284,
+   "kind": "dr_step",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 25,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 56800
+  },
+  {
+   "cell": 285,
+   "kind": "dr_step",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 75,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 57000
+  },
+  {
+   "cell": 286,
+   "kind": "dr_step",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 125,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 57200
+  },
+  {
+   "cell": 287,
+   "kind": "dr_grid10",
+   "phi": 0.98,
+   "grid": 10,
+   "L": 250,
+   "A": 6.0,
+   "L_obs": 25,
+   "reps": 200,
+   "child_first": 57400
+  },
+  {
+   "cell": 288,
+   "kind": "dr_grid10",
+   "phi": 0.98,
+   "grid": 10,
+   "L": 750,
+   "A": 6.0,
+   "L_obs": 75,
+   "reps": 200,
+   "child_first": 57600
+  },
+  {
+   "cell": 289,
+   "kind": "dr_grid10",
+   "phi": 0.98,
+   "grid": 10,
+   "L": 1250,
+   "A": 6.0,
+   "L_obs": 125,
+   "reps": 200,
+   "child_first": 57800
   }
  ],
  "calibration": [

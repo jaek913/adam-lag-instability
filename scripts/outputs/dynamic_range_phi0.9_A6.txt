@@ -1,0 +1,1 @@
+phi 0.9 A 6.0 L 50: D_div det 0.95 meanlead 14.7 [9.2,19.1]; B1 det 0.03 meanlead 1.9 [0.0,6.5]; B2 det 1.00 meanlead 24.9 [20.8,27.7]; B3 det 0.23 meanlead 5.1 [1.9,10.2]; B4 det 0.95 meanlead 15.4 [10.4,20.3]
