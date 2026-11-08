@@ -140,6 +140,13 @@ def main():
                 fails.append(f)
     graded = [c for c in table if c["kind"] in NULLS | FLIPS | REPORT | DR | {"unequal_memory_null"}
               and "superseded" not in c and "pending" not in c]
+    pcf = os.path.join(ROOT, "scripts", "outputs", "calibration_posctrl.json")   # Amendment 15.4 outcome
+    pcc = json.load(open(pcf))["phi"] if os.path.exists(pcf) else {}
+    nocon = [c for c in graded if c["kind"] == "pos_ctrl" and str(c["phi"]) in pcc and pcc[str(c["phi"])]["chosen"] is None]
+    graded = [c for c in graded if c not in nocon]
+    for c in nocon:
+        lines.append(f"| {c['cell']} | pos_ctrl (phi={c['phi']}) | no construction found in which D_div leads "
+                     f"(15.4 calibration: no (shift, sigma_m) pair reached the 100-step margin); not run | REPORTED |")
     if not a.skip_licence:                              # Amendment 8.1: agreement for every E2-chain cell graded
         ag_dir = os.path.join(ROOT, "scripts", "outputs", "ref_agreement_v2")
         missing = []

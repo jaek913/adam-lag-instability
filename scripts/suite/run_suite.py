@@ -100,6 +100,15 @@ def _init(cells, cal):
     CELLS, CAL = cells, cal
 
 
+def no_construction(c):
+    """Amendment 15.4: a pos_ctrl cell whose phi has no calibrated (shift, sigma_m) is reported as
+    'no construction found in which D_div leads' and is not run."""
+    if c["kind"] != "pos_ctrl":
+        return False
+    pc = json.load(open(os.path.join(ROOT, "scripts", "outputs", "calibration_posctrl.json")))
+    return pc["phi"][str(c["phi"])]["chosen"] is None
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 2) - 2))
@@ -110,7 +119,8 @@ def main():
     table = json.load(open(os.path.join(ROOT, "scripts", "suite", "cells.json")))["cells"]
     cal = json.load(open(CALIB))
     sel = ([int(x) for x in a.cells.split(",")] if a.cells else
-           [c["cell"] for c in table if c["kind"] in RUN_KINDS and "superseded" not in c and "pending" not in c])
+           [c["cell"] for c in table if c["kind"] in RUN_KINDS and "superseded" not in c and "pending" not in c
+            and not no_construction(c)])
     os.makedirs(OUTDIR, exist_ok=True)
     todo, files = [], {}
     for ci in sel:

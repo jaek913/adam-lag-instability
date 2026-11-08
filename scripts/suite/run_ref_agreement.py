@@ -46,9 +46,11 @@ def main():
     ap.add_argument("--reps", type=int, default=None)
     ap.add_argument("--out-suffix", type=str, default="")
     a = ap.parse_args()
+    import run_suite
     table = json.load(open(os.path.join(ROOT, "scripts", "suite", "cells.json")))["cells"]
     sel = ([int(x) for x in a.cells.split(",")] if a.cells else
-           [c["cell"] for c in table if c["kind"] not in EXCLUDE and "superseded" not in c])
+           [c["cell"] for c in table if c["kind"] not in EXCLUDE and "superseded" not in c
+            and not run_suite.no_construction(c)])
     os.makedirs(OUTDIR, exist_ok=True)
     todo, files = [], {}
     for ci in sel:

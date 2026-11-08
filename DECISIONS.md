@@ -1003,3 +1003,19 @@ Sources: the project files `thedivergencetheorem.pdf`, `theadaptationratetheorem
    - the seed map (15.19);
    - the 15.5 extension cells, which always run, because φ̂_y is not known until E2's single run.
 5. **Review of Amendments 15–16:** not scheduled. **Pending JAE.**
+
+## Entry 36 (2026-11-08) — Positive-control calibration (15.4): no construction at φ_y 0.9, 0.95, 0.98, 0.99
+
+1. **Calibrations extended to the extension φ_y (15.5).** `calibrate_pulse.py` and `calibrate_flip.py` were re-run over all seven calibration ranges (commit d5e67e6).
+   - At the five original φ_y every chosen value is unchanged.
+   - Rates differ from the committed file only by last-digit float rounding (< 10⁻¹²).
+   - New choices: pulse φ 0.3 D_div 20 / B1 4 / B2 3.5 / B3 3.5 / B4 7.0; φ 0.99 D_div 60 / B1 1.25 / B2 2.5 / B3 1 / B4 80. Flip φ 0.3 A = 5 (L 16), 4 (L 24); φ 0.99 A = 4 (L 16), 5 (L 24).
+2. **15.4 calibration result** (`scripts/outputs/calibration_posctrl.json`, MD5 24ea953afc472614ef46d7a373a5ec49; 50 replicates per pair, offsets 900–949). Smallest pair at which D_div's mean lead exceeds every baseline's by ≥ 100 steps:
+   - φ 0.3: (δ 1, σ_m 1). φ 0.5: (δ 1, σ_m 1). φ 0.8: (δ 2, σ_m 4).
+   - φ 0.9, 0.95, 0.98, 0.99: **no pair reaches the margin.** The largest advantages on the grid are +39, +30, +25 and +51 steps, all at or near (δ 2, σ_m 4); most pairs are negative (D_div behind at least one baseline).
+   - Per 15.4 the result reads, beside E2: "no construction found in which D_div leads" at φ_y 0.9, 0.95, 0.98 and 0.99.
+3. **Code change (follows 15.4's text; no rule, threshold or report form changed).**
+   - `run_suite.py` and `run_ref_agreement.py` no longer select a pos_ctrl cell whose φ_y has no construction (cells 322, 323, 324, 326). Until now `build()` raised an error on such a cell.
+   - `grade_suite.py` writes those cells as REPORTED with the 15.4 wording, instead of INCOMPLETE.
+   - Cells 320, 321 and 325 run as committed.
+4. **Reading of the E2-gate condition "15.4 has run" — provisional, pending JAE.** The condition is met when the calibration has run, the no-construction result is reported for 0.9, 0.95, 0.98 and 0.99, and the pos_ctrl cells at 0.3, 0.5 and 0.8 have run.
