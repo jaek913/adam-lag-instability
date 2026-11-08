@@ -2642,6 +2642,7 @@
    "n_events": 20,
    "L": 25,
    "A": 6.0,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 52000
   },
@@ -2652,6 +2653,7 @@
    "n_events": 20,
    "L": 75,
    "A": 6.0,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 52200
   },
@@ -2662,6 +2664,7 @@
    "n_events": 20,
    "L": 125,
    "A": 6.0,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 52400
   },
@@ -2673,6 +2676,7 @@
    "L": 250,
    "A": 6.0,
    "L_obs": 25,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 52600
   },
@@ -2684,6 +2688,7 @@
    "L": 750,
    "A": 6.0,
    "L_obs": 75,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 52800
   },
@@ -2695,6 +2700,7 @@
    "L": 1250,
    "A": 6.0,
    "L_obs": 125,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 53000
   },
@@ -2705,6 +2711,7 @@
    "n_events": 20,
    "L": 25,
    "A": 6.0,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 53200
   },
@@ -2715,6 +2722,7 @@
    "n_events": 20,
    "L": 75,
    "A": 6.0,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 53400
   },
@@ -2725,6 +2733,7 @@
    "n_events": 20,
    "L": 125,
    "A": 6.0,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 53600
   },
@@ -2736,6 +2745,7 @@
    "L": 250,
    "A": 6.0,
    "L_obs": 25,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 53800
   },
@@ -2747,6 +2757,7 @@
    "L": 750,
    "A": 6.0,
    "L_obs": 75,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 54000
   },
@@ -2758,6 +2769,7 @@
    "L": 1250,
    "A": 6.0,
    "L_obs": 125,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 54200
   },
@@ -2768,6 +2780,7 @@
    "n_events": 20,
    "L": 25,
    "A": 6.0,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 54400
   },
@@ -2778,6 +2791,7 @@
    "n_events": 20,
    "L": 75,
    "A": 6.0,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 54600
   },
@@ -2788,6 +2802,7 @@
    "n_events": 20,
    "L": 125,
    "A": 6.0,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 54800
   },
@@ -2799,6 +2814,7 @@
    "L": 250,
    "A": 6.0,
    "L_obs": 25,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 55000
   },
@@ -2810,6 +2826,7 @@
    "L": 750,
    "A": 6.0,
    "L_obs": 75,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 55200
   },
@@ -2821,6 +2838,7 @@
    "L": 1250,
    "A": 6.0,
    "L_obs": 125,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 55400
   },
@@ -2831,6 +2849,7 @@
    "n_events": 20,
    "L": 25,
    "A": 6.0,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 55600
   },
@@ -2841,6 +2860,7 @@
    "n_events": 20,
    "L": 75,
    "A": 6.0,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 55800
   },
@@ -2851,6 +2871,7 @@
    "n_events": 20,
    "L": 125,
    "A": 6.0,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 56000
   },
@@ -2862,6 +2883,7 @@
    "L": 250,
    "A": 6.0,
    "L_obs": 25,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 56200
   },
@@ -2873,6 +2895,7 @@
    "L": 750,
    "A": 6.0,
    "L_obs": 75,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 56400
   },
@@ -2884,6 +2907,7 @@
    "L": 1250,
    "A": 6.0,
    "L_obs": 125,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 56600
   },
@@ -2894,6 +2918,7 @@
    "n_events": 20,
    "L": 25,
    "A": 6.0,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 56800
   },
@@ -2904,6 +2929,7 @@
    "n_events": 20,
    "L": 75,
    "A": 6.0,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 57000
   },
@@ -2914,6 +2940,7 @@
    "n_events": 20,
    "L": 125,
    "A": 6.0,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 57200
   },
@@ -2925,6 +2952,7 @@
    "L": 250,
    "A": 6.0,
    "L_obs": 25,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 57400
   },
@@ -2936,6 +2964,7 @@
    "L": 750,
    "A": 6.0,
    "L_obs": 75,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 57600
   },
@@ -2947,8 +2976,445 @@
    "L": 1250,
    "A": 6.0,
    "L_obs": 125,
+   "superseded": "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds",
    "reps": 200,
    "child_first": 57800
+  },
+  {
+   "cell": 290,
+   "kind": "dr2_step",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 25,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 58000
+  },
+  {
+   "cell": 291,
+   "kind": "dr2_step",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 75,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 58200
+  },
+  {
+   "cell": 292,
+   "kind": "dr2_step",
+   "phi": 0.5,
+   "n_events": 20,
+   "L": 125,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 58400
+  },
+  {
+   "cell": 293,
+   "kind": "dr2_grid10",
+   "phi": 0.5,
+   "grid": 10,
+   "L": 250,
+   "A": 6.0,
+   "L_obs": 25,
+   "reps": 200,
+   "child_first": 58600
+  },
+  {
+   "cell": 294,
+   "kind": "dr2_grid10",
+   "phi": 0.5,
+   "grid": 10,
+   "L": 750,
+   "A": 6.0,
+   "L_obs": 75,
+   "reps": 200,
+   "child_first": 58800
+  },
+  {
+   "cell": 295,
+   "kind": "dr2_grid10",
+   "phi": 0.5,
+   "grid": 10,
+   "L": 1250,
+   "A": 6.0,
+   "L_obs": 125,
+   "reps": 200,
+   "child_first": 59000
+  },
+  {
+   "cell": 296,
+   "kind": "dr2_step",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 25,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 59200
+  },
+  {
+   "cell": 297,
+   "kind": "dr2_step",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 75,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 59400
+  },
+  {
+   "cell": 298,
+   "kind": "dr2_step",
+   "phi": 0.8,
+   "n_events": 20,
+   "L": 125,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 59600
+  },
+  {
+   "cell": 299,
+   "kind": "dr2_grid10",
+   "phi": 0.8,
+   "grid": 10,
+   "L": 250,
+   "A": 6.0,
+   "L_obs": 25,
+   "reps": 200,
+   "child_first": 59800
+  },
+  {
+   "cell": 300,
+   "kind": "dr2_grid10",
+   "phi": 0.8,
+   "grid": 10,
+   "L": 750,
+   "A": 6.0,
+   "L_obs": 75,
+   "reps": 200,
+   "child_first": 60000
+  },
+  {
+   "cell": 301,
+   "kind": "dr2_grid10",
+   "phi": 0.8,
+   "grid": 10,
+   "L": 1250,
+   "A": 6.0,
+   "L_obs": 125,
+   "reps": 200,
+   "child_first": 60200
+  },
+  {
+   "cell": 302,
+   "kind": "dr2_step",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 25,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 60400
+  },
+  {
+   "cell": 303,
+   "kind": "dr2_step",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 75,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 60600
+  },
+  {
+   "cell": 304,
+   "kind": "dr2_step",
+   "phi": 0.9,
+   "n_events": 20,
+   "L": 125,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 60800
+  },
+  {
+   "cell": 305,
+   "kind": "dr2_grid10",
+   "phi": 0.9,
+   "grid": 10,
+   "L": 250,
+   "A": 6.0,
+   "L_obs": 25,
+   "reps": 200,
+   "child_first": 61000
+  },
+  {
+   "cell": 306,
+   "kind": "dr2_grid10",
+   "phi": 0.9,
+   "grid": 10,
+   "L": 750,
+   "A": 6.0,
+   "L_obs": 75,
+   "reps": 200,
+   "child_first": 61200
+  },
+  {
+   "cell": 307,
+   "kind": "dr2_grid10",
+   "phi": 0.9,
+   "grid": 10,
+   "L": 1250,
+   "A": 6.0,
+   "L_obs": 125,
+   "reps": 200,
+   "child_first": 61400
+  },
+  {
+   "cell": 308,
+   "kind": "dr2_step",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 25,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 61600
+  },
+  {
+   "cell": 309,
+   "kind": "dr2_step",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 75,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 61800
+  },
+  {
+   "cell": 310,
+   "kind": "dr2_step",
+   "phi": 0.95,
+   "n_events": 20,
+   "L": 125,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 62000
+  },
+  {
+   "cell": 311,
+   "kind": "dr2_grid10",
+   "phi": 0.95,
+   "grid": 10,
+   "L": 250,
+   "A": 6.0,
+   "L_obs": 25,
+   "reps": 200,
+   "child_first": 62200
+  },
+  {
+   "cell": 312,
+   "kind": "dr2_grid10",
+   "phi": 0.95,
+   "grid": 10,
+   "L": 750,
+   "A": 6.0,
+   "L_obs": 75,
+   "reps": 200,
+   "child_first": 62400
+  },
+  {
+   "cell": 313,
+   "kind": "dr2_grid10",
+   "phi": 0.95,
+   "grid": 10,
+   "L": 1250,
+   "A": 6.0,
+   "L_obs": 125,
+   "reps": 200,
+   "child_first": 62600
+  },
+  {
+   "cell": 314,
+   "kind": "dr2_step",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 25,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 62800
+  },
+  {
+   "cell": 315,
+   "kind": "dr2_step",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 75,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 63000
+  },
+  {
+   "cell": 316,
+   "kind": "dr2_step",
+   "phi": 0.98,
+   "n_events": 20,
+   "L": 125,
+   "A": 6.0,
+   "reps": 200,
+   "child_first": 63200
+  },
+  {
+   "cell": 317,
+   "kind": "dr2_grid10",
+   "phi": 0.98,
+   "grid": 10,
+   "L": 250,
+   "A": 6.0,
+   "L_obs": 25,
+   "reps": 200,
+   "child_first": 63400
+  },
+  {
+   "cell": 318,
+   "kind": "dr2_grid10",
+   "phi": 0.98,
+   "grid": 10,
+   "L": 750,
+   "A": 6.0,
+   "L_obs": 75,
+   "reps": 200,
+   "child_first": 63600
+  },
+  {
+   "cell": 319,
+   "kind": "dr2_grid10",
+   "phi": 0.98,
+   "grid": 10,
+   "L": 1250,
+   "A": 6.0,
+   "L_obs": 125,
+   "reps": 200,
+   "child_first": 63800
+  },
+  {
+   "cell": 320,
+   "kind": "pos_ctrl",
+   "phi": 0.5,
+   "shift": "from scripts/outputs/calibration_posctrl.json",
+   "report_only": true,
+   "reps": 200,
+   "child_first": 64000
+  },
+  {
+   "cell": 321,
+   "kind": "pos_ctrl",
+   "phi": 0.8,
+   "shift": "from scripts/outputs/calibration_posctrl.json",
+   "report_only": true,
+   "reps": 200,
+   "child_first": 64200
+  },
+  {
+   "cell": 322,
+   "kind": "pos_ctrl",
+   "phi": 0.9,
+   "shift": "from scripts/outputs/calibration_posctrl.json",
+   "report_only": true,
+   "reps": 200,
+   "child_first": 64400
+  },
+  {
+   "cell": 323,
+   "kind": "pos_ctrl",
+   "phi": 0.95,
+   "shift": "from scripts/outputs/calibration_posctrl.json",
+   "report_only": true,
+   "reps": 200,
+   "child_first": 64600
+  },
+  {
+   "cell": 324,
+   "kind": "pos_ctrl",
+   "phi": 0.98,
+   "shift": "from scripts/outputs/calibration_posctrl.json",
+   "report_only": true,
+   "reps": 200,
+   "child_first": 64800
+  },
+  {
+   "cell": 325,
+   "kind": "pos_ctrl",
+   "phi": 0.3,
+   "shift": "from scripts/outputs/calibration_posctrl.json",
+   "report_only": true,
+   "reps": 200,
+   "child_first": 65000
+  },
+  {
+   "cell": 326,
+   "kind": "pos_ctrl",
+   "phi": 0.99,
+   "shift": "from scripts/outputs/calibration_posctrl.json",
+   "report_only": true,
+   "reps": 200,
+   "child_first": 65200
+  },
+  {
+   "cell": 327,
+   "kind": "a1s_null",
+   "phi": 0.3,
+   "extension": true,
+   "reps": 200,
+   "child_first": 65400
+  },
+  {
+   "cell": 328,
+   "kind": "a1s_flip",
+   "phi": 0.3,
+   "L": 80,
+   "A": 3.0,
+   "extension": true,
+   "reps": 200,
+   "child_first": 65600
+  },
+  {
+   "cell": 329,
+   "kind": "a1s_effect",
+   "phi": 0.3,
+   "L": 1000,
+   "A": 2.0,
+   "report_only": true,
+   "extension": true,
+   "reps": 200,
+   "child_first": 65800
+  },
+  {
+   "cell": 330,
+   "kind": "a1s_null",
+   "phi": 0.99,
+   "extension": true,
+   "reps": 200,
+   "child_first": 66000
+  },
+  {
+   "cell": 331,
+   "kind": "a1s_flip",
+   "phi": 0.99,
+   "L": 80,
+   "A": 3.0,
+   "extension": true,
+   "reps": 200,
+   "child_first": 66200
+  },
+  {
+   "cell": 332,
+   "kind": "a1s_effect",
+   "phi": 0.99,
+   "L": 1000,
+   "A": 2.0,
+   "report_only": true,
+   "extension": true,
+   "reps": 200,
+   "child_first": 66400
   }
  ],
  "calibration": [
@@ -2985,6 +3451,20 @@
    "phi": 0.98,
    "n_events": 20,
    "child_first": 10004000,
+   "reps": 1000
+  },
+  {
+   "calib": 5,
+   "phi": 0.3,
+   "n_events": 20,
+   "child_first": 10005000,
+   "reps": 1000
+  },
+  {
+   "calib": 6,
+   "phi": 0.99,
+   "n_events": 20,
+   "child_first": 10006000,
    "reps": 1000
   }
  ]

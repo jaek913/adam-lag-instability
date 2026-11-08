@@ -57,7 +57,10 @@ def place(rng, blocks):
     return out, d2
 
 
-def make_a1(index, *, phi_obs, L=None, A=0.0):
+def make_a1(index, *, phi_obs, L=None, A=0.0, shift=None, sigma_m=None, shift_len=1000):
+    """shift / sigma_m (Amendment 15.4 positive control): a sustained mean shift of `shift` x stationary SD over the
+    final `shift_len` steps before each t_e (through t_e), and white measurement noise of SD `sigma_m` added to y at
+    every step. Both default to None, which leaves every earlier construction byte-identical (no extra draws)."""
     rng = synth.child_rng(index)
     blocks = a1_blocks()
     t_pl, designed = place(rng, blocks)
@@ -66,6 +69,8 @@ def make_a1(index, *, phi_obs, L=None, A=0.0):
     for b in blocks:
         st = np.arange(b[0], b[1] + 1, dtype=np.int64)
         x = synth.ar1(rng, len(st), phi_step)
+        if sigma_m is not None:
+            x = x + sigma_m * rng.standard_normal(len(st))
         loss = synth_e2e.LOSS_LEVEL + synth_e2e.LOSS_AMP * synth_e2e.BASE_PATTERN[st % 4]
         for t in t_pl:
             if b[0] <= t <= b[1]:
@@ -74,6 +79,8 @@ def make_a1(index, *, phi_obs, L=None, A=0.0):
                 if L and A:
                     j0 = max(0, i - L + 1)
                     x[j0:i + 1] += A * np.arange(j0 - i + L, L + 1)[: i + 1 - j0] / L
+                if shift is not None:
+                    x[max(0, i - shift_len + 1):i + 1] += shift
         steps_all.append(st)
         loss_all.append(loss)
         on = (st % GRID) == 0

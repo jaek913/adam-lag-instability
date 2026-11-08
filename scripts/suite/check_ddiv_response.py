@@ -1,0 +1,104 @@
+"""Amendment 15.8 checks (b) and (c), synthetic only, reported. Seeds: diagnostic range 44,000,000+ (seed map): cell k uses 44,000,000 + k*2000 + {0-19 population, 100-199 L=75, 300-399 L=125}.
+(b) theta fixed at its long-series population value: per phi_y and grid (per-step; grid 10), each detector's
+    population theta = median of its P-FA-matched theta over R_POP long null series; then at the 14.3 ramps
+    (L = 75, 125 observations, A = 6) the 10-90% range of per-replicate mean lead is computed with matched theta and
+    with fixed population theta. Reports whether D_div's spread collapses while the baselines' does not.
+(c) per-event D_div lead regressed on history length since the series/gap start (observations), matched theta;
+    slope and R^2 pooled per cell; B2 alongside for comparison.
+Writes verification/ddiv_response_15_8.md. Usage: python scripts/suite/check_ddiv_response.py --workers 16"""
+import argparse
+import json
+import os
+import sys
+from multiprocessing import Pool
+
+import numpy as np
+
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(ROOT, "analysis"))
+PHI = [0.5, 0.8, 0.9, 0.95, 0.98]
+DET = ["D_div", "B1", "B2", "B3", "B4"]
+BASE = 44_000_000
+R_POP, R = 20, 100
+
+
+def series(grid, idx, phi, L=None, A=0.0):
+    import synth
+    import synth_e2e
+    if grid == 1:
+        b, e = synth.make_series(idx, phi=phi, n_events=20, L=L, A=A)
+        return b, e, 1, 128
+    b, e, m = synth_e2e.make_e2e(idx, grid=10, phi_obs=phi, L=(10 * L if L else None), A=A)
+    return b, e, 10, 1280
+
+
+def run_one(args):
+    import pipeline
+    grid, idx, phi, L, thetas = args
+    b, e, g, sc = series(grid, idx, phi, L, 6.0 if L else 0.0)
+    o = pipeline.run(b, e, grid=g, scan=sc, resample=False, coverage_stop=None, thetas=thetas)
+    elig = [x for x in e if x["eligible"]]
+    hist = []
+    for x in elig:
+        blk = max((bb for bb in b if bb["first_step"] <= x["t_e"]), key=lambda bb: bb["first_step"])
+        hist.append((x["t_e"] - blk["first_step"]) / g)
+    return {"thetas": o.get("thetas"), "mean_lead": {d: o["per_detector"][d]["mean_lead"] for d in DET},
+            "leads": {d: o["leads"][d] for d in ("D_div", "B2")}, "hist": hist}
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 2) - 2))
+    a = ap.parse_args()
+    out = ["# D_div lead-response checks (DESIGN Amendment 15.8 (b), (c); synthetic, reported)", "",
+           f"Seeds: child indices {BASE:,}+ (diagnostic range; seed map). Ramps A = 6 × SD (14.3). "
+           f"Population θ = median matched θ over {R_POP} null series; {R} replicates per ramp cell. Leads in steps.", ""]
+    res = {}
+    with Pool(a.workers) as pool:
+        k = 0
+        for grid in (1, 10):
+            for phi in PHI:
+                base = BASE + k * 2000
+                k += 1
+                pop = pool.map(run_one, [(grid, base + r, phi, None, None) for r in range(R_POP)])
+                theta = {d: float(np.median([p["thetas"][d] for p in pop])) for d in DET}
+                cell = {"theta_pop": theta}
+                for L in (75, 125):
+                    reps = [(grid, base + (100 if L == 75 else 300) + r, phi, L) for r in range(R)]
+                    matched = pool.map(run_one, [x + (None,) for x in reps])
+                    fixed = pool.map(run_one, [x + (theta,) for x in reps])
+                    rng = lambda rows, d: (float(np.percentile([x["mean_lead"][d] for x in rows], 10)),  # noqa: E731
+                                           float(np.percentile([x["mean_lead"][d] for x in rows], 90)))
+                    reg = {}
+                    for d in ("D_div", "B2"):
+                        xs = np.concatenate([np.array(x["hist"]) for x in matched])
+                        ys = np.concatenate([np.array(x["leads"][d], float) for x in matched])
+                        if len(xs) > 2 and np.std(xs) > 0:
+                            sl, ic = np.polyfit(xs, ys, 1)
+                            r2 = float(np.corrcoef(xs, ys)[0, 1] ** 2) if np.std(ys) > 0 else 0.0
+                        else:
+                            sl, r2 = float("nan"), float("nan")
+                        reg[d] = (float(sl), r2)
+                    cell[L] = {"matched": {d: rng(matched, d) for d in DET}, "fixed": {d: rng(fixed, d) for d in DET},
+                               "regression": reg}
+                res[(grid, phi)] = cell
+                print(f"grid {grid} phi {phi} done", flush=True)
+    out += ["## (b) 10–90 % range of per-replicate mean lead: matched θ vs fixed population θ", "",
+            "| grid | φ_y | L | " + " | ".join(f"{d} matched → fixed" for d in DET) + " |", "|---|---|---|" + "---|" * len(DET)]
+    for (grid, phi), cell in res.items():
+        for L in (75, 125):
+            m, f = cell[L]["matched"], cell[L]["fixed"]
+            out.append(f"| {grid} | {phi} | {L} | " + " | ".join(
+                f"[{m[d][0]:.0f},{m[d][1]:.0f}] → [{f[d][0]:.0f},{f[d][1]:.0f}]" for d in DET) + " |")
+    out += ["", "## (c) per-event lead on history length since the series/gap start (observations), matched θ", "",
+            "| grid | φ_y | L | D_div slope (steps/obs), R² | B2 slope, R² |", "|---|---|---|---|---|"]
+    for (grid, phi), cell in res.items():
+        for L in (75, 125):
+            rg = cell[L]["regression"]
+            out.append(f"| {grid} | {phi} | {L} | {rg['D_div'][0]:.4f}, {rg['D_div'][1]:.3f} | {rg['B2'][0]:.4f}, {rg['B2'][1]:.3f} |")
+    open(os.path.join(ROOT, "verification", "ddiv_response_15_8.md"), "w", encoding="utf-8", newline="\n").write("\n".join(out) + "\n")
+    print("WROTE verification/ddiv_response_15_8.md")
+
+
+if __name__ == "__main__":
+    main()

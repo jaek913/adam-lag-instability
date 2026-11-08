@@ -7,6 +7,7 @@ import json
 import os
 
 PHI = [0.5, 0.8, 0.9, 0.95, 0.98]
+EXT_PHI = [0.3, 0.99]                     # Amendment 15.5 extension cells
 LS = [64, 100, 150, 200]
 AS = [1.0, 2.0, 3.0]
 NEV = [5, 10, 20, 40]
@@ -92,11 +93,27 @@ def build():
             add("dr_step", phi=phi, n_events=20, L=L, A=6.0)
         for L in (25, 75, 125):
             add("dr_grid10", phi=phi, grid=10, L=10 * L, A=6.0, L_obs=L)
+    # ---- appended 2026-11-08 (Amendment 15): 15.7 instrument check (fresh seeds), 15.4 positive control,
+    #      15.5 extension cells phi in {0.3, 0.99} ----
+    for c in list(cells):
+        if c["kind"] in ("dr_step", "dr_grid10") and "superseded" not in c:
+            c["superseded"] = "Amendment 15.7: 14.3 grading replaced; re-graded as an instrument check on fresh seeds"
+    for phi in PHI:
+        for L in (25, 75, 125):
+            add("dr2_step", phi=phi, n_events=20, L=L, A=6.0)
+        for L in (25, 75, 125):
+            add("dr2_grid10", phi=phi, grid=10, L=10 * L, A=6.0, L_obs=L)
+    for phi in PHI + EXT_PHI:
+        add("pos_ctrl", phi=phi, shift="from scripts/outputs/calibration_posctrl.json", report_only=True)  # 15.4
+    for phi in EXT_PHI:                                                                                 # 15.5
+        add("a1s_null", phi=phi, extension=True)
+        add("a1s_flip", phi=phi, L=80, A=3.0, extension=True)
+        add("a1s_effect", phi=phi, L=1000, A=2.0, report_only=True, extension=True)
     for c in cells:
         c["reps"] = REPS
         c["child_first"] = c["cell"] * REPS
     calib = [{"calib": i, "phi": phi, "n_events": 20, "child_first": CALIB_BASE + i * 1000, "reps": 1000}
-             for i, phi in enumerate(PHI)]
+             for i, phi in enumerate(PHI + EXT_PHI)]       # EXT_PHI ranges appended 2026-11-08 (Amendment 15.5)
     return {"cells": cells, "calibration": calib}
 
 

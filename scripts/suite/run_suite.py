@@ -23,9 +23,9 @@ RUN_KINDS = {"planted_effect", "regime_span", "planted_null", "surge_null", "sur
              "decision_flip", "t3_decision_flip", "unequal_memory_null", "null_pulse_sweep", "step_characterization",
              "realised_count_null", "realised_count_flip", "realised_count_effect", "flip_long",
              "grid10_null", "grid10_effect", "grid10_short", "e2e_null", "e2e_effect",
-             "a1s_null", "a1s_flip", "a1s_effect", "dr_step", "dr_grid10"}
-E2E = {"grid10_null", "grid10_effect", "grid10_short", "e2e_null", "e2e_effect", "dr_grid10"}
-A1S = {"a1s_null", "a1s_flip", "a1s_effect"}
+             "a1s_null", "a1s_flip", "a1s_effect", "dr_step", "dr_grid10", "dr2_step", "dr2_grid10", "pos_ctrl"}
+E2E = {"grid10_null", "grid10_effect", "grid10_short", "e2e_null", "e2e_effect", "dr_grid10", "dr2_grid10"}
+A1S = {"a1s_null", "a1s_flip", "a1s_effect", "pos_ctrl"}
 CALIB = os.path.join(ROOT, "scripts", "outputs", "calibration_pulse.json")
 
 
@@ -48,7 +48,14 @@ def build(c, rep, cal):
     import synth_e2e
     if c["kind"] in A1S:
         import synth_a1layout
-        b, e, m = synth_a1layout.make_a1(c["child_first"] + rep, phi_obs=c["phi"], L=c.get("L"), A=c.get("A", 0.0))
+        kw = {}
+        if c["kind"] == "pos_ctrl":                    # Amendment 15.4: (shift, sigma_m) from the calibration
+            pc = json.load(open(os.path.join(ROOT, "scripts", "outputs", "calibration_posctrl.json")))
+            ch = pc["phi"][str(c["phi"])]["chosen"]
+            if ch is None:
+                raise RuntimeError(f"pos_ctrl phi={c['phi']}: no construction found in which D_div leads (report, do not run)")
+            kw = {"shift": float(ch["shift"]), "sigma_m": float(ch["sigma_m"])}
+        b, e, m = synth_a1layout.make_a1(c["child_first"] + rep, phi_obs=c["phi"], L=c.get("L"), A=c.get("A", 0.0), **kw)
         return b, e, m["grid"], m["scan"], m
     if c["kind"] in E2E:
         b, e, m = synth_e2e.make_e2e(c["child_first"] + rep, grid=c["grid"], phi_obs=c["phi"], L=c.get("L"),

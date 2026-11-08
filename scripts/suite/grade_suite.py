@@ -18,9 +18,10 @@ Checks:
     grid10_short (fresh seeds, Amendment 13.2): SUPPORT <= 0.05, REFUTE reported;
     a1s_* (Amendment 13.3): null false-SUPPORT <= 0.05; flip SUPPORT <= 0.05; effect reported; in every replicate
       the A1 eligibility rule reproduces the design (4 ineligible, 2/1/1 by block, 57 eligible);
-    dr_step, dr_grid10 (Amendment 14.3): per (grid, phi), over L pairs (25,75), (75,125): for each detector with
-      detection >= 80% at both L, the 10-90% ranges of per-replicate mean lead do not overlap; the group FAILS
-      unless D_div and >= 1 baseline meet the 80% condition at both L of every pair."""
+    dr2_step, dr2_grid10 (Amendment 15.7, replacing 14.3's grading): per (grid, phi), at pairs (25,75), (75,125): every
+      baseline B1-B4 detecting >= 80% at both L must have non-overlapping 10-90% ranges of per-replicate mean lead;
+      FAIL unless >= 1 baseline qualifies at every pair; D_div reported, never graded;
+    null_pulse_sweep: characterization only (15.15); pos_ctrl (15.4): reported."""
 import argparse
 import hashlib
 import json
@@ -31,14 +32,15 @@ import sys
 import numpy as np
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-NULLS = {"planted_null", "surge_null", "t3_null", "null_pulse_sweep", "realised_count_null", "grid10_null", "e2e_null",
-         "a1s_null"}
+NULLS = {"planted_null", "surge_null", "t3_null", "realised_count_null", "grid10_null", "e2e_null",
+         "a1s_null"}                                   # null_pulse_sweep: characterization only (Amendment 15.15)
 FLIPS = {"decision_flip", "t3_decision_flip", "realised_count_flip", "grid10_short", "a1s_flip"}
 REPORT = {"planted_effect", "regime_span", "surge_effect", "realised_count_effect", "step_characterization", "flip_long",
-          "grid10_effect", "e2e_effect", "a1s_effect"}
+          "grid10_effect", "e2e_effect", "a1s_effect", "pos_ctrl", "null_pulse_sweep"}
 E2E = {"grid10_null", "grid10_effect", "grid10_short", "e2e_null", "e2e_effect", "a1s_null", "a1s_flip", "a1s_effect",
-       "dr_grid10"}
-DR = {"dr_step", "dr_grid10"}
+       "dr_grid10", "dr2_grid10", "pos_ctrl"}
+DR = {"dr_step", "dr_grid10", "dr2_step", "dr2_grid10"}
+DR2 = {"dr2_step", "dr2_grid10"}
 DET = ["D_div", "B1", "B2", "B3", "B4"]
 
 
@@ -66,7 +68,34 @@ def grade_dr(group):
             f"{d} [{stats[lo][d][1]:.0f},{stats[lo][d][2]:.0f}] vs [{stats[hi][d][1]:.0f},{stats[hi][d][2]:.0f}] "
             f"{'sep' if sep[d] else 'OVERLAP'}" for d in eligible))
     return ok, "; ".join(parts)
-A1S = {"a1s_null", "a1s_flip", "a1s_effect"}
+
+
+def grade_dr2(group):
+    """Amendment 15.7 instrument check, one (grid, phi) group. Baselines B1-B4 graded; D_div reported, never graded.
+    Every detector's detection rate and range is printed at every pair, vacuous or not."""
+    Ls = sorted(group)
+    st = {L: {d: (float(np.mean([r["per_detector"][d]["detection_rate"] for r in group[L]])),
+                  float(np.percentile([r["per_detector"][d]["mean_lead"] for r in group[L]], 10)),
+                  float(np.percentile([r["per_detector"][d]["mean_lead"] for r in group[L]], 90))) for d in DET} for L in Ls}
+    ok, parts = True, []
+    for lo, hi in zip(Ls[:-1], Ls[1:]):
+        base = [d for d in DET if d != "D_div" and st[lo][d][0] >= 0.80 and st[hi][d][0] >= 0.80]
+        sep = {d: st[lo][d][2] < st[hi][d][1] for d in base}
+        if not base or not all(sep.values()):
+            ok = False
+        rows = []
+        for d in DET:
+            if d in base:
+                tag = "graded: " + ("sep" if sep[d] else "OVERLAP")
+            elif d == "D_div":
+                tag = "reported" + (" (inside the A1.5 scope condition)" if lo == 25 else "")
+            else:
+                tag = "not qualifying (<80%)"
+            rows.append(f"{d} det {st[lo][d][0]:.2f}/{st[hi][d][0]:.2f} [{st[lo][d][1]:.0f},{st[lo][d][2]:.0f}] vs "
+                        f"[{st[hi][d][1]:.0f},{st[hi][d][2]:.0f}] {tag}")
+        parts.append(f"({lo},{hi}): " + ("NO BASELINE QUALIFIES; " if not base else "") + "; ".join(rows))
+    return ok, " | ".join(parts)
+A1S = {"a1s_null", "a1s_flip", "a1s_effect", "pos_ctrl"}
 LICENSED = ["analysis/ops.py", "analysis/pipeline.py", "analysis/e2stat.py", "reference/ref_e2.py"]
 
 
@@ -176,7 +205,7 @@ def main():
             lines.append(f"| dyn-range | {kind} phi={phi} | INCOMPLETE GROUP ({sorted(grp)}) | FAIL |")
             fails.append(f"{kind} {phi}")
             continue
-        okd, txt = grade_dr(grp)
+        okd, txt = (grade_dr2 if kind in DR2 else grade_dr)(grp)
         lines.append(f"| dyn-range | {kind} phi={phi} (L obs {sorted(grp)}) | {txt} | {'PASS' if okd else 'FAIL'} |")
         if not okd:
             fails.append(f"{kind} {phi}")

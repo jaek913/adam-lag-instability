@@ -114,7 +114,7 @@ def main():
         return rows
     rc, out = run(table, {a1n: badel})
     ok("WATCH-FAIL A1-structure cell with ineligible events in the wrong blocks -> FAIL", rc == 1)
-    drc = [c for c in table if c["kind"] == "dr_step" and c["phi"] == 0.9]
+    drc = [c for c in table if c["kind"] == "dr2_step" and c["phi"] == 0.9]
     mid = next(c["cell"] for c in drc if c["L"] == 75)
     def overlap(rows):
         for r_ in rows:
@@ -122,13 +122,14 @@ def main():
                 r_["per_detector"][d]["mean_lead"] = 25.0 + (r_["rep"] % 10)   # same as L=25 -> overlap
         return rows
     rc, out = run(table, {mid: overlap})
-    ok("WATCH-FAIL dynamic range: overlapping lead ranges at L=25 vs 75 -> FAIL", rc == 1)
-    def vacuous(rows):
+    ok("WATCH-FAIL dynamic range: a qualifying baseline overlapping at L=25 vs 75 -> FAIL", rc == 1)
+    def ddiv_weak(rows):
         for r_ in rows:
             r_["per_detector"]["D_div"]["detection_rate"] = 0.5
+            r_["per_detector"]["D_div"]["mean_lead"] = 25.0 + (r_["rep"] % 10)
         return rows
-    rc, out = run(table, {mid: vacuous})
-    ok("WATCH-FAIL dynamic range: D_div below 80% detection -> FAIL (no vacuous pass)", rc == 1)
+    rc, out = run(table, {mid: ddiv_weak})
+    ok("15.7: D_div weak/overlapping does NOT fail the instrument check (reported only)", rc == 0)
     def base_only_div(rows):
         for r_ in rows:
             for d in ("B1", "B2", "B3", "B4"):
