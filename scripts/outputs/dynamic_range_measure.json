@@ -1,0 +1,49 @@
+{
+ "reps": 100,
+ "offsets": {
+  "dr_step": 700,
+  "dr_grid10": 800
+ },
+ "groups": {
+  "dr_step phi=0.5": {
+   "pass": false,
+   "detail": "(25,75): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2', 'B4']); (75,125): D_div [18,48] vs [31,84] OVERLAP, B2 [41,47] vs [72,81] sep, B4 [46,53] vs [83,90] sep"
+  },
+  "dr_step phi=0.8": {
+   "pass": false,
+   "detail": "(25,75): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2', 'B4']); (75,125): D_div [20,40] vs [35,73] OVERLAP, B2 [37,44] vs [67,78] sep, B4 [36,44] vs [68,78] sep"
+  },
+  "dr_step phi=0.9": {
+   "pass": false,
+   "detail": "(25,75): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2']); (75,125): D_div [21,36] vs [37,61] sep, B2 [34,43] vs [63,75] sep, B4 [25,36] vs [52,66] sep"
+  },
+  "dr_step phi=0.95": {
+   "pass": false,
+   "detail": "(25,75): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2']); (75,125): D_div [17,29] vs [30,54] sep, B2 [33,43] vs [59,72] sep, B4 [14,29] vs [33,53] sep"
+  },
+  "dr_step phi=0.98": {
+   "pass": false,
+   "detail": "(25,75): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2']); (75,125): D_div [19,32] vs [31,55] OVERLAP, B2 [33,42] vs [58,71] sep"
+  },
+  "dr_grid10 phi=0.5": {
+   "pass": false,
+   "detail": "(25,75): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2', 'B4']); (75,125): D_div [82,314] vs [178,526] OVERLAP, B2 [407,463] vs [728,803] sep, B4 [479,521] vs [848,896] sep"
+  },
+  "dr_grid10 phi=0.8": {
+   "pass": false,
+   "detail": "(25,75): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2', 'B4']); (75,125): D_div [89,319] vs [172,538] OVERLAP, B2 [364,424] vs [666,755] sep, B4 [361,427] vs [703,775] sep"
+  },
+  "dr_grid10 phi=0.9": {
+   "pass": false,
+   "detail": "(25,75): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2']); (75,125): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2', 'B4'])"
+  },
+  "dr_grid10 phi=0.95": {
+   "pass": false,
+   "detail": "(25,75): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2']); (75,125): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2', 'B4'])"
+  },
+  "dr_grid10 phi=0.98": {
+   "pass": false,
+   "detail": "(25,75): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2']); (75,125): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2'])"
+  }
+ }
+}

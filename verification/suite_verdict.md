@@ -2,7 +2,7 @@
 
 Graded from `scripts/outputs/suite_v1` by `scripts/suite/grade_suite.py`.
 
-**FAIL (60: ['agreement 260', 'agreement 261', 'agreement 262', 'agreement 263', 'agreement 264', 'agreement 265', 'agreement 266', 'agreement 267', 'agreement 268', 'agreement 269', 'agreement 270', 'agreement 271', 'agreement 272', 'agreement 273', 'agreement 274', 'agreement 275', 'agreement 276', 'agreement 277', 'agreement 278', 'agreement 279'])**
+**FAIL (10: ['dr_grid10 0.5', 'dr_grid10 0.8', 'dr_grid10 0.9', 'dr_grid10 0.95', 'dr_grid10 0.98', 'dr_step 0.5', 'dr_step 0.8', 'dr_step 0.9', 'dr_step 0.95', 'dr_step 0.98'])**
 
 | cell | kind | result | verdict |
 |---|---|---|---|
@@ -10,7 +10,7 @@ Graded from `scripts/outputs/suite_v1` by `scripts/suite/grade_suite.py`.
 | licence | analysis/pipeline.py | unchanged since aad6cf7 | PASS |
 | licence | analysis/e2stat.py | unchanged since aad6cf7 | PASS |
 | licence | reference/ref_e2.py | unchanged since aad6cf7 | PASS |
-| agreement | reference agreement (8.1) on 260 E2-chain cells | MISSING or DIFFERENT: [260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279] | FAIL |
+| agreement | reference agreement (8.1) on 260 E2-chain cells | complete and all identical | PASS |
 | 0 | planted_effect (phi=0.5, n_events=20, L=64, A=1.0) | reported; SUPPORT/INCONCL/REFUTE 0.050/0.280/0.670 | mean lead B1 1.6, B2 2.1, B3 1.5, B4 3.3, D_div 3.5 | REPORTED |
 | 1 | planted_effect (phi=0.5, n_events=20, L=64, A=2.0) | reported; SUPPORT/INCONCL/REFUTE 0.075/0.325/0.600 | mean lead B1 2.0, B2 6.2, B3 2.6, B4 13.0, D_div 12.6 | REPORTED |
 | 2 | planted_effect (phi=0.5, n_events=20, L=64, A=3.0) | reported; SUPPORT/INCONCL/REFUTE 0.040/0.225/0.735 | mean lead B1 2.1, B2 15.9, B3 2.9, B4 25.3, D_div 20.3 | REPORTED |
@@ -246,33 +246,43 @@ Graded from `scripts/outputs/suite_v1` by `scripts/suite/grade_suite.py`.
 | 257 | a1s_null (phi=0.98) | false-SUPPORT 0.010 (<= 0.05); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; eligibility rule reproduces the design (4 ineligible, 2/1/1 by block; 57 eligible) in every replicate; SUPPORT/INCONCL/REFUTE 0.010/0.100/0.890 | PASS |
 | 258 | a1s_flip (phi=0.98, L=80, A=3.0) | SUPPORT 0.000 (<= 0.05); reported: REFUTE 0.935 (kill-rule power vs short precursor); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; eligibility rule reproduces the design (4 ineligible, 2/1/1 by block; 57 eligible) in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.065/0.935 | PASS |
 | 259 | a1s_effect (phi=0.98, L=1000, A=2.0) | reported; events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; eligibility rule reproduces the design (4 ineligible, 2/1/1 by block; 57 eligible) in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.225/0.775 | mean lead B1 22.5, B2 74.7, B3 34.3, B4 42.4, D_div 50.6 | REPORTED |
-| 260 | dr_step phi=0.5 | INCOMPLETE (0 rows) | FAIL |
-| 261 | dr_step phi=0.5 | INCOMPLETE (0 rows) | FAIL |
-| 262 | dr_step phi=0.5 | INCOMPLETE (0 rows) | FAIL |
-| 263 | dr_grid10 phi=0.5 | INCOMPLETE (0 rows) | FAIL |
-| 264 | dr_grid10 phi=0.5 | INCOMPLETE (0 rows) | FAIL |
-| 265 | dr_grid10 phi=0.5 | INCOMPLETE (0 rows) | FAIL |
-| 266 | dr_step phi=0.8 | INCOMPLETE (0 rows) | FAIL |
-| 267 | dr_step phi=0.8 | INCOMPLETE (0 rows) | FAIL |
-| 268 | dr_step phi=0.8 | INCOMPLETE (0 rows) | FAIL |
-| 269 | dr_grid10 phi=0.8 | INCOMPLETE (0 rows) | FAIL |
-| 270 | dr_grid10 phi=0.8 | INCOMPLETE (0 rows) | FAIL |
-| 271 | dr_grid10 phi=0.8 | INCOMPLETE (0 rows) | FAIL |
-| 272 | dr_step phi=0.9 | INCOMPLETE (0 rows) | FAIL |
-| 273 | dr_step phi=0.9 | INCOMPLETE (0 rows) | FAIL |
-| 274 | dr_step phi=0.9 | INCOMPLETE (0 rows) | FAIL |
-| 275 | dr_grid10 phi=0.9 | INCOMPLETE (0 rows) | FAIL |
-| 276 | dr_grid10 phi=0.9 | INCOMPLETE (0 rows) | FAIL |
-| 277 | dr_grid10 phi=0.9 | INCOMPLETE (0 rows) | FAIL |
-| 278 | dr_step phi=0.95 | INCOMPLETE (0 rows) | FAIL |
-| 279 | dr_step phi=0.95 | INCOMPLETE (0 rows) | FAIL |
-| 280 | dr_step phi=0.95 | INCOMPLETE (0 rows) | FAIL |
-| 281 | dr_grid10 phi=0.95 | INCOMPLETE (0 rows) | FAIL |
-| 282 | dr_grid10 phi=0.95 | INCOMPLETE (0 rows) | FAIL |
-| 283 | dr_grid10 phi=0.95 | INCOMPLETE (0 rows) | FAIL |
-| 284 | dr_step phi=0.98 | INCOMPLETE (0 rows) | FAIL |
-| 285 | dr_step phi=0.98 | INCOMPLETE (0 rows) | FAIL |
-| 286 | dr_step phi=0.98 | INCOMPLETE (0 rows) | FAIL |
-| 287 | dr_grid10 phi=0.98 | INCOMPLETE (0 rows) | FAIL |
-| 288 | dr_grid10 phi=0.98 | INCOMPLETE (0 rows) | FAIL |
-| 289 | dr_grid10 phi=0.98 | INCOMPLETE (0 rows) | FAIL |
+| 260 | dr_step (phi=0.5, n_events=20, L=25, A=6.0) | reported (graded as a group, Amendment 14.3); SUPPORT/INCONCL/REFUTE 0.000/0.040/0.960 | REPORTED |
+| 261 | dr_step (phi=0.5, n_events=20, L=75, A=6.0) | reported (graded as a group, Amendment 14.3); SUPPORT/INCONCL/REFUTE 0.000/0.055/0.945 | REPORTED |
+| 262 | dr_step (phi=0.5, n_events=20, L=125, A=6.0) | reported (graded as a group, Amendment 14.3); SUPPORT/INCONCL/REFUTE 0.000/0.045/0.955 | REPORTED |
+| 263 | dr_grid10 (phi=0.5, L=250, A=6.0) | reported (graded as a group, Amendment 14.3); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | REPORTED |
+| 264 | dr_grid10 (phi=0.5, L=750, A=6.0) | reported (graded as a group, Amendment 14.3); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | REPORTED |
+| 265 | dr_grid10 (phi=0.5, L=1250, A=6.0) | reported (graded as a group, Amendment 14.3); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | REPORTED |
+| 266 | dr_step (phi=0.8, n_events=20, L=25, A=6.0) | reported (graded as a group, Amendment 14.3); SUPPORT/INCONCL/REFUTE 0.000/0.015/0.985 | REPORTED |
+| 267 | dr_step (phi=0.8, n_events=20, L=75, A=6.0) | reported (graded as a group, Amendment 14.3); SUPPORT/INCONCL/REFUTE 0.000/0.095/0.905 | REPORTED |
+| 268 | dr_step (phi=0.8, n_events=20, L=125, A=6.0) | reported (graded as a group, Amendment 14.3); SUPPORT/INCONCL/REFUTE 0.005/0.055/0.940 | REPORTED |
+| 269 | dr_grid10 (phi=0.8, L=250, A=6.0) | reported (graded as a group, Amendment 14.3); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | REPORTED |
+| 270 | dr_grid10 (phi=0.8, L=750, A=6.0) | reported (graded as a group, Amendment 14.3); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | REPORTED |
+| 271 | dr_grid10 (phi=0.8, L=1250, A=6.0) | reported (graded as a group, Amendment 14.3); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | REPORTED |
+| 272 | dr_step (phi=0.9, n_events=20, L=25, A=6.0) | reported (graded as a group, Amendment 14.3); SUPPORT/INCONCL/REFUTE 0.000/0.005/0.995 | REPORTED |
+| 273 | dr_step (phi=0.9, n_events=20, L=75, A=6.0) | reported (graded as a group, Amendment 14.3); SUPPORT/INCONCL/REFUTE 0.000/0.010/0.990 | REPORTED |
+| 274 | dr_step (phi=0.9, n_events=20, L=125, A=6.0) | reported (graded as a group, Amendment 14.3); SUPPORT/INCONCL/REFUTE 0.000/0.005/0.995 | REPORTED |
+| 275 | dr_grid10 (phi=0.9, L=250, A=6.0) | reported (graded as a group, Amendment 14.3); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | REPORTED |
+| 276 | dr_grid10 (phi=0.9, L=750, A=6.0) | reported (graded as a group, Amendment 14.3); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | REPORTED |
+| 277 | dr_grid10 (phi=0.9, L=1250, A=6.0) | reported (graded as a group, Amendment 14.3); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | REPORTED |
+| 278 | dr_step (phi=0.95, n_events=20, L=25, A=6.0) | reported (graded as a group, Amendment 14.3); SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | REPORTED |
+| 279 | dr_step (phi=0.95, n_events=20, L=75, A=6.0) | reported (graded as a group, Amendment 14.3); SUPPORT/INCONCL/REFUTE 0.000/0.010/0.990 | REPORTED |
+| 280 | dr_step (phi=0.95, n_events=20, L=125, A=6.0) | reported (graded as a group, Amendment 14.3); SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | REPORTED |
+| 281 | dr_grid10 (phi=0.95, L=250, A=6.0) | reported (graded as a group, Amendment 14.3); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | REPORTED |
+| 282 | dr_grid10 (phi=0.95, L=750, A=6.0) | reported (graded as a group, Amendment 14.3); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | REPORTED |
+| 283 | dr_grid10 (phi=0.95, L=1250, A=6.0) | reported (graded as a group, Amendment 14.3); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | REPORTED |
+| 284 | dr_step (phi=0.98, n_events=20, L=25, A=6.0) | reported (graded as a group, Amendment 14.3); SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | REPORTED |
+| 285 | dr_step (phi=0.98, n_events=20, L=75, A=6.0) | reported (graded as a group, Amendment 14.3); SUPPORT/INCONCL/REFUTE 0.000/0.010/0.990 | REPORTED |
+| 286 | dr_step (phi=0.98, n_events=20, L=125, A=6.0) | reported (graded as a group, Amendment 14.3); SUPPORT/INCONCL/REFUTE 0.000/0.015/0.985 | REPORTED |
+| 287 | dr_grid10 (phi=0.98, L=250, A=6.0) | reported (graded as a group, Amendment 14.3); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | REPORTED |
+| 288 | dr_grid10 (phi=0.98, L=750, A=6.0) | reported (graded as a group, Amendment 14.3); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | REPORTED |
+| 289 | dr_grid10 (phi=0.98, L=1250, A=6.0) | reported (graded as a group, Amendment 14.3); events recovered exactly in 200/200; all ten residues of t_e mod 10 in every replicate; SUPPORT/INCONCL/REFUTE 0.000/0.000/1.000 | REPORTED |
+| dyn-range | dr_grid10 phi=0.5 (L obs [25, 75, 125]) | (25,75): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2', 'B4']); (75,125): D_div [64,293] vs [148,506] OVERLAP, B2 [402,455] vs [719,805] sep, B4 [475,523] vs [841,892] sep | FAIL |
+| dyn-range | dr_grid10 phi=0.8 (L obs [25, 75, 125]) | (25,75): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2', 'B4']); (75,125): D_div [107,321] vs [183,566] OVERLAP, B2 [364,431] vs [678,759] sep, B4 [368,434] vs [696,779] sep | FAIL |
+| dyn-range | dr_grid10 phi=0.9 (L obs [25, 75, 125]) | (25,75): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2']); (75,125): D_div [118,296] vs [233,532] OVERLAP, B2 [352,411] vs [638,730] sep, B4 [263,358] vs [558,680] sep | FAIL |
+| dyn-range | dr_grid10 phi=0.95 (L obs [25, 75, 125]) | (25,75): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2']); (75,125): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2', 'B4']) | FAIL |
+| dyn-range | dr_grid10 phi=0.98 (L obs [25, 75, 125]) | (25,75): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2']); (75,125): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2']) | FAIL |
+| dyn-range | dr_step phi=0.5 (L obs [25, 75, 125]) | (25,75): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2', 'B4']); (75,125): D_div [15,48] vs [26,82] OVERLAP, B2 [40,46] vs [72,82] sep, B4 [47,52] vs [83,90] sep | FAIL |
+| dyn-range | dr_step phi=0.8 (L obs [25, 75, 125]) | (25,75): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2', 'B4']); (75,125): D_div [20,41] vs [35,72] OVERLAP, B2 [37,44] vs [66,77] sep, B4 [36,43] vs [67,78] sep | FAIL |
+| dyn-range | dr_step phi=0.9 (L obs [25, 75, 125]) | (25,75): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2']); (75,125): D_div [21,35] vs [32,62] OVERLAP, B2 [34,43] vs [63,75] sep, B4 [25,35] vs [51,67] sep | FAIL |
+| dyn-range | dr_step phi=0.95 (L obs [25, 75, 125]) | (25,75): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2']); (75,125): D_div [18,32] vs [31,54] OVERLAP, B2 [33,42] vs [59,72] sep, B4 [14,26] vs [35,53] sep | FAIL |
+| dyn-range | dr_step phi=0.98 (L obs [25, 75, 125]) | (25,75): VACUOUS - D_div and >= 1 baseline must detect >= 80% at both L (eligible: ['B2']); (75,125): D_div [19,32] vs [32,56] OVERLAP, B2 [33,42] vs [58,71] sep | FAIL |

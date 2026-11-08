@@ -232,3 +232,30 @@ A1.7 fixes the observation grid, the minimum length (≥ 33,840 steps), ≥ 2 ga
 - Grid-parameterised eligibility = `a1_events.eligibility` at grid 10 on 311 sampled steps.
 - Reference agreement identical on three grid-10 and grid-1 replicates.
 - The grader's watch-to-fail test now also fails a grid-10 cell with one unrecovered event or a missing residue (12/12).
+
+## S-6 (BLOCKER for the E2 gate) — dynamic range (Amendment 14.3) fails in all 10 groups
+
+Graded run on evaluation seeds (`suite_v1`, cells 260–289), with the calibration-seed measurement run first (`scripts/outputs/dynamic_range_measure.json`, exploratory). Reference agreement is identical on every cell. The measurement predicted the graded result in every group.
+
+**(a) Vacuous at (25, 75) in every group.** D_div's detection is below 80 % at L = 25 observations, per-step and grid-10, at every φ_y. The baselines at ≥ 80 % at both L: B2 in every group, B4 in some. Because of the no-vacuous-pass condition (JAE, Amendment 14.3), every group fails at this pair.
+
+**(b) D_div's lead ranges overlap at (75, 125); the baselines separate.** 10th–90th percentile of the per-replicate mean lead, graded run:
+
+| group | D_div L 75 vs L 125 | B2 L 75 vs L 125 | B4 L 75 vs L 125 |
+|---|---|---|---|
+| per-step φ 0.5 | [15, 48] vs [26, 82] overlap | [40, 46] vs [72, 82] sep | [47, 52] vs [83, 90] sep |
+| per-step φ 0.9 | [21, 35] vs [32, 62] overlap | [34, 43] vs [63, 75] sep | [25, 35] vs [51, 67] sep |
+| per-step φ 0.98 | [19, 32] vs [32, 56] overlap | [33, 42] vs [58, 71] sep | — (< 80 %) |
+| grid-10 φ 0.5 (steps) | [64, 293] vs [148, 506] overlap | [402, 455] vs [719, 805] sep | [475, 523] vs [841, 892] sep |
+| grid-10 φ 0.9 (steps) | [118, 296] vs [233, 532] overlap | [352, 411] vs [638, 730] sep | [263, 358] vs [558, 680] sep |
+
+- On grid 10 at φ ≥ 0.95, D_div is below 80 % even at L = 75, so those pairs are vacuous too.
+- D_div's median lead rises with L, but its replicate-to-replicate spread is several times the baselines'.
+
+**Not a code fault.** Construction, criterion and seeds were all fixed before either run.
+
+**Bearing.**
+- The Standard's review menu flags "any saturating/tie-prone/no-dynamic-range metric" as verdict-invalid.
+- As measured, D_div's lead does not resolve 50-step differences in precursor length at A = 6 × SD, while the raw-reading baselines do.
+- Together with S-5, this bears on what an E2 verdict can mean.
+- **Decision rule, fixed before the review (JAE):** pipeline-invalid or rescue → hold E2 and use §K's single re-set; method property → apply the bar to B2/B4 as the instrument check, and report D_div's flat lead response beside E2 as a limitation.

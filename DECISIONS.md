@@ -943,3 +943,37 @@ Sources: the project files `thedivergencetheorem.pdf`, `theadaptationratetheorem
    - **Reason recorded:** leads cap at the scan window, so the frozen L = 150 and 200 saturate.
    - Part of the E2 gate (Amendment 14.3).
 3. **Review (JAE).** The follow-up review covers Amendments 7–14.
+
+## Entry 33 (2026-11-08) — E2 gate: unit and PRV tests ALL PASS; dynamic range (14.3) FAILS in all 10 groups (S-6)
+
+1. **Runs (JAE's host, at 2aa532e = origin/main).**
+   - `measure_dynamic_range.py` (calibration seeds, exploratory) → `scripts/outputs/dynamic_range_measure.json` (MD5 recorded in the commit). All 10 groups FAIL.
+   - `run_ref_agreement.py` and `run_suite.py` for the 30 graded dynamic-range cells. Reference agreement is complete and identical on 260 E2-chain cells.
+   - `grade_suite.py`: **FAIL**, exactly the 10 dynamic-range groups; every other cell is as in entry 30.
+   - `run_e2_gate_tests.py`: **ALL PASS**, 11/11, including the PRV hash negative self-test on a scratch copy of run-025's file (intact copy passes; one flipped byte and a missing file both halt).
+2. **S-6 (BLOCKER for the E2 gate).** Dynamic range (Amendment 14.3) fails on two counts.
+   - **(a) Vacuous at (25, 75) in every group.** D_div's detection is below 80 % at L = 25 observations, per-step and grid-10, at every φ_y. A 32/128-observation SMA divergence barely responds to a ramp shorter than w_f. The no-vacuous-pass condition therefore fails every group. The baselines that clear 80 % are B2 in every group and B4 in some.
+   - **(b) D_div overlaps at (75, 125).** Per-step φ 0.9: [21, 35] vs [32, 62] steps. Grid-10 φ 0.5: [64, 293] vs [148, 506] steps.
+     - In every eligible case B2 and B4 separate (per-step φ 0.9, B2: [34, 43] vs [63, 75]).
+     - D_div's median lead rises with L, but its replicate-to-replicate spread is wide.
+     - On grid 10 at φ ≥ 0.9, D_div is also below 80 % detection at L = 75 (measurement run), so those pairs are vacuous too.
+   - **Not a code fault.** The reference agreement is identical, and the calibration-seed measurement predicted the result.
+   - **Firewall.** No criterion, construction or seed was changed after seeing either run.
+3. **Bearing on E2.**
+   - The Standard's review menu (experiment classification) flags "any saturating/tie-prone/no-dynamic-range metric" as verdict-invalid. As measured, D_div's lead does not resolve 50-step differences in precursor length at A = 6, while the raw-reading baselines do.
+   - Together with S-5 (planted ramps mostly return REFUTE) this is material to what an E2 verdict can mean.
+   - §K's rule is unchanged (frozen). **Pending JAE.**
+
+## Entry 34 (2026-11-08, JAE) — S-6 goes to the follow-up review; decision rule fixed before sending
+
+1. **Decision (JAE).** S-6 is not adjudicated by the author.
+   - The follow-up review package is built and sent: Amendments 7–14 with the frozen text each modifies, plus S-1 through S-6 with their evidence, in a fresh claude.ai incognito chat (venue rule), single round under the entry-3 rule.
+   - **Two explicit questions are added:**
+     - **(a)** Is S-6 a pipeline failure (E2 verdict-invalid), or a property of D_div (reported with E2)? The package notes that the "D_div must qualify" clause was added by JAE (in his other session) to prevent a vacuous pass, and that B2 and B4 separate cleanly.
+     - **(b)** For each of S-1 to S-6: was the post-failure change a legitimate correction of a mis-specified test, or a rescue?
+2. **Decision rule (fixed now, before the package is sent).**
+   - **If the review finds S-6 pipeline-invalid, or finds any of S-1 to S-6 a rescue:** E2 is held, and §K's single re-set of the grading day is used.
+   - **If it finds S-6 a method property:** an amendment moves 14.3 to the pipeline reading, meaning the dynamic-range bar applies as an instrument check on B2/B4. D_div's flat lead response is reported beside E2 as a limitation.
+   - The review's findings are adjudicated under the entry-3 rule with no third round, and the rule above is applied to the adjudicated outcome.
+3. **Data.** E2 does not touch real data until the adjudication is recorded.
+4. **Grading day.** It is re-set (§K's single re-set, by dated amendment) only if the adjudication runs past 2026-11-17.
