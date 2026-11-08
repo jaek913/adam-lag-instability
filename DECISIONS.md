@@ -977,3 +977,29 @@ Sources: the project files `thedivergencetheorem.pdf`, `theadaptationratetheorem
    - The review's findings are adjudicated under the entry-3 rule with no third round, and the rule above is applied to the adjudicated outcome.
 3. **Data.** E2 does not touch real data until the adjudication is recorded.
 4. **Grading day.** It is re-set (§K's single re-set, by dated amendment) only if the adjudication runs past 2026-11-17.
+
+## Entry 35 (2026-11-08, JAE) — Review of Amendments 7–14 adjudicated and ratified; S-3 RESCUE → E2 held, grading day re-set once (DESIGN Amendments 15–16)
+
+1. **Review.**
+   - **Sent.** On 2026-11-08 the author sent the committed package (dcc6764; the text was fetched from the public commit and SHA-256-verified before sending) through Claude in Chrome, at JAE's request, as the only message of a fresh claude.ai incognito chat. No project was attached.
+   - **Connectors.** The four connectors (ClickUp, Google Docs, Google Drive, Claude in Chrome) were off for the chat, with JAE's approval, and switched back on afterwards.
+   - **Reply.** Saved verbatim: `verification/amendments7-14_review_transcript.md`. The raw message text, 37,498 characters, has SHA-256 bd51f8c62e7067b16d8ac2bcd43f88a7fc7647575f1fdd5a1717f842f0f36b43; the file is stored with LF line endings (MD5 6b116975192cd54588415abaf722dfd5).
+   - **Content.** 27 findings (one BLOCKER, R8). Verdicts: S-1, S-2 and S-4 CORRECTION; **S-3 RESCUE**; S-6 METHOD PROPERTY; the S-6 treatment a CORRECTION conditional on 15.7 and 15.8.
+2. **Adjudication** (`verification/amendments7-14_review.md`).
+   - Every finding CONFIRMED except R9, which is partly withdrawn: the suite's resampling deliberately mirrors E2 on A1.
+   - R25 (S-3 RESCUE) CONFIRMED: all 25 pulse-sweep cells read 0.000/0.000/1.000, so the replacement could not fail.
+   - **Ratified by JAE, with changes:**
+     - **(1)** The §K grading-day record still happens on 2026-11-20: "E2 unrun — suite gate not met (S-3 RESCUE)", in DECISIONS and RECORD, citing 15.16.
+     - **(2)** The AI2 route-3 cutoff stays 2026-11-13.
+     - **(3)** Amendment 15 states how F1 is discharged (declared unattainable on the S-3 evidence; the pulse sweep reported as a characterization; the RESCUE disclosed in the Methods), so the 2026-12-04 gate has a defined pass condition.
+     - **(4)** 2026-12-04 is final (a miss → CLOSE), and the E2 gate is scheduled to reach ALL PASS by 2026-12-01.
+   - **Recorded at JAE's request:** the S-3 pulse / false-SUPPORT construction was recommended by JAE's other session.
+3. **Decision rule applied (entry 34).** S-3 is a confirmed RESCUE, so E2 is held and §K's single re-set is used: the grading day becomes 2026-12-04, final (DESIGN Amendment 16). The S-6 method-property branch is applied through 15.7 and 15.8. DESIGN Amendment 15 adopts 15.1–15.21.
+4. **Work before E2 touches any g:**
+   - the 15.7 instrument check (fresh seeds);
+   - the 15.4 positive control;
+   - the 15.17 measurement;
+   - the 15.8 checks (b) and (c);
+   - the seed map (15.19);
+   - the 15.5 extension cells, which always run, because φ̂_y is not known until E2's single run.
+5. **Review of Amendments 15–16:** not scheduled. **Pending JAE.**

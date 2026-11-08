@@ -783,3 +783,151 @@ Result: 16 findings (G1–G16), all adopted, five with a stated adaptation, plus
 - Reference agreement (8.1) applies to these cells. The cluster and ties parts of the dynamic-range clause stand as committed (DECISIONS entry 31).
 
 **Unchanged.** Every rule applied to real data, and every other D.5 criterion as amended through Amendment 13.
+
+## Amendment 15 (2026-11-08) — Adjudicated review of Amendments 7–14 and suite findings S-1 to S-6
+
+**Status.** Appended below Amendment 14 under the append-only rule. Rationale: DECISIONS.md entry 35 (JAE ratified 2026-11-08, with changes). Sources:
+- the independent review, `verification/amendments7-14_review_transcript.md` (findings R1–R27);
+- the adjudication, `verification/amendments7-14_review.md`.
+
+Made before any gradient-norm value has entered any computation.
+
+**15.0 Verdicts.**
+- S-1, S-2 and S-4: CORRECTION.
+- **S-3: RESCUE (confirmed).**
+- S-6: METHOD PROPERTY.
+- The S-6 treatment: CORRECTION, conditional on 15.7 and 15.8.
+
+Under the decision rule fixed before the review (DECISIONS entry 34), the RESCUE holds E2, and §K's single re-set is used (Amendment 16).
+
+**15.1 §K re-tuning clause (R1).** Amendments 7.1–7.3, 7.5, 9.1 and 9.2 change real-data construction details. They were made after A1's loss was read and before any gradient-norm value entered any computation.
+- 7.1–7.3 and 7.5 specify points the frozen text left open. 9.1 and 9.2 restore the pinned source behaviour of the tool-defined baselines.
+- None was chosen with any detector score, threshold or lead in hand.
+- They are declared as specifications under §K's "no re-tuning" clause, not re-tunings.
+- No further real-data construction change of any kind is permitted before E2's single run.
+
+**15.2 Gate scope (R2).** A suite gate may hold E2 only for a pipeline fault, which means one of:
+- disagreement with the reference implementation;
+- a failed hand probe;
+- a criterion that the reference implementation also fails on a detector-agnostic quantity.
+
+A synthetic result showing that D_div responds weakly, or later than the baselines, is a property of the method under test. It is reported beside E2 and never holds E2.
+
+**15.3 Reading of E2 (R3).**
+- Beside any E2 label, the result states that label's rate under (i) the planted null and (ii) the planted effect. Both are taken on the A1-structure layout (13.3), at the cell selected under 15.5.
+- A REFUTE is described as "D_div's mean lead did not exceed the best baseline's at matched FA". It is not described as evidence against the existence of precursors.
+- The result states that REFUTE is the null's modal outcome on the A1 layout.
+
+**15.4 Positive control (R4; reported, no criterion).**
+- **Construction.** On the A1-structure layout, across the φ_y grid, at 57 eligible events, 200 replicates, fresh disjoint seeds: a sustained mean shift of δ × stationary SD over the final 1,000 steps before t_e, with white measurement noise of SD σ_m added to y.
+- **Calibration.** On calibration seeds, (δ, σ_m) is the smallest pair on the grid {0.5, 1, 2} × {1, 2, 4} at which D_div's population mean lead exceeds every baseline's by ≥ 100 steps.
+- **Reported:** the SUPPORT/INCONCLUSIVE/REFUTE rates.
+- If no pair achieves the margin, the result reports "no construction found in which D_div leads", cited beside E2.
+- Fixed and committed before any gradient-norm value is read.
+
+**15.5 φ̂_y on A1 (R5).**
+- **Definition.** φ̂_y is the lag-1 sample autocorrelation of y on A1's kept grid series, pooled over the blocks. It uses every pair of consecutive grid observations within a detector-series block (no pair crosses a gap), includes carried-forward observations, and takes no detrending. It is computed in E2's single run.
+- **Cell selection.** The φ_y grid value nearest φ̂_y on the linear scale, with ties to the larger value.
+- **Outside [0.5, 0.98].** The nearest edge cell is used, and the extension cells φ_y ∈ {0.3, 0.99} (A1-structure null, flip, effect and the 15.4 control) are pre-committed now and run before E2.
+
+**15.6 Severity cells for A1 (R7).** Every severity or power figure reported beside E2 is taken from the A1-structure cells (13.3 and 15.4) at the cell selected under 15.5. The per-step 57-event cells (11.1) are reported in the supplement only.
+
+**15.7 Dynamic-range instrument check (R8, R16; replaces 14.3's "No vacuous pass" clause; 14.3's construction is unchanged).**
+- **Pass, per φ_y and grid, at each pair (25, 75) and (75, 125).** Every baseline B1–B4 that detects ≥ 80 % of events at both L must have non-overlapping 10th–90th-percentile ranges of per-replicate mean lead between L and L + 50.
+- The cell fails unless at least one baseline qualifies at every pair.
+- **Reporting.** The grader prints the detection rate and range for every detector, D_div included, at every pair, vacuous or not.
+- **Seeds.** Graded on fresh evaluation seeds disjoint from cells 260–289 and from every earlier range.
+- **D_div.** Its rows are reported under 15.8 and not graded. Its (25, 75) rows are labelled "inside the A1.5 scope condition".
+
+**15.8 D_div lead response (R22; reported beside E2).** E2's result states:
+- D_div's 10th–90th-percentile ranges at L ∈ {75, 125} (per-step and grid-10, every φ_y);
+- its detection rates at every L in 14.3;
+- that, unlike B2 and B4, D_div's lead does not resolve 50-observation differences in precursor length at A = 6;
+- that E2 therefore tests whether D_div's mean lead exceeds the best baseline's, not whether D_div tracks precursor length.
+
+Two checks run on synthetic cells before E2, and are reported:
+- **(b)** with θ fixed at its long-series population value, whether D_div's 10–90 spread collapses while the baselines' does not;
+- **(c)** the regression of D_div's per-event lead on history length since the gap.
+
+**15.9 RNG (R9, partly withdrawn).**
+- Within a suite replicate, the E2 resamples use a fresh `default_rng(20261030)`, exactly as the E2 run on A1 will, because the suite validates the procedure as it will run. That part of R9 is withdrawn.
+- On real data, the E2, E1 and E5 generators are `default_rng(SeedSequence(20261030, spawn_key=(k,)))` with k = 1, 2, 3 respectively.
+
+**15.10 Items 19a–19f (R10).** Their text is appended verbatim in Appendix 15-A below. The 40 cells run under them were run at the commit recorded in DECISIONS entry 28. No item was changed after any of those cells was graded.
+
+**15.11 Detection probability at the observed effect (R11).**
+- Beside an INCONCLUSIVE, "detection probability at the observed effect" is the SUPPORT rate of the pre-committed cell (15.4 or 13.3, at the cell selected under 15.5) whose mean C_min is nearest the observed C_min, provided the difference is within ±25 % of the observed C_min.
+- Otherwise the result states "no suite cell measured detection probability at the observed effect".
+- 11.1's outcome rates are reported as power at that stated planted effect, not at the observed effect.
+
+**15.12 12.2 is a relaxation (R12).** Amendment 12.2 relaxes the frozen D.5 gate, and is recorded as a relaxation, not a scoping.
+- **(a)** A1's loss enumeration (DECISIONS entry 13) ran before any D.5 cell passed, after `scripts/tests/test_a1_events.py` had passed 20/20 at 81481b6.
+- **(b)** If a later gate (E1, E5, Leg B) fails after E2 is recorded, E2's label stands and the failure is reported beside it. The exception is a pipeline fault in code shared with E2: E2 is then re-run once with the corrected code, and both results are reported.
+
+**15.13 Detection rate (R13).** The detection rate in D.3 E2's "≤ 50 %" clause and in 14.3 is detected / eligible, as defined in 7.6. The rate including concurrent events is reported beside it.
+
+**15.14 Amendment 9.1 (R14).**
+- 9.1 changes B4's real-data behaviour after a reset, not only its wording.
+- For D-03 and D-04, the production code (`analysis/ops.py`) already followed the vendored source and was not changed.
+- The reference implementation was changed by its original author, a separate agent given DESIGN.md only, from the amended text alone (DECISIONS entry 20).
+
+**15.15 Pulse-sweep cells and the F1 null (R15, R6; S-3 RESCUE).**
+- **Relabelled.** The pulse-sweep cells (10.2) are relabelled "characterization: detector response to a one-observation pulse", with no criterion. 10.2's "Use in E2" is withdrawn.
+- **How F1 is discharged (JAE).** D.5's F1 clause, "including cells where every detector's detection rate at headline FA is between 30 % and 50 %", is declared **unattainable**. Detectors respond differently to the same planted shape, which is the S-3 evidence: no single pulse height, and no tested step height, puts all five in the band.
+- **Disclosed in the Methods:** the earlier replacement (10.2) was a RESCUE, because it could not fail by construction.
+- **If every detector's detection rate on A1 is ≤ 50 %,** the result states that the suite has no construction in which all five detectors sit jointly in 30–50 %. It reports instead the planted-null false-SUPPORT rate (13.3, at the cell selected under 15.5) and the step-precursor rates (10.3).
+- The E2 gate's pass condition therefore does not include an F1 cell.
+
+**15.16 Grading day and a suite hold (R17).** Implemented by Amendment 16.
+
+**15.17 Chance-lead asymmetry (R18; replaces the claim that the unequal-memory cell bounds D.2 P-HOLD note (i)'s second-order effect).**
+- **Reported from every planted-null cell,** including 13.3 on the A1 layout, per detector: the share of events with at least one in-window alarm, and the mean in-window chance lead.
+- The largest between-detector difference is stated in the Methods as the measured size of note (i)'s second-order effect.
+
+**15.18 Verification label (R19).**
+- The E2/§K entry is marked "verification pending (Phase 3 broken fixture)" until verify.py passes the D.5 broken fixture.
+- The label is not changed by verification, unless verify.py finds a value outside tolerance. That is then reported as a correction.
+
+**15.19 Seed map (R20).**
+- Child i is `SeedSequence(20261030, spawn_key=(i,))`.
+- A committed seed map (`scripts/suite/seed_map.md`) lists every index range with its cell, its purpose (calibration, exploratory or evaluation) and the commit at which it was first assigned. That commit must precede the first run using the range.
+
+**15.20 Gradient-norm status (R21).** As of this amendment, no gradient-norm value has entered any computation, for scoring or otherwise. The only operations on files containing g have been:
+- byte hashes;
+- D.1 non-null masks;
+- the cell-equality checks of the route-1b cross-checks;
+- the PRV self-test's scratch copy of run-025.
+
+**15.21 Decision flip (R26).**
+- The decision-flip REFUTE rates (0.825–0.950 per-step; 0.875–0.935 on the A1 layout) are stated in the Methods as the kill rule's measured power against short precursors.
+- The flip's binding criterion is recorded as a false-SUPPORT check, not as a demonstration that the rule returns REFUTE.
+
+**E2 gate pass condition (as of this amendment).**
+- Every committed hand-probe and unit test passes (`scripts/run_e2_gate_tests.py`), and reference agreement holds on every E2-chain cell.
+- Every graded statistical cell passes as amended through 15.21, with 15.7 replacing 14.3's grading and the pulse sweep reported only.
+- The reported items 15.4, 15.8(b)(c), 15.17 and the 15.5 extension cells have run.
+
+**Unchanged.** §K's thresholds, windows, spike definition and FA grid, and every other rule.
+
+### Appendix 15-A — items 19a–19f, verbatim from `verification/suite_findings.md`
+
+| # | Item | Construction |
+|---|---|---|
+| 19a | Geometry | Grid 10: three blocks of 155,000 steps with two 5,000-step gaps (no logged steps), giving 46,500 grid observations. Grid 1: one 50,000-step block. |
+| 19b | Events | Grid 10: 57, split evenly across blocks, uniform positions with spacing ≥ L_max + scan + grid, each with ≥ 1,000 grid observations of history plus the scan window. Residues forced to cycle 0–9. Grid 1: 20 events. |
+| 19c | Loss series | A deterministic period-4 base, 2.5 + 0.01·(0, 1, 0, −1), with a +0.1 spike at each planted t_e. The A1 spike rule (k = 4, dedup 2,000 on grid 10 and 200 on grid 1) must recover exactly the planted events, all eligible, in every replicate. |
+| 19d | Gradient norm | Per-step AR(1) for ln g with unit stationary SD and φ_step = φ_y^(1/grid). Observed at step mod grid = 0. Ramps are linear in steps, A × SD. |
+| 19e | Cells (200 replicates each) | Per φ_y: grid-10 null; grid-10 effect at L ∈ {640, 1,000, 1,500, 2,000} steps with A = 2; grid-10 short ramp L = 200, A = 2; grid-1 null; grid-1 effect at L = 100, A = 2. |
+| 19f | Criteria | Nulls: false-SUPPORT ≤ 0.05. Effect and short-ramp cells: reported (short ramp later graded, Amendment 13.2). The A1.7 "±10 steps" lead tolerance is superseded by Amendment 8.1's reference agreement. |
+
+## Amendment 16 (2026-11-08) — §K grading day re-set once, for a suite hold (15.16)
+
+**Status.** Appended below Amendment 15 under the append-only rule. Rationale: DECISIONS.md entries 34–35 (JAE).
+
+- **Record on the registered day.** On the registered grading day, 2026-11-20, the record is still made, in DECISIONS.md and RECORD.md (Date station): "E2 unrun — suite gate not met (S-3 RESCUE)", citing 15.16 and this amendment.
+- **Re-set, once.** §K's single re-set is used. The grading day becomes **2026-12-04**.
+  - The reason is recorded as "suite gate not met (S-3 RESCUE; DECISIONS entries 34–35)". It is never recorded as data availability.
+  - **2026-12-04 is final.** If E2 is unrun on that day, §K returns CLOSE with a null note titled "suite gate not met". The note reports S-1 to S-6, the failing cells and the review, and never cites data availability.
+- **Schedule.** The E2 gate (pass condition in Amendment 15) is scheduled to reach ALL PASS by 2026-12-01.
+- **Unchanged.** The AI2 route-3 cutoff stays **2026-11-13** (DECISIONS entry 2 Addendum C). The re-set moves when E2 runs, not which data it uses.
+- **Also unchanged.** §K's thresholds, windows, spike definition, FA grid and outcome partition.
