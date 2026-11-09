@@ -1019,3 +1019,23 @@ Sources: the project files `thedivergencetheorem.pdf`, `theadaptationratetheorem
    - `grade_suite.py` writes those cells as REPORTED with the 15.4 wording, instead of INCOMPLETE.
    - Cells 320, 321 and 325 run as committed.
 4. **Reading of the E2-gate condition "15.4 has run" — provisional, pending JAE.** The condition is met when the calibration has run, the no-construction result is reported for 0.9, 0.95, 0.98 and 0.99, and the pos_ctrl cells at 0.3, 0.5 and 0.8 have run.
+
+## Entry 37 (2026-11-09) — Suite ALL PASS after the Amendment 15 cells; 15.8 check (b) construction fixed (v1 superseded)
+
+1. **Suite verdict** (commit e7abad6; `verification/suite_verdict.md` MD5 05816e3a1b05009177fdb26a72e5deeb): **ALL PASS.**
+   - Reference agreement: 269/269 E2-chain cells identical.
+   - 15.7 instrument check: 10/10 dynamic-range groups PASS; B2 qualifies and separates in every group.
+   - Extension nulls φ 0.3 / 0.99: false-SUPPORT 0.020 / 0.005. Flips: SUPPORT 0.000 at both.
+   - Reported: extension effect cells SUPPORT/INCONCL/REFUTE 0.480/0.275/0.245 (φ 0.3) and 0.015/0.335/0.650 (φ 0.99). Positive control 0.910/0.070/0.020 (φ 0.3), 0.670/0.245/0.085 (φ 0.5), 0.540/0.315/0.145 (φ 0.8).
+   - Chance-lead report (15.17): every cell run; largest between-detector difference 15.5 steps (cell 206). MD5 ced6fb48ac46899316230a58228d34cc.
+2. **15.8 check (b), v1 defect (code only).** v1 fixed θ at the median of the matched θ over 20 null series.
+   - On those series D_div's matched θ is often non-finite: its divergence percentile reaches its ceiling outside the scan more often than the P-FA budget allows. At grid 10 every probed null series was unmatchable.
+   - The median was therefore infinite, D_div never alarmed under the "fixed" θ, and v1's fixed-θ D_div ranges ([0,0] at grid 10) are an artifact, not a collapse.
+   - v1 output kept as `verification/ddiv_response_15_8_v1_superseded.md` (MD5 f973725da2e4fece835c86ffd6f241c9). Not reported.
+3. **v2** (`check_ddiv_response.py` MD5 50fd32b459a4c8b93a96c216c8e75ce9).
+   - Fixed θ is the cell's population value: the median of the finite matched θ over the same cell's 100 ramp replicates. The number finite is reported per detector.
+   - The null-series matchability count is reported as its own table.
+   - Seeds unchanged. (c) is unchanged; its v1 numbers are recomputed by v2 on the same seeds.
+   - Probes and a 3-replicate smoke run on diagnostic seeds are disclosed in the seed map.
+   - **Pending JAE:** this reading of "θ fixed at its long-series population value".
+4. **`run_e2_gate_tests.py`** was invoked without its two arguments (data-store root, scratch dir) and exited on an IndexError before running any test. Re-run with arguments.

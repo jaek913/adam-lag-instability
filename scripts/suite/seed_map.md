@@ -366,6 +366,8 @@ Child index i means `numpy.random.SeedSequence(20261030, spawn_key=(i,))` (`anal
 | 43,000,000–43,000,019 | dynamic-range probe (`probe_dynamic_range.py`) |
 | 44,000,000–44,019,399 | Amendment 15.8 (b)(c) D_div lead-response checks (`check_ddiv_response.py`): check k = 0…9 uses 44,000,000 + k·2,000 + {0–19 population θ, 100–199 L = 75, 300–399 L = 125} |
 | 44,000,000–44,000,001 | development smoke run of `check_ddiv_response.py` (2026-11-08; no output kept) |
+| 44,000,000–44,000,002; 44,010,000–44,010,005 | θ-matchability probes on null series for the v1 → v2 fix of `check_ddiv_response.py` (2026-11-09; printed only) |
+| 44,000,000–44,000,002, 44,000,100–102, 44,000,300–302; 44,002,000–002, 44,002,100–102, 44,002,300–302 | smoke run of `check_ddiv_response.py` v2 at 3 replicates, φ 0.9 only (2026-11-09; output overwritten by the full run) |
 | 5,000,000+ | early null-timing probe (2026-10-31; killed, no output kept) |
 
 Pre-SeedSequence probes (`scripts/tests/probe_oracle_criterion.py`, S-1) used `default_rng([20261030, 999, r])`, a different seeding, not a child index.
