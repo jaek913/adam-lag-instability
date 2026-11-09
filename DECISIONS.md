@@ -1058,3 +1058,16 @@ Sources: the project files `thedivergencetheorem.pdf`, `theadaptationratetheorem
    - Every graded cell passes (entry 37.1).
    - 15.4, 15.8(b)(c), 15.17 and the 15.5 extension cells have run.
 5. **Next:** PRV and E2 on the AI2 route-3 data, cutoff 2026-11-13 (unchanged), before the final grading day of 2026-12-04. The 2026-11-20 record (Amendment 16) is made on that day. Timing of E2 relative to 2026-11-20: **pending JAE.**
+
+## Entry 39 (2026-11-09, JAE) — No route-3 reply; E2 to run 2026-11-14; DESIGN Amendment 17
+
+1. **Route 3 status.** As of 2026-11-09, 13:33 CT, JAE reports no reply from AI2 (olmo@allenai.org) to the 2026-10-30 request (entry 2, item 7). Nothing has been received. The cutoff stays 2026-11-13.
+2. **Why 2026-11-20 does not hold E2.** §K set 2026-11-20 as preregistration + 21 days, a latest-record date, not a waiting period. The binding date is the route-3 cutoff, which settles which data E2 uses.
+3. **Decision (JAE).**
+   - E2 runs on 2026-11-14, after the cutoff, on the data Addendum C selects then.
+   - PRV runs the same day, before E2.
+   - DESIGN Amendment 17 replaces Amendment 16's fixed 2026-11-20 sentence, so the record stays true whichever case holds.
+4. **Before 2026-11-14:**
+   - any route-3 reply is recorded here and in SOURCES.md;
+   - the PRV procedure and the E2 run command are staged for JAE's review.
+   - No gradient-norm value is read before the E2 run (15.20).

@@ -931,3 +931,21 @@ Two checks run on synthetic cells before E2, and are reported:
 - **Schedule.** The E2 gate (pass condition in Amendment 15) is scheduled to reach ALL PASS by 2026-12-01.
 - **Unchanged.** The AI2 route-3 cutoff stays **2026-11-13** (DECISIONS entry 2 Addendum C). The re-set moves when E2 runs, not which data it uses.
 - **Also unchanged.** §K's thresholds, windows, spike definition, FA grid and outcome partition.
+
+## Amendment 17 (2026-11-09) — E2 run date and the 2026-11-20 record, after the gate was met early
+
+**Status.** Appended below Amendment 16 under the append-only rule. Rationale: DECISIONS.md entries 38–39 (JAE). Written before any gradient-norm value is read (15.20 unchanged).
+
+- **Why.** The E2 gate pass condition was met on 2026-11-09 (entry 38), before the 2026-11-20 record day. Amendment 16 worded that day's record for a gate still unmet. This amendment replaces that wording only.
+- **E2 run date.** E2 runs on **2026-11-14** or the first day after it on which PRV passes, and in any case before 2026-12-04. It uses the data selected by DECISIONS entry 2 Addendum C, settled at the 2026-11-13 cutoff:
+  - route 3, if it arrives by then, passes D.1 and matches the gated segments;
+  - otherwise the gated W&B segments.
+- **Verdict record.** The §K verdict is recorded in DECISIONS.md and RECORD.md (Date station) on the day E2 runs.
+- **Record on 2026-11-20.** The Amendment 16 sentence is replaced by the following, made on that day in DECISIONS.md and RECORD.md:
+  - if E2 has run: "E2 run on ‹date› under the §K re-set (Amendment 16); E2 gate met 2026-11-09; verdict recorded ‹date›";
+  - if not: "E2 unrun; E2 gate met 2026-11-09; re-set grading day 2026-12-04", citing this amendment.
+- **Unchanged.**
+  - The re-set grading day of 2026-12-04 is final. A miss returns CLOSE with the Amendment 16 null note.
+  - The route-3 cutoff of 2026-11-13.
+  - One real run.
+  - §K's thresholds, windows, spike definition, FA grid and outcome partition.
