@@ -1039,3 +1039,22 @@ Sources: the project files `thedivergencetheorem.pdf`, `theadaptationratetheorem
    - Probes and a 3-replicate smoke run on diagnostic seeds are disclosed in the seed map.
    - **Pending JAE:** this reading of "θ fixed at its long-series population value".
 4. **`run_e2_gate_tests.py`** was invoked without its two arguments (data-store root, scratch dir) and exited on an IndexError before running any test. Re-run with arguments.
+
+## Entry 38 (2026-11-09, JAE) — Readings in entries 36–37 approved; E2 gate pass condition MET
+
+1. **Approved by JAE ("proceed as recommended on both questions").**
+   - Entry 36.4: "15.4 has run" is met by the calibration, the reported "no construction found" at φ_y 0.9, 0.95, 0.98 and 0.99, and the pos_ctrl cells at 0.3, 0.5 and 0.8.
+   - Entry 37.3: in 15.8(b), "θ fixed at its population value" is the median of the finite matched θ over the cell's own replicates.
+2. **`run_e2_gate_tests.py`:** E2 GATE TESTS ALL PASS, 11/11. Scratch dir `C:\Users\jaek9\Documents\LaggingTruth\scratch\e2-gate-2026-11-09`.
+3. **15.8 checks, v2** (`verification/ddiv_response_15_8.md` MD5 d079a18fd8246978c486c06759e2ad11; reported).
+   - **(b)** With θ fixed, D_div's 10–90 % spread narrows sharply: grid 10, φ 0.5, L 75, from [77,311] to [163,197]; per-step, φ 0.5, L 75, from [13,46] to [30,46]. B1 and B2 narrow little. B3 and B4 narrow partly (B4 by up to about half, at φ ≥ 0.95).
+   - With θ fixed, D_div's L 75 and L 125 ranges no longer overlap at grid 10, at every φ_y. Most of D_div's spread, and its failure to resolve precursor length under matched θ, therefore comes from per-series θ variation.
+   - On null series D_div is matchable in only 3–4 of 20 series at grid 10, and 15–18 of 20 per-step. Every baseline is matchable in 20/20.
+   - **(c)** D_div's per-event lead falls with history length since the series or gap start: at grid 10, −0.012 to −0.024 steps per observation, R² 0.06–0.17; per-step, −0.0001 to −0.0005, R² 0.01–0.07. B2: slope ≈ 0, R² ≤ 0.003.
+   - E2 grades under matched θ, as registered. The 15.8 statements beside E2 stand. These results are added to them as the measured cause.
+4. **E2 gate pass condition (Amendment 15): MET on 2026-11-09**, ahead of the 2026-12-01 schedule.
+   - Every hand-probe and unit test passes.
+   - Reference agreement holds on all 269 E2-chain cells.
+   - Every graded cell passes (entry 37.1).
+   - 15.4, 15.8(b)(c), 15.17 and the 15.5 extension cells have run.
+5. **Next:** PRV and E2 on the AI2 route-3 data, cutoff 2026-11-13 (unchanged), before the final grading day of 2026-12-04. The 2026-11-20 record (Amendment 16) is made on that day. Timing of E2 relative to 2026-11-20: **pending JAE.**
