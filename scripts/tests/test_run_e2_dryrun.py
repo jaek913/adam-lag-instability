@@ -78,7 +78,14 @@ def main():
     rc3, txt3 = call("--dry-run", store, "--out", os.path.join(scratch, "e2out_corrupt"), "--sources", src)
     ok("one flipped byte halts at PRV", rc3 != 0 and "PRV hash check failed" in txt3)
     rc4, txt4 = call("--real", store, "--out", os.path.join(scratch, "e2out_real"), "--sources", src)
-    ok("--real with overridden --sources halts", rc4 != 0 and "--sources may not be overridden" in txt4)
+    ok("--real halts at the first guard (date window, sign-off, or sources override)", rc4 != 0 and "HALT" in txt4
+       and not os.path.exists(os.path.join(scratch, "e2out_real")))
+    import datetime
+    if not datetime.date(2026, 11, 14) <= datetime.date.today() <= datetime.date(2026, 12, 3):
+        ok("--real outside 2026-11-14..2026-12-03 halts on the date guard", "a real run is allowed only" in txt4)
+    rc5, txt5 = call("--real", store, "--out", os.path.join(scratch, "e2out_real2"), "--signoff-entry", "1")
+    ok("--real never reaches PRV or the store without a valid sign-off", rc5 != 0 and "PRV" not in txt5
+       and not os.path.exists(os.path.join(scratch, "e2out_real2")))
     for n, c in CHECKS:
         print(("PASS " if c else "FAIL ") + n)
     print("ALL PASS" if all(c for _, c in CHECKS) else "FAILED")

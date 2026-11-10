@@ -1095,3 +1095,17 @@ Sources: the project files `thedivergencetheorem.pdf`, `theadaptationratetheorem
   - The Methods state that the training commit is unrecorded on the public copies.
   - The data-level clipping-rate check was not adopted.
 - SOURCES.md was corrected to match, and `verification/prv_e2.md` was updated: items 1–4 and 6 are done, items 5 and 7 are checked at run time, and the sign-off is pending.
+
+## Entry 42 (2026-11-10) — Premature E2 invocation halted at the first guard; no data read
+
+1. **What happened.** At 08:55 CT on 2026-11-10, JAE ran `scripts/run_e2.py --real <store>`. That was four days before the date fixed by Amendment 17 and before the 2026-11-13 route-3 cutoff. The command had been listed in the 11-14 plan, not given as a step to run that day.
+2. **Effect: none on the data.** The script halted at step 1, the clean-tree guard, because `scripts/outputs/_stitch_committed_300c534.py` is untracked. It printed "HALT: uncommitted changes in guarded paths". Step 1 runs before the PRV hash check and before any file in the store is opened, so:
+   - no store file was opened;
+   - no gradient-norm value was read (15.20 stands);
+   - no output was written: `scripts/outputs/e2/` does not exist.
+   This is not E2's single run.
+3. **Process fix.** The E2 command is given only on the run day, after the route-3 status and the D.6 sign-off are recorded, and is labelled as the run step. Before the run, the untracked helper is moved out of the repository, so the clean-tree guard passes on a deliberate run.
+4. **Guard added (code only).** The clean-tree guard stopped this run by accident, so `scripts/run_e2.py` now refuses a real run unless:
+   - the date is between 2026-11-14 and 2026-12-03; and
+   - `--signoff-entry N` names a DECISIONS.md entry dated today that contains "D.6 sign-off".
+   Both checks run before the PRV hash check and before any store file is opened. `run_e2.py` MD5 e8c2726e592732d1bd9e61182a36e9e6. The dry-run test (`test_run_e2_dryrun.py` MD5 5cf0cc6f843df87c2f872e6849dc484d) passes all checks, including the date guard and a real run with no valid sign-off.

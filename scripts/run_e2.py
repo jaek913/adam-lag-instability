@@ -1,7 +1,8 @@
 """E2: the single real run on A1 (DESIGN D.2-D.3 as amended through Amendment 17; §K: one real run).
 
 Order, each step halting on failure:
-  1. Guards: the working tree is clean for analysis/, scripts/, reference/ and the DESIGN/DECISIONS files; the
+  1. Guards: a real run only between 2026-11-14 and 2026-12-03, and only with --signoff-entry naming a
+     DECISIONS.md entry dated today that contains "D.6 sign-off"; the working tree is clean for analysis/, scripts/, reference/ and the DESIGN/DECISIONS files; the
      output file does not exist yet (one real run); HEAD is recorded.
   2. PRV data integrity (D.6 item 7; Amendment 14.2): scripts/prv_hash_check.py on the store.
   3. Load A1's kept grid series (analysis/a1_loader.py; Amendment 2 ownership; A1.1 dropped observations) and the
@@ -15,11 +16,13 @@ Order, each step halting on failure:
      by hand, the same day (Amendment 17).
 
 Usage:
-  python scripts/run_e2.py --real <store_root>
+  python scripts/run_e2.py --real <store_root> --signoff-entry <N>   (2026-11-14 .. 2026-12-03 only)
   python scripts/run_e2.py --dry-run <synthetic_store> --out <scratch> --sources <synthetic SOURCES> (test use)
 """
 import argparse
+import datetime
 import hashlib
+import re
 import json
 import math
 import os
@@ -37,6 +40,8 @@ PHI_GRID = [0.5, 0.8, 0.9, 0.95, 0.98]                   # the phi_y grid (15.5 
 FA_HEADLINE, FA_OTHERS = 1.0, [0.5, 2.0, 5.0]
 GRID, SCAN, RUNG = 10, 1280, "4.0"
 GUARDED = ["analysis", "scripts", "reference", "DESIGN.md", "DECISIONS.md", "SOURCES.md"]
+EARLIEST = datetime.date(2026, 11, 14)                   # Amendment 17: after the 2026-11-13 route-3 cutoff
+LATEST = datetime.date(2026, 12, 3)                      # the final grading day is 2026-12-04 (Amendment 16)
 
 
 def git(*a):
@@ -90,6 +95,8 @@ def main():
     mode.add_argument("--dry-run", metavar="SYNTH_STORE")
     ap.add_argument("--out", default=os.path.join(ROOT, "scripts", "outputs", "e2"))
     ap.add_argument("--sources", default=os.path.join(ROOT, "SOURCES.md"))
+    ap.add_argument("--signoff-entry", type=int, default=None,
+                    help="real run only: the DECISIONS.md entry number that records the D.6 sign-off")
     a = ap.parse_args()
     store = a.real or a.dry_run
     out_json = os.path.join(a.out, "e2_result.json")
@@ -97,6 +104,15 @@ def main():
     # 1. guards
     head = git("rev-parse", "HEAD")
     if a.real:
+        today = datetime.date.today()
+        if not EARLIEST <= today <= LATEST:
+            halt(f"today is {today}; a real run is allowed only from {EARLIEST} to {LATEST} (Amendments 16-17)")
+        if a.signoff_entry is None:
+            halt("--signoff-entry is required for a real run (D.6 sign-off recorded in DECISIONS.md)")
+        dec = open(os.path.join(ROOT, "DECISIONS.md"), encoding="utf-8").read()
+        m = re.search(rf"^## Entry {a.signoff_entry} \(([0-9-]+)[^\n]*\n(.*?)(?=^## |\Z)", dec, re.S | re.M)
+        if not m or "D.6 sign-off" not in m.group(0) or m.group(1) != today.isoformat():
+            halt(f"DECISIONS entry {a.signoff_entry} is not a D.6 sign-off dated today ({today})")
         if os.path.abspath(a.sources) != os.path.join(ROOT, "SOURCES.md"):
             halt("--sources may not be overridden in a real run")
         dirty = git("status", "--porcelain", "--", *GUARDED)
