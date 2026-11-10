@@ -1071,3 +1071,19 @@ Sources: the project files `thedivergencetheorem.pdf`, `theadaptationratetheorem
    - any route-3 reply is recorded here and in SOURCES.md;
    - the PRV procedure and the E2 run command are staged for JAE's review.
    - No gradient-norm value is read before the E2 run (15.20).
+
+## Entry 40 (2026-11-10) — PRV item 3 (pre-clip): the public runs do not record the training commit
+
+1. **What was read.** On 2026-11-10, W&B GraphQL metadata for the seven runs E2 uses and for run-025, read in JAE's Chrome: `commit`, `createdAt`, `runInfo` and `config`. No history value was read. Saved as `scripts/outputs/prv_item3_metadata.json` (MD5 5637c4e601521bc9e9ac208eaaa328b4).
+2. **Finding: the recorded commit is the copy job's, not training's.** Every run's `runInfo.program` is `scripts/copy_wandb_runs.py`, created 2024-04-17/18. Its `commit` is the commit the copy script ran from:
+   - `bd7cf5f4` for runs 001–018;
+   - `43a155fa` for run-025.
+   Both commits are on `origin/epwalsh/wandb-wrangling`. The training commit of the original runs is not recorded on the public copies, and the original projects are not visible to an outside account (entry 2, Addendum B item 8).
+   - **Correction:** entry 5 item 5 and SOURCES.md call `43a155faf0c4…` "the training commit recorded on the run". It is the copy job's commit. Entry 5's cadence finding still holds: `metrics_log_interval: 10` is in the copied config, and the logged steps agree with it.
+3. **Config (copied from training).** Every used run has AdamW with betas [0.9, 0.95] (D.6 item 6 confirmed per run), `metrics_log_interval` 10, `max_grad_norm` 1 and `max_grad_norm_ratio` null, so clipping is global and fixed.
+4. **Code evidence.** In every version of `olmo/optim.py` from d4744d08 (2023-10-12, "Bring back global gradient clipping") through d2afcaaf (2024-04-12), and at bd7cf5f4 and 43a155fa:
+   - `total_grad_norm` is computed from the unclipped gradients and stored in the metrics before any clipping call;
+   - `_do_global_fixed_clipping` reads that stored value;
+   - the wrangling branch has no `optim.py` change of its own.
+   Any training commit from that window therefore logs the pre-clip norm.
+5. **Item 3 cannot be met as written.** D.6 item 3 asks for a check against the training commit in each run's config, and no such commit is recorded. **Proposed resolution, pending JAE:** item 3 is closed on the code evidence in item 4 together with the copied config. The Methods state that the training commit is unrecorded on the public copies, and that the pre-clip status rests on every `optim.py` version of the training period.

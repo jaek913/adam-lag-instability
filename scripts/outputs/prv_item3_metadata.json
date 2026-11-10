@@ -1,0 +1,19 @@
+{
+ "read_utc": "2026-11-10T14:50Z",
+ "source": "W&B (CoreWeave Forge) GraphQL https://api.forge.coreweave.com/graphql, project ai2-llm/OLMo-7B, JAE's signed-in Chrome; fields commit, createdAt, runInfo.program, runInfo.git.commit, config (optimizer, max_grad_norm, max_grad_norm_ratio). Metadata only; no history value read.",
+ "runs": {
+  "run-001": {"id": "ucv77bvt", "commit": "bd7cf5f4f39749a91e47271b0e64edcd111e19c3", "created": "2024-04-17T23:16:04Z", "program": "/home/petew/OLMo/scripts/copy_wandb_runs.py", "betas": [0.9, 0.95], "metrics_log_interval": 10, "max_grad_norm": 1, "max_grad_norm_ratio": null, "optimizer": "adamw"},
+  "run-008": {"id": "bnzb4pmk", "commit": "bd7cf5f4f39749a91e47271b0e64edcd111e19c3", "created": "2024-04-18T00:36:17Z", "program": "/home/petew/OLMo/scripts/copy_wandb_runs.py", "betas": [0.9, 0.95], "metrics_log_interval": 10, "max_grad_norm": 1, "max_grad_norm_ratio": null, "optimizer": "adamw"},
+  "run-010": {"id": "wqjq7xzw", "commit": "bd7cf5f4f39749a91e47271b0e64edcd111e19c3", "created": "2024-04-18T01:08:33Z", "program": "/home/petew/OLMo/scripts/copy_wandb_runs.py", "betas": [0.9, 0.95], "metrics_log_interval": 10, "max_grad_norm": 1, "max_grad_norm_ratio": null, "optimizer": "adamw"},
+  "run-013": {"id": "7lr31kjd", "commit": "bd7cf5f4f39749a91e47271b0e64edcd111e19c3", "created": "2024-04-18T03:25:20Z", "program": "copy_wandb_runs.py", "betas": [0.9, 0.95], "metrics_log_interval": 10, "max_grad_norm": 1, "max_grad_norm_ratio": null, "optimizer": "adamw"},
+  "run-016": {"id": "0g0rjkxo", "commit": "bd7cf5f4f39749a91e47271b0e64edcd111e19c3", "created": "2024-04-18T04:51:53Z", "program": "copy_wandb_runs.py", "betas": [0.9, 0.95], "metrics_log_interval": 10, "max_grad_norm": 1, "max_grad_norm_ratio": null, "optimizer": "adamw"},
+  "run-017": {"id": "d4g44zcc", "commit": "bd7cf5f4f39749a91e47271b0e64edcd111e19c3", "created": "2024-04-18T08:26:45Z", "program": "copy_wandb_runs.py", "betas": [0.9, 0.95], "metrics_log_interval": 10, "max_grad_norm": 1, "max_grad_norm_ratio": null, "optimizer": "adamw"},
+  "run-018": {"id": "50br7dzw", "commit": "bd7cf5f4f39749a91e47271b0e64edcd111e19c3", "created": "2024-04-18T10:53:10Z", "program": "copy_wandb_runs.py", "betas": [0.9, 0.95], "metrics_log_interval": 10, "max_grad_norm": 1, "max_grad_norm_ratio": null, "optimizer": "adamw"},
+  "run-025": {"id": "u3obk6mj", "commit": "43a155faf0c41c849fc2e14fe375a6bc57ed89fb", "created": "2024-04-18T15:20:05Z", "program": "copy_wandb_runs.py", "betas": [0.9, 0.95], "metrics_log_interval": 10, "max_grad_norm": 1, "optimizer": "adamw", "note": "not used by E2 (fails D.1)"}
+ },
+ "code": {
+  "repo": "https://github.com/allenai/OLMo (blobless clone 2026-11-10)",
+  "commit_branch": "bd7cf5f4 'update for OLMo-1.7-7B' (2024-04-17) and 43a155fa 'add annealing run' (2024-04-18) are on origin/epwalsh/wandb-wrangling; that branch has no olmo/optim.py change of its own relative to origin/main",
+  "optim_py_order": "in every version of olmo/optim.py from d4744d08 (2023-10-12, 'Bring back global gradient clipping') through 6c0e4196, c205912b, 0c58beed, d2afcaaf (2024-04-12), bd7cf5f4 and 43a155fa: total_grad_norm is computed from the unclipped gradients and stored in the metrics dict (line ~170-199) before _do_global_fixed_clipping / _do_adaptive_clipping is called (line ~204-206), and the clipping reads that stored value"
+ }
+}
