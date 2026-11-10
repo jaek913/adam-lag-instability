@@ -1087,3 +1087,11 @@ Sources: the project files `thedivergencetheorem.pdf`, `theadaptationratetheorem
    - the wrangling branch has no `optim.py` change of its own.
    Any training commit from that window therefore logs the pre-clip norm.
 5. **Item 3 cannot be met as written.** D.6 item 3 asks for a check against the training commit in each run's config, and no such commit is recorded. **Proposed resolution, pending JAE:** item 3 is closed on the code evidence in item 4 together with the copied config. The Methods state that the training commit is unrecorded on the public copies, and that the pre-clip status rests on every `optim.py` version of the training period.
+
+## Entry 41 (2026-11-10, JAE) — PRV item 3 closed on the code evidence
+
+- **JAE accepted entry 40's proposed resolution** by committing it (cbc7bb2, 2026-11-10 08:53 CT).
+  - D.6 item 3 is closed on the `optim.py` code evidence and the copied config.
+  - The Methods state that the training commit is unrecorded on the public copies.
+  - The data-level clipping-rate check was not adopted.
+- SOURCES.md was corrected to match, and `verification/prv_e2.md` was updated: items 1–4 and 6 are done, items 5 and 7 are checked at run time, and the sign-off is pending.

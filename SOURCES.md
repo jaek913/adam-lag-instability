@@ -11,8 +11,8 @@ Per-file record required by DESIGN §D.1 ("Per-file record (SOURCES.md)"). Opene
 
 **Series fields (Phase 2 SOURCES box; DECISIONS entry 14):**
 - **Metric names as logged:** `train/CrossEntropyLoss` (loss) and `optim/total_grad_norm` (gradient norm). Also staged: `optim/learning_rate_group0` and `optim/clipping_rate`. Columns are resolved by name.
-- **Step cadence:** loss every step. Gradient norm only on steps with step mod 10 = 0 (run config `optimizer.metrics_log_interval: 10`; training commit `43a155f`; DECISIONS entry 5, Discrepancy Register D-01). It is present on every such step in all seven used segments (entry 9).
-- **Pre-/post-clip:** pre-clip per allenai/OLMo `olmo/optim.py` at main 090253d (DECISIONS entry 2). The check against the run's own training commit `43a155faf0c41c849fc2e14fe375a6bc57ed89fb` is a PRV item (DESIGN D.6 item 3) and is still open.
+- **Step cadence:** loss every step. Gradient norm only on steps with step mod 10 = 0 (run config `optimizer.metrics_log_interval: 10`, in all seven used runs and run-025; DECISIONS entries 5 and 40, Discrepancy Register D-01). It is present on every such step in all seven used segments (entry 9).
+- **Pre-/post-clip:** pre-clip. The public runs record the commit of AI2's copy job (`bd7cf5f4` for runs 001–018, `43a155fa` for run-025), not the training commit, which is unrecorded. In every version of allenai/OLMo `olmo/optim.py` from d4744d08 (2023-10-12) through d2afcaaf (2024-04-12), and at both copy commits, `total_grad_norm` is computed before clipping. PRV item 3 is closed on that evidence (DECISIONS entries 40–41). An earlier version of this line called `43a155f` the training commit; that was wrong.
 - **Export timestamps:** the downloaded (UTC) column below.
 - **Replicator tolerance:** exact (static copies).
 - **Assembly:** DESIGN Amendment 2 (P-SEG); `verification/A1_structural_report.md`.
