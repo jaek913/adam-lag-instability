@@ -1372,3 +1372,14 @@ JAE signs off the Pre-Run Verification Protocol for E2. The run command is issue
 4. **Block shuffle.** One shuffle of y in 128-observation pieces within each block, using `SeedSequence(20261030, spawn_key=(3, 1))`. Thresholds are re-matched at headline FA by `pipeline.run`. Reported: D_div's matchability, mean lead and rate.
 
 **Expected degenerate case, stated in advance.** D_div's headline θ on A1 is ∞ (entry 47), so its alarm series is empty. The real rate and every shifted rate are then 0, and the flag trips by construction. E5 is reported as uninformative at the headline FA for that reason; it is not a finding about alignment.
+
+## Entry 52 (2026-11-16) — E5 result: degenerate at headline, as stated in advance; block shuffle also unmatchable
+
+- Run once, `analysis/post/e5.py` at 97de969. PRV: 77 files, 0 failed. Output `analysis/outputs/post/e5_result.json`, MD5 7a3acdb35d8683c2ffca02247ab1f217.
+- **Primary.** D_div's headline θ = ∞ (not matchable, n* = 4), so its alarm series has 0 alarm steps.
+  - Real advance-ordering rate 0.0, real mean lead 0.
+  - All 1,000 shifted copies: rate 0.0, mean lead 0 (5–95 % range [0, 0]).
+  - The flag is tripped by construction, as stated in advance in entry 51. **E5 is uninformative at the headline FA.**
+  - The 7.4-stream sensitivity is identical.
+- **Block shuffle (second characterization).** After a 128-observation block shuffle of y, D_div is still not matchable at headline FA: mean lead 0, rate 0.
+  - This agrees with X2 (entry 49). D_div's unmatchability does not depend on the alignment of y with the events, or on its ordering beyond 128-observation pieces. It is a property of the percentile score on series like A1's.

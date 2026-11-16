@@ -1,0 +1,42 @@
+{
+ "primary": {
+  "real_rate": 0.0,
+  "real_mean_lead": 0.0,
+  "shift_rate_median": 0.0,
+  "shift_rate_p05_p95": [
+   0.0,
+   0.0
+  ],
+  "shift_mean_lead_median": 0.0,
+  "shift_mean_lead_p05_p95": [
+   0.0,
+   0.0
+  ],
+  "flag_tripped": true,
+  "n_alarm_steps": 0,
+  "theta": Infinity,
+  "matchable": false,
+  "nstar": 4
+ },
+ "sensitivity_rng_7_4": {
+  "real_rate": 0.0,
+  "real_mean_lead": 0.0,
+  "shift_rate_median": 0.0,
+  "shift_rate_p05_p95": [
+   0.0,
+   0.0
+  ],
+  "shift_mean_lead_median": 0.0,
+  "shift_mean_lead_p05_p95": [
+   0.0,
+   0.0
+  ],
+  "flag_tripped": true,
+  "n_alarm_steps": 0
+ },
+ "block_shuffle": {
+  "D_div_matchable": false,
+  "D_div_mean_lead": 0.0,
+  "D_div_rate": 0.0
+ }
+}
