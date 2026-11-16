@@ -1262,3 +1262,54 @@ JAE signs off the Pre-Run Verification Protocol for E2. The run command is issue
 **Order.** X1, X2, X3 (fast, read-only, answer JAE's question); then E1, E5, E4.
 
 **Code and outputs.** Scripts go in `analysis/post/`, outputs in `analysis/outputs/post/` (JSON). They read the store through `analysis/a1_loader.py` after the PRV hash check. The committed E2 code is not changed.
+
+## Entry 49 (2026-11-16) — X1–X3 results (exploratory; plan in entry 48, committed at 44fbbe3 before computation)
+
+**Run.** `analysis/post/x_diag.py` at 44fbbe3. PRV hash check: 77 files, 0 failed. Output `analysis/outputs/post/x_diag.json`, MD5 4784018d84b59df423ada566d5e2bf1d (SHA-256 95c02ca7d50a908ccb42bc558006da229b63c361e323e82f338e94cd403f075d).
+
+**X1 — precursor existence. Fixed reading: "precursor present (p < 0.05)", but it is short.**
+- Rise statistic: events median +0.084 SD against controls −0.103 SD. One-sided Mann–Whitney p = 8.4 × 10⁻⁵ (57 events, 2,000 controls).
+- Share of rises above 2 SD: events 6/57 (10.5 %), controls 3.3 %. Above 1 SD: 14/57.
+- **Event-locked mean of y** (ln-units above baseline; offsets in steps before t_e^g):
+
+  | offset | events | control |
+  |---|---|---|
+  | −1,280 | −0.06 | +0.01 |
+  | −320 | −0.04 | +0.01 |
+  | −130 | +0.06 | +0.01 |
+  | −60 | +0.01 | 0.00 |
+  | −30 | +0.04 | −0.01 |
+  | −10 | **+0.20** | 0.00 |
+  | 0 | **+1.15** | 0.00 |
+  | +10 | **+2.11** | −0.01 |
+
+- **Shape.** The gradient norm is flat until the last logged observation before the loss spike (10 steps earlier, +0.20). It jumps with the spike itself (+1.15 at t_e^g; about ×8 in g at +10 steps). The statistically detectable precursor is confined, on average, to the final grid observation, one 10-step logging interval. A few events show earlier rises (6 above 2 SD).
+
+**X2 — D_div's unmatchability. Fixed reading: "unmatchable in every sub-series with n* ≥ 1: a detector property, not data coverage".**
+
+| sub-series | N_out | c_top | n* | unmatchable |
+|---|---|---|---|---|
+| whole | 36,277 | 10 | 4 | yes |
+| block 1 (52,301–160,500) | 7,498 | 5 | 1 | yes |
+| block 2 (160,601–504,500) | 28,488 | 4 | 3 | yes |
+| block 2, first half | 13,744 | 2 | 1 | yes |
+| block 2, second half | 13,873 | 3 | 1 | yes |
+| block 0 (1–14,200) | 291 | 1 | 0 | not read (n* = 0) |
+
+- **Projection.** With route 3, A1 would gain about 7,694 grid observations, and n* stays 4 (N_out ≈ 43,971). The whole series' c_top = 10 > 4, so D_div would still be unmatchable.
+
+**X3 — event representativeness (reported, no verdict).**
+
+| block | eligible events | per 10,000 observations | median rise |
+|---|---|---|---|
+| block 0 | 1 | 7.0 | +0.96 |
+| block 1 | 18 | 16.6 | −0.03 |
+| block 2 | 38 | 11.0 | +0.10 |
+
+- Block 0 has a single event, so nothing can be said about the missing early range 14,211–52,300 beyond its absence.
+
+**Bearing on JAE's question (summary for the null note; exploratory).**
+1. **D_div's failure does not depend on the missing data.** It is unmatchable in every sub-series that can be matched at all, and at the projected full-run n*. Its percentile score reaches its ceiling outside spike windows more often than the false-alarm budget allows.
+2. **Why no baseline led either.** The gradient-norm rise arrives, on average, within the last 10-step logging interval before the loss spike. A precursor that short leaves almost no room for a lead at grid 10, and the headline budget (n* = 4) forces thresholds above all but a handful of excursions.
+3. **What route 3 could not have changed.** It would have been AI2's full export of the same runs. The gradient norm is logged every 10 steps by the training config (`metrics_log_interval: 10`, entry 40), so route 3 would have filled coverage, not cadence.
+4. **What route 3 could have changed.** Whether the early range 14,211–52,300 holds more, or longer-precursor, spikes is unknown. It is stated as the remaining limitation.
