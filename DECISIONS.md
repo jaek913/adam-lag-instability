@@ -1134,3 +1134,16 @@ The audit is written in `verification/prv_e2.md` (section "Standard six-pass aud
   - `grade_suite.py` ALL PASS, including its licence check;
   - recording both here.
 - There is no full suite re-run, because the code the suite exercised is byte-identical.
+
+## Entry 44 (2026-11-15, JAE) — Route 3 did not arrive by the cutoff; E2 uses the gated W&B segments
+
+1. **Route-3 status (JAE, 2026-11-15 23:06 CT).** AI2 (olmo@allenai.org) did not reply to the 2026-10-30 request (entry 2, item 7). Nothing was received by the 2026-11-13 cutoff. JAE's own Gmail also has no message from allenai.org since 2026-10-29.
+2. **Data selection (Addendum C item 2; Amendment 17).** E2 uses the gated W&B segments: the seven route-1 files of runs 001, 008, 010, 013, 016, 017 and 018, assembled under Amendment 2 (`scripts/outputs/a1_structural_report.json`).
+   - Run-025 fails D.1 and is not used.
+   - The uncovered ranges (14,211–52,300 and 504,511–543,360) and the selection threat (Addendum C items 3–5) are stated in the Methods as limitations.
+3. **The request is closed (JAE: "let's not wait on them any more").** No follow-up is sent.
+   - Any later route-3 copy would be used only for a reported comparison, never for a second E2 run (§K: one real run).
+   - **Discrepancy Register D-02, proposed adjudication (pending JAE):** "original unrecoverable from public sources". The missing rows are absent on every public interface (Addendum B item 8), and route 3 did not arrive.
+     - E2 uses the seven complete segments.
+     - The gap is stated as a Methods limitation (Addendum C items 3–5).
+     - D-02 then closes. It bears on coverage, not on the correctness of any value used.
