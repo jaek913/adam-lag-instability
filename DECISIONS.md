@@ -1222,3 +1222,43 @@ JAE signs off the Pre-Run Verification Protocol for E2. The run command is issue
 **Records.**
 - RECORD.md (Date station) is created with this verdict.
 - Run date 2026-11-15, inside Amendment 17's window. The 2026-11-20 record is made on that day with Amendment 17's "E2 run" wording.
+
+## Entry 48 (2026-11-16, JAE) — Post-verdict analyses: plan fixed before any of them is computed
+
+**JAE's direction (09:53 CT).**
+- Tick the §K box. Done in the ClickUp UI; the evidence comment was posted 2026-11-16.
+- Proceed with the remaining tests, to learn whether E2 failed because of the data that could be used (route 3 never arrived) or would likely have failed on the full run as well.
+
+**Scope.**
+- Nothing below can change the §K verdict (entry 47).
+- Every result is reported as it falls, in the null note.
+- E3 is not run: it needs new public runs (A2–A6) to be staged, and it is reported as "not run: §K stopped the project".
+- The registered experiments run on A1 as specified: **E1** (sign check), **E4** (sensitivity, no verdict) and **E5** (alignment control). Each gets a pre-run check and a single run.
+- The diagnostics X1–X3 are **exploratory**. Their statistics and readings are fixed here, before any of them is computed.
+
+**X1 — Is there a gradient-norm precursor at all? (precursor existence)**
+- **Statistic.** For each of the 57 eligible events:
+  - rise = (mean y over the 13 grid observations t_e^g − 130 … t_e^g − 10) − (mean y over the 100 grid observations ending at t_e^g − 1,280);
+  - the rise is divided by the SD of y over those same 100 baseline observations.
+- **Control.** The same statistic at 2,000 anchor points drawn uniformly from out-of-window grid steps with full history in the same block, using `default_rng(20261030)`.
+- **Reported:** the median rise, the share of rises above 2, and a one-sided Mann–Whitney test (events > control). Also an event-locked mean of y from t_e^g − 1,280 to t_e^g + 200, beside the control mean.
+- **Fixed reading.** If the events' rise is not greater than the control's (p ≥ 0.05), A1 carries no gradient-norm precursor at 10–130 steps ahead of its loss spikes. No detector could then lead on data of this kind, whatever its coverage. If p < 0.05, a precursor exists, and the failure lies in the detectors or the false-alarm budget.
+
+**X2 — Why D_div is unmatchable, and whether more data would fix it**
+- **Statistic.** At D_div's top score (P = 1.0), the number of out-of-window alarm onsets (with hold), c_top, set against that sub-series' own headline n* = round(N_out / 10,000). D_div is unmatchable there when c_top > n*. The rate per 10,000 is reported beside it. The statistic is computed:
+  - (i) on the whole kept series;
+  - (ii) on each kept block alone;
+  - (iii) on the halves of the longest block.
+- These rates are compared with the headline FA, 1 per 10,000.
+- **Projection.** If route 3 had filled the missing ranges (14,211–52,300 and 504,511–543,360 steps), A1 would gain about 7,700 grid observations, and n* would rise from 4 to about 5.
+- **Fixed reading.** Sub-series with n* = 0 (N_out < 5,000) cannot be matched by any detector (A1.2 guard) and are reported but not read.
+  - If D_div is unmatchable (c_top > n*) in every sub-series with n* ≥ 1, its unmatchability is a property of the detector on this kind of series, and the missing data would not have removed it.
+  - If it is matchable in some such sub-series, the result depends on which data were available.
+  - The projection compares the whole series' c_top with the projected full-run n*.
+
+**X3 — Are the 57 events typical of the run?**
+- Event density (eligible events per 10,000 grid observations) and the X1 rise statistic, compared between the earliest available block (1–14,200) and the later blocks. A difference is reported, with no verdict. The missing early range 14,211–52,300 lies next to the first block.
+
+**Order.** X1, X2, X3 (fast, read-only, answer JAE's question); then E1, E5, E4.
+
+**Code and outputs.** Scripts go in `analysis/post/`, outputs in `analysis/outputs/post/` (JSON). They read the store through `analysis/a1_loader.py` after the PRV hash check. The committed E2 code is not changed.
