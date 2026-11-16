@@ -1346,3 +1346,29 @@ JAE signs off the Pre-Run Verification Protocol for E2. The run command is issue
 - The E2 label is REFUTE on the point estimate C_min = 0.0 ≤ 0, which no resampling enters. p05 is not computed for REFUTE. Every detector's leads are all 0, so the argmax shares (0.2 each) are the same under any generator.
 - The verdict is therefore unaffected. The inconsistency is stated in the null note's Methods.
 - E1 and E5 use the 15.9 second-bullet streams (k = 2, 3), with the 7.4 stream reported beside them.
+
+## Entry 51 (2026-11-16) — E1 result: INDETERMINATE; E5 build and pins (fixed before computation)
+
+**E1 (registered; consistency check on Theorem 8b; not counted toward Claim A).**
+- Run once, `analysis/post/e1.py` at 8d767bd. PRV: 77 files, 0 failed. Output `analysis/outputs/post/e1_result.json`, MD5 b309a2bbd91ae7146e5d3199e38e708e.
+- **Prediction.** R̄(16, 48) − R̄(48, 144) = +0.0289, so the predicted sign is +. The inclusive-form sensitivity gives +0.0288, the same sign.
+- **Realised.** ρ = Corr(D_t, y_{t+16}) = +0.0237 over 46,201 pairs. That is the predicted sign. Block-permutation z = 1.37, one-sided p = 0.089 in the predicted direction (7.4-stream sensitivity: p = 0.066).
+- **Label: INDETERMINATE.** The sign matches, but p > 0.05.
+- **G14 drift.** Median absolute change in mean y per 2,560 steps: 0.071, 0.023 and 0.045 ln-units (blocks 0, 1, 2).
+- Reported as it falls.
+
+**E5 build** (no E5 quantity computed yet).
+- `analysis/post/e5.py` (MD5 9ee294c46176ed2cf9b03ac29058bfe2).
+- Gate `scripts/tests/test_e5.py`, **ALL PASS** (D.5 "Alignment control (E5)"):
+  - alarms 100 steps before every event → rate 1.0, flag not tripped;
+  - randomly placed alarms → flag tripped;
+  - an empty alarm series → rate 0, flag tripped.
+- The synthetic dry run completes. Its D_div headline θ is 0.99929677, identical to the `run_e2.py` dry run on the same store, so the recomputed alarm state matches E2's code path.
+
+**E5 pins.**
+1. **Alarm series.** D_div's headline (FA 1 per 10,000) alarm state is recomputed with the E2 operators, the matching rule and the scan mask. The three blocks are concatenated into one series of N grid observations, shifted circularly by an offset drawn uniformly from the integers [1,000, N − 1,000], and split back into blocks.
+2. **Measures.** The advance-ordering rate (share of the 57 eligible events with lead > 0) and the mean lead, computed with `e2stat.leads_table`, the E2 lead code.
+3. **Draws and RNG.** 1,000 offsets from `default_rng(SeedSequence(20261030, spawn_key=(3,)))` (15.9, k = 3). The 7.4 stream is reported as a sensitivity.
+4. **Block shuffle.** One shuffle of y in 128-observation pieces within each block, using `SeedSequence(20261030, spawn_key=(3, 1))`. Thresholds are re-matched at headline FA by `pipeline.run`. Reported: D_div's matchability, mean lead and rate.
+
+**Expected degenerate case, stated in advance.** D_div's headline θ on A1 is ∞ (entry 47), so its alarm series is empty. The real rate and every shifted rate are then 0, and the flag trips by construction. E5 is reported as uninformative at the headline FA for that reason; it is not a finding about alignment.
