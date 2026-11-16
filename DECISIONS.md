@@ -1155,3 +1155,24 @@ The audit is written in `verification/prv_e2.md` (section "Standard six-pass aud
    - `run_e2_gate_tests.py` (scratch `C:\Users\jaek9\Documents\LaggingTruth\scratch\e2-gate-2026-11-16`): **E2 GATE TESTS: ALL PASS**, 11/11, including the PRV hash negative self-test.
    - `grade_suite.py`: **ALL PASS**. The licence check shows `analysis/ops.py`, `analysis/pipeline.py`, `analysis/e2stat.py` and `reference/ref_e2.py` unchanged since aad6cf7. The regenerated `verification/suite_verdict.md` is byte-identical to the committed file (MD5 05816e3a1b05009177fdb26a72e5deeb).
 3. **Remaining before the run command:** JAE's D.6 sign-off entry, dated the run day.
+
+## Entry 46 (2026-11-15, JAE) — D.6 sign-off for E2's single real run on A1
+
+JAE signs off the Pre-Run Verification Protocol for E2. The run command is issued after this entry is committed.
+
+- **PRV.**
+  - D.6 items 1–7: `verification/prv_e2.md`. Items 1–4 and 6 are done; items 5 and 7 are checked at run time by `scripts/run_e2.py`.
+  - Standard six-pass audit: DECISIONS entry 43, findings F-1 to F-7.
+  - Pre-clip: entries 40–41.
+- **E2 gate:** pass condition met on 2026-11-09 (entry 38). The licence was re-earned on 085ebfd (entry 45): gate tests 11/11, grader ALL PASS, verdict byte-identical.
+- **Data:** the gated W&B segments 001, 008, 010, 013, 016, 017 and 018, assembled under Amendment 2. Route 3 did not arrive (entry 44). The SHA-256 of all 77 SOURCES rows is re-verified inside the run.
+- **Events:** rung k = 4, 61 events, 57 eligible (entry 13).
+- **Rules, all frozen and unchanged:**
+  - headline FA 1 per 10,000; H = 32; grid 10; scan 1,280;
+  - joint resampling, 1,000 draws, `default_rng(20261030)`;
+  - FA grid {0.5, 2, 5} reported;
+  - φ̂_y and cell selection per 15.5.
+- **Run date:** 2026-11-15, inside Amendment 17's window (on or after 2026-11-14, before 2026-12-04).
+- **Code:** E2 runs at the commit that contains this entry. The script records HEAD in `e2_result.json`.
+- **Verdict record:** made the same day in DECISIONS.md and RECORD.md (Date station), with the label, C_min, p05, φ̂_y, the selected cell and the per-detector matchability (F-6).
+- **One real run:** `scripts/outputs/e2/e2_result.json` must not exist before the run, and it is not re-run after.
