@@ -1176,3 +1176,49 @@ JAE signs off the Pre-Run Verification Protocol for E2. The run command is issue
 - **Code:** E2 runs at the commit that contains this entry. The script records HEAD in `e2_result.json`.
 - **Verdict record:** made the same day in DECISIONS.md and RECORD.md (Date station), with the label, C_min, p05, φ̂_y, the selected cell and the per-detector matchability (F-6).
 - **One real run:** `scripts/outputs/e2/e2_result.json` must not exist before the run, and it is not re-run after.
+
+## Entry 47 (2026-11-15) — §K VERDICT: E2 is REFUTE on A1; the project STOPS (null note)
+
+**Run.** `scripts/run_e2.py --real` was run once, 2026-11-15, about 23:15–23:32 CT, at HEAD f486ced, under the D.6 sign-off in entry 46.
+- PRV hash check: 77 files, 0 failed.
+- Loaded 3 kept blocks, 46,630 grid observations, 61 events (57 eligible). Dropped observations: 0.
+- Output: `scripts/outputs/e2/e2_result.json`, SHA-256 49c942eba617b6ee8b21ae09bb0842e6764fb425b21f22491180db547adab018 (MD5 6948b123774039311c15b37e0548f141).
+
+**Headline (FA 1 per 10,000, H = 32, grid 10, scan 1,280): REFUTE.**
+- N_out = 36,277; n* = 4.
+- C_B1 = C_B2 = C_B3 = C_B4 = 0.0, so **C_min = 0.0 ≤ 0 → REFUTE** (D.3; §K). p05 is not computed for a REFUTE (Amendment 7.5).
+- Joint-resampling argmax: 0.2 for each of the five detectors (all tied at mean lead 0).
+
+| detector | matchable | θ | realised / n* | mean lead | median lead | detected | concurrent | misses |
+|---|---|---|---|---|---|---|---|---|
+| D_div | **no** | ∞ | 0 / 4 | 0 | 0 | 0/57 | 0 | 57 |
+| B1 | yes | 56.75 | 4 / 4 | 0 | 0 | 0/57 | 2 | 55 |
+| B2 | yes | 5.617 | 4 / 4 | 0 | 0 | 0/57 | 2 | 55 |
+| B3 | yes | 434.3 | 4 / 4 | 0 | 0 | 0/57 | 3 | 54 |
+| B4 | yes | 1,313 | 4 / 4 | 0 | 0 | 0/57 | 0 | 57 |
+
+**How to read it (F-6, stated beside the label as committed in entry 43).**
+- **D_div could not be matched on A1.** Even at its top score its out-of-window onset count exceeds n* = 4, so θ = ∞ and it never alarmed. This is the registered P-FA behaviour (Amendment 6.1), the case anticipated in 15.8 and F-6.
+- **No baseline gave any early warning at the headline rate either.** Every baseline lead is 0.
+- The only alarms inside scan windows are concurrent: B1 and B2 on 2 events and B3 on 3, at t_e^g itself.
+- So E2 is REFUTE by a tie at zero: at 1 false alarm per 10,000 steps, no detector warns of any A1 loss spike in advance.
+
+**Reported FA grid (no verdict).**
+- **FA 0.5 (n* = 2):** every lead is 0; C_min = 0.0; D_div is not matchable.
+- **FA 2 (n* = 7):** C_min = −4.74. Mean leads: B1 4.7, B3 2.3, B4 3.5, B2 0, D_div 0 (not matchable). Each detecting baseline catches 1/57.
+- **FA 5 (n* = 18):** D_div becomes matchable. C_min = −7.72. Mean leads: B2 26.8, B1 26.7, D_div 19.1, B4 12.5, B3 7.0. Detection rates are 0.018–0.070.
+
+**φ̂_y (15.5).**
+- φ̂_y = 0.4925, outside [0.5, 0.98], so the edge cell is φ_y = 0.5.
+- The extension cell φ_y = 0.3 is reported beside it. Its severity figures are the A1-structure cells at 0.5 and 0.3 (15.6).
+
+**Consequence (§K, as registered).**
+- The project STOPS.
+- The negative is written up as a short null note ("the null is the paper"), filed in the repo and on Zenodo, with RECORD.md as the closing artifact.
+- **Leg B does not run.**
+- The OUTLINE is re-versioned to the null-note shape (Phase 2 checklist).
+- No window, spike definition, baseline, construction pin or FA grid is changed after this result.
+
+**Records.**
+- RECORD.md (Date station) is created with this verdict.
+- Run date 2026-11-15, inside Amendment 17's window. The 2026-11-20 record is made on that day with Amendment 17's "E2 run" wording.
