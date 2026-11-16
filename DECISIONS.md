@@ -1147,3 +1147,11 @@ The audit is written in `verification/prv_e2.md` (section "Standard six-pass aud
      - E2 uses the seven complete segments.
      - The gap is stated as a Methods limitation (Addendum C items 3–5).
      - D-02 then closes. It bears on coverage, not on the correctness of any value used.
+
+## Entry 45 (2026-11-15, JAE) — D-02 closed; licence re-earned on the final code state
+
+1. **D-02 adjudicated (JAE "proceed as recommended", 23:11 CT): original unrecoverable from public sources.** The Discrepancy Register is updated. The gap is stated as a Methods limitation (entry 44).
+2. **Licence re-earned (entry 43 reading), on the committed code at 085ebfd; working tree clean after the helper file was moved out of the repository.**
+   - `run_e2_gate_tests.py` (scratch `C:\Users\jaek9\Documents\LaggingTruth\scratch\e2-gate-2026-11-16`): **E2 GATE TESTS: ALL PASS**, 11/11, including the PRV hash negative self-test.
+   - `grade_suite.py`: **ALL PASS**. The licence check shows `analysis/ops.py`, `analysis/pipeline.py`, `analysis/e2stat.py` and `reference/ref_e2.py` unchanged since aad6cf7. The regenerated `verification/suite_verdict.md` is byte-identical to the committed file (MD5 05816e3a1b05009177fdb26a72e5deeb).
+3. **Remaining before the run command:** JAE's D.6 sign-off entry, dated the run day.
