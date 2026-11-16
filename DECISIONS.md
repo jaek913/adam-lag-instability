@@ -1313,3 +1313,36 @@ JAE signs off the Pre-Run Verification Protocol for E2. The run command is issue
 2. **Why no baseline led either.** The gradient-norm rise arrives, on average, within the last 10-step logging interval before the loss spike. A precursor that short leaves almost no room for a lead at grid 10, and the headline budget (n* = 4) forces thresholds above all but a handful of excursions.
 3. **What route 3 could not have changed.** It would have been AI2's full export of the same runs. The gradient norm is logged every 10 steps by the training config (`metrics_log_interval: 10`, entry 40), so route 3 would have filled coverage, not cadence.
 4. **What route 3 could have changed.** Whether the early range 14,211–52,300 holds more, or longer-precursor, spikes is unknown. It is stated as the remaining limitation.
+
+## Entry 50 (2026-11-16) — E1 build and pre-run check; RNG discrepancy in 15.9 found (no effect on E2's label)
+
+**E1 code** (written before any E1 quantity is computed):
+- `analysis/post/e1.py` (MD5 667b8f16935e5dbe01b26b03d4525bc7);
+- gate test `scripts/tests/test_e1.py` (MD5 0a1f1d3845f45a909dfe8fbd860bf80b), ALL PASS:
+  - R̄ half-open and inclusive indexing on a hand ACF;
+  - the Amendment 4.1 SMA-covariance identity, exact on a finite sample;
+  - planted AR(1) at 0.9 per observation → predicted sign + and CONSISTENT;
+  - white noise → not CONSISTENT.
+- A dry run on the synthetic store completes (INDETERMINATE).
+
+**Construction pins.** These are points the registered text leaves open, fixed here before computation:
+1. **ACF.** Pooled over the three kept blocks: one global mean, lag-k products only within blocks, each lag normalised by its own pair count, divided by the pooled lag-0 variance.
+2. **Correlation.** Pearson Corr(D_t, y_{t+16}) over every t with D defined (from the 128th observation of a block) and t + 16 in the same block. D = SMA_32 − SMA_128 on y (`ops.divergence`, the E2 operator).
+3. **Block permutation.** D is held fixed. Within each block, the target series y_{t+16} is cut into consecutive 128-observation pieces and the pieces are permuted. There are 1,000 permutations. One-sided p = (1 + #{null ≥ ρ}) / 1,001 in the predicted direction (≤ for a negative prediction), and likewise for the opposite direction.
+4. **RNG.** `default_rng(SeedSequence(20261030, spawn_key=(2,)))` (15.9, real data, k = 2) is primary. The 7.4 stream `default_rng(20261030)` is reported as a sensitivity.
+5. **G14 drift.** For each block, the median absolute change in mean y between consecutive 256-observation segments (2,560 steps). Reported beside ρ.
+
+**Six-pass check (E1).**
+- Schema: E1 reads only y through `a1_loader`, the same loader as E2, after the hash check.
+- Spec trace: h, (w_f, w_s), half-open R̄, inclusive sensitivity, label partition and permutation are as in D.3, Amendment 1 G-items and Amendment 4.1.
+- Hand battery: `test_e1.py`.
+- Boundaries: pairs never cross a block. D is undefined for the first 127 observations of each block.
+- Assumptions: approximate stationarity (G14; drift reported).
+- Adversarial: a permutation that also moved D would destroy the alignment it tests. That is why D is held fixed (pin 3).
+
+**Discrepancy found in DESIGN 15.9 (recorded; it does not change E2's label).**
+- 15.9's first bullet says E2's resamples on A1 use `default_rng(20261030)`, "exactly as the E2 run on A1 will". Its second bullet says real-data E2 uses `default_rng(SeedSequence(20261030, spawn_key=(1,)))`.
+- `run_e2.py` used `pipeline.run`'s `default_rng(20261030)`, per 7.4 and 15.9's first bullet.
+- The E2 label is REFUTE on the point estimate C_min = 0.0 ≤ 0, which no resampling enters. p05 is not computed for REFUTE. Every detector's leads are all 0, so the argmax shares (0.2 each) are the same under any generator.
+- The verdict is therefore unaffected. The inconsistency is stated in the null note's Methods.
+- E1 and E5 use the 15.9 second-bullet streams (k = 2, 3), with the 7.4 stream reported beside them.
