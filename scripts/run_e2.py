@@ -165,6 +165,9 @@ def main():
         json.dump(jsonable(out), f, indent=1, sort_keys=True)
     sha = hashlib.sha256(open(out_json, "rb").read()).hexdigest()
     print(f"phi_hat_y = {ph:.4f} -> cell phi_y = {cell}" + (f" (outside [0.5, 0.98]; extension cell {ext})" if ext else ""), flush=True)
+    for d, m in res.get("detectors", {}).items():           # adversarial pass F-6: matchability is printed
+        print(f"  {d}: matchable {m.get('matchable')}, theta {m.get('theta')}, realised {m.get('realised')} "
+              f"of n* {res.get('nstar')}, coverage {m.get('coverage')}", flush=True)
     print(f"E2 LABEL: {res['label']}  (C_min {res.get('C_min')}, p05 {res.get('p05')})", flush=True)
     print(f"WROTE {out_json} SHA-256 {sha}", flush=True)
 

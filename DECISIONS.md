@@ -1109,3 +1109,28 @@ Sources: the project files `thedivergencetheorem.pdf`, `theadaptationratetheorem
    - the date is between 2026-11-14 and 2026-12-03; and
    - `--signoff-entry N` names a DECISIONS.md entry dated today that contains "D.6 sign-off".
    Both checks run before the PRV hash check and before any store file is opened. `run_e2.py` MD5 e8c2726e592732d1bd9e61182a36e9e6. The dry-run test (`test_run_e2_dryrun.py` MD5 5cf0cc6f843df87c2f872e6849dc484d) passes all checks, including the date guard and a real run with no valid sign-off.
+
+## Entry 43 (2026-11-15) — PRV six-pass audit for E2 (Standard v1.9.12); licence reading
+
+The audit is written in `verification/prv_e2.md` (section "Standard six-pass audit"). No store file was opened.
+
+**Findings:**
+- **F-1 (Pass 1).** E2 reads `_step` and `optim/total_grad_norm` by name from the seven kept segments, plus the committed structural report and event list. Run-025 is never read. No defect.
+- **F-2 (Pass 2).** Every E2 rule traces to one code location and has an independent check: the reference implementation (269/269 identical), hand probes, unit tests, or the dry run. The suite's A1-structure cells use E2's exact `pipeline.run` call. The one designed difference is the coverage stop, which E2 applies and the suite only reports. No defect.
+- **F-3 (Pass 3).** The hand battery is committed and passing (56/56, 16/16, 10/10, plus the unit tests). No defect.
+- **F-4 (Pass 4).** Boundaries are covered: scan-window edges, dedup 2,000 in the event list, minimum history 1,000 observations, left-censoring, dropped observations and block edges. An all-dropped block would crash the loader, which cannot happen on A1. No defect.
+- **F-5 (Pass 5).** Every listed assumption has a cited entry. No defect.
+- **F-6 (Pass 6) — D_div may be unmatchable on A1.**
+  - On grid-10 null series, D_div was matchable in only 3–4 of 20 (15.8).
+  - If its θ is non-finite on A1, it never alarms and E2 returns REFUTE. That is registered behaviour, but the label alone would not show the reason.
+  - **Fix (reporting only; no rule changed):** `run_e2.py` now prints matchable, θ, realised count against n*, and coverage for every detector beside the label (MD5 4f415b722cab79f1a9925d0dba181dc0). The verdict record states any unmatchable detector next to the label.
+  - The dry run still passes all checks.
+- **F-7 (Pass 6).** The untracked `scripts/outputs/_stitch_committed_300c534.py` blocks the clean-tree guard. It is moved out of the repository before the run (entry 42 item 3).
+
+**Licence (Phase 2 PRV box, "any code change after a suite ALL PASS voids that license").**
+- Since the ALL PASS (e7abad6), the only code changes are `scripts/run_e2.py` and its dry-run test. Neither is used by the suite, and the E2-chain files (`ops`, `pipeline`, `e2stat`, `ref_e2`) are unchanged since aad6cf7.
+- **Reading (JAE "proceed", 2026-11-15):** on the run day, before the run command, the licence is re-earned on the final commit by:
+  - `run_e2_gate_tests.py` ALL PASS;
+  - `grade_suite.py` ALL PASS, including its licence check;
+  - recording both here.
+- There is no full suite re-run, because the code the suite exercised is byte-identical.
