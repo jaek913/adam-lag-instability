@@ -1383,3 +1383,36 @@ JAE signs off the Pre-Run Verification Protocol for E2. The run command is issue
   - The 7.4-stream sensitivity is identical.
 - **Block shuffle (second characterization).** After a 128-observation block shuffle of y, D_div is still not matchable at headline FA: mean lead 0, rate 0.
   - This agrees with X2 (entry 49). D_div's unmatchability does not depend on the alignment of y with the events, or on its ordering beyond 128-observation pieces. It is a property of the percentile score on series like A1's.
+
+## Entry 53 (2026-11-16, JAE) — E4 scope approved; build, gate and pins (fixed before computation)
+
+**Scope (JAE approved, 13:43 CT).** Every registered E4 variant runs, one variable at a time, with all thresholds re-matched at headline FA by the E2 pipeline, except **P-SEG keep-earlier**. That variant needs a rebuilt assembly and a new event list. It is reported as "not run (cost; §K had already stopped the project)".
+
+**Variants.**
+- **Re-matched runs:**
+  - V0 (reproduces E2; sanity);
+  - D_div windows (16, 64), (64, 256), and the added (4, 16);
+  - P-B1 window 25 and 100;
+  - P-B3, statistics updated with ZClip's adjusted value;
+  - P-B4 two-sided;
+  - P-B4 applied to g.
+- **Derived from V0:**
+  - P-CENS: censored lead 0; censored events excluded for every detector;
+  - rewind events excluded (A1 has 0 among its 61 events, so identical to V0);
+  - event-block resampling: blocks of 3 consecutive eligible events, 1,000 draws, `default_rng(SeedSequence(20261030, spawn_key=(4,)))`.
+
+**Code** (E2's `analysis/ops.py`, `pipeline.py` and `e2stat.py` are unchanged; variants are applied by substituting functions at run time and restored after each run).
+- `analysis/post/e4_ops.py` (MD5 5ff498a5a8b27ef5a41ba9e016952771):
+  - **B3 adjusted:** ZClip 1.0.0 defaults (mode "zscore", adaptive_scaling, z_thresh 2.5, clip_factor 1.0). When z > 2.5, the EMA is updated with clip_val = mean + (2.5·std)/(z/2.5), per the vendored source.
+  - **B4 two-sided:** trainscope @0651b25. S⁺ and S⁻ as in its source; score = max(S⁺, |S⁻|); both reset at each onset. The fast form uses E2's B4 merge construction.
+  - **B4 on g:** robust z on exp(y).
+- `analysis/post/e4.py` (MD5 57cc998dbd92720777b201fc7d4fd7d4): resumable, one JSON per variant in `analysis/outputs/post/e4/`.
+- **Gate** `scripts/tests/test_e4_ops.py` (MD5 458a2a104ad3e745eeb9d139d3e67b5a), **ALL PASS**:
+  - two-sided B4 fast equals loop in 36 cases (scores, onsets, alarm);
+  - the two-sided score is at least the one-sided score;
+  - B3-adjusted equals B3 up to the first z > 2.5 and differs after it;
+  - B4-on-g equals b4_z(exp(y)).
+  - One build bug was caught by the synthetic dry run and fixed before any real run: B4-on-g recursed through the substituted `ops.b4_z`, and it now binds the original at import.
+- **Synthetic dry run.** All variants complete. V0 reproduces the `run_e2.py` dry run on the same store exactly (C_min −24.035).
+
+**Reading, fixed in advance.** E4 has no verdict. Each variant reports D_div's matchability, every detector's mean lead and C_min. The question it informs (JAE): whether any registered window pair or pin makes D_div matchable at headline FA on A1, or changes which detector leads.
