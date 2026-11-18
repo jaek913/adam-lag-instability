@@ -1416,3 +1416,46 @@ JAE signs off the Pre-Run Verification Protocol for E2. The run command is issue
 - **Synthetic dry run.** All variants complete. V0 reproduces the `run_e2.py` dry run on the same store exactly (C_min −24.035).
 
 **Reading, fixed in advance.** E4 has no verdict. Each variant reports D_div's matchability, every detector's mean lead and C_min. The question it informs (JAE): whether any registered window pair or pin makes D_div matchable at headline FA on A1, or changes which detector leads.
+
+## Entry 54 (2026-11-18) — E4 results (sensitivity, no verdict): no registered variant rescues D_div or produces a lead
+
+**Run.** `analysis/post/e4.py` at fbaf69b, run by JAE on the store machine. PRV: 77 files, 0 failed.
+- The variant files were written 2026-11-16, 23:00–23:28 UTC.
+- JAE's re-invocation on 2026-11-18 found all nine done ("done already") and wrote `derived.json`.
+- An earlier attempt on the linked VM (2026-11-16) was stopped by the VM's process limit before any variant finished; its log holds only the PRV line (`analysis/outputs/post/e4_run.log`).
+- **V0 reproduces E2 exactly:** every θ and every lead is identical to `scripts/outputs/e2/e2_result.json`.
+
+**Re-matched variants (headline FA, n* = 4).**
+
+| variant | D_div matchable | C_min | non-zero mean lead | notes |
+|---|---|---|---|---|
+| V0 (E2) | no | 0.0 | none | — |
+| D_div (16, 64) | no | 0.0 | none | output identical to V0 |
+| D_div (64, 256) | no | 0.0 | none | output identical to V0 |
+| D_div (4, 16) | no | 0.0 | none | output identical to V0 |
+| P-B1 window 25 | no | 0.0 | none | B1 θ 76.6 |
+| P-B1 window 100 | no | **−2.28** | B1 2.3 (1/57 detected) | B1 θ 44.5 |
+| P-B3 adjusted update | no | 0.0 | none | B3 θ 29,419 |
+| P-B4 two-sided | no | 0.0 | none | output identical to V0 |
+| P-B4 on g | no | 0.0 | none | B4 θ 91,095 |
+
+**Derived from V0.**
+- P-CENS, censored lead 0: C_min 0.0. No event is censored for any detector.
+- P-CENS, censored events excluded: C_min 0.0 (57 events kept).
+- Rewind events excluded: 0 rewind events, so identical to V0.
+- Event-block resampling (blocks of 3): C_min point 0.0, 5–95 % range [0.0, 0.0].
+- Not run: P-SEG keep-earlier (entry 53).
+
+**Reading.**
+- No registered window pair makes D_div matchable at headline FA on A1, including the physical-scale pair (4, 16). This agrees with X2 and the E5 block shuffle.
+- Only P-B1 at window 100 gives any detector a lead (B1: 1 of 57 events), and that makes the contrast more negative.
+- E2's REFUTE is not an artefact of any registered window or construction pin.
+- Outputs (MD5):
+  - V0, W16_64, W64_256, W4_16 and B4_2s: each f50051295250ec239b22fc1b288529e5 (byte-identical);
+  - B1_25: 2d51ecacd2badd51173d99f6dc066f75;
+  - B1_100: 2ae76a6ce838d8aa11fb4d0993f816c4;
+  - B3_adj: 4ab006bde1b80c05d810f00721bd8ac2;
+  - B4_g: 42c40f7d1eceb7fef3aeb4c46ac9eedc;
+  - derived: 43d9ee212221b81fcef0da281111f9e2.
+
+**Post-verdict work complete.** E1 INDETERMINATE (entry 51); E5 degenerate (entry 52); E4 above; X1–X3 (entry 49). E3 not run. Next: the null note (Phase 4), built from OUTLINE v0.6, with Amendments 7–17 and entries 47–54 reconciled into the nodes.
