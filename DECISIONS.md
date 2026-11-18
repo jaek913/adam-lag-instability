@@ -1541,3 +1541,20 @@ JAE: "proceed as recommended" (15:11 CT), on the three questions from the close 
 **Bearing on the null note.** The Methods and Discussion state E2 and X1–X3 as conditional on the covered ranges 1–14,210 and 52,301–504,510. Entry 49 item 4's "what route 3 could have changed" is widened accordingly.
 
 **Discrepancy Register.** D-01 to D-05 are all closed, each with a second focused review: D-01 and D-05 in entry 57, D-02 here, D-03 and D-04 earlier. No confirmed dossier bearing on a load-bearing claim is open. The Phase 2 Discrepancy box can be flipped.
+
+## Entry 60 (2026-11-18) — Process defect: Phase 2 boxes not flipped as their evidence landed; remediation
+
+1. **Defect.** The Phase 2 working rule flips each box "item by item, as its evidence lands, never in bulk at close". These boxes had their evidence in hand well before today, and none was flipped in ClickUp when that evidence landed:
+   - theorem checks (entry 15, 2026-10-31);
+   - SOURCES.md (entries 14, 41);
+   - data hashed (entries 7–9);
+   - experiment-validation gate (entries 38, 45, 50, 51, 53);
+   - PRV (entries 43, 46, 50, 55);
+   - one script per experiment;
+   - OUTLINE current (f9d3ba0, e71abc1);
+   - clean runs committed;
+   - DECISIONS current;
+   - pushed off-machine (entry 56).
+   Found at the close audit (`verification/phase2_close_audit.md`, c558f7f).
+2. **Remediation.** Each of those boxes is flipped in ClickUp task 86bcvnnva, each with its evidence reference, in one evidence comment that lists every box. The Discrepancy box is flipped on entry 59. The §K box was flipped on 2026-11-16.
+3. **Not flipped yet.** The close-read box stays open until after the 2026-11-20 Amendment 17 record line. The §K checkpoint's grading-day record completes then, and the close-read follows it.
