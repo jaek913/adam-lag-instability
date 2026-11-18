@@ -111,6 +111,16 @@ def main():
     bad = copy.deepcopy(lock)
     bad["rows"][0]["value"] = 1.6
     res.append(expect("value drift -> RED", verify.check_ledger(bad, root)[0], must="value drift"))
+    md = os.path.join(root, "out", "chance.md")
+    open(md, "w").write("**Largest between-detector difference in mean chance lead: 15.5 steps (cell 206).**\n")
+    mrow = copy.deepcopy(lock["rows"][0])
+    mrow.update({"id": "LB-T-md", "value": 15.5, "pointer": {"md": ["chance_largest", "value"]},
+                 "output": {"path": "out/chance.md", "sha256": verify.sha256_file(md)}})
+    mlock = {"rows": [mrow], "inputs": lock["inputs"]}
+    res.append(expect("good markdown-sourced row is GREEN", verify.check_ledger(mlock, root)[0], green=True))
+    bad = copy.deepcopy(mlock)
+    bad["rows"][0]["value"] = 15.4
+    res.append(expect("markdown-sourced value drift -> RED", verify.check_ledger(bad, root)[0], must="value drift"))
     res.append(expect("good CIC fixture is GREEN", verify.check_cic(lock)[0], green=True))
     bad = copy.deepcopy(lock)
     bad["rows"][0]["cic_signed"] = None

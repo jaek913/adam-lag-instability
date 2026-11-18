@@ -2,9 +2,10 @@
 the share of events with at least one in-window alarm (1 - misses / eligible events), and the mean in-window chance
 lead (mean of per-replicate mean lead). The largest between-detector difference in mean chance lead is the measured
 size of D.2 P-HOLD note (i)'s second-order effect. Writes verification/chance_leads_15_17.md.
-Usage: python scripts/suite/report_chance_leads.py"""
+Usage: python scripts/suite/report_chance_leads.py [--out FILE]   (--out: verify.py re-execution to scratch)"""
 import json
 import os
+import sys
 
 import numpy as np
 
@@ -48,8 +49,9 @@ def main():
                  " | ".join(f"{share[d]:.3f} / {lead[d]:.1f}" for d in DET) + f" | {spread:.1f} |")
     L += ["", f"**Largest between-detector difference in mean chance lead: {worst[0]:.1f} steps (cell {worst[1]}).** "
               "Stated in the Methods as the measured size of note (i)'s second-order effect (15.17)."]
-    open(os.path.join(ROOT, "verification", "chance_leads_15_17.md"), "w", encoding="utf-8", newline="\n").write("\n".join(L) + "\n")
-    print(f"WROTE verification/chance_leads_15_17.md; largest difference {worst[0]:.1f} steps (cell {worst[1]})")
+    out = sys.argv[sys.argv.index("--out") + 1] if "--out" in sys.argv else os.path.join(ROOT, "verification", "chance_leads_15_17.md")
+    open(out, "w", encoding="utf-8", newline="\n").write("\n".join(L) + "\n")
+    print(f"WROTE {out}; largest difference {worst[0]:.1f} steps (cell {worst[1]})")
 
 
 if __name__ == "__main__":

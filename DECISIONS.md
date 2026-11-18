@@ -1627,3 +1627,24 @@ JAE: "proceed as recommended" (15:11 CT), on the three questions from the close 
    - the manuscript reconciliation, from Phase 4.
    - `scripts/tests/test_verify_fixtures.py`: 18 of 18. Good fixtures come back GREEN; each broken one turns it RED.
 6. **Signature.** JAE signs with `scripts/sign_cic.py`, which refuses if any reviewed script or helper has changed or any flag is unpassed. claims.lock is then rebuilt, and verify.py must return GREEN.
+
+## Entry 65 (2026-11-18) — Phase 4 open: reconciling Amendments 7–17 finds reporting items with no ledger rows; ledger extended (no new computation)
+
+1. **Checklist-first.** The Phase 4 checklist (86bcvnnv3) was read in full on 2026-11-18 (entry 61, item 1). The task is set to in progress.
+2. **Finding.** The OUTLINE v0.8 reconciliation of Amendments 7–17 shows that several items must be stated beside the E2 label:
+   - 15.3: the label's rates under the planted null and the planted effect on the A1 layout, at the 15.5 cell. REFUTE is the null's modal outcome there.
+   - 15.4: the positive control, or "no construction found".
+   - 15.8: D_div's lead response.
+   - 15.15: because every detection rate on A1 is ≤ 50 %, the planted-null false-SUPPORT rate and the step-precursor rates.
+   - 15.17: the measured chance-lead asymmetry.
+   - 15.21: the decision-flip REFUTE rates as the kill rule's power against short precursors.
+   - The E2 FA-grid frontier: FIG-3, and the figures in entry 47.
+   - The 15.5 extension cell.
+   None has a claims.lock row or an OUTLINE LB-id. OUTLINE v0.6 explicitly deferred Amendments 7–17 to this reconciliation, so the Phase 3 ledger matched the v0.7 outline exactly but not these items. Every value was computed before E2 ran. They are in `verification/suite_verdict.md` (cells 145–147, 175–189, 245–258, 320–331; dyn-range grid10), `verification/ddiv_response_15_8.md` (54387a4), `verification/chance_leads_15_17.md`, and `e2_result.json` fa_grid.
+3. **Remediation (no new computation, no change to any value).**
+   - New OUTLINE LB-ids in v0.8: LB-E2-frontier, LB-E2-severity, LB-E2-flip-power, LB-E2-F1-fallback, LB-E2-chance-asym, LB-E2-ddiv-response, LB-suite-cell (extension cell).
+   - claims.lock rows come from the same builder. Markdown sources are read by a committed parser, `scripts/ledger_md.py`.
+   - `report_chance_leads.py` and `check_ddiv_response.py` gain an `--out` option, so verify.py can re-run them to scratch. Their default output and their computation are unchanged.
+   - The 7-point CIC is run on both, and JAE signs.
+   - `verify.py --full` re-runs check_ddiv_response, which is long, on JAE's machine.
+   - The Phase 3 gate stays signed. This entry is the record that the ledger was extended at Phase 4 open under the Phase 3 rules.

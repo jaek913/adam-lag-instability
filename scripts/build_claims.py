@@ -20,13 +20,13 @@ import hashlib
 import json
 import math
 import os
-import re
 import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "scripts"))
 from prv_hash_check import listed  # noqa: E402
+import ledger_md  # noqa: E402
 
 DETS = ["D_div", "B1", "B2", "B3", "B4"]
 BASES = ["B1", "B2", "B3", "B4"]
@@ -37,6 +37,8 @@ E1 = "analysis/outputs/post/e1_result.json"
 E5 = "analysis/outputs/post/e5_result.json"
 E4D = "analysis/outputs/post/e4"
 SUITE = "verification/suite_verdict.md"
+CHANCE = "verification/chance_leads_15_17.md"
+DDIV = "verification/ddiv_response_15_8.md"
 K_RULE = {"REFUTE": "STOP"}          # DESIGN §K: REFUTE stops the project. Other labels never reached; refuse them.
 E4_VARIANTS = ["V0", "W16_64", "W64_256", "W4_16", "B1_25", "B1_100", "B3_adj", "B4_2s", "B4_g"]
 
@@ -44,9 +46,10 @@ SCRIPTS = {
     "e2": "scripts/run_e2.py", "a1": "scripts/a1_events.py", "x": "analysis/post/x_diag.py",
     "e1": "analysis/post/e1.py", "e5": "analysis/post/e5.py", "e4": "analysis/post/e4.py",
     "suite": "scripts/suite/grade_suite.py",
+    "chance": "scripts/suite/report_chance_leads.py", "ddiv": "scripts/suite/check_ddiv_response.py",
 }
 REEXEC = {"e2": "reproduce", "a1": "rerun", "x": "rerun", "e1": "rerun", "e5": "rerun", "e4": "rerun_long",
-          "suite": "regrade"}
+          "suite": "regrade", "chance": "rerun", "ddiv": "rerun_long"}
 
 
 def sha256(rel):
@@ -87,13 +90,6 @@ def kind_tol(v):
     raise TypeError(v)
 
 
-def suite_summary():
-    txt = open(os.path.join(ROOT, SUITE), encoding="utf-8").read()
-    verdict = "ALL PASS" if "**ALL PASS**" in txt else "NOT ALL PASS"
-    return {"verdict": verdict, "cells_pass": len(re.findall(r"\| PASS \|$", txt, re.M)),
-            "cells_fail": len(re.findall(r"\| FAIL \|$", txt, re.M))}
-
-
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=os.path.join(ROOT, "claims.lock"))
@@ -104,7 +100,12 @@ def main():
     rows = []
 
     def add(rid, lb, sk, out, ptr, value=None, exploratory=False, note=None):
-        v = norm(get(load(out), ptr) if value is None else value)
+        if value is not None:
+            v = norm(value)
+        elif isinstance(ptr, dict):
+            v = norm(ledger_md.extract(open(os.path.join(ROOT, out), encoding="utf-8").read(), ptr["md"]))
+        else:
+            v = norm(get(load(out), ptr))
         k, tol = kind_tol(v)
         cic = sign.get(SCRIPTS[sk]) if sk in SCRIPTS else None
         rows.append({"id": rid, "lb_id": lb, "exploratory": exploratory, "value": v, "kind": k, "tol_abs": tol,
@@ -151,9 +152,50 @@ def main():
         note="§K: REFUTE -> STOP; applied to LB-E2-verdict")
 
     # --- D.5 suite (e7abad6)
-    s = suite_summary()
     for k in ("verdict", "cells_pass", "cells_fail"):
-        add(f"LB-suite-null.{k}", "LB-suite-null", "suite", SUITE, [k], value=s[k])
+        add(f"LB-suite-null.{k}", "LB-suite-null", "suite", SUITE, {"md": ["suite_summary", k]})
+
+    # --- Reported beside E2 (Amendments 15.3-15.8, 15.15, 15.17, 15.21; entry 65): computed before E2, ledgered here
+    g = ["fa_grid"]
+    for fa in ("0.5", "2.0", "5.0"):
+        add(f"LB-E2-frontier.{fa}.nstar", "LB-E2-frontier", "e2", E2, g + [fa, "nstar"])
+        add(f"LB-E2-frontier.{fa}.C_min", "LB-E2-frontier", "e2", E2, g + [fa, "C_min"])
+        add(f"LB-E2-frontier.{fa}.D_div_matchable", "LB-E2-frontier", "e2", E2, g + [fa, "detectors", "D_div", "matchable"])
+        for d in DETS:
+            add(f"LB-E2-frontier.{fa}.{d}.mean_lead", "LB-E2-frontier", "e2", E2, g + [fa, "per_detector", d, "mean_lead"])
+            add(f"LB-E2-frontier.{fa}.{d}.detection_rate", "LB-E2-frontier", "e2", E2,
+                g + [fa, "per_detector", d, "detection_rate"])
+    add("LB-suite-cell.extension_phi", "LB-suite-cell", "e2", E2, ["extension_cell_phi"])
+    SIR = ("SUPPORT", "INCONCLUSIVE", "REFUTE")
+    for cell, name in ((245, "a1s_null.0.5"), (247, "a1s_effect.0.5"), (320, "pos_ctrl.0.5"),
+                       (327, "a1s_null.0.3"), (329, "a1s_effect.0.3"), (325, "pos_ctrl.0.3")):
+        for i, lab in enumerate(SIR):
+            add(f"LB-E2-severity.{name}.{lab}", "LB-E2-severity", "suite", SUITE, {"md": ["suite_sir", cell, i]})
+    add("LB-E2-severity.pos_ctrl.no_construction_phi", "LB-E2-severity", "suite", SUITE, {"md": ["suite_none", "pos_ctrl"]})
+    PH5 = [0.5, 0.8, 0.9, 0.95, 0.98]
+    FLIP = ["decision_flip", "t3_decision_flip", "realised_count_flip"]
+    for w in ("min", "max"):
+        add(f"LB-E2-flip-power.per_step.{w}", "LB-E2-flip-power", "suite", SUITE, {"md": ["suite_refute_range", FLIP, None, w]})
+        add(f"LB-E2-flip-power.a1_layout.{w}", "LB-E2-flip-power", "suite", SUITE,
+            {"md": ["suite_refute_range", ["a1s_flip"], PH5, w]})
+    add("LB-E2-flip-power.a1_layout.0.5", "LB-E2-flip-power", "suite", SUITE, {"md": ["suite_sir", 246, 2]})
+    add("LB-E2-flip-power.a1_layout.0.3", "LB-E2-flip-power", "suite", SUITE, {"md": ["suite_sir", 328, 2]})
+    for cell, h in ((145, "1.5"), (146, "2.0"), (147, "2.5")):
+        for i, lab in enumerate(SIR):
+            add(f"LB-E2-F1-fallback.step_h{h}.{lab}", "LB-E2-F1-fallback", "suite", SUITE, {"md": ["suite_sir", cell, i]})
+    add("LB-E2-chance-asym.largest", "LB-E2-chance-asym", "chance", CHANCE, {"md": ["chance_largest", "value"]})
+    add("LB-E2-chance-asym.largest_cell", "LB-E2-chance-asym", "chance", CHANCE, {"md": ["chance_largest", "cell"]})
+    add("LB-E2-chance-asym.a1s_null.0.5", "LB-E2-chance-asym", "chance", CHANCE, {"md": ["chance", 245]})
+    for L_ in (75, 125):
+        for d in DETS:
+            for w in ("matched", "fixed"):
+                add(f"LB-E2-ddiv-response.g10.{L_}.{d}.{w}", "LB-E2-ddiv-response", "ddiv", DDIV,
+                    {"md": ["ddiv_b", 10, 0.5, L_, d, w]})
+        for w in ("slope", "r2"):
+            add(f"LB-E2-ddiv-response.g10.{L_}.D_div_{w}", "LB-E2-ddiv-response", "ddiv", DDIV,
+                {"md": ["ddiv_c", 10, 0.5, L_, w]})
+    for L_ in (25, 75, 125):
+        add(f"LB-E2-ddiv-response.g10.det.{L_}", "LB-E2-ddiv-response", "suite", SUITE, {"md": ["dyn_det", 10, 0.5, L_]})
 
     # --- E1 (entry 51)
     p = ["primary"]

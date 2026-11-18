@@ -263,6 +263,81 @@
      "evidence": "337 of 337 committed suite output files present; licence cells re-hash ops.py, pipeline.py, e2stat.py and ref_e2.py against aad6cf7 (unchanged)."
     }
    }
+  },
+  "scripts/suite/report_chance_leads.py": {
+   "script_sha256": "5d91ade2d5810b4bcb7a6f3d0d6ca30677911cedb8be761b6af4e3cf000bcdef",
+   "reviewed": "2026-11-18 (Claude, code read + re-execution; ledgered at Phase 4 open, DECISIONS 65)",
+   "signed": null,
+   "flags": {
+    "1": {
+     "pass": true,
+     "evidence": "Re-run with --out to scratch (0.7 s): byte-identical to the committed verification/chance_leads_15_17.md. The --out option (entry 65) changes only the destination."
+    },
+    "2": {
+     "pass": true,
+     "evidence": "Per cell, the replicate rows are read from that cell's own JSONL; share and lead are averaged per detector over the same rows; the table row is keyed by the cell id from cells.json."
+    },
+    "3": {
+     "pass": true,
+     "evidence": "A missing cell file is printed as NOT RUN, never averaged; superseded cells are skipped by flag. Eligible-event count is the row's n_eligible, or the registered design count (57 on grid 10 and the A1 layout; suite_verdict confirms exact recovery of 57 eligible in every replicate)."
+    },
+    "4": {
+     "pass": true,
+     "evidence": "N/A: summarizes completed synthetic null outcomes; no predictor is formed."
+    },
+    "5": {
+     "pass": true,
+     "evidence": "Every detector is summarized over the same replicates and events of a cell; replicates use disjoint registered seeds (seed map)."
+    },
+    "6": {
+     "pass": true,
+     "evidence": "N/A: no series computation; each cell is summarized separately."
+    },
+    "7": {
+     "pass": true,
+     "evidence": "Reads the committed scripts/outputs/suite_v1 (337 files; regrade byte-identical) and scripts/suite/cells.json; every null kind listed in the script is covered or shown NOT RUN."
+    }
+   }
+  },
+  "scripts/suite/check_ddiv_response.py": {
+   "script_sha256": "04c2738431b49889466e7d88141c3044e0a1f34c41e290012f67f32469b39f0f",
+   "helpers_sha256": {
+    "analysis/synth.py": "5fa68a7249334f398d48d538d6b96e333425396c3e96c926e978820ee22f83b3",
+    "analysis/synth_e2e.py": "3bcbedf73007ba25e37197e38bbeec6088675328fafbec9ff97b25969bf86e8e",
+    "analysis/pipeline.py": "64bbc93cc61201b92e3b7fdc6be1fed638c41a7e56f05dc19f048cff9d9bb11d"
+   },
+   "reviewed": "2026-11-18 (Claude, code read; re-execution pending verify.py --full on JAE's machine; ledgered at Phase 4 open, DECISIONS 65)",
+   "signed": null,
+   "flags": {
+    "1": {
+     "pass": null,
+     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+    },
+    "2": {
+     "pass": true,
+     "evidence": "Regression pairs: hist is built over eligible events in event-list order, and pipeline.run's leads come from e2stat.leads_table over the same filtered list in the same order (pipeline.py line 103-105), so x and y align per event; replicates are concatenated pairwise."
+    },
+    "3": {
+     "pass": true,
+     "evidence": "The fixed theta is the median of finite matched thetas only, with n finite reported per detector; a detector with none is shown as an em dash and its fixed run uses theta = inf (no alarm); a regression with no x variance is reported NaN."
+    },
+    "4": {
+     "pass": true,
+     "evidence": "Synthetic: thresholds are matched per replicate on out-of-window observations (pipeline P-FA). The fixed-theta arm uses the cell's population median by design (15.8(b) asks exactly this), not as a predictor."
+    },
+    "5": {
+     "pass": true,
+     "evidence": "All detectors are scored on the same replicates and events; replicate seeds are disjoint by construction (44,000,000 + k*2,000 + {0-19, 100-199, 300-399}, seed map)."
+    },
+    "6": {
+     "pass": true,
+     "evidence": "History length is measured from the start of the block containing t_e (the latest block start <= t_e); pipeline scoring is per block."
+    },
+    "7": {
+     "pass": true,
+     "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
+    }
+   }
   }
  }
 }

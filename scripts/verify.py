@@ -27,6 +27,7 @@ import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path[:0] = [os.path.join(ROOT, "scripts"), os.path.join(ROOT, "analysis")]
+import ledger_md  # noqa: E402
 
 REQUIRED = ["Abstract", "Introduction", "Related Work", "Methods", "Results", "Discussion", "Conclusion", "References"]
 PLACEHOLDER = re.compile(r"\b(STUB|TODO|PLACEHOLDER|TBD)\b")
@@ -40,6 +41,13 @@ def sha256_file(p):
         for c in iter(lambda: f.read(1 << 20), b""):
             h.update(c)
     return h.hexdigest()
+
+
+def value_at(path, ptr):
+    """JSON pointer (list) or markdown pointer ({"md": [...]}, scripts/ledger_md.py)."""
+    if isinstance(ptr, dict):
+        return ledger_md.extract(open(path, encoding="utf-8").read(), ptr["md"])
+    return get(json.load(open(path, encoding="utf-8")), ptr)
 
 
 def get(obj, ptr):
@@ -94,10 +102,10 @@ def check_ledger(lock, root=ROOT):
             red.append(f"ledger {r['id']}: output SHA-256 drift {r['output']['path']}")
         if r["script"] and sha256_file(os.path.join(root, r["script"]["path"])) != r["script"]["sha256"]:
             red.append(f"ledger {r['id']}: script SHA-256 drift {r['script']['path']}")
-        if r["output"]["path"].endswith(".json") and r["reexec"] not in ("static",) and r["pointer"]:
+        if r["reexec"] not in ("static",) and r["pointer"]:
             try:
-                v = get(json.loads(cache[op][1]), r["pointer"])
-            except (KeyError, IndexError, TypeError):
+                v = value_at(op, r["pointer"])
+            except (KeyError, IndexError, TypeError, AttributeError, ValueError):
                 red.append(f"ledger {r['id']}: pointer {r['pointer']} not found")
                 continue
             if not same(v, r["value"], r["tol_abs"]):
@@ -114,6 +122,11 @@ def _cmd(sk, store, scratch):
                 os.path.join(scratch, "a1_events.json"), os.path.join(scratch, "a1_events.md")]
     if sk == "scripts/suite/grade_suite.py":
         return [py, os.path.join(ROOT, sk), "--out", os.path.join(scratch, "suite_verdict.md")]
+    if sk == "scripts/suite/report_chance_leads.py":
+        return [py, os.path.join(ROOT, sk), "--out", os.path.join(scratch, "chance_leads_15_17.md")]
+    if sk == "scripts/suite/check_ddiv_response.py":
+        return [py, os.path.join(ROOT, sk), "--workers", str(max(1, (os.cpu_count() or 2) - 2)),
+                "--out", os.path.join(scratch, "ddiv_response_15_8.md")]
     return [py, os.path.join(ROOT, sk), store, "--out", scratch]
 
 
@@ -146,6 +159,19 @@ def _reproduce_e2(lock):
         red.append("reexec E2: label rule (REFUTE iff C_min <= 0) violated")
     if int(math.floor(E["N_out"] / 1e4 + 0.5)) != E["nstar"]:
         red.append("reexec E2: n* != round_half_up(N_out / 10,000)")
+    # FA-grid frontier (summaries only, no stored leads): internal consistency
+    G = json.load(open(os.path.join(ROOT, "scripts/outputs/e2/e2_result.json")))["fa_grid"]
+    for fa, g in G.items():
+        if int(math.floor(float(fa) * E["N_out"] / 1e4 + 0.5)) != g["nstar"]:
+            red.append(f"reexec E2 frontier {fa}: n* != round_half_up(fa x N_out / 10,000)")
+        pdm = g["per_detector"]
+        for b, cb in g["C"].items():
+            if not same(cb, pdm["D_div"]["mean_lead"] - pdm[b]["mean_lead"], 1e-12):
+                red.append(f"reexec E2 frontier {fa}: C_{b} != mean lead difference")
+        if not same(g["C_min"], min(g["C"].values()), 1e-12):
+            red.append(f"reexec E2 frontier {fa}: C_min != min C_b")
+        if (g["C_min"] <= 0) != (g["label_point"] == "REFUTE"):
+            red.append(f"reexec E2 frontier {fa}: label rule violated")
     return red
 
 
@@ -176,7 +202,7 @@ def check_reexec(lock, store, full):
             if not os.path.exists(sp):
                 red.append(f"reexec {r['id']}: re-run produced no {os.path.basename(sp)}")
                 continue
-            v = get(json.load(open(sp, encoding="utf-8")), r["pointer"])
+            v = value_at(sp, r["pointer"])
             if not same(v, r["value"], r["tol_abs"]):
                 red.append(f"reexec {r['id']}: re-run value {norm(v)!r} != ledger {r['value']!r}")
         done.append(sk)

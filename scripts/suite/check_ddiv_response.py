@@ -9,7 +9,7 @@
     (v1 of this script fixed theta at the null-series median, which was infinite for D_div; superseded, not reported.)
 (c) per-event D_div lead regressed on history length since the series/gap start (observations), matched theta;
     slope and R^2 pooled per cell; B2 alongside for comparison.
-Writes verification/ddiv_response_15_8.md. Usage: python scripts/suite/check_ddiv_response.py --workers 16"""
+Writes verification/ddiv_response_15_8.md. Usage: python scripts/suite/check_ddiv_response.py --workers 16 [--out FILE]   (--out: verify.py re-execution to scratch)"""
 import argparse
 import json
 import os
@@ -53,6 +53,7 @@ def run_one(args):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 2) - 2))
+    ap.add_argument("--out", default=os.path.join(ROOT, "verification", "ddiv_response_15_8.md"))
     a = ap.parse_args()
     out = ["# D_div lead-response checks (DESIGN Amendment 15.8 (b), (c); synthetic, reported)", "",
            f"Seeds: child indices {BASE:,}+ (diagnostic range; seed map). Ramps A = 6 × SD (14.3). "
@@ -114,8 +115,8 @@ def main():
         for L in (75, 125):
             rg = cell[L]["regression"]
             out.append(f"| {grid} | {phi} | {L} | {rg['D_div'][0]:.4f}, {rg['D_div'][1]:.3f} | {rg['B2'][0]:.4f}, {rg['B2'][1]:.3f} |")
-    open(os.path.join(ROOT, "verification", "ddiv_response_15_8.md"), "w", encoding="utf-8", newline="\n").write("\n".join(out) + "\n")
-    print("WROTE verification/ddiv_response_15_8.md")
+    open(a.out, "w", encoding="utf-8", newline="\n").write("\n".join(out) + "\n")
+    print("WROTE", a.out)
 
 
 if __name__ == "__main__":
