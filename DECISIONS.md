@@ -1475,3 +1475,10 @@ JAE: "proceed as recommended" (15:11 CT), on the three questions from the close 
 3. **PRV box for E1, E4 and E5.** The recorded checks are accepted as meeting the box, and the gap is stated: no written six-pass audit, unlike E2's.
    - E1: six-pass check in entry 50.
    - E5 and E4: pins, gate tests and synthetic dry runs (entries 51 and 53).
+
+## Entry 56 (2026-11-18) — Data store backed up off-machine and verified
+
+- **Copy.** `robocopy /E /COPY:DAT` from `C:\Users\jaek9\Documents\LaggingTruth\data-stores\adam-lag-instability` to `C:\Users\jaek9\OneDrive\LaggingTruth-backups\data-stores\adam-lag-instability`, on 2026-11-18 at 15:12 CT. 11 directories and 78 files (780.67 MB) copied; 0 skipped, 0 mismatched, 0 failed.
+- **Verification.** `scripts/prv_hash_check.py` was run on the backup path against SOURCES.md: **77 files checked, 0 failed -> PASS**.
+  - The 78th file, `A1/route1b/run-001/_committed_check.parquet`, is not a SOURCES row. It is a working file from the route-1b cross-check, copied but not hash-listed.
+- The Phase 2 "Pushed off-machine" box's open item (entry 14: no off-machine copy of the store) is closed. OneDrive syncs the copy off the machine.
