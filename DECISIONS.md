@@ -1459,3 +1459,19 @@ JAE signs off the Pre-Run Verification Protocol for E2. The run command is issue
   - derived: 43d9ee212221b81fcef0da281111f9e2.
 
 **Post-verdict work complete.** E1 INDETERMINATE (entry 51); E5 degenerate (entry 52); E4 above; X1–X3 (entry 49). E3 not run. Next: the null note (Phase 4), built from OUTLINE v0.6, with Amendments 7–17 and entries 47–54 reconciled into the nodes.
+
+## Entry 55 (2026-11-18, JAE) — Phase 2 close: decisions on the open boxes
+
+JAE: "proceed as recommended" (15:11 CT), on the three questions from the close audit (`verification/phase2_close_audit.md`).
+1. **Second focused review of D-01 and D-05.**
+   - Venue: a fresh claude.ai chat with no project and no author context, the venue used for the earlier reviews.
+   - One package, built by `scripts/build_review_package_d01_d05.py` (MD5 ef644b1df1ac9f5deb51ab34115f6997) from committed files, verbatim:
+     - `verification/d01_d05_review_prompt.md` (MD5 4572b8a31e4c6bcd0c99a809f1262135);
+     - `verification/d01_d05_review_package.md` (MD5 018374a2912050632c0863ef74eb22f8).
+   - The reply is saved verbatim and adjudicated here before D-01 and D-05 close.
+2. **Off-machine backup of the data store.**
+   - Destination: JAE's OneDrive, `C:\Users\jaek9\OneDrive\LaggingTruth-backups\data-stores\adam-lag-instability` (synced off-machine by OneDrive). The store is 781 MB in 78 files.
+   - Copied with robocopy, then verified by running `scripts/prv_hash_check.py` against the backup path: all 77 SOURCES rows must pass.
+3. **PRV box for E1, E4 and E5.** The recorded checks are accepted as meeting the box, and the gap is stated: no written six-pass audit, unlike E2's.
+   - E1: six-pass check in entry 50.
+   - E5 and E4: pins, gate tests and synthetic dry runs (entries 51 and 53).
