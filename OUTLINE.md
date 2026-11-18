@@ -8,7 +8,7 @@ Copied from the Research-to-Publication Standard's OUTLINE.md Template page (doc
 *   **Archetype:** empirical-with-verified-theory (THESIS Amendment A2(f): no original theorem; The Measurement Trap Appendix A.4 used as a descriptive index)
 *   **Source pin (rebuild only):** N/A — new work
 *   **Standard:** v1.10.2
-*   **Outline version:** v0.6 — 2026-11-15
+*   **Outline version:** v0.7 — 2026-11-18
 *   **Status:** draft — **null-note shape** (§K STOP, 2026-11-15)
 *   **Format:** ML-format paper, 8–12 pages main text (page budget per section in §1); appendices outside the page count.
 *   **Outcome branches (pre-registered, DESIGN §K):** this outline is the full paper (E2 SUPPORT or INCONCLUSIVE → Leg B runs). If §K returns STOP (E2 REFUTE) or CLOSE (INSUFFICIENT EVENTS), the deliverable is a short null note built from the Leg A nodes only (ARG-01–ARG-10, ARG-14; FIG-1–FIG-5; TBL-1–TBL-5; S1–S5, S7–S8, S10–S13; L-01, L-03–L-07); Leg B nodes become DROPPED ("not necessary — §K did not proceed") by a dated outline version. **Resolved 2026-11-15: §K STOP. E2 is REFUTE on A1 (DECISIONS entry 47; RECORD.md). The deliverable is the null note; the Leg B nodes are DROPPED in v0.6.**
@@ -25,6 +25,7 @@ Copied from the Research-to-Publication Standard's OUTLINE.md Template page (doc
     *   **Leg B dropped** ("not necessary — §K did not proceed"): ARG-11, ARG-12, ARG-13, ARG-15; FIG-6, FIG-7; TBL-6–TBL-8; S6, S9; L-02; LB-E6-table, LB-E6-spearman, LB-E7-tau, LB-B-noisecell, LB-B-replicates, LB-E8-Cmin, LB-E8-Nout.
     *   **Kept for the null note:** ARG-01–ARG-10, ARG-14; FIG-1–FIG-5; TBL-1–TBL-5; S1–S5, S7–S8, S10–S13; L-01, L-03–L-07. E1, E3, E4 and E5 keep their nodes; whether they run before the null note is a Phase 2 decision recorded in DECISIONS.
     *   **Not yet reconciled:** DESIGN Amendments 7–17 (suite, A1-structure cells, the 15.x reporting items, the re-set and run dates). They enter the nodes at the Phase 4-open reconciliation. ARG-08 must then carry the F-6 reading: D_div was not matchable at the headline FA, and no detector led any event.
+*   v0.7 2026-11-18 — Post-verdict results landed (DECISIONS entries 48–54). LB-E1-* LANDED (E1 INDETERMINATE). LB-E5-* LANDED (degenerate at headline: D_div never alarms; stated in advance). LB-E4-variants LANDED (no registered variant makes D_div matchable; P-SEG keep-earlier not run). LB-E3-* and LB-A-included NOT RUN (§K stop; A2–A6 not staged). New EXPLORATORY LB-ids LB-X1-precursor, LB-X2-matchability, LB-X3-events (entry 48 plan, committed before computation). For ARG-08 in the null note: the precursor is confined to the last 10-step logging interval (X1), and D_div is unmatchable on every sub-series (X2), so route 3 could not have changed E2. Amendments 7–17 still enter the nodes at the Phase 4-open reconciliation.
 
 ## 1. IMRaD structural map (the skeleton)
 
@@ -117,10 +118,10 @@ Names only; values live in claims.lock (Phase 3).
 | LB-A1-rung | k-ladder rung that resolved | ARG-08 | LANDED (DECISIONS entry 13; scripts/outputs/a1_events.json) |
 | LB-A1-ineligible | Ineligible events counted, with reasons | ARG-08 | LANDED (DECISIONS entry 13; scripts/outputs/a1_events.json) |
 | LB-A1-rewind | Rewind events retained on their own segment (count) | ARG-08 | LANDED (DECISIONS entry 13; scripts/outputs/a1_events.json) |
-| LB-E1-label | E1 label (CONSISTENT / INCONSISTENT / INDETERMINATE; not support for Claim A) | ARG-07 | NEW |
-| LB-E1-predsign | A-priori predicted sign from the ACF criterion | ARG-07 | NEW |
-| LB-E1-rho | Realised forward correlation | ARG-07 | NEW |
-| LB-E1-p | One-sided block-permutation p | ARG-07 | NEW |
+| LB-E1-label | E1 label (CONSISTENT / INCONSISTENT / INDETERMINATE; not support for Claim A) | ARG-07 | LANDED (DECISIONS 51; analysis/outputs/post/e1_result.json) |
+| LB-E1-predsign | A-priori predicted sign from the ACF criterion | ARG-07 | LANDED (DECISIONS 51) |
+| LB-E1-rho | Realised forward correlation | ARG-07 | LANDED (DECISIONS 51) |
+| LB-E1-p | One-sided block-permutation p | ARG-07 | LANDED (DECISIONS 51) |
 | LB-E2-verdict | E2 four-way label | ARG-08 | LANDED (DECISIONS entry 47; scripts/outputs/e2/e2_result.json) |
 | LB-E2-Cmin | Minimum contrast of mean leads (point estimate; decides REFUTE) | ARG-08 | LANDED (DECISIONS entry 47; scripts/outputs/e2/e2_result.json) |
 | LB-E2-Cmin-p05 | 5th percentile of resampled C_min | ARG-08 | N/A — REFUTE: p05 is not computed (Amendment 7.5) |
@@ -131,12 +132,15 @@ Names only; values live in claims.lock (Phase 3).
 | LB-E2-argmax | Per-resample argmax probability over detectors | ARG-08 | LANDED (DECISIONS entry 47; scripts/outputs/e2/e2_result.json) |
 | LB-E2-power | Measured detection probability at the observed effect (INCONCLUSIVE branch) | ARG-08 | N/A — the INCONCLUSIVE branch was not reached |
 | LB-K-verdict | §K outcome (STOP / CLOSE / PROCEED) and grading-day record | ARG-08 | LANDED (DECISIONS entry 47; scripts/outputs/e2/e2_result.json) |
-| LB-E3-verdict | E3 replication label | ARG-09 | NEW |
-| LB-E3-nruns | Runs with ≥ 3 eligible events; runs reported descriptively | ARG-09 | NEW |
-| LB-E4-variants | Contrast under each window pair, pin sweep and resampling variant | ARG-10 | NEW |
-| LB-E5-aor-real | D_div advance-ordering rate and mean lead on the real alarm series | ARG-10 | NEW |
-| LB-E5-aor-shifted | Same under circular shift (median and 90 % range); block-shuffle result beside it | ARG-10 | NEW |
-| LB-E5-flag | Alignment-control flag state | ARG-10 | NEW |
+| LB-E3-verdict | E3 replication label | ARG-09 | NOT RUN — §K stopped the project; A2–A6 not staged (DECISIONS 48) |
+| LB-E3-nruns | Runs with ≥ 3 eligible events; runs reported descriptively | ARG-09 | NOT RUN — as LB-E3-verdict |
+| LB-E4-variants | Contrast under each window pair, pin sweep and resampling variant | ARG-10 | LANDED (DECISIONS 54; analysis/outputs/post/e4/); P-SEG keep-earlier not run (DECISIONS 53) |
+| LB-E5-aor-real | D_div advance-ordering rate and mean lead on the real alarm series | ARG-10 | LANDED (DECISIONS 52; degenerate at headline, stated in advance) |
+| LB-E5-aor-shifted | Same under circular shift (median and 90 % range); block-shuffle result beside it | ARG-10 | LANDED (DECISIONS 52) |
+| LB-E5-flag | Alignment-control flag state | ARG-10 | LANDED (DECISIONS 52; tripped by construction) |
+| LB-X1-precursor | Gradient-norm precursor before loss spikes (event vs control rise; event-locked mean curve) — EXPLORATORY | ARG-08 | LANDED (DECISIONS 49; analysis/outputs/post/x_diag.json) |
+| LB-X2-matchability | D_div top-score onset count vs n* per sub-series and at projected full-run n* — EXPLORATORY | ARG-08 | LANDED (DECISIONS 49) |
+| LB-X3-events | Event density and rise by block — EXPLORATORY | ARG-08 | LANDED (DECISIONS 49) |
 | LB-suite-cell | Regime cell the realised A1 data lands in (event count × persistence) | ARG-08 | LANDED (DECISIONS entry 47; scripts/outputs/e2/e2_result.json) |
 | LB-suite-null | Suite false-REFUTE and false-SUPPORT rates for the planted nulls, incl. unequal alarm memory | ARG-08 | LANDED (suite verdict ALL PASS, e7abad6; verification/suite_verdict.md) |
 | LB-E6-table | 24-cell spike-rate / divergence / φ̂ / b_g*(exp) table | ARG-12 | DROPPED — not necessary, §K did not proceed (v0.6) |
@@ -146,7 +150,7 @@ Names only; values live in claims.lock (Phase 3).
 | LB-B-replicates | Replicate-seed spike rates at the four P-REP cells | ARG-12 | DROPPED — not necessary, §K did not proceed (v0.6) |
 | LB-E8-Cmin | E8 pooled minimum contrast with cluster-bootstrap interval over runs (no label) | ARG-13 | DROPPED — not necessary, §K did not proceed (v0.6) |
 | LB-E8-Nout | N_out and n* per run; runs "FA not matchable" counted | ARG-13 | DROPPED — not necessary, §K did not proceed (v0.6) |
-| LB-A-included | Which of A2–A6 were included or excluded at staging, with reasons | ARG-09 | NEW |
+| LB-A-included | Which of A2–A6 were included or excluded at staging, with reasons | ARG-09 | NOT RUN — A2–A6 not staged (DECISIONS 48) |
 
 ## 5. Figures, tables & equations
 
