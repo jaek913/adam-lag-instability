@@ -1520,3 +1520,24 @@ JAE: "proceed as recommended" (15:11 CT), on the three questions from the close 
      - `verification/d02_review_prompt.md` (MD5 e6650b362230408eb8fe4867de3df80f);
      - `verification/d02_review_package.md` (MD5 3b94fe1309fd0408f9b17e04ae0d4570), rebuilt after the D-02 status line was updated.
    - The venue is the same as entry 55's.
+
+## Entry 59 (2026-11-18) — Second focused review of D-02: CONFIRMED with corrections; D-02 closed; Discrepancy Register complete
+
+**Review.** A fresh claude.ai chat with no project and no author context received `verification/d02_review_prompt.md` (MD5 e6650b36…) and `verification/d02_review_package.md` (MD5 3b94fe13…). JAE pasted the reply into this session, and it is saved verbatim as `verification/d02_review_transcript.md` (MD5 0744e94c33ca87ed0431cdbd64ff3a63, LF).
+
+**Verdict: CONFIRMED, with corrections (a)–(e), all applied to the register row** (`verification/Discrepancy_Register.md`, MD5 93041802b0e6a61114cfbc0efa244ae5):
+- **(a)** The blast radius is extended to cover:
+  - the route-1b gate;
+  - E2's data selection and its uncovered ranges;
+  - the selection threat (INSUFFICIENT EVENTS risk);
+  - unscorable rewind events (a lower bound);
+  - the A1.12 structural report and the Methods limitations;
+  - X1–X3.
+- **(b)** The item is restated to cover all 18 incomplete or empty segments, not only run-025.
+- **(c)** The cross-interface reconciliation (Addendum B item 8) is added as a method, graded ground truth for publicly visible interfaces.
+- **(d)** "The gap is specific to A1's copied segments" is downgraded to an unverified cause, at most consistent-with. Entry 5's sentence stands as written, append-only; this entry supersedes it.
+- **(e)** The adjudication now states that the gap does not affect the correctness of any value used, but that E2 (its eligible-event count, n* = 4 and the verdict) and the X1–X3 inferences are conditional on the covered ranges, under the stated selection threat. Entry 49's "route 3 would not change n* or D_div's unmatchability" is a projection, not an observation.
+
+**Bearing on the null note.** The Methods and Discussion state E2 and X1–X3 as conditional on the covered ranges 1–14,210 and 52,301–504,510. Entry 49 item 4's "what route 3 could have changed" is widened accordingly.
+
+**Discrepancy Register.** D-01 to D-05 are all closed, each with a second focused review: D-01 and D-05 in entry 57, D-02 here, D-03 and D-04 earlier. No confirmed dossier bearing on a load-bearing claim is open. The Phase 2 Discrepancy box can be flipped.
