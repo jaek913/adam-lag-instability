@@ -1,0 +1,49 @@
+{
+ "schema": "CIC sign-off v1 (7 classes; Phase 3). Edited only by review; claims.lock reads it via scripts/build_claims.py.",
+ "classes": {
+  "1": "re-executes to the claim",
+  "2": "index/row alignment after diff/dropna/concat/resample",
+  "3": "NaN and gap handling explicit",
+  "4": "no look-ahead",
+  "5": "overlap vs non-overlapping subsample consistent with controls",
+  "6": "no computation across record/station boundaries",
+  "7": "input integrity: obs count, coverage, gaps match Methods"
+ },
+ "scripts": {
+  "scripts/a1_events.py": {
+   "script_sha256": "ea124890b0d0d727a0456d6f029ec4cfad5d806ee01acad70bb9d525ec3d9522",
+   "reviewed": "2026-11-18 (Claude, code read + re-execution)",
+   "signed": null,
+   "flags": {
+    "1": {
+     "pass": true,
+     "evidence": "Re-run 2026-11-18 at 90a3797 on the hashed store to a scratch folder (5.8 s): a1_events.json identical to the committed file except generated_utc; A1_events.md identical except the Generated line."
+    },
+    "2": {
+     "pass": true,
+     "evidence": "Loss is looked up per step from a {step: value} map of the owning segment (owner_intervals); a missing step raises KeyError, so no truncation or positional realignment is possible. Rewind series: pre-resume kept steps and values are selected with the same mask."
+    },
+    "3": {
+     "pass": true,
+     "evidence": "Non-finite loss counts as exceeding (D.2); a step is tested only with >= 64 finite values in its trailing window (Amendment 3(2)); untested counts reported. Gaps are step jumps; each contiguous block is processed separately. Null (None) loss entries are not in the map; zero kept steps lack loss (entry 11)."
+    },
+    "4": {
+     "pass": true,
+     "evidence": "Trailing window t-W..t-1 excludes t. The per-block median offset uses the whole block but is a constant shift applied to both the value and the window, so the spike test is invariant to it (numerical conditioning only); the borderline re-test uses raw values. Eligibility uses only the 1,280-step scan before t_e."
+    },
+    "5": {
+     "pass": true,
+     "evidence": "N/A by construction: overlapping trailing windows are the registered D.2 rule; no control subsample is drawn in this script. Chained dedup (2,000 inclusive) is applied within block, as registered."
+    },
+    "6": {
+     "pass": true,
+     "evidence": "Spike test, dedup chains and eligibility are confined to one contiguous block (blocks_from_steps; scan window must lie in the block). Kept blocks join segments only where P-SEG (Amendment 2) defines a single contiguous trajectory; rewind series join pre-resume kept steps to the segment's own steps per Amendment 3(5) (0 rewind events). Both are registered."
+    },
+    "7": {
+     "pass": true,
+     "evidence": "All 7 route-1 files read pass prv_hash_check --only (SHA-256 vs SOURCES.md). Kept series 466,300 steps in 3 blocks [1,14200] [52301,160500] [160601,504500] (Amendment 2); rewind portions 14,201-14,210 ... 504,501-504,510 on own series. The D-02 'covered ranges' 1-14,210 and 52,301-504,510 are kept blocks plus rewind portions; Methods must state the kept blocks and the internal gap 160,501-160,600."
+    }
+   }
+  }
+ }
+}

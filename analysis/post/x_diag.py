@@ -41,6 +41,28 @@ def mannwhitney_greater(a, b):
     return float(U), float(0.5 * math.erfc(z / math.sqrt(2)))
 
 
+TILE, POST = 228, 1410
+
+
+def control_tiles(blocks, events):
+    """DECISIONS 62: disjoint 228-obs windows [j*228, j*228+227] per block; anchor = last index; anchor >= MIN_HIST+228;
+    no grid step of the window within [t_e^g - SCAN, t_e^g + POST] of any event (eligible or not)."""
+    tegs = np.array([GRID * (e["t_e"] // GRID) for e in events], dtype=np.int64)
+    pts, n_excl = [], 0
+    for k, b in enumerate(blocks):
+        n = len(b["y"])
+        for j in range(n // TILE):
+            a0, a1 = j * TILE, j * TILE + TILE - 1
+            if a1 < ops.MIN_HIST + 228:
+                continue
+            s0, s1 = b["first_step"] + GRID * a0, b["first_step"] + GRID * a1
+            if np.any((tegs + POST >= s0) & (tegs - SCAN <= s1)):
+                n_excl += 1
+                continue
+            pts.append((k, a1))
+    return pts, n_excl
+
+
 def rise_at(b, i):
     """X1 statistic at block index i (= t_e^g): pre = obs i-13..i-1 (steps t-130..t-10); base = 100 obs ending i-128."""
     if i - 128 - 99 < 0 or i >= len(b["y"]):
@@ -79,16 +101,9 @@ def main():
         k, i = loc(GRID * (e["t_e"] // GRID))
         ev_rise.append(rise_at(blocks[k], i))
         ev_block.append(k)
-    # control anchors: out-of-window grid steps, history >= 1,000 + 228 obs, uniform over all such
-    pool = []
-    for k, b in enumerate(blocks):
-        st = b["first_step"] + GRID * np.arange(len(b["y"]))
-        oos = ~pipeline.scan_mask(st, events, GRID, SCAN)
-        idx = np.nonzero(oos & (np.arange(len(b["y"])) >= ops.MIN_HIST + 228))[0]
-        pool += [(k, int(i)) for i in idx]
-    rng = np.random.default_rng(20261030)
-    pick = rng.choice(len(pool), size=2000, replace=False)
-    ctl = [rise_at(blocks[pool[j][0]], pool[j][1]) for j in pick]
+    # control anchors (DECISIONS 62; supersedes the entry-48 random draw): disjoint 228-obs tiles, no RNG
+    ctl_pts, n_excl = control_tiles(blocks, events)
+    ctl = [rise_at(blocks[k], i) for k, i in ctl_pts]
     ctl = [c for c in ctl if c is not None]
     evr = [x for x in ev_rise if x is not None]
     mw_U, mw_p = mannwhitney_greater(evr, ctl)
@@ -104,8 +119,9 @@ def main():
 
     ev_pts = [loc(GRID * (e["t_e"] // GRID)) for e in elig]
     o_e, c_e, n_e = curve(ev_pts)
-    o_c, c_c, n_c = curve([pool[j] for j in pick])
-    out["X1"] = {"n_events": len(evr), "n_control": len(ctl),
+    o_c, c_c, n_c = curve(ctl_pts)
+    out["X1"] = {"n_events": len(evr), "n_control": len(ctl), "control_construction": "DECISIONS 62 disjoint tiles",
+                 "n_tiles_excluded_clearance": n_excl,
                  "event_rise_median": float(np.median(evr)), "control_rise_median": float(np.median(ctl)),
                  "event_share_gt2": float(np.mean(np.array(evr) > 2)), "control_share_gt2": float(np.mean(np.array(ctl) > 2)),
                  "mannwhitney_U": mw_U, "mannwhitney_p_one_sided": mw_p,

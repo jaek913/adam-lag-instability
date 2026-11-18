@@ -1564,3 +1564,25 @@ JAE: "proceed as recommended" (15:11 CT), on the three questions from the close 
 1. **Checklist-first.** The Phase 3 task (86bcvnnv9) and the Phase 4 task (86bcvnnv3) checklists were retrieved and read in full on 2026-11-18, before any Phase 3 or Phase 4 work.
 2. **Phase order (JAE, 2026-11-18).** The Phase 2 wording "directly to a null-note Phase 4" is read as "skip Leg B", not "skip Phase 3". Phase 4 requires every Results number to come from claims.lock via {{LB-id}}, and its reconciliation gate runs inside Phase 3's verify.py. Phase 3 (claims.lock, the 7-point CIC, verify.py with broken fixtures, the theorem-checks N/A record) therefore runs first; Phase 4 (the null note) follows.
 3. **Dated amendment to Phase 4 override (5) (JAE, 2026-11-18).** On the KILL path, the `pip install` monitor and the HF Trainer callback are not shipped. E2 refuted D_div, and on A1 D_div could not be matched at the headline false-alarm rate (θ = ∞; entries 47, 49, 54). Shipping it as a tool would invite use of a detector this project has shown does not work. The Phase 4 box "Monitor + README shipped from the repo" is flipped as N/A with this entry as evidence. The repository README still states the null result, with its numbers quoted from the ledger via the renderer. The E2 figure as a stand-alone image is unaffected.
+
+## Entry 62 (2026-11-18) — Phase 3 CIC finding on x_diag.py (class 5); X1 control sampling corrected (JAE option a); fixed before computation
+
+1. **Finding (CIC class 5, overlap vs non-overlapping subsample).** X1 (entry 48 plan, entry 49 result) compares 57 eligible events with 2,000 control anchors. These were drawn without replacement from the 35,769 out-of-scan-window grid observations that have at least 1,228 observations of history (`default_rng(20261030)`).
+   - Each rise uses a 228-observation window [i−227, i].
+   - 1,996 of the 1,999 adjacent pairs of drawn controls have overlapping windows.
+   - 449 controls are anchored within 1,410 steps after an event's t_e^g, so their windows include spike aftermath.
+   - By contrast, only 2 of the 56 adjacent pairs of eligible events are closer than 228 observations: gaps of 2,000 and 2,060 steps.
+   - The one-sided Mann–Whitney p in entry 49 (8.4 × 10⁻⁵) treats the controls as independent, so it is understated by an unknown amount. Measured by an integrity script on 2026-11-18; no output was changed.
+   - Not affected: X2, X3, E2 and every other ledger row. X1's medians and event-locked curve are recomputed below, because they use the same controls.
+2. **Decision (JAE, 2026-11-18).** Fix the control sampling in code, re-run X1, keep the entry-49 output as v1 (superseded), and disclose both. X1 stays EXPLORATORY.
+3. **Corrected control construction (fixed here, before any computation).**
+   - **Tiling.** Each kept block is tiled from index 0 into disjoint, consecutive 228-observation windows [j·228, j·228 + 227]. The anchor is the window's last index. There is no random draw.
+   - **History.** A tile is used only if its anchor index is at least 1,228 (ops.MIN_HIST + 228), as before.
+   - **Clearance from events.** A tile is also used only if no grid step in its window lies within [t_e^g − 1,280, t_e^g + 1,410] of any event, eligible or not. This covers the scan window and the aftermath that a later 130-step pre-window would reach.
+   - **Use.** Every qualifying tile is used. The rise statistic, the event set, the Mann–Whitney test and the event-locked curve are unchanged.
+   - **Reported alongside.** The n of controls, the count of tiles excluded for clearance, and the two close event pairs.
+4. **Files.**
+   - The committed output `analysis/outputs/post/x_diag.json` is copied unchanged to `analysis/outputs/post/x_diag_v1_superseded.json`.
+   - The corrected script writes `x_diag.json`.
+   - X2 and X3 must be byte-identical in value to v1. Any difference is a HALT and is reported.
+   - claims.lock is rebuilt.
