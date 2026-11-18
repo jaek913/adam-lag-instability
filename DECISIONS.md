@@ -1507,3 +1507,16 @@ JAE: "proceed as recommended" (15:11 CT), on the three questions from the close 
 - D-05 is **CLOSED**.
 
 **Register.** `verification/Discrepancy_Register.md`, MD5 dcfdc5a8bbf2ff579b2adf7cb5d77d5d. D-01 to D-05 are all closed. No confirmed dossier bearing on a load-bearing claim is open.
+
+## Entry 58 (2026-11-18) — Transcript hash as committed; D-02 lacks its second focused review (package prepared)
+
+1. **Transcript hash.** `.gitattributes` normalises line endings to LF.
+   - The committed blob of `verification/d01_d05_review_transcript.md` at 2adf4fd has MD5 f89bab10950a38e91e7955204bf7e9c0. That is the reply as saved (MD5 d4bce2a0177b3c36399729d8b87e3f97, CRLF) with CR removed.
+   - The text is otherwise identical: the CR-stripped working copy hashes to f89bab10….
+   - Same situation as the entry 6 note.
+2. **Gap found at the close audit.** D-02 was closed on 2026-11-15 (entries 44–45) without the second focused review the Phase 2 Discrepancy box requires. D-03 and D-04 have theirs; D-01 and D-05 have theirs as of entry 57.
+   - D-02's status is corrected to "CLOSED pending second focused review" until the review returns.
+   - A package is built verbatim from committed files by `scripts/build_review_package_d02.py` (MD5 ea18bdfccc1ccfe77365186daa254adb):
+     - `verification/d02_review_prompt.md` (MD5 e6650b362230408eb8fe4867de3df80f);
+     - `verification/d02_review_package.md` (MD5 3b94fe1309fd0408f9b17e04ae0d4570), rebuilt after the D-02 status line was updated.
+   - The venue is the same as entry 55's.
