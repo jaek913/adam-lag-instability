@@ -1482,3 +1482,28 @@ JAE: "proceed as recommended" (15:11 CT), on the three questions from the close 
 - **Verification.** `scripts/prv_hash_check.py` was run on the backup path against SOURCES.md: **77 files checked, 0 failed -> PASS**.
   - The 78th file, `A1/route1b/run-001/_committed_check.parquet`, is not a SOURCES row. It is a working file from the route-1b cross-check, copied but not hash-listed.
 - The Phase 2 "Pushed off-machine" box's open item (entry 14: no off-machine copy of the store) is closed. OneDrive syncs the copy off the machine.
+
+## Entry 57 (2026-11-18) — Second focused review of D-01 and D-05: both CONFIRMED; both closed
+
+**Review.** A fresh claude.ai chat with no project and no author context received the prompt (MD5 4572b8a3…) and the package (MD5 018374a2…) from entry 55. The reply is saved verbatim as `verification/d01_d05_review_transcript.md` (MD5 d4bce2a0177b3c36399729d8b87e3f97).
+
+**D-01 — CONFIRMED, with the method and grade corrected.** Each reviewer point, and how it was applied:
+- **Register text still called 43a155f the "training commit".** Fixed. The item now carries a dated correction pointing to entry 40.
+- **Cascade should include PRV item 3,** which rested on the same premise. Added.
+- **Method fails as written.** The code at 43a155fa is the copy job's, so it is consistent-with only. The finding stands on direct observation of the null mask, agreeing with the copied config. Applied: the method now reads "data null mask + copied config; code at the copy-job commits consistent-with only".
+- **Grade for runs 001–018 is consistent-with unless their null masks were read at staging.** The package did not include entry 9, which records exactly that: every one of the seven used segments has the gradient norm on every grid step and never off-grid, checked by the committed D.1 step.
+  - The grade is therefore **ground truth for all seven used runs and run-025** on the data.
+  - The code evidence is consistent-with.
+  - This goes beyond the package and is stated so.
+- No reported quantity changes. D-01 is **CLOSED**.
+
+**D-05 — CONFIRMED, with the statement widened.** Each reviewer point, and how it was applied:
+- **The conflict is 7.4 vs 15.9 across E2, E1 and E5,** not only within 15.9 for E2. Widened in the register.
+- **For E1 and E5 the p-values depend on the stream, so the dual reporting is load-bearing.** Recorded in the register as the resolution.
+  - E1: p = 0.089 under k = 2 and 0.066 under the 7.4 stream; INDETERMINATE under both.
+  - E5: degenerate under both.
+- **E2's cascade was verified against the code.** The label comes from `cmin_point` with no RNG, and every argmax share is 1/5 under any draw. No change.
+- **The suite claim holds,** provided the per-replicate generator governs data only. It does: data come from the SeedSequence child, and resamples from a fresh `default_rng(20261030)`.
+- D-05 is **CLOSED**.
+
+**Register.** `verification/Discrepancy_Register.md`, MD5 dcfdc5a8bbf2ff579b2adf7cb5d77d5d. D-01 to D-05 are all closed. No confirmed dossier bearing on a load-bearing claim is open.
