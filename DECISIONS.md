@@ -1558,3 +1558,9 @@ JAE: "proceed as recommended" (15:11 CT), on the three questions from the close 
    Found at the close audit (`verification/phase2_close_audit.md`, c558f7f).
 2. **Remediation.** Each of those boxes is flipped in ClickUp task 86bcvnnva, each with its evidence reference, in one evidence comment that lists every box. The Discrepancy box is flipped on entry 59. The §K box was flipped on 2026-11-16.
 3. **Not flipped yet.** The close-read box stays open until after the 2026-11-20 Amendment 17 record line. The §K checkpoint's grading-day record completes then, and the close-read follows it.
+
+## Entry 61 (2026-11-18) — Phase order after KILL; monitor package dropped from the null-note path
+
+1. **Checklist-first.** The Phase 3 task (86bcvnnv9) and the Phase 4 task (86bcvnnv3) checklists were retrieved and read in full on 2026-11-18, before any Phase 3 or Phase 4 work.
+2. **Phase order (JAE, 2026-11-18).** The Phase 2 wording "directly to a null-note Phase 4" is read as "skip Leg B", not "skip Phase 3". Phase 4 requires every Results number to come from claims.lock via {{LB-id}}, and its reconciliation gate runs inside Phase 3's verify.py. Phase 3 (claims.lock, the 7-point CIC, verify.py with broken fixtures, the theorem-checks N/A record) therefore runs first; Phase 4 (the null note) follows.
+3. **Dated amendment to Phase 4 override (5) (JAE, 2026-11-18).** On the KILL path, the `pip install` monitor and the HF Trainer callback are not shipped. E2 refuted D_div, and on A1 D_div could not be matched at the headline false-alarm rate (θ = ∞; entries 47, 49, 54). Shipping it as a tool would invite use of a detector this project has shown does not work. The Phase 4 box "Monitor + README shipped from the repo" is flipped as N/A with this entry as evidence. The repository README still states the null result, with its numbers quoted from the ledger via the renderer. The E2 figure as a stand-alone image is unaffected.
