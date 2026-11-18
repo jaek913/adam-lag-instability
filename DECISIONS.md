@@ -1586,3 +1586,21 @@ JAE: "proceed as recommended" (15:11 CT), on the three questions from the close 
    - The corrected script writes `x_diag.json`.
    - X2 and X3 must be byte-identical in value to v1. Any difference is a HALT and is reported.
    - claims.lock is rebuilt.
+
+## Entry 63 (2026-11-18) — X1 v2 result (corrected controls, entry 62); EXPLORATORY
+
+1. **Run.** `analysis/post/x_diag.py` at 529948d on the hashed store: PRV 77 files PASS. Output `analysis/outputs/post/x_diag.json` (MD5 f4385258c039945ea62a281288679fba). A second run to a scratch folder is byte-identical (no RNG).
+2. **Halt check.** X2 and X3 are identical in value to v1 (`x_diag_v1_superseded.json`). The event rises and the event-locked event curve are also identical, since the event set is unchanged.
+3. **X1, v1 → v2.**
+   - Controls: 2,000 overlapping → 81 disjoint tiles; 107 tiles were excluded for clearance.
+   - Control rise median: −0.103 → −0.050. The event rise median is unchanged at 0.084.
+   - Share of rises > 2: events 0.105; controls 0.033 → 0.025.
+   - One-sided Mann–Whitney p: 8.4 × 10⁻⁵ → 0.014. The reading is unchanged: "precursor present (p < 0.05)".
+   - Event-locked means (events vs. controls):
+     - at −130 steps: 0.055 vs −0.008;
+     - at −20: 0.122 vs 0.033;
+     - at −10: 0.198 vs 0.100;
+     - at 0: 1.146 vs −0.018.
+   - So the rise is small before the last logging interval and concentrated at the spike step. Entry 49's reading stands: the precursor is confined to the last 10-step interval.
+4. **Residual caveat (stated in the paper).** The tiles are disjoint but abut, so serial dependence between neighbouring controls remains. Two of the 56 adjacent eligible-event pairs are closer than 228 observations. The p-value is approximate and exploratory. The v1 p (entry 49) is superseded and is not quoted.
+5. **CIC.** x_diag.py class 5 now passes with this caveat. claims.lock is rebuilt: the X1 rows now point to v2, and an `LB-X1-precursor.n_tiles_excluded_clearance` row is added.

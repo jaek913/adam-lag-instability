@@ -44,6 +44,225 @@
      "evidence": "All 7 route-1 files read pass prv_hash_check --only (SHA-256 vs SOURCES.md). Kept series 466,300 steps in 3 blocks [1,14200] [52301,160500] [160601,504500] (Amendment 2); rewind portions 14,201-14,210 ... 504,501-504,510 on own series. The D-02 'covered ranges' 1-14,210 and 52,301-504,510 are kept blocks plus rewind portions; Methods must state the kept blocks and the internal gap 160,501-160,600."
     }
    }
+  },
+  "analysis/post/x_diag.py": {
+   "script_sha256": "a493bd0be2368177c4f12e7d68d3b07b16f57d10e2d712b51eb7015e1172b7f3",
+   "reviewed": "2026-11-18 (Claude, code read + re-execution); class 5 failed on v1, corrected per DECISIONS 62-63",
+   "signed": null,
+   "flags": {
+    "1": {
+     "pass": true,
+     "evidence": "v1 re-run at 90a3797 byte-identical to the committed output (7.7 s). v2 (529948d) run twice, byte-identical (no RNG). MD5 f4385258c039945ea62a281288679fba."
+    },
+    "2": {
+     "pass": true,
+     "evidence": "Grid positions come from loc(step) via divmod on the block's first_step (exact match required); ev_rise and ev_block are filled in the same loop and filtered together; X3 zips the same two lists."
+    },
+    "3": {
+     "pass": true,
+     "evidence": "A1 loader: 0 dropped grid obs, 0 kept steps without values (entry 11); rise_at returns None on short history or zero baseline sd and None is filtered with a count (n_events 57 of 57). Gaps: every window is indexed inside one block array."
+    },
+    "4": {
+     "pass": true,
+     "evidence": "X1 rise uses obs i-13..i-1 and a baseline ending i-128 (steps before t_e^g); the event-locked curve extends +200 steps but is a descriptive plot, not a predictor. X2 thresholds use D_div's own trailing score."
+    },
+    "5": {
+     "pass": true,
+     "evidence": "v1 FAILED: 1,996 of 1,999 adjacent control windows overlapped; 449 controls in spike aftermath (DECISIONS 62). v2: disjoint 228-obs tiles clear of [t_e^g-1280, t_e^g+1410], 81 controls; events overlap in 2 of 56 adjacent pairs. Residual serial dependence of abutting tiles disclosed; p approximate (DECISIONS 63)."
+    },
+    "6": {
+     "pass": true,
+     "evidence": "Windows, tiles and score_div run per block; X2 sub-series (blocks, halves) recompute scores from their own start; no array concatenation across the two gaps."
+    },
+    "7": {
+     "pass": true,
+     "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
+    }
+   }
+  },
+  "analysis/post/e1.py": {
+   "script_sha256": "9384edc8c0586e477e69c77ac665fae46ec37c28f5007ff72dedd95142a8fdfc",
+   "reviewed": "2026-11-18 (Claude, code read + re-execution)",
+   "signed": null,
+   "flags": {
+    "1": {
+     "pass": true,
+     "evidence": "Re-run at 529948d to a scratch folder (8.5 s): e1_result.json byte-identical to the committed file. scripts/tests/test_e1.py ALL PASS."
+    },
+    "2": {
+     "pass": true,
+     "evidence": "pairs(): D_t and y_{t+16} are indexed from the same block array with one finiteness mask applied to both; per-block lists stay paired through block_perm (same lengths, D fixed)."
+    },
+    "3": {
+     "pass": true,
+     "evidence": "D is NaN for the first 127 obs of each block (trailing 128 window) and is masked; the last 16 obs have no target. n_pairs 46,201 = 46,630 - 3 x (127 + 16). No dropped grid obs on A1 (entry 11)."
+    },
+    "4": {
+     "pass": true,
+     "evidence": "D_t uses trailing windows only; y_{t+16} is the registered forward target, not a predictor. The ACF criterion that fixes the predicted sign is computed in-sample on A1, as registered (DESIGN D.3 E1; entry 50 pins)."
+    },
+    "5": {
+     "pass": true,
+     "evidence": "Real and permuted statistics use the same overlapping pairs; the null permutes 128-obs pieces within block (entry 50 pin). Disclosure: ACF is 0.173 at lag 128 and 0.155 at lag 256, so 128-obs pieces leave longer dependence intact in D but break it in y; the null is likely too narrow and p = 0.089 too small, which cannot turn INDETERMINATE into CONSISTENT. State in Discussion."
+    },
+    "6": {
+     "pass": true,
+     "evidence": "Lag products and pairs are formed within blocks only; the pooled global mean across blocks is the registered construction (entry 50 item 1); block-level drift is reported (G14)."
+    },
+    "7": {
+     "pass": true,
+     "evidence": "PRV 77 of 77 PASS before load; three kept blocks totalling 46,630 grid obs; n_pairs matches the count implied by Methods."
+    }
+   }
+  },
+  "analysis/post/e5.py": {
+   "script_sha256": "bb0f2e3a6d20d4822e51dc957f57e6fa585d8a1a4d31246cdea85f8dea87c5cd",
+   "reviewed": "2026-11-18 (Claude, code read + re-execution)",
+   "signed": null,
+   "flags": {
+    "1": {
+     "pass": true,
+     "evidence": "Re-run at 529948d to a scratch folder (53 s): e5_result.json byte-identical to the committed file. scripts/tests/test_e5.py ALL PASS."
+    },
+    "2": {
+     "pass": true,
+     "evidence": "shifted() rolls the concatenated alarm series and re-splits it with the original block lengths and first steps, so each shifted block keeps its own step grid; leads are computed by e2stat.leads_table against the unshifted events. The block shuffle permutes y and g with one shared index array."
+    },
+    "3": {
+     "pass": true,
+     "evidence": "NaN scores are removed from threshold candidates; the out-of-sample mask requires index >= MIN_HIST and excludes scan windows (same as E2); an empty alarm series gives rate 0 and trips the flag, stated in advance (entry 51) and tested."
+    },
+    "4": {
+     "pass": true,
+     "evidence": "Alarm state comes from D_div's trailing score at a threshold matched on out-of-window observations only; leads count alarms before t_e^g within the 1,280-step scan."
+    },
+    "5": {
+     "pass": true,
+     "evidence": "Real and shifted alarm series are scored against the same 57 eligible events with the same lead rule; shift offsets are uniform in [1,000, N-1,000] grid obs as registered."
+    },
+    "6": {
+     "pass": true,
+     "evidence": "The circular shift runs over the concatenated kept series and so moves alarms across the two gaps: this is the registered E5 construction (DESIGN D.3 E5; entry 51), and the result is degenerate (0 alarm steps). The block shuffle and all scoring stay within blocks."
+    },
+    "7": {
+     "pass": true,
+     "evidence": "PRV 77 of 77 PASS before load. Recomputed D_div headline state matches E2: theta inf, matchable false, n* 4, 0 alarm steps. The threshold match here omits E2's coverage stop; for D_div this cannot matter (no finite theta yields <= n* onsets)."
+    }
+   }
+  },
+  "analysis/post/e4.py": {
+   "script_sha256": "e06d5763db90789c3acadb23a4491a1969f662b9dfdbae65ed7b1f8766366af3",
+   "helpers_sha256": {
+    "analysis/post/e4_ops.py": "54d2254e81a07789eeef622b9c2d7a73322bb04040d4ff60b20d7f5d65aeb65e"
+   },
+   "reviewed": "2026-11-18 (Claude, code read; re-execution pending verify.py --full on JAE's machine)",
+   "signed": null,
+   "flags": {
+    "1": {
+     "pass": null,
+     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+    },
+    "2": {
+     "pass": true,
+     "evidence": "Every variant goes through pipeline.run unchanged; only the ops module attributes are swapped and restored after each run (patch('V0')). Patches were confirmed live via pipeline.ops on synthetic data (W16_64, W64_256, W4_16, B4_2s differ from V0), so 'identical to V0' means still unmatchable, not unapplied. Derived rows index the V0 lead and flag arrays in their stored event order."
+    },
+    "3": {
+     "pass": true,
+     "evidence": "As E2: NaN scores before MIN_HIST are gated; P-CENS variants handle censored leads explicitly (lead 0; excluded), and n_censored is reported (0 for all detectors)."
+    },
+    "4": {
+     "pass": true,
+     "evidence": "All variant scores are trailing (e4_ops loop references asserted equal in test_e4_ops.py, ALL PASS); thresholds are matched on out-of-window observations only."
+    },
+    "5": {
+     "pass": true,
+     "evidence": "Event-block resampling draws runs of 3 consecutive eligible events with replacement (SeedSequence spawn_key 4), as fixed in DECISIONS 53; it resamples events, not series positions, the same for all detectors."
+    },
+    "6": {
+     "pass": true,
+     "evidence": "pipeline.run scores each block separately; no variant concatenates across gaps. Event-block resampling can join events from different blocks, but each lead was computed within its own block."
+    },
+    "7": {
+     "pass": true,
+     "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
+    }
+   }
+  },
+  "scripts/run_e2.py": {
+   "script_sha256": "d80f7dcf1f0cb134faac2a2c15f1639f8dffe49634a382ec98566a7eceae4dd0",
+   "helpers_sha256": {
+    "analysis/pipeline.py": "64bbc93cc61201b92e3b7fdc6be1fed638c41a7e56f05dc19f048cff9d9bb11d",
+    "analysis/e2stat.py": "5b6a62048468eb828307693da9846403ba5f7776f0d10f1c1406f8ccfd139c2a",
+    "analysis/ops.py": "c818d1038b61252500514313d50ccb0b30e5163606cbef8457c652457d717e35",
+    "analysis/a1_loader.py": "3701b14431e9bfc2062080d8c7cfed5d3a8430a61d11493b699676753a1c4410"
+   },
+   "reviewed": "2026-11-18 (Claude, code read + reproduction; run_e2.py is never re-invoked)",
+   "signed": null,
+   "flags": {
+    "1": {
+     "pass": true,
+     "evidence": "Firewall: E2 has exactly one real run (DECISIONS 47) and is not re-executed. Reproduction instead: the committed E4 V0 (same pipeline, no run_e2 guards) equals e2_result.json headline in thetas, realised, leads, per_detector and C. Re-derivation from the stored per-event leads: C_b, C_min, mean and median lead and detection rate all match to 1e-12; label REFUTE iff C_min <= 0 holds; n* = round_half_up(36,277/10^4) = 4. The pipeline also agreed with the independent reference implementation in 22,000 of 22,000 comparisons (verification/ref_agreement_summary.md)."
+    },
+    "2": {
+     "pass": true,
+     "evidence": "Per-block preparation (ops.prepare_block): steps of observation i are first_step + 10*i; scores, out-of-window masks and alarm arrays share each block's index; leads via e2stat.leads_table against t_e^g."
+    },
+    "3": {
+     "pass": true,
+     "evidence": "Scores before MIN_HIST are gated NaN and excluded from N_out and threshold candidates; nonfinite_scored = 0 for every detector; censored leads follow P-CENS (0 censored on A1)."
+    },
+    "4": {
+     "pass": true,
+     "evidence": "All five detectors are trailing (D.5 suite licence cells and reference agreement); thresholds are matched only on out-of-window observations; leads count alarms before t_e^g."
+    },
+    "5": {
+     "pass": true,
+     "evidence": "Every detector is matched to the same n* on the same out-of-window set with the same 32-obs hold; the D.5 unequal-memory null cells (suite ALL PASS) test exactly this comparison."
+    },
+    "6": {
+     "pass": true,
+     "evidence": "Scoring, matching counts and leads are per block; the three kept blocks are never concatenated for scoring."
+    },
+    "7": {
+     "pass": true,
+     "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
+    }
+   }
+  },
+  "scripts/suite/grade_suite.py": {
+   "script_sha256": "82c3d5913eb2e9a4c379c22a95c37469c5f4d9d9446f86418dbb0b95ce03a011",
+   "reviewed": "2026-11-18 (Claude, re-grade)",
+   "signed": null,
+   "flags": {
+    "1": {
+     "pass": true,
+     "evidence": "Re-graded the committed scripts/outputs/suite_v1 (337 files) to a scratch file (10.7 s): byte-identical to verification/suite_verdict.md (ALL PASS, 84 PASS, 0 FAIL). The suite itself is not re-run."
+    },
+    "2": {
+     "pass": true,
+     "evidence": "N/A: the grader reads per-cell JSONL rows by cell id from cells.json; no series alignment."
+    },
+    "3": {
+     "pass": true,
+     "evidence": "A missing cell file yields an empty row list, which fails its cell's criterion (it cannot silently pass); all 337 files are present."
+    },
+    "4": {
+     "pass": true,
+     "evidence": "N/A: grades synthetic outcomes against registered thresholds."
+    },
+    "5": {
+     "pass": true,
+     "evidence": "N/A: no subsampling in grading."
+    },
+    "6": {
+     "pass": true,
+     "evidence": "N/A: no series."
+    },
+    "7": {
+     "pass": true,
+     "evidence": "337 of 337 committed suite output files present; licence cells re-hash ops.py, pipeline.py, e2stat.py and ref_e2.py against aad6cf7 (unchanged)."
+    }
+   }
   }
  }
 }

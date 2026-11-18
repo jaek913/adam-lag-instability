@@ -191,7 +191,7 @@ def main():
     # --- X1-X3 (entry 49): EXPLORATORY
     x = dict(exploratory=True)
     for f in ("event_rise_median", "control_rise_median", "event_share_gt2", "control_share_gt2",
-              "mannwhitney_p_one_sided", "n_events", "n_control"):
+              "mannwhitney_p_one_sided", "n_events", "n_control", "n_tiles_excluded_clearance"):
         add(f"LB-X1-precursor.{f}", "LB-X1-precursor", "x", XD, ["X1", f], **x)
     for sub in ("whole", "block_1", "block_2", "longest_first_half", "longest_second_half"):
         for f in ("onsets_at_top", "nstar_headline", "unmatchable"):
