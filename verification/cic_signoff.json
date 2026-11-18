@@ -13,7 +13,7 @@
   "scripts/a1_events.py": {
    "script_sha256": "ea124890b0d0d727a0456d6f029ec4cfad5d806ee01acad70bb9d525ec3d9522",
    "reviewed": "2026-11-18 (Claude, code read + re-execution)",
-   "signed": null,
+   "signed": "JAE 2026-11-18",
    "flags": {
     "1": {
      "pass": true,
@@ -48,7 +48,7 @@
   "analysis/post/x_diag.py": {
    "script_sha256": "a493bd0be2368177c4f12e7d68d3b07b16f57d10e2d712b51eb7015e1172b7f3",
    "reviewed": "2026-11-18 (Claude, code read + re-execution); class 5 failed on v1, corrected per DECISIONS 62-63",
-   "signed": null,
+   "signed": "JAE 2026-11-18",
    "flags": {
     "1": {
      "pass": true,
@@ -83,7 +83,7 @@
   "analysis/post/e1.py": {
    "script_sha256": "9384edc8c0586e477e69c77ac665fae46ec37c28f5007ff72dedd95142a8fdfc",
    "reviewed": "2026-11-18 (Claude, code read + re-execution)",
-   "signed": null,
+   "signed": "JAE 2026-11-18",
    "flags": {
     "1": {
      "pass": true,
@@ -118,7 +118,7 @@
   "analysis/post/e5.py": {
    "script_sha256": "bb0f2e3a6d20d4822e51dc957f57e6fa585d8a1a4d31246cdea85f8dea87c5cd",
    "reviewed": "2026-11-18 (Claude, code read + re-execution)",
-   "signed": null,
+   "signed": "JAE 2026-11-18",
    "flags": {
     "1": {
      "pass": true,
@@ -155,12 +155,12 @@
    "helpers_sha256": {
     "analysis/post/e4_ops.py": "54d2254e81a07789eeef622b9c2d7a73322bb04040d4ff60b20d7f5d65aeb65e"
    },
-   "reviewed": "2026-11-18 (Claude, code read; re-execution pending verify.py --full on JAE's machine)",
-   "signed": null,
+   "reviewed": "2026-11-18 (Claude, code read; re-execution by verify.py --full on JAE's machine, db3a7e9)",
+   "signed": "JAE 2026-11-18",
    "flags": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -197,7 +197,7 @@
     "analysis/a1_loader.py": "3701b14431e9bfc2062080d8c7cfed5d3a8430a61d11493b699676753a1c4410"
    },
    "reviewed": "2026-11-18 (Claude, code read + reproduction; run_e2.py is never re-invoked)",
-   "signed": null,
+   "signed": "JAE 2026-11-18",
    "flags": {
     "1": {
      "pass": true,
@@ -232,7 +232,7 @@
   "scripts/suite/grade_suite.py": {
    "script_sha256": "82c3d5913eb2e9a4c379c22a95c37469c5f4d9d9446f86418dbb0b95ce03a011",
    "reviewed": "2026-11-18 (Claude, re-grade)",
-   "signed": null,
+   "signed": "JAE 2026-11-18",
    "flags": {
     "1": {
      "pass": true,

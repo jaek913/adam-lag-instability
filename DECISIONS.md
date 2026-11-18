@@ -1604,3 +1604,26 @@ JAE: "proceed as recommended" (15:11 CT), on the three questions from the close 
    - So the rise is small before the last logging interval and concentrated at the spike step. Entry 49's reading stands: the precursor is confined to the last 10-step interval.
 4. **Residual caveat (stated in the paper).** The tiles are disjoint but abut, so serial dependence between neighbouring controls remains. Two of the 56 adjacent eligible-event pairs are closer than 228 observations. The p-value is approximate and exploratory. The v1 p (entry 49) is superseded and is not quoted.
 5. **CIC.** x_diag.py class 5 now passes with this caveat. claims.lock is rebuilt: the X1 rows now point to v2, and an `LB-X1-precursor.n_tiles_excluded_clearance` row is added.
+
+## Entry 64 (2026-11-18) — Phase 3: every ledger number reproduces; CIC reviewed for all seven scripts; verify.py and its broken fixtures
+
+1. **Ledger.** claims.lock holds 151 rows over 26 LB-ids. It was built by `scripts/build_claims.py` and is never hand-edited. Outline and ledger agree exactly (entry 61 follow-up; Phase 3 boxes 1–2).
+2. **Reproduction (Phase 3 "non-reproductions flagged, never smoothed").** No ledger number failed to reproduce.
+   - **On the device:** a1_events, x_diag (v2), e1 and e5 re-ran identical, and the suite verdict re-graded byte-identical.
+   - **On JAE's machine** (`verify.py --full` at db3a7e9): all nine E4 variants and derived.json re-ran to the ledger.
+   - **E2 was not re-run** (entry 47). Instead it equals E4 V0, and C_b, C_min, the lead summaries, the label rule and n* re-derive from its stored per-event leads.
+   - **The one defect found was an integrity defect, not a non-reproduction:** the X1 control overlap (CIC class 5). It was flagged and corrected openly (entries 62–63), and v1 is preserved.
+3. **CIC.** All seven generating scripts are reviewed in `verification/cic_signoff.json`: a1_events, run_e2 (with pipeline, e2stat, ops and a1_loader), x_diag, e1, e5, e4 (with e4_ops) and grade_suite. All seven flags pass on each.
+4. **Disclosures for the null note.**
+   - The E1 permutation null is likely too narrow: the ACF is 0.155 at lag 256. This cannot turn INDETERMINATE into CONSISTENT.
+   - E5's registered circular shift crosses the two gaps. It is degenerate here (0 alarm steps).
+   - Methods states the kept blocks exactly: [1, 14,200], [52,301, 160,500] and [160,601, 504,500]. The "covered ranges" of entry 59 also include the rewind portions.
+   - The X1 p-value is approximate, because neighbouring controls are adjacent and still correlated.
+5. **verify.py** (db3a7e9) checks:
+   - inputs: SHA-256 of the 76 A1 files and of SOURCES.md;
+   - the ledger: output SHA-256, script SHA-256, and value at its pointer;
+   - re-execution (`--full` adds E4);
+   - the CIC flags and signatures;
+   - the manuscript reconciliation, from Phase 4.
+   - `scripts/tests/test_verify_fixtures.py`: 18 of 18. Good fixtures come back GREEN; each broken one turns it RED.
+6. **Signature.** JAE signs with `scripts/sign_cic.py`, which refuses if any reviewed script or helper has changed or any flag is unpassed. claims.lock is then rebuilt, and verify.py must return GREEN.

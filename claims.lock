@@ -4,7 +4,7 @@
   "path": "scripts/build_claims.py",
   "sha256": "2f350bf1a939653dcb96c045f982dd92b93510ef239990ea8d460c4b536f72e4"
  },
- "built_at_head": "529948d164e347f68532217a70ebdcc54c1f051c",
+ "built_at_head": "db3a7e9df65569c22f65ca8b698149031b5f3b9f",
  "theorem_rows": [],
  "theorem_note": "No original theorem is relied on (Phase 3 theorem box N/A; see verification/no_original_theorem.md).",
  "inputs": {
@@ -384,7 +384,7 @@
      "evidence": "All 7 route-1 files read pass prv_hash_check --only (SHA-256 vs SOURCES.md). Kept series 466,300 steps in 3 blocks [1,14200] [52301,160500] [160601,504500] (Amendment 2); rewind portions 14,201-14,210 ... 504,501-504,510 on own series. The D-02 'covered ranges' 1-14,210 and 52,301-504,510 are kept blocks plus rewind portions; Methods must state the kept blocks and the internal gap 160,501-160,600."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -438,7 +438,7 @@
      "evidence": "All 7 route-1 files read pass prv_hash_check --only (SHA-256 vs SOURCES.md). Kept series 466,300 steps in 3 blocks [1,14200] [52301,160500] [160601,504500] (Amendment 2); rewind portions 14,201-14,210 ... 504,501-504,510 on own series. The D-02 'covered ranges' 1-14,210 and 52,301-504,510 are kept blocks plus rewind portions; Methods must state the kept blocks and the internal gap 160,501-160,600."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -492,7 +492,7 @@
      "evidence": "All 7 route-1 files read pass prv_hash_check --only (SHA-256 vs SOURCES.md). Kept series 466,300 steps in 3 blocks [1,14200] [52301,160500] [160601,504500] (Amendment 2); rewind portions 14,201-14,210 ... 504,501-504,510 on own series. The D-02 'covered ranges' 1-14,210 and 52,301-504,510 are kept blocks plus rewind portions; Methods must state the kept blocks and the internal gap 160,501-160,600."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -547,7 +547,7 @@
      "evidence": "All 7 route-1 files read pass prv_hash_check --only (SHA-256 vs SOURCES.md). Kept series 466,300 steps in 3 blocks [1,14200] [52301,160500] [160601,504500] (Amendment 2); rewind portions 14,201-14,210 ... 504,501-504,510 on own series. The D-02 'covered ranges' 1-14,210 and 52,301-504,510 are kept blocks plus rewind portions; Methods must state the kept blocks and the internal gap 160,501-160,600."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -602,7 +602,7 @@
      "evidence": "All 7 route-1 files read pass prv_hash_check --only (SHA-256 vs SOURCES.md). Kept series 466,300 steps in 3 blocks [1,14200] [52301,160500] [160601,504500] (Amendment 2); rewind portions 14,201-14,210 ... 504,501-504,510 on own series. The D-02 'covered ranges' 1-14,210 and 52,301-504,510 are kept blocks plus rewind portions; Methods must state the kept blocks and the internal gap 160,501-160,600."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -657,7 +657,7 @@
      "evidence": "All 7 route-1 files read pass prv_hash_check --only (SHA-256 vs SOURCES.md). Kept series 466,300 steps in 3 blocks [1,14200] [52301,160500] [160601,504500] (Amendment 2); rewind portions 14,201-14,210 ... 504,501-504,510 on own series. The D-02 'covered ranges' 1-14,210 and 52,301-504,510 are kept blocks plus rewind portions; Methods must state the kept blocks and the internal gap 160,501-160,600."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -712,7 +712,7 @@
      "evidence": "All 7 route-1 files read pass prv_hash_check --only (SHA-256 vs SOURCES.md). Kept series 466,300 steps in 3 blocks [1,14200] [52301,160500] [160601,504500] (Amendment 2); rewind portions 14,201-14,210 ... 504,501-504,510 on own series. The D-02 'covered ranges' 1-14,210 and 52,301-504,510 are kept blocks plus rewind portions; Methods must state the kept blocks and the internal gap 160,501-160,600."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -766,7 +766,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -820,7 +820,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -875,7 +875,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -930,7 +930,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -985,7 +985,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -1040,7 +1040,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -1096,7 +1096,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -1152,7 +1152,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -1208,7 +1208,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -1264,7 +1264,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -1320,7 +1320,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -1376,7 +1376,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -1432,7 +1432,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -1488,7 +1488,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -1544,7 +1544,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -1600,7 +1600,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -1655,7 +1655,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -1711,7 +1711,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -1767,7 +1767,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -1823,7 +1823,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -1879,7 +1879,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -1935,7 +1935,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -1991,7 +1991,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -2047,7 +2047,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -2103,7 +2103,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -2159,7 +2159,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -2215,7 +2215,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -2270,7 +2270,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -2326,7 +2326,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -2382,7 +2382,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -2438,7 +2438,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -2494,7 +2494,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -2550,7 +2550,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -2606,7 +2606,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -2662,7 +2662,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -2718,7 +2718,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -2774,7 +2774,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -2830,7 +2830,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -2885,7 +2885,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -2941,7 +2941,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -2997,7 +2997,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -3053,7 +3053,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -3109,7 +3109,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -3165,7 +3165,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -3221,7 +3221,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -3277,7 +3277,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -3333,7 +3333,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -3389,7 +3389,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -3445,7 +3445,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -3500,7 +3500,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -3556,7 +3556,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -3612,7 +3612,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -3668,7 +3668,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -3724,7 +3724,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -3780,7 +3780,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -3836,7 +3836,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -3892,7 +3892,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -3948,7 +3948,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -4004,7 +4004,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -4060,7 +4060,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -4115,7 +4115,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -4169,7 +4169,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -4223,7 +4223,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -4277,7 +4277,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -4330,7 +4330,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -4383,7 +4383,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -4436,7 +4436,7 @@
      "evidence": "run_e2.py ran the PRV hash check before loading (prv_e2.md; DECISIONS 47). load_report: 1,420 + 10,820 + 34,390 grid obs, 0 dropped; N_out 36,277; 61 events, 57 eligible."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -4519,7 +4519,7 @@
      "evidence": "337 of 337 committed suite output files present; licence cells re-hash ops.py, pipeline.py, e2stat.py and ref_e2.py against aad6cf7 (unchanged)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -4572,7 +4572,7 @@
      "evidence": "337 of 337 committed suite output files present; licence cells re-hash ops.py, pipeline.py, e2stat.py and ref_e2.py against aad6cf7 (unchanged)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -4625,7 +4625,7 @@
      "evidence": "337 of 337 committed suite output files present; licence cells re-hash ops.py, pipeline.py, e2stat.py and ref_e2.py against aad6cf7 (unchanged)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -4679,7 +4679,7 @@
      "evidence": "PRV 77 of 77 PASS before load; three kept blocks totalling 46,630 grid obs; n_pairs matches the count implied by Methods."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -4733,7 +4733,7 @@
      "evidence": "PRV 77 of 77 PASS before load; three kept blocks totalling 46,630 grid obs; n_pairs matches the count implied by Methods."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -4787,7 +4787,7 @@
      "evidence": "PRV 77 of 77 PASS before load; three kept blocks totalling 46,630 grid obs; n_pairs matches the count implied by Methods."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -4841,7 +4841,7 @@
      "evidence": "PRV 77 of 77 PASS before load; three kept blocks totalling 46,630 grid obs; n_pairs matches the count implied by Methods."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -4895,7 +4895,7 @@
      "evidence": "PRV 77 of 77 PASS before load; three kept blocks totalling 46,630 grid obs; n_pairs matches the count implied by Methods."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -4949,7 +4949,7 @@
      "evidence": "PRV 77 of 77 PASS before load; three kept blocks totalling 46,630 grid obs; n_pairs matches the count implied by Methods."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -5003,7 +5003,7 @@
      "evidence": "PRV 77 of 77 PASS before load; three kept blocks totalling 46,630 grid obs; n_pairs matches the count implied by Methods."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -5057,7 +5057,7 @@
      "evidence": "PRV 77 of 77 PASS before load. Recomputed D_div headline state matches E2: theta inf, matchable false, n* 4, 0 alarm steps. The threshold match here omits E2's coverage stop; for D_div this cannot matter (no finite theta yields <= n* onsets)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -5111,7 +5111,7 @@
      "evidence": "PRV 77 of 77 PASS before load. Recomputed D_div headline state matches E2: theta inf, matchable false, n* 4, 0 alarm steps. The threshold match here omits E2's coverage stop; for D_div this cannot matter (no finite theta yields <= n* onsets)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -5165,7 +5165,7 @@
      "evidence": "PRV 77 of 77 PASS before load. Recomputed D_div headline state matches E2: theta inf, matchable false, n* 4, 0 alarm steps. The threshold match here omits E2's coverage stop; for D_div this cannot matter (no finite theta yields <= n* onsets)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -5219,7 +5219,7 @@
      "evidence": "PRV 77 of 77 PASS before load. Recomputed D_div headline state matches E2: theta inf, matchable false, n* 4, 0 alarm steps. The threshold match here omits E2's coverage stop; for D_div this cannot matter (no finite theta yields <= n* onsets)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -5276,7 +5276,7 @@
      "evidence": "PRV 77 of 77 PASS before load. Recomputed D_div headline state matches E2: theta inf, matchable false, n* 4, 0 alarm steps. The threshold match here omits E2's coverage stop; for D_div this cannot matter (no finite theta yields <= n* onsets)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -5330,7 +5330,7 @@
      "evidence": "PRV 77 of 77 PASS before load. Recomputed D_div headline state matches E2: theta inf, matchable false, n* 4, 0 alarm steps. The threshold match here omits E2's coverage stop; for D_div this cannot matter (no finite theta yields <= n* onsets)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -5384,7 +5384,7 @@
      "evidence": "PRV 77 of 77 PASS before load. Recomputed D_div headline state matches E2: theta inf, matchable false, n* 4, 0 alarm steps. The threshold match here omits E2's coverage stop; for D_div this cannot matter (no finite theta yields <= n* onsets)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -5409,8 +5409,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -5437,7 +5437,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -5464,8 +5464,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -5492,7 +5492,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -5517,8 +5517,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -5545,7 +5545,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -5572,8 +5572,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -5600,7 +5600,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -5625,8 +5625,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -5653,7 +5653,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -5680,8 +5680,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -5708,7 +5708,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -5733,8 +5733,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -5761,7 +5761,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -5788,8 +5788,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -5816,7 +5816,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -5841,8 +5841,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -5869,7 +5869,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -5896,8 +5896,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -5924,7 +5924,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -5949,8 +5949,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -5977,7 +5977,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -6004,8 +6004,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -6032,7 +6032,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -6057,8 +6057,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -6085,7 +6085,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -6112,8 +6112,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -6140,7 +6140,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -6165,8 +6165,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -6193,7 +6193,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -6220,8 +6220,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -6248,7 +6248,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -6273,8 +6273,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -6301,7 +6301,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -6328,8 +6328,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -6356,7 +6356,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -6382,8 +6382,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -6410,7 +6410,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -6436,8 +6436,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -6464,7 +6464,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -6490,8 +6490,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -6518,7 +6518,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -6544,8 +6544,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -6572,7 +6572,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -6601,8 +6601,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: a V0 re-run exceeds the device's 170 s limit (2 m 50 s, killed). To be re-run on JAE's machine via scripts/verify.py --full, all nine variants plus derived.json compared with the committed files. Committed V0 equals E2 exactly: thetas, realised, leads, per-detector and C (2026-11-18 check)."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at db3a7e9: python scripts/verify.py --store <store> --full re-ran all nine E4 variants and derived.json to a scratch folder; every LB-E4-variants row matched the ledger ([reexec] GREEN, nothing skipped). The committed V0 equals E2 exactly (thetas, realised, leads, per_detector, C)."
     },
     "2": {
      "pass": true,
@@ -6629,7 +6629,7 @@
      "evidence": "PRV 77 of 77 PASS before load (device run, 2026-11-18). Same blocks and events as E2 (n* 4, 57 eligible). P-SEG keep-earlier is not run (DECISIONS 53)."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -6683,7 +6683,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -6737,7 +6737,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -6791,7 +6791,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -6845,7 +6845,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -6899,7 +6899,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -6953,7 +6953,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -7007,7 +7007,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -7061,7 +7061,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -7116,7 +7116,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -7171,7 +7171,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -7226,7 +7226,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -7281,7 +7281,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -7336,7 +7336,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -7391,7 +7391,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -7446,7 +7446,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -7501,7 +7501,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -7556,7 +7556,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -7611,7 +7611,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -7666,7 +7666,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -7721,7 +7721,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -7776,7 +7776,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -7831,7 +7831,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -7886,7 +7886,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -7941,7 +7941,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -7996,7 +7996,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -8051,7 +8051,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -8106,7 +8106,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -8161,7 +8161,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -8216,7 +8216,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -8271,7 +8271,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -8326,7 +8326,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -8381,7 +8381,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -8436,7 +8436,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -8491,7 +8491,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -8546,7 +8546,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -8601,7 +8601,7 @@
      "evidence": "PRV: 77 of 77 store files PASS before load. Blocks n_obs 1,420 + 10,820 + 34,390 = 46,630 (entry 11); X2 whole n_out 36,277 = E2 N_out; 57 eligible events = LB-A1-nevents-k4."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   }
  ]
