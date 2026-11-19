@@ -8,9 +8,9 @@ Copied from the Research-to-Publication Standard's OUTLINE.md Template page (doc
 *   **Archetype:** empirical-with-verified-theory (THESIS Amendment A2(f): no original theorem; The Measurement Trap Appendix A.4 used as a descriptive index)
 *   **Source pin (rebuild only):** N/A — new work
 *   **Standard:** v1.10.2
-*   **Outline version:** v0.8 — 2026-11-18
+*   **Outline version:** v0.8.1 — 2026-11-18
 *   **Status:** draft — **null-note shape** (§K STOP, 2026-11-15); reconciled with DESIGN Amendments 7–17 and DECISIONS 47–65 (Phase 4 open)
-*   **Format:** short null note for an ML readership (arXiv cs.LG), about 4–6 pages main text (page budget per section in §1); appendices outside the page count. Working title: "A Smoothed Fast–Slow Divergence Does Not Warn of Loss Spikes Earlier Than Deployed Alarms: A Pre-Registered Null on a Public 7B Training Log" (JAE to confirm).
+*   **Format:** null note for an ML readership (arXiv cs.LG), about 9–10 pages main text with 6 figures and 4 tables (revised v0.8.1 from an estimated 4–6 pages: the required content — verbatim kill rule, Amendment 15 reading rules, registered operators, AI disclosure — does not fit 4–6; DECISIONS 69); appendices outside the page count. Working title: "A Smoothed Fast–Slow Divergence Does Not Warn of Loss Spikes Earlier Than Deployed Alarms: A Pre-Registered Null on a Public 7B Training Log" (JAE to confirm).
 *   **Registration cited in the paper:** `prereg-v1`, version DOI 10.5281/zenodo.23825294 (concept DOI 10.5281/zenodo.23825293); the §K kill rule and grading day are restated verbatim (Phase 4 override 3).
 *   **Outcome branches (pre-registered, DESIGN §K):** this outline is the full paper (E2 SUPPORT or INCONCLUSIVE → Leg B runs). If §K returns STOP (E2 REFUTE) or CLOSE (INSUFFICIENT EVENTS), the deliverable is a short null note built from the Leg A nodes only (ARG-01–ARG-10, ARG-14; FIG-1–FIG-5; TBL-1–TBL-5; S1–S5, S7–S8, S10–S13; L-01, L-03–L-07); Leg B nodes become DROPPED ("not necessary — §K did not proceed") by a dated outline version. **Resolved 2026-11-15: §K STOP. E2 is REFUTE on A1 (DECISIONS entry 47; RECORD.md). The deliverable is the null note; the Leg B nodes are DROPPED in v0.6.**
 
@@ -33,6 +33,7 @@ Copied from the Research-to-Publication Standard's OUTLINE.md Template page (doc
     *   **New LB-ids** (ledgered at Phase 4 open, entry 65, no new computation): LB-E2-frontier, LB-E2-severity, LB-E2-flip-power, LB-E2-F1-fallback, LB-E2-chance-asym, LB-E2-ddiv-response; LB-suite-cell gains the extension cell. LB-X1-precursor is the v2 result (entries 62–63; v1 superseded, not quoted).
     *   **New nodes.** ARG-16 (how to read REFUTE: severity, power, D_div response), ARG-17 (EXPLORATORY: precursor confined to the last logging interval; unmatchability is a detector property). TBL-9 (reported beside E2), FIG-8 (X1 event-locked curve, EXPLORATORY). S14–S18 (covered ranges; RNG stream deviation D-05; E1 null likely narrow; E5 shift crosses gaps; X1 p approximate). C-05 (exploratory). L-08–L-10.
     *   **Status changes.** ARG-09, TBL-4, LB-E3-* NOT RUN (§K stop). C-02 restated as "E3 not run". C-03, EQ-9, EQ-10 DROPPED (Leg B). PKG-01, PKG-02 DROPPED (DECISIONS 61: refuted detector not shipped); IMG-01 (stand-alone E2 figure) added. Leg B-only citations (Wortsman-2024, Lozhkov-2024, Radford-2019) and the A.4-index contrasts (Reddi-2018, Kourkoutas-2025) DROPPED; BigScience-2022 DROPPED (A5 not staged).
+*   v0.8.1 2026-11-18 — Page estimate corrected to about 9–10 pages main text after the first full draft (DECISIONS 69); no node changed.
 
 ## 1. IMRaD structural map (the skeleton)
 

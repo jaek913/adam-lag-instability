@@ -1689,3 +1689,30 @@ JAE: "proceed as recommended" (15:11 CT), on the three questions from the close 
    - This is a display choice made after E2. It changes no reported value, and the FIG-2 caption states it.
 4. **Palette and form.** Five categorical slots from the dataviz reference palette, validated with its script: all checks pass, with a contrast warning relieved by direct labels, a legend and tables. FIG-3 draws D_div on top, with hollow markers where it is unmatchable.
 5. **Manuscript.** Six figures are embedded. verify.py now turns RED on a missing embedded image; the fixture test is 22/22. The paper check is GREEN.
+
+## Entry 69 (2026-11-18) — Length of the null note: page estimate corrected, required content kept
+
+1. **Measured.** The rendered main text (Abstract through Conclusion) runs about 5,600 words of prose, plus 4 tables and 6 figures: roughly 9–10 pages. OUTLINE v0.8 estimated 4–6 pages.
+2. **Where the length is.**
+   - §3.5, about 690 words, about 230 of them the verbatim §K quote (Phase 4 override 3).
+   - §4.3, about 420 words: the Amendment 15 reading rules.
+   - The Conclusion, about 410 words: forward-claim statement, data availability, AI disclosure.
+   - §3.1–3.4, about 1,100 words: the Phase 4 box "Methods = Design operators in prose".
+   Removing duplication saves about 300 words. Reaching 4–6 pages would mean dropping checklist-required content.
+3. **Decision.** The 4–6 page figure was an outline estimate, not a registered rule, so it is corrected (OUTLINE v0.8.1: about 9–10 pages main text). No node changes. Further tightening is left to the Phase 5a independent review, whose cuts are adjudicated in the usual way.
+
+## Entry 70 (2026-11-18) — Companion drafted to the Companion Standard; mechanical QA GREEN; comprehension walk
+
+1. **Draft.** `paper/companion.md` was written from the paper's numbers, under the binding Companion Standard (ClickUp 2kydc08j-754 / 2kydc08j-614, read in full 2026-11-18).
+   - It has the H1 form, the verbatim preamble and footer, "The claim in one sentence" first, a narrative middle, then "What the checking caught in this paper", "What this cannot do", and "The takeaway" last.
+   - The plain-English brief v3 named in the Phase 4 box is not in the repository or the project, so no analogy was taken from it.
+   - The analogies used are a report card for the fast and slow averages, a car alarm for false-alarm matching, a called pool shot for pre-registration, an unplugged smoke detector for θ = ∞, and a milk pot filmed every ten seconds for the 10-step cadence.
+   - Every result enters by ledger marker (14). `paper/companion_rendered.md` is rendered by `scripts/render_paper.py`.
+2. **Mechanical QA.** `scripts/check_companion.py` checks the template, verbatim text, section order, a one-sentence claim, banned elements, a banned-jargon grep, sentences of at most 40 words, the dry-honesty phrases, RECORD absent, markers rendered, and a number trace. Result: GREEN. All 15 typed numbers are traced to design constants or plain facts with their sources; the longest sentence is 35 words; about 1,950 words.
+3. **Comprehension walk (QA gate 2, human step).** It found two concepts used before being built, and both were fixed: the alarm's "trigger", and "REFUTE" as the plan's reserved word for "the new idea lost". It also removed two superseded v1 numbers (the 2,000 overlapping controls and the v1 p-value), which the paper does not quote.
+4. **Honesty check (QA gate 4).** The REFUTE and the stop are the story's centre. Also covered: the X1 correction, the missing-context ledgering, the uncovered data range, and the RNG-stream difference ("What the checking caught"), plus the follow-up experiment not run.
+5. **Open, for JAE.**
+   - (a) The title, which is the working title from OUTLINE v0.8.
+   - (b) The Standard's "series verification note" pointer sentence. This paper stands alone, so the companion points to the repository's `verification/` folder and decision log instead.
+   - (c) The number trace against the shipping PDF runs again when the PDF exists, before LOCK.
+   The Phase 4 companion box stays open until (c).
