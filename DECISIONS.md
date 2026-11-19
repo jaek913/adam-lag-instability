@@ -1648,3 +1648,19 @@ JAE: "proceed as recommended" (15:11 CT), on the three questions from the close 
    - The 7-point CIC is run on both, and JAE signs.
    - `verify.py --full` re-runs check_ddiv_response, which is long, on JAE's machine.
    - The Phase 3 gate stays signed. This entry is the record that the ledger was extended at Phase 4 open under the Phase 3 rules.
+
+## Entry 66 (2026-11-18) — Phase 4 open: manuscript skeleton seeded from OUTLINE v0.8; opening reconciliation GREEN; no original theorem
+
+1. **Skeleton.** `paper/paper.md` was seeded by the committed, deterministic `scripts/seed_paper.py` from OUTLINE v0.8 (5cd7d0d) and claims.lock. It is not an ad-hoc reconstruction. The seeder:
+   - builds the IMRaD map headings and subsections;
+   - places each active ARG node with its citations and one ledger marker per LB-id;
+   - places each §4 finding at the section of the ARG it supports;
+   - defines and references each FIG/TBL/EQ;
+   - places each S-, C- and L- anchor;
+   - turns the §8 cross-references into lines;
+   - quotes the §K kill rule and grading day verbatim from DESIGN.md at the `prereg-v1` tag, with DOI 10.5281/zenodo.23825294;
+   - lists every active citation in References.
+   Seed lines are marked "> seed:"; drafting replaces them. Three runs gave byte-identical output, one under a different PYTHONHASHSEED.
+2. **Required section run, at seed.** The headings are Abstract (Keywords line after it), Introduction, Related Work, Methods, Results, Discussion, Conclusion, References, then Appendices A, C, D. There are no JEL codes.
+3. **Opening reconciliation.** `verify.py --skip-inputs --skip-reexec` reports `[paper] GREEN — 33 ledger markers; 81 anchors`. It also reports `[ledger] GREEN`, `[cic] GREEN` and `VERIFY: GREEN`. The rendered `paper/paper_rendered.md` has no un-rendered marker.
+4. **No original theorem (Phase 4 "Written proofs" box).** The paper relies on no original theorem or lemma, and the archetype has not flipped. The cited results are Kim-2026a Thm 3.1, Kim-2026c Thm 8b, Def 13 and Thm 14, and Kim-2026d. They are stated with citations and as-published statements and are not re-proved. See `verification/no_original_theorem.md` (90a3797).
