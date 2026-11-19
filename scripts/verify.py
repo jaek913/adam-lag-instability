@@ -11,7 +11,7 @@ Checks:
   [paper]    when the manuscript exists: every ledger value present at its {{LB-id}} (rendered by
              scripts/render_paper.py), and the outline reconciliation: required section run (fixed list), keywords,
              citation keys, LB-ids, FIG/TBL/EQ ids defined and referenced, S-/C-/L- anchors, internal
-             cross-references resolve, named verification/ (and other repo) paths exist, no STUB/TODO/PLACEHOLDER/
+             cross-references resolve, embedded images and named verification/ (and other repo) paths exist, no STUB/TODO/PLACEHOLDER/
              TBD or un-rendered {{...}}.
 Usage: python scripts/verify.py --store <store_root> [--full] [--skip-reexec] [--skip-inputs]
        [--lock claims.lock] [--outline OUTLINE.md] [--paper paper/paper.md]"""
@@ -332,6 +332,10 @@ def check_paper(lock, outline_path, paper_path, root=ROOT):
         a = _anchor(to)
         if a not in defined:
             red.append(f"paper: outline cross-reference {frm} -> {to} does not resolve (no {{#{a}}})")
+    # embedded images exist (relative to the manuscript's folder)
+    for img in re.findall(r"!\[[^\]]*\]\(([^)\s]+)\)", src):
+        if not os.path.exists(os.path.join(os.path.dirname(os.path.abspath(paper_path)), img)):
+            red.append(f"paper: embedded image does not exist: {img}")
     # named artifact paths exist
     for pth in set(re.findall(r"`((?:verification|scripts|analysis|paper)/[^`\s]+)`", src)):
         if not os.path.exists(os.path.join(root, pth)):

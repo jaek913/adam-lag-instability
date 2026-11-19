@@ -1,0 +1,21 @@
+{
+ "script_sha256": "6ad2fde14c954287f64a5b405b1ea946758c6512b310df0a9c043958ac07f206",
+ "fig2_event_t_e": 247012,
+ "inputs": {
+  "analysis/outputs/post/e5_result.json": "e22096cda3d16d565f2b9220449b165b38ce91bfafec96be3016f97c62a999d4",
+  "analysis/outputs/post/x_diag.json": "6c416fa721fe8e37685f485133f4037704f2eea7a4cce65b9bda5542d1e0a811",
+  "scripts/outputs/a1_events.json": "a6b30a9f1050c2cdad573911f0a9cb5e2c0c08e59dabc0cdbd77059f70ffd53a",
+  "scripts/outputs/a1_segment_metadata.json": "ce214f39c5d46573d63dad1c1efa59fa0792f2a6d909e985a93b8645a9cdd286",
+  "scripts/outputs/a1_structural_report.json": "10ffa676819ca96d497bc1c32292da71c191fa04380ee5fcda16b844fcdf496c",
+  "scripts/outputs/e2/e2_result.json": "49c942eba617b6ee8b21ae09bb0842e6764fb425b21f22491180db547adab018"
+ },
+ "images": {
+  "fig1_loop.png": "43f412113c8e43223e158e8302cf197de9b995456cfe8d525c650f753f1b3c94",
+  "fig2_event.png": "94c12b1da267bc94f83cdacb788093da3262eb21132fa9100f6123534053224f",
+  "fig3_frontier.png": "7a2356ae0dd046ecbdc719a759bbc600b45a166f9d3ea5ca955ffa30968f88ef",
+  "img01_e2_frontier.png": "7e70d8dece770801ccb000d0394364822da639ae1c7f598b5eaf335f14bfae10",
+  "fig4_outcomes.png": "7557a280d93afcaf646e178d14d1de22709edb4311f43dc7fa7a0201c0ebb819",
+  "fig5_e5.png": "7c178fb4d6f979dc73a0ce63d764cbb6b01f806f8df2171bc46bf2bcbc181ed4",
+  "fig8_x1_curve.png": "d7f6a8ec4e2f1774682e885c11b6ee80ad0a579d109f514eff9bff6570f64519"
+ }
+}

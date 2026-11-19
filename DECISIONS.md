@@ -1679,3 +1679,13 @@ JAE: "proceed as recommended" (15:11 CT), on the three questions from the close 
    - verify.py accepts citations with a locator, `[@Key, Thm 3]`.
    - The fixture test is 21/21.
 4. **Still open in Phase 4:** figures FIG-1–FIG-5 and FIG-8, plus IMG-01; the companion; the AI-disclosure box review; the README; the close reconciliation; the push; the close-read.
+
+## Entry 68 (2026-11-18) — Figures built from committed outputs; FIG-2 display tie-break
+
+1. **Script.** `scripts/make_figures.py` builds FIG-1 (schematic), FIG-2, FIG-3, FIG-4, FIG-5, FIG-8 and IMG-01 (FIG-3 stand-alone) from committed outputs only: `e2_result.json`, `x_diag.json`, `e5_result.json`, the A1 structural report, events and segment metadata, and, for FIG-2 only, the hashed store after the PRV check. It writes `paper/figures/MANIFEST.json` with the SHA-256 of each image and of every input. Two runs were byte-identical. No new analysis is performed, and no value is computed that is not already in the ledger.
+2. **FIG-2 integrity check.** FIG-2 recomputes each detector's headline alarm state with the E2 operators at the thetas recorded in `e2_result.json`, and halts unless the recomputed onsets equal the recorded ones. They did, for all five detectors.
+3. **FIG-2 display tie-break (made after the data, display only).** The registered rule picks "the median-lead event". Every headline lead is 0, so all 57 eligible events tie.
+   - Tie-break: sort eligible events by (D_div headline lead, t_e) and take index (n − 1) // 2, the median position in time order. That is the event at t_e = 247,012.
+   - This is a display choice made after E2. It changes no reported value, and the FIG-2 caption states it.
+4. **Palette and form.** Five categorical slots from the dataviz reference palette, validated with its script: all checks pass, with a contrast warning relieved by direct labels, a legend and tables. FIG-3 draws D_div on top, with hollow markers where it is unmatchable.
+5. **Manuscript.** Six figures are embedded. verify.py now turns RED on a missing embedded image; the fixture test is 22/22. The paper check is GREEN.

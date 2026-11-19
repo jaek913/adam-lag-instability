@@ -71,6 +71,8 @@ $$ v_t = \beta_2 v_{t-1} + (1-\beta_2)\, g_t^2, \qquad \Delta\theta_t \propto \e
 
 Its preconditioner is therefore a lagged measurement of a quantity that the measurement itself feeds back into: a measurement-feedback loop in the sense of [@Kim-2026d] (@FIG-1). That reading motivates watching the logged gradient norm for the moment its recent level departs from its longer-run level.
 
+![Figure FIG-1](figures/fig1_loop.png)
+
 Figure @FIG-1: Adam as a measurement-feedback loop, and the fast–slow divergence read off the gradient norm. {#FIG-1}
 
 The observable is the pre-clip global gradient norm g, taken in logs (@EQ-1):
@@ -287,9 +289,13 @@ E2 is therefore REFUTE by a tie at zero. At one false alarm per 10,000 observati
 
 Table @TBL-3: E2 on A1 at the headline FA (1 per 10,000 out-of-window grid observations, hold 32). {{LB-E2-nstar.n_eligible}} eligible events; C_min = {{LB-E2-Cmin:.1f}}; label {{LB-E2-verdict}}. {#TBL-3}
 
+![Figure FIG-4](figures/fig4_outcomes.png)
+
 Figure @FIG-4: Lead distributions per detector at the headline FA, with detected, concurrent and miss counts. Every lead is zero. {#FIG-4}
 
-Figure @FIG-2: One A1 event, the median-lead event by a rule fixed before the data. It shows g, D, the loss, and each detector's alarm state in the scan window. {#FIG-2}
+![Figure FIG-2](figures/fig2_event.png)
+
+Figure @FIG-2: One A1 event: y = ln g, D, the loss, and each detector's alarm state around the event. The registered rule picks the median-lead event; every lead is tied at zero, so the median position in time order among the tied events is used (a display tie-break, logged in the repository; it changes no reported value). No detector is in alarm anywhere in the window shown. {#FIG-2}
 
 ## 4.3 Reading the verdict {#sec-4.3}
 
@@ -333,6 +339,8 @@ The frontier is reported without verdict (@FIG-3, @app-C).
 - Detection rates at FA 5 stay low: {{LB-E2-frontier.5.0.D_div.detection_rate:.3f}} for D_div and {{LB-E2-frontier.5.0.B1.detection_rate:.3f}} for B1.
 
 D_div's lead never exceeds the best baseline's anywhere on the grid.
+
+![Figure FIG-3](figures/fig3_frontier.png)
 
 Figure @FIG-3: False-alarm-rate frontier per detector on A1: mean lead and detection rate against FA. D_div's unmatchable points are marked. {#FIG-3}
 
@@ -379,6 +387,8 @@ On a block-shuffled y, D_div is again not matchable ({{LB-E5-aor-shifted.block_s
 
 `S17` The registered circular shift runs over the concatenated kept series and so crosses its gaps. That is immaterial here, because D_div never alarms. {#S17}
 
+![Figure FIG-5](figures/fig5_e5.png)
+
 Figure @FIG-5: E5. D_div's advance-ordering rate, real against circularly shifted, is degenerate at the headline FA. {#FIG-5}
 
 ## 4.8 Exploratory diagnostics X1–X3 {#sec-4.8}
@@ -392,6 +402,8 @@ The following are EXPLORATORY. Their plan was fixed before computation, and they
 **X3.** The eligible events per block are {{LB-X3-events.block_0.eligible_events}}, {{LB-X3-events.block_1.eligible_events}} and {{LB-X3-events.block_2.eligible_events}}, at {{LB-X3-events.block_0.events_per_10k_obs:.1f}}, {{LB-X3-events.block_1.events_per_10k_obs:.1f}} and {{LB-X3-events.block_2.events_per_10k_obs:.1f}} per 10,000 observations.
 
 `S18` The control windows are disjoint but adjacent, so the p-value is approximate. An earlier version that used overlapping controls is superseded and is not quoted. {#S18}
+
+![Figure FIG-8 (EXPLORATORY)](figures/fig8_x1_curve.png)
 
 Figure @FIG-8 (EXPLORATORY): Event-locked mean of y around A1's spikes, events against disjoint-tile controls. {#FIG-8}
 

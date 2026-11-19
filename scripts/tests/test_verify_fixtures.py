@@ -142,6 +142,7 @@ def main():
         "outline cross-reference unresolved": (PAPER.replace("{#sec-5}", ""), "does not resolve"),
         "dropped limit-of-claim": (PAPER.replace("{#L-01}", ""), "L-01"),
         "missing artifact": (PAPER.replace("`scripts/verify.py`", "`verification/no_such_file.md`"), "named artifact"),
+        "missing embedded image": (PAPER.replace("Figure {#FIG-1}", "![Figure 1](figures/no_such.png) Figure {#FIG-1}"), "embedded image"),
         "unknown ledger id": (PAPER.replace("{{LB-T-one:.2f}}", "{{LB-T-nope}}"), "unknown ledger id"),
         "finding never quoted": (PAPER.replace("{{LB-T-one}}", "1.5").replace("{{LB-T-one:.2f}}", "1.50"), "never quoted"),
     }
