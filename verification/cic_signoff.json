@@ -267,7 +267,7 @@
   "scripts/suite/report_chance_leads.py": {
    "script_sha256": "5d91ade2d5810b4bcb7a6f3d0d6ca30677911cedb8be761b6af4e3cf000bcdef",
    "reviewed": "2026-11-18 (Claude, code read + re-execution; ledgered at Phase 4 open, DECISIONS 65)",
-   "signed": null,
+   "signed": "JAE 2026-11-18",
    "flags": {
     "1": {
      "pass": true,
@@ -306,12 +306,12 @@
     "analysis/synth_e2e.py": "3bcbedf73007ba25e37197e38bbeec6088675328fafbec9ff97b25969bf86e8e",
     "analysis/pipeline.py": "64bbc93cc61201b92e3b7fdc6be1fed638c41a7e56f05dc19f048cff9d9bb11d"
    },
-   "reviewed": "2026-11-18 (Claude, code read; re-execution pending verify.py --full on JAE's machine; ledgered at Phase 4 open, DECISIONS 65)",
-   "signed": null,
+   "reviewed": "2026-11-18 (Claude, code read; re-execution by verify.py --full on JAE's machine, 71ea367; ledgered at Phase 4 open, DECISIONS 65)",
+   "signed": "JAE 2026-11-18",
    "flags": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,

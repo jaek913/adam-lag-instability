@@ -4,7 +4,7 @@
   "path": "scripts/build_claims.py",
   "sha256": "e8660376581e97843a0d95a8d933f599df3fc8abde61c9f025f3a2bd538f03c9"
  },
- "built_at_head": "e4537d25cd503c038b00c1ca14ea6a7621f04643",
+ "built_at_head": "71ea36741968e0d7042946248ab2d98073455f00",
  "theorem_rows": [],
  "theorem_note": "No original theorem is relied on (Phase 3 theorem box N/A; see verification/no_original_theorem.md).",
  "inputs": {
@@ -8924,7 +8924,7 @@
      "evidence": "Reads the committed scripts/outputs/suite_v1 (337 files; regrade byte-identical) and scripts/suite/cells.json; every null kind listed in the script is covered or shown NOT RUN."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -8980,7 +8980,7 @@
      "evidence": "Reads the committed scripts/outputs/suite_v1 (337 files; regrade byte-identical) and scripts/suite/cells.json; every null kind listed in the script is covered or shown NOT RUN."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -9036,7 +9036,7 @@
      "evidence": "Reads the committed scripts/outputs/suite_v1 (337 files; regrade byte-identical) and scripts/suite/cells.json; every null kind listed in the script is covered or shown NOT RUN."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -9071,8 +9071,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -9099,7 +9099,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -9134,8 +9134,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -9162,7 +9162,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -9197,8 +9197,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -9225,7 +9225,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -9260,8 +9260,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -9288,7 +9288,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -9323,8 +9323,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -9351,7 +9351,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -9386,8 +9386,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -9414,7 +9414,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -9449,8 +9449,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -9477,7 +9477,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -9512,8 +9512,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -9540,7 +9540,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -9575,8 +9575,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -9603,7 +9603,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -9638,8 +9638,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -9666,7 +9666,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -9697,8 +9697,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -9725,7 +9725,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -9756,8 +9756,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -9784,7 +9784,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -9819,8 +9819,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -9847,7 +9847,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -9882,8 +9882,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -9910,7 +9910,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -9945,8 +9945,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -9973,7 +9973,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -10008,8 +10008,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -10036,7 +10036,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -10071,8 +10071,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -10099,7 +10099,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -10134,8 +10134,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -10162,7 +10162,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -10197,8 +10197,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -10225,7 +10225,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -10260,8 +10260,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -10288,7 +10288,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -10323,8 +10323,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -10351,7 +10351,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -10386,8 +10386,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -10414,7 +10414,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -10445,8 +10445,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -10473,7 +10473,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
@@ -10504,8 +10504,8 @@
    "reexec": "rerun_long",
    "cic": {
     "1": {
-     "pass": null,
-     "evidence": "PENDING: synthetic re-run (20 null + 400 ramp replicates per grid x phi, three pipeline passes) is long; to be re-run on JAE's machine by verify.py --full and compared row by row (ddiv_b, ddiv_c) with the committed verification/ddiv_response_15_8.md (54387a4). The --out option (entry 65) changes only the destination."
+     "pass": true,
+     "evidence": "JAE's machine, 2026-11-18 at 71ea367: verify.py --full re-ran check_ddiv_response.py with --out to scratch; every LB-E2-ddiv-response row (ddiv_b matched/fixed ranges, ddiv_c slope and R^2 at grid 10, phi 0.5, L 75 and 125) matched the ledger ([reexec] GREEN, nothing skipped)."
     },
     "2": {
      "pass": true,
@@ -10532,7 +10532,7 @@
      "evidence": "Counts per cell: R_POP = 20 null series and R = 100 replicates at each L, as stated in the report header and in Amendment 15.8; n finite thetas reported per detector."
     }
    },
-   "cic_signed": null,
+   "cic_signed": "JAE 2026-11-18",
    "note": null
   },
   {
