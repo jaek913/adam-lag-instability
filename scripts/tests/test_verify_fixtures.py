@@ -132,6 +132,7 @@ def main():
     res.append(expect("good manuscript fixture is GREEN", paper_check(PAPER), green=True))
     mut = {
         "missing citation": (PAPER.replace("[@Kim-2026a]", "Kim"), "not cited"),
+        "locator citation counts as cited": (PAPER.replace("Prior work [@Kim-2026a].", "Prior work [@Kim-2026a, Thm 3.1].").replace("The value is {{LB-T-one}} [@Kim-2026a].", "The value is {{LB-T-one}}."), None),
         "citation without reference entry": (PAPER.replace("[Kim-2026a] Kim, J. (2026).", ""), "no References entry"),
         "surviving stub": (PAPER.replace("Discussion.", "Discussion. TODO"), "placeholder"),
         "missing section": (PAPER.replace("# 2 Related Work", "# 2 Background"), "required section missing: Related Work"),
@@ -145,7 +146,10 @@ def main():
         "finding never quoted": (PAPER.replace("{{LB-T-one}}", "1.5").replace("{{LB-T-one:.2f}}", "1.50"), "never quoted"),
     }
     for name, (txt, must) in mut.items():
-        res.append(expect(f"{name} -> RED", paper_check(txt), must=must))
+        if must is None:
+            res.append(expect(f"{name} -> GREEN", paper_check(txt), green=True))
+        else:
+            res.append(expect(f"{name} -> RED", paper_check(txt), must=must))
     print(f"{sum(res)}/{len(res)} passed")
     print("ALL PASS" if all(res) else "FAILURES")
     sys.exit(0 if all(res) else 1)

@@ -1664,3 +1664,18 @@ JAE: "proceed as recommended" (15:11 CT), on the three questions from the close 
 2. **Required section run, at seed.** The headings are Abstract (Keywords line after it), Introduction, Related Work, Methods, Results, Discussion, Conclusion, References, then Appendices A, C, D. There are no JEL codes.
 3. **Opening reconciliation.** `verify.py --skip-inputs --skip-reexec` reports `[paper] GREEN — 33 ledger markers; 81 anchors`. It also reports `[ledger] GREEN`, `[cic] GREEN` and `VERIFY: GREEN`. The rendered `paper/paper_rendered.md` has no un-rendered marker.
 4. **No original theorem (Phase 4 "Written proofs" box).** The paper relies on no original theorem or lemma, and the archetype has not flipped. The cited results are Kim-2026a Thm 3.1, Kim-2026c Thm 8b, Def 13 and Thm 14, and Kim-2026d. They are stated with citations and as-published statements and are not re-proved. See `verification/no_original_theorem.md` (90a3797).
+
+## Entry 67 (2026-11-18) — First full draft of the null note; kill-rule quote elision (JAE)
+
+1. **Draft.** Every section of `paper/paper.md` now carries drafted prose, and no seed line remains. The Abstract, Introduction, Related Work, Methods, Results, Discussion, Conclusion and Appendices A, C and D are drafted.
+   - All results enter through 207 ledger markers, rendered by `scripts/render_paper.py`. No result number is typed.
+   - `verify.py --skip-inputs --skip-reexec` returns `[paper] GREEN — 207 ledger markers; 81 anchors`.
+   - The rendered text is about 7,000 words including tables and appendices, longer than the 4–6 page target in OUTLINE §1. Length is to be tightened at review.
+2. **Kill-rule quote (JAE, 2026-11-18).** Phase 4 override 3 requires the §K kill rule and grading day to be quoted verbatim, and override 4 forbids naming RECORD in the paper. The registered text names the file `RECORD.md` three times. Decision: quote every other word verbatim from `prereg-v1`, and replace the three clauses that name the file with a marked […], stating that the full registered text is at the DOI.
+   - Checked by script: the quote block equals the `prereg-v1` §K text with exactly those three substitutions.
+   - `RECORD` no longer appears anywhere in the manuscript.
+3. **Tooling changes, no change to any value.**
+   - The renderer gains formats: `yn` for booleans, ∞ for an infinite threshold, and a per-element spec for lists.
+   - verify.py accepts citations with a locator, `[@Key, Thm 3]`.
+   - The fixture test is 21/21.
+4. **Still open in Phase 4:** figures FIG-1–FIG-5 and FIG-8, plus IMG-01; the companion; the AI-disclosure box review; the README; the close reconciliation; the push; the close-read.

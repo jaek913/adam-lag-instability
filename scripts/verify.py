@@ -308,7 +308,7 @@ def check_paper(lock, outline_path, paper_path, root=ROOT):
     if missing or "{{" in rendered:
         red.append("paper: un-rendered {{...}} remains after rendering")
     # citations
-    cited = set(re.findall(r"\[@([A-Za-z0-9\-]+)\]", src))
+    cited = set(re.findall(r"\[@([A-Za-z0-9\-]+)(?:,[^\]]*)?\]", src))   # [@Key] or [@Key, locator]
     refs = re.split(r"^#{1,3}\s+References\s*$", src, flags=re.M)
     reflist = set(re.findall(r"^\[([A-Za-z0-9\-]+)\]", refs[1], re.M)) if len(refs) > 1 else set()
     for k in sorted(O["cite"] - cited):
